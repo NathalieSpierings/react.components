@@ -1,0 +1,108 @@
+@use "sass:color";
+@use "sass:list";
+@use "sass:map";
+
+// === Breakpoints
+
+$breakpoints: (
+  xs: 0,          // Extra small devices (phones)
+  sm: 576px,      // Small devices (large phones)
+  md: 768px,      // Medium devices (tablets)
+  lg: 992px,      // Large devices (laptops, desktops)
+  xl: 1200px,     // Extra large devices (large desktops)
+  xxl: 1600px     // Ultra-wide devices (4K monitors and above)
+);
+
+@function breakpoint-next(
+  $name,
+  $bp: $breakpoints,
+  $bp-names: map.keys($bp)
+) {
+  $n: list.index($bp-names, $name);
+  @return if(
+    $n != null and $n < list.length($bp-names),
+    list.nth($bp-names, $n),
+    null
+  );
+}
+
+@function breakpoint-min($name, $bp: $breakpoints) {
+  $min: map.get($bp, $name);
+  @return if($min != 0, $min, null);
+}
+@function breakpoint-max($name, $bp: $breakpoints) {
+  $next: breakpoint-next($name, $bp);
+  @return if($next, breakpoint-min($next, $bp) - 0.02, null);
+}
+
+@mixin MQ-min($name, $bp: $breakpoints) {
+  $min: breakpoint-min($name, $bp);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+@mixin MQ-max($name, $bp: $breakpoints) {
+  $max: breakpoint-max($name, $bp);
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+@mixin MQ-between($lower, $upper, $bp: $breakpoints) {
+  $min: breakpoint-min($lower, $bp);
+  $max: breakpoint-max($upper, $bp);
+
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
+		@content;
+    }
+  } @else if $max == null {
+    @include MQ-min($lower, $bp) {
+      @content;
+    }
+  } @else if $min == null {
+    @include MQ-max($upper, $bp) {
+      @content;
+    }
+  }
+}
+
+// === Grid system
+$row-columns: 12 !default;
+$row-gutter-width: 1.5rem !default;
+
+@function breakpoint-infix($name, $bp: $breakpoints) {
+  @return if(breakpoint-min($name, $bp) == null, "", "-#{$name}");
+}
+
+@mixin make-cssgrid($columns: $row-columns, $bp: $breakpoints) {
+  @each $breakpoint in map.keys($bp) {
+    $infix: breakpoint-infix($breakpoint, $bp);
+
+    @include MQ-min($breakpoint, $bp) {
+      @if $columns > 0 {
+        @for $i from 1 through $columns {
+          .col#{$infix}-#{$i} {
+            grid-column: auto / span $i;
+          }
+        }
+
+        // Start with `1` because `0` is and invalid value.
+        // Ends with `$columns - 1` because offsetting by the width of an entire row isn't possible.
+        @for $i from 1 through ($columns - 1) {
+          .start#{$infix}-#{$i} {
+            grid-column-start: $i;
+          }
+        }
+      }
+    }
+  }
+}
+

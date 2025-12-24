@@ -1,0 +1,159 @@
+:root {
+    --fontstack1: "Inter", sans-serif;
+    --fontstack2: "Inter Tight", sans-serif;
+    
+    // Font sizes
+	--fs-base: 1.6rem;
+	--lh-base: 1.5;
+
+	--fs-tiny: 1.1rem;
+	--fs-xs: 1.2rem;
+	--fs-sm: 1.4rem;
+	--fs-md: 1.7rem;
+	--fs-lg: 2rem;
+	--fs-xl: 2.2rem;
+	--fs-2xl: 2.4rem;
+	--fs-3xl: 2.8rem;
+	--fs-4xl: 3rem;
+	--fs-5xl: 3.6rem;
+	--fs-6xl: 4.8rem;
+
+	--lh-tiny: 1.5;
+	--lh-xs: 1.5;
+	--lh-sm: 1.5;
+	--lh-md: 1.5;
+	--lh-lg: 1.6;
+	--lh-xl: 1.8;
+	--lh-2xl: 1.8;
+	--lh-3xl: 1.5;
+	--lh-4xl: 1.5;
+	--lh-5xl: 1.5;
+	--lh-6xl: 1.3;
+
+    --rows: 1;
+    --columns: 12;
+    --gap: 1.5rem;
+
+    --scrollbar-width: 10px;
+    --scrollbar-background: var(--color-theme-600);
+    --scrollbar-thumb: var(--color-theme-700);
+    --scrollbar-thumb-hover: var(--color-theme-600);
+
+    --header-height: 80px;
+
+    --page-padding: 2.5rem;
+    --page-padding-sm: 1.5rem;
+    --page-translate-x: 0;
+    --page-transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    --page-container-padding: calc(var(--page-padding) * 5) var(--page-padding) var(--page-padding) var(--page-padding);
+
+    // Utilities
+    --radius-xs: 2px !important;
+    --radius-sm: 4px !important;
+    --radius-md: 6px !important;
+    --radius-lg: 8px !important;
+    --radius-xl: 12px !important;
+    --radius-2xl: 16px !important;
+    --radius-3xl: 24px !important;
+    --radius-none: 0 !important;
+    --radius-full: 9999px !important;
+    --radius: var(--radius-sm);
+
+
+    // Ring
+    --ring-color: var(--color-border);
+	--ring-width: 1px;
+	
+	--ring-offset-color: var(--color-white);
+	--ring-offset-width: 0;
+	--ring-offset-color-border: var(--color-primary);
+
+
+    --alpha-link: 0.6;
+    --border-style: solid;
+
+    --accessibility-focus-outline-style: dashed;
+    --accessibility-focus-outline-offset: 3px;
+    --accessibility-focus-outline-width: 1px;
+    --accessibility-focus-outline-color: var(--color-foreground-light);
+    --accessibility-focus-outline-box-shadow: 0 0 0 0 #fdefe880, 0 0 #0000, 0 0 #0000;
+
+    --backdrop: rgb(0 0 0 / 50%);
+    --shadow-base: rgb(0 0 0 / 12%);
+    --shadow-base-inverse: rgb(255 255 255 / 12%);
+    --shadow-light: rgb(0 0 0 / 6%);
+    --shadow-light-inverse: rgb(255 255 255 / 6%);
+
+    // Colors
+
+    --color-shadow: ;
+    --color-accent: var(--color-primary);
+    --color-shadow-accent: var(--color-shadow-primary);
+
+    --color-hover: var(--shadow-light);
+    --color-selected: var(--shadow-base);
+
+    --form-margin: var(--page-padding);
+    --formcontrol-height: 48px;
+    --formcontrol-border: var(--color-border-theme-500);
+    --formcontrol-background: var(--color-theme-500);
+    --formcontrol-foreground: var(--color-mute);
+    --formcontrol-padding: var(--page-padding-sm) var(--page-padding-sm) 0 var(--page-padding-sm);
+
+    // Zindexes
+
+    // Alert goes on top of everything
+    --alert-sticy-zindex: 1009;
+
+
+    // Modal goes on top of pageoverlay
+    --modal-zindex: 1007;
+    --modal-backdrop-zindex: 1006;
+
+    --zindex-dropdown: 1008;
+    --pageoverlay-zindex: 1005;
+    --drawer-zindex: 1004;
+
+
+
+    --sb-main-zindex: 203;
+    --sb-sub-zindex: 201;
+    // Drawer on top of sidebar sub
+    --sb-drawer-zindex: 202;
+    --sb-backdrop-zindex: 200;
+
+    --header-zindex: 98;
+    --gridlayout-zindex-mobile: 99; // must be higher that header
+    --gridlayout-zindex-desktop: 96; // Must be lower than header
+
+    --card-sticky-header-zindex: 97;
+
+    --bottom-sheet-zindex: 80;
+
+
+    // Illustrations
+    --art-background: var(--color-theme-500);
+    --art-accent: var(--color-primary);
+
+    // Icones
+    --icones-base: var(--color-theme-800);
+    --icones-5: var(--color-theme-100);
+    --icones-10: var(--color-theme-500);
+    --icones-20: var(--color-theme-700);
+    --icones-30: var(--color-theme-900);
+}
+
+.theme-dark .icones {
+    --icones-base: var(--color-theme-800);
+    --icones-5: var(--color-theme-100);
+    --icones-10: var(--color-theme-700);
+    --icones-20: var(--color-theme-500);
+    --icones-30: var(--color-theme-900);
+}
+
+
+.bg-surface-dark,
+.bg-surface-light {
+    --formcontrol-border: var(--color-border-surface);
+    --formcontrol-background: var(--color-surface);
+}
