@@ -1,77 +1,48 @@
 import React, { ImgHTMLAttributes } from 'react';
 import { ColorDefinitions, IconDefinitions, SizeDefinitions } from '../../../lib/utils/definitions';
 
-// import Female1 from '../../../assets/images/avatar_female_1.jpg';
-// import Female2 from '../../../assets/images/avatar_female_2.jpg';
-// import Female3 from '../../../assets/images/avatar_female_3.jpg';
-// import Female4 from '../../../assets/images/avatar_female_4.jpg';
-// import Female5 from '../../../assets/images/avatar_female_5.jpg';
-// import Female6 from '../../../assets/images/avatar_female_6.jpg';
-// import Male1 from '../../../assets/images/avatar_male_1.png';
-// import Male2 from '../../../assets/images/avatar_male_2.jpg';
-// import Male3 from '../../../assets/images/avatar_male_3.jpg';
-// import Male4 from '../../../assets/images/avatar_male_4.jpg';
-// import Male5 from '../../../assets/images/avatar_male_5.jpg';
-// import Male6 from '../../../assets/images/avatar_male_6.jpg';
-
-// export enum AvatarDefinitions {
-//     Female1 = 'Female1',
-//     Female2 = 'Female2',
-//     Female3 = 'Female3',
-//     Female4 = 'Female4',
-//     Female5 = 'Female5',
-//     Female6 = 'Female6',
-//     Male1 = 'Male1',
-//     Male2 = 'Male2',
-//     Male3 = 'Male3',
-//     Male4 = 'Male4',
-//     Male5 = 'Male5',
-//     Male6 = 'Male6',
-// }
-
-// export const avatarMap: Record<AvatarDefinitions, string> = {
-//     [AvatarDefinitions.Female1]: Female1,
-//     [AvatarDefinitions.Female2]: Female2,
-//     [AvatarDefinitions.Female3]: Female3,
-//     [AvatarDefinitions.Female4]: Female4,
-//     [AvatarDefinitions.Female5]: Female5,
-//     [AvatarDefinitions.Female6]: Female6,
-//     [AvatarDefinitions.Male1]: Male1,
-//     [AvatarDefinitions.Male2]: Male2,
-//     [AvatarDefinitions.Male3]: Male3,
-//     [AvatarDefinitions.Male4]: Male4,
-//     [AvatarDefinitions.Male5]: Male5,
-//     [AvatarDefinitions.Male6]: Male6,
-//     // ...
-// };
-
+import Female1 from '../../../assets/images/avatar_female_1.jpg';
+import Female2 from '../../../assets/images/avatar_female_2.jpg';
+import Female3 from '../../../assets/images/avatar_female_3.jpg';
+import Female4 from '../../../assets/images/avatar_female_4.jpg';
+import Female5 from '../../../assets/images/avatar_female_5.jpg';
+import Female6 from '../../../assets/images/avatar_female_6.jpg';
+import Male1 from '../../../assets/images/avatar_male_1.png';
+import Male2 from '../../../assets/images/avatar_male_2.jpg';
+import Male3 from '../../../assets/images/avatar_male_3.jpg';
+import Male4 from '../../../assets/images/avatar_male_4.jpg';
+import Male5 from '../../../assets/images/avatar_male_5.jpg';
+import Male6 from '../../../assets/images/avatar_male_6.jpg';
 
 export enum AvatarDefinitions {
-    Female1 = 'female-1',
-    Female2 = 'female-2',
-    Female3 = 'female-3',
-    Female4 = 'female-4',
-    Female5 = 'female-5',
-    Female6 = 'female-6',
-    Male1 = 'male-1',
-    Male2 = 'male-2',
-    Male3 = 'male-3',
-    Male4 = 'male-4',
-    Male5 = 'male-5',
-    Male6 = 'male-6',
+    Female1 = 'Female1',
+    Female2 = 'Female2',
+    Female3 = 'Female3',
+    Female4 = 'Female4',
+    Female5 = 'Female5',
+    Female6 = 'Female6',
+    Male1 = 'Male1',
+    Male2 = 'Male2',
+    Male3 = 'Male3',
+    Male4 = 'Male4',
+    Male5 = 'Male5',
+    Male6 = 'Male6',
 }
 
-const avatarExtensions: Partial<Record<AvatarDefinitions, 'jpg' | 'png'>> = {
-    [AvatarDefinitions.Male1]: 'png',
-};
-
-
-export const getAvatarUrl = (avatar: AvatarDefinitions): string => {
-    const ext = avatarExtensions[avatar] ?? 'jpg';
-    return new URL(
-        `../../../assets/images/avatar/${avatar}.${ext}`,
-        import.meta.url
-    ).href;
+export const avatarMap: Record<AvatarDefinitions, string> = {
+    [AvatarDefinitions.Female1]: Female1,
+    [AvatarDefinitions.Female2]: Female2,
+    [AvatarDefinitions.Female3]: Female3,
+    [AvatarDefinitions.Female4]: Female4,
+    [AvatarDefinitions.Female5]: Female5,
+    [AvatarDefinitions.Female6]: Female6,
+    [AvatarDefinitions.Male1]: Male1,
+    [AvatarDefinitions.Male2]: Male2,
+    [AvatarDefinitions.Male3]: Male3,
+    [AvatarDefinitions.Male4]: Male4,
+    [AvatarDefinitions.Male5]: Male5,
+    [AvatarDefinitions.Male6]: Male6,
+    // ...
 };
 
 export interface AvatarProps extends ImgHTMLAttributes<HTMLImageElement> {
@@ -132,8 +103,8 @@ const Avatar: React.FC<AvatarProps> = ({
         );
     } else if (imageUrl) {
         avatarContent = <img src={imageUrl} alt="Avatar" />;
-    } else if (avatar) {
-        avatarContent = <img src={getAvatarUrl(avatar)} alt="Avatar" />;
+    } else if (avatar && avatarMap[avatar]) {
+        avatarContent = <img src={avatarMap[avatar]} alt="Avatar" />;
     }
 
     return (

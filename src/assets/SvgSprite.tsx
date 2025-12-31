@@ -341,25 +341,37 @@ export const SvgSprite = () => {
                 <path fill="currentColor" d="M5 17.75a.75.75 0 0 1-.488-1.32l7-6a.75.75 0 0 1 .976 0l7 6A.75.75 0 0 1 19 17.75z" opacity=".3" />
                 <path fill="currentColor" fillRule="evenodd" d="M4.43 13.488a.75.75 0 0 0 1.058.081L12 7.988l6.512 5.581a.75.75 0 1 0 .976-1.138l-7-6a.75.75 0 0 0-.976 0l-7 6a.75.75 0 0 0-.081 1.057" clipRule="evenodd" />
             </symbol>
+            <symbol viewBox="0 0 24 24" id="svg_icon_angle_left">
+                <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="m15 5l-6 7l6 7" />
+            </symbol>
             <symbol viewBox="0 0 24 24" id="svg_icon_angle_down">
+                <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="m19 9l-7 6l-7-6" />
+            </symbol>
+            <symbol viewBox="0 0 24 24" id="svg_icon_angle_up">
+                <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="m19 15l-7-6l-7 6" />
+            </symbol>
+            <symbol viewBox="0 0 24 24" id="svg_icon_angle_right">
+                <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="m9 5l6 7l-6 7" />
+            </symbol>
+            <symbol viewBox="0 0 24 24" id="svg_icon_angle_down_double">
                 <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5">
                     <path d="m19 11l-7 6l-7-6" />
                     <path d="m19 7l-7 6l-7-6" opacity="var(--svg-ico-opacity, 0.5)" />
                 </g>
             </symbol>
-            <symbol viewBox="0 0 24 24" id="svg_icon_angle_left">
+            <symbol viewBox="0 0 24 24" id="svg_icon_angle_left_double">
                 <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5">
                     <path d="m13 19l-6-7l6-7" />
                     <path d="m17 19l-6-7l6-7" opacity="var(--svg-ico-opacity, 0.5)" />
                 </g>
             </symbol>
-            <symbol viewBox="0 0 24 24" id="svg_icon_angle_right">
+            <symbol viewBox="0 0 24 24" id="svg_icon_angle_right_double">
                 <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5">
                     <path d="m11 19l6-7l-6-7" />
                     <path d="m7 19l6-7l-6-7" opacity="var(--svg-ico-opacity, 0.5)" />
                 </g>
             </symbol>
-            <symbol viewBox="0 0 24 24" id="svg_icon_angle_up">
+            <symbol viewBox="0 0 24 24" id="svg_icon_angle_up_double">
                 <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5">
                     <path d="m19 13l-7-6l-7 6" />
                     <path d="m19 17l-7-6l-7 6" opacity="var(--svg-ico-opacity, 0.5)" />
@@ -793,7 +805,7 @@ export const SvgSprite = () => {
                     <path opacity="var(--svg-ico-opacity, 0.5)" d="m15.013 6l-.5 2.084l.83-.518a3.5 3.5 0 0 1 2.122-.715c1.952 0 3.535 1.6 3.535 3.575C21 12.4 19.417 14 17.465 14c-1.71 0-3.137-1.228-3.465-2.86" />
                 </g>
             </symbol>
-            <symbol viewBox="0 0 24 24" id="svg_icon_sort">
+            <symbol viewBox="0 0 24 24" id="svg_icon_filter">
                 <g fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="1.5">
                     <path d="M22 7H2" />
                     <path d="M19 12H5" opacity="var(--svg-ico-opacity, 0.5)" />
@@ -1243,7 +1255,7 @@ export const SvgSprite = () => {
             <symbol viewBox="0 0 256 256" id="svg_icon_asclepius">
                 <path fill="currentColor" d="M88 48v8a32 32 0 0 1-32 32H32v-8a32 32 0 0 1 32-32Z" opacity="var(--svg-ico-opacity, 0.5)" />
                 <path fill="currentColor" d="M214 79v1a38 38 0 0 1-38 38h-42v84h10a18 18 0 0 0 12-31.42a6 6 0 1 1 8-8.94A30 30 0 0 1 144 214h-10v18a6 6 0 0 1-12 0v-18H96a6 6 0 0 1 0-12h26v-84H96a18 18 0 0 0 0 36a6 6 0 0 1 0 12a30 30 0 0 1 0-60h26V24a6 6 0 0 1 12 0v82h42a26 26 0 0 0 26-26v-1a25 25 0 0 0-25-25h-17a6 6 0 0 1 0-12h17a37 37 0 0 1 37 37M56 94H32a6 6 0 0 1-6-6v-8a38 38 0 0 1 38-38h32a6 6 0 0 1 0 12h-2v2a38 38 0 0 1-38 38m26-40H64a26 26 0 0 0-26 26v2h18a26 26 0 0 0 26-26Z" />
-            </symbol>          
+            </symbol>
             <symbol viewBox="0 0 24 24" id="svg_icon_note_exclamation">
                 <g fill="none" stroke="currentColor" strokeWidth="1.5">
                     <path d="M3 10c0-3.771 0-5.657 1.172-6.828S7.229 2 11 2h2c3.771 0 5.657 0 6.828 1.172S21 6.229 21 10v4c0 3.771 0 5.657-1.172 6.828S16.771 22 13 22h-2c-3.771 0-5.657 0-6.828-1.172S3 17.771 3 14z" opacity="var(--svg-ico-opacity, 0.5)" />

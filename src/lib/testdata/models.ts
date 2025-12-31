@@ -2,118 +2,111 @@
 import { NotFoundError } from "../errors";
 
 const data = [
-  { id: "1", orderNumber: "ORD-1001", customerName: "Jan Jansen", status: "Open", address: "Dorpsstraat 1, Amsterdam", totalAmount: 120, orderDate: new Date("2025-01-03") },
-  { id: "2", orderNumber: "ORD-1002", customerName: "Piet Pietersen", status: "Afgerond", address: "Kerkweg 12, Utrecht", totalAmount: 899, orderDate: new Date("2025-01-05") },
-  { id: "3", orderNumber: "ORD-1003", customerName: "Klaas de Vries", status: "Open", address: "Stationsplein 3, Rotterdam", totalAmount: 240, orderDate: new Date("2025-01-07") },
-  { id: "4", orderNumber: "ORD-1004", customerName: "Anne Bakker", status: "Afgerond", address: "Schoolstraat 44, Leiden", totalAmount: 545, orderDate: new Date("2025-01-09") },
-  { id: "5", orderNumber: "ORD-1005", customerName: "Sanne Meijer", status: "Open", address: "Lindelaan 8, Haarlem", totalAmount: 310, orderDate: new Date("2025-01-11") },
-  { id: "6", orderNumber: "ORD-1006", customerName: "Tom Smit", status: "Afgerond", address: "Bosweg 19, Breda", totalAmount: 76, orderDate: new Date("2025-01-13") },
-  { id: "7", orderNumber: "ORD-1007", customerName: "Eva Peters", status: "Open", address: "Parklaan 2, Groningen", totalAmount: 1999, orderDate: new Date("2025-01-15") },
-  { id: "8", orderNumber: "ORD-1008", customerName: "Mark Visser", status: "Afgerond", address: "Havenstraat 5, Zwolle", totalAmount: 420, orderDate: new Date("2025-01-18") },
-  { id: "9", orderNumber: "ORD-1009", customerName: "Lisa van Dijk", status: "Open", address: "Molenweg 77, Alkmaar", totalAmount: 1355, orderDate: new Date("2025-01-20") },
-  { id: "10", orderNumber: "ORD-1010", customerName: "Ruben Dekker", status: "Afgerond", address: "Rivierstraat 10, Arnhem", totalAmount: 58, orderDate: new Date("2025-01-22") },
-
-  { id: "11", orderNumber: "ORD-1011", customerName: "Noah Willems", status: "Open", address: "Duinlaan 6, Den Haag", totalAmount: 280, orderDate: new Date("2025-02-01") },
-  { id: "12", orderNumber: "ORD-1012", customerName: "Emma Kuiper", status: "Afgerond", address: "Zandweg 14, Hoorn", totalAmount: 995, orderDate: new Date("2025-02-03") },
-  { id: "13", orderNumber: "ORD-1013", customerName: "Daan van Leeuwen", status: "Open", address: "Kade 21, Dordrecht", totalAmount: 412, orderDate: new Date("2025-02-05") },
-  { id: "14", orderNumber: "ORD-1014", customerName: "Lotte Hendriks", status: "Afgerond", address: "Bergstraat 9, Maastricht", totalAmount: 67, orderDate: new Date("2025-02-07") },
-  { id: "15", orderNumber: "ORD-1015", customerName: "Milan Vos", status: "Open", address: "Eikenlaan 3, Enschede", totalAmount: 150, orderDate: new Date("2025-02-09") },
-  { id: "16", orderNumber: "ORD-1016", customerName: "Nina Brouwer", status: "Afgerond", address: "Veldweg 88, Assen", totalAmount: 220, orderDate: new Date("2025-02-11") },
-  { id: "17", orderNumber: "ORD-1017", customerName: "Jesse Kok", status: "Open", address: "Markt 1, Deventer", totalAmount: 349, orderDate: new Date("2025-02-13") },
-  { id: "18", orderNumber: "ORD-1018", customerName: "Fleur van Rijn", status: "Afgerond", address: "Oudeweg 17, Gouda", totalAmount: 1855, orderDate: new Date("2025-02-15") },
-  { id: "19", orderNumber: "ORD-1019", customerName: "Bram Scholten", status: "Open", address: "Noordstraat 55, Middelburg", totalAmount: 510, orderDate: new Date("2025-02-17") },
-  { id: "20", orderNumber: "ORD-1020", customerName: "Iris Mulder", status: "Afgerond", address: "Westlaan 11, Lelystad", totalAmount: 92, orderDate: new Date("2025-02-19") },
-
-  { id: "21", orderNumber: "ORD-1021", customerName: "Tim van den Berg", status: "Open", address: "Kanaalstraat 7, Helmond", totalAmount: 260, orderDate: new Date("2025-03-01") },
-  { id: "22", orderNumber: "ORD-1022", customerName: "Roos Jacobs", status: "Afgerond", address: "Heideweg 4, Ede", totalAmount: 140, orderDate: new Date("2025-03-03") },
-  { id: "23", orderNumber: "ORD-1023", customerName: "Lucas Verhoeven", status: "Open", address: "Wilgenlaan 12, Venlo", totalAmount: 330, orderDate: new Date("2025-03-05") },
-  { id: "24", orderNumber: "ORD-1024", customerName: "Sara Peeters", status: "Afgerond", address: "Kruisstraat 29, Tilburg", totalAmount: 755, orderDate: new Date("2025-03-07") },
-  { id: "25", orderNumber: "ORD-1025", customerName: "Finn van Dam", status: "Open", address: "Houtweg 18, Kampen", totalAmount: 189, orderDate: new Date("2025-03-09") },
-  { id: "26", orderNumber: "ORD-1026", customerName: "Olivia Smits", status: "Afgerond", address: "Zuidweg 6, Goes", totalAmount: 49, orderDate: new Date("2025-03-11") },
-  { id: "27", orderNumber: "ORD-1027", customerName: "Sem van Beek", status: "Open", address: "Oosterlaan 90, Apeldoorn", totalAmount: 275, orderDate: new Date("2025-03-13") },
-  { id: "28", orderNumber: "ORD-1028", customerName: "Julia Koster", status: "Afgerond", address: "Nieuwstraat 2, Weert", totalAmount: 110, orderDate: new Date("2025-03-15") },
-  { id: "29", orderNumber: "ORD-1029", customerName: "Thijs Boon", status: "Open", address: "Ringweg 13, Purmerend", totalAmount: 3605, orderDate: new Date("2025-03-17") },
-  { id: "30", orderNumber: "ORD-1030", customerName: "Maud de Groot", status: "Afgerond", address: "Vijverlaan 20, Zeist", totalAmount: 95, orderDate: new Date("2025-03-19") },
-
-  { id: "31", orderNumber: "ORD-1031", customerName: "Koen de Boer", status: "Open", address: "Industrieweg 1, Almelo", totalAmount: 410, orderDate: new Date("2025-04-01") },
-  { id: "32", orderNumber: "ORD-1032", customerName: "Lynn van Loon", status: "Afgerond", address: "Singel 14, Culemborg", totalAmount: 68, orderDate: new Date("2025-04-03") },
-  { id: "33", orderNumber: "ORD-1033", customerName: "Stijn van Houten", status: "Open", address: "Korenstraat 6, Tiel", totalAmount: 225, orderDate: new Date("2025-04-05") },
-  { id: "34", orderNumber: "ORD-1034", customerName: "Elin Jansen", status: "Afgerond", address: "Dreef 30, Oosterhout", totalAmount: 88, orderDate: new Date("2025-04-07") },
-  { id: "35", orderNumber: "ORD-1035", customerName: "Mees van der Meer", status: "Open", address: "Gracht 5, Sneek", totalAmount: 140, orderDate: new Date("2025-04-09") },
-  { id: "36", orderNumber: "ORD-1036", customerName: "Fenna Post", status: "Afgerond", address: "Brink 9, Drachten", totalAmount: 599, orderDate: new Date("2025-04-11") },
-  { id: "37", orderNumber: "ORD-1037", customerName: "Timo Blom", status: "Open", address: "Laan van Westenenk 50, Apeldoorn", totalAmount: 500, orderDate: new Date("2025-04-13") },
-  { id: "38", orderNumber: "ORD-1038", customerName: "Isabel van Rossum", status: "Afgerond", address: "Raadhuisstraat 1, Naarden", totalAmount: 72, orderDate: new Date("2025-04-15") },
-  { id: "39", orderNumber: "ORD-1039", customerName: "Aron van Gent", status: "Open", address: "Kastanjelaan 16, Harderwijk", totalAmount: 2105, orderDate: new Date("2025-04-17") },
-  { id: "40", orderNumber: "ORD-1040", customerName: "Bo Vermeer", status: "Afgerond", address: "Bloemstraat 22, Wageningen", totalAmount: 130, orderDate: new Date("2025-04-19") },
-
-  { id: "41", orderNumber: "ORD-1041", customerName: "Cas de Jong", status: "Open", address: "IJsselkade 7, Zutphen", totalAmount: 345, orderDate: new Date("2025-05-01") },
-  { id: "42", orderNumber: "ORD-1042", customerName: "Mila Prins", status: "Afgerond", address: "Zonnelaan 4, Haren", totalAmount: 64, orderDate: new Date("2025-05-03") },
-  { id: "43", orderNumber: "ORD-1043", customerName: "Joep van Etten", status: "Open", address: "Spoorlaan 15, Roosendaal", totalAmount: 185, orderDate: new Date("2025-05-05") },
-  { id: "44", orderNumber: "ORD-1044", customerName: "Noor van der Linden", status: "Afgerond", address: "Havenkade 3, Maassluis", totalAmount: 985, orderDate: new Date("2025-05-07") },
-  { id: "45", orderNumber: "ORD-1045", customerName: "Rik de Wit", status: "Open", address: "Esdoornstraat 10, Uden", totalAmount: 255, orderDate: new Date("2025-05-09") },
-  { id: "46", orderNumber: "ORD-1046", customerName: "Puck van Velzen", status: "Afgerond", address: "Buitenhof 6, Delft", totalAmount: 47, orderDate: new Date("2025-05-11") },
-  { id: "47", orderNumber: "ORD-1047", customerName: "Sven Kroon", status: "Open", address: "Weteringweg 19, Aalsmeer", totalAmount: 3999, orderDate: new Date("2025-05-13") },
-  { id: "48", orderNumber: "ORD-1048", customerName: "Yara van Dongen", status: "Afgerond", address: "Julianastraat 8, Boxmeer", totalAmount: 83, orderDate: new Date("2025-05-15") },
-  { id: "49", orderNumber: "ORD-1049", customerName: "Dylan van der Wal", status: "Open", address: "Achterweg 2, Nijkerk", totalAmount: 172, orderDate: new Date("2025-05-17") },
-  { id: "50", orderNumber: "ORD-1050", customerName: "Sophie Kuijpers", status: "Afgerond", address: "Voorstraat 33, Franeker", totalAmount: 60, orderDate: new Date("2025-05-19") },
-
-  { id: "51", orderNumber: "ORD-1051", customerName: "Hugo van Steijn", status: "Open", address: "Meidoornlaan 11, Barneveld", totalAmount: 290, orderDate: new Date("2025-06-01") },
-  { id: "52", orderNumber: "ORD-1052", customerName: "Lara van Oort", status: "Afgerond", address: "Kerkhofstraat 5, Gennep", totalAmount: 775, orderDate: new Date("2025-06-03") },
-  { id: "53", orderNumber: "ORD-1053", customerName: "Quinn Peters", status: "Open", address: "Burgemeesterplein 1, Rijen", totalAmount: 415, orderDate: new Date("2025-06-05") },
-  { id: "54", orderNumber: "ORD-1054", customerName: "Veerle Janssen", status: "Afgerond", address: "Schans 14, Bunnik", totalAmount: 52, orderDate: new Date("2025-06-07") },
-  { id: "55", orderNumber: "ORD-1055", customerName: "Owen van Wijk", status: "Open", address: "Nieuweweg 9, Soest", totalAmount: 198, orderDate: new Date("2025-06-09") },
-  { id: "56", orderNumber: "ORD-1056", customerName: "Rosa van Aken", status: "Afgerond", address: "Kade 41, Zierikzee", totalAmount: 66, orderDate: new Date("2025-06-11") },
-  { id: "57", orderNumber: "ORD-1057", customerName: "Niek van den Broek", status: "Open", address: "Waterstraat 18, Heusden", totalAmount: 305, orderDate: new Date("2025-06-13") },
-  { id: "58", orderNumber: "ORD-1058", customerName: "Ilse van Dalen", status: "Afgerond", address: "Plantsoen 7, Waalwijk", totalAmount: 91, orderDate: new Date("2025-06-15") },
-  { id: "59", orderNumber: "ORD-1059", customerName: "Bas van Rooijen", status: "Open", address: "Rietstraat 25, Hilversum", totalAmount: 260, orderDate: new Date("2025-06-17") },
-  { id: "60", orderNumber: "ORD-1060", customerName: "Eline Hofman", status: "Afgerond", address: "Dorpsplein 4, Laren", totalAmount: 115.0, orderDate: new Date("2025-06-19") }
+  {"id":"1","customerName":"Alice Janssen","product":"Wireless Mouse","quantity":2,"price":25.99,"orderStatus":"verzamelen","paymentMethod":"creditcard","deliverer":"DHL","orderDate":"2025-12-01T10:15:30Z"},
+  {"id":"2","customerName":"Bob de Vries","product":"Bluetooth Headphones","quantity":1,"price":79.49,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2025-12-02T12:00:00Z"},
+  {"id":"3","customerName":"Carmen Visser","product":"USB-C Charger","quantity":3,"price":19.99,"orderStatus":"bezorgd","paymentMethod":"overschrijving","deliverer":"postnl","orderDate":"2025-12-03T09:45:10Z"},
+  {"id":"4","customerName":"David Meijer","product":"Laptop Stand","quantity":1,"price":34.95,"orderStatus":"geannuleerd","paymentMethod":"creditcard","deliverer":"UPS","orderDate":"2025-12-03T14:20:00Z"},
+  {"id":"5","customerName":"Evelien Bakker","product":"Mechanical Keyboard","quantity":1,"price":99.99,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"DHL","orderDate":"2025-12-04T11:30:00Z"},
+  {"id":"6","customerName":"Frank de Groot","product":"Gaming Mouse Pad","quantity":2,"price":15.99,"orderStatus":"verzamelen","paymentMethod":"overschrijving","deliverer":"UPS","orderDate":"2025-12-04T15:10:00Z"},
+  {"id":"7","customerName":"Gerrit van Dijk","product":"Webcam HD","quantity":1,"price":49.99,"orderStatus":"bezorgd","paymentMethod":"creditcard","deliverer":"postnl","orderDate":"2025-12-05T09:00:00Z"},
+  {"id":"8","customerName":"Hanneke Kuipers","product":"External Hard Drive","quantity":2,"price":64.50,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2025-12-05T12:25:00Z"},
+  {"id":"9","customerName":"Ivo Brouwer","product":"Smartphone Case","quantity":3,"price":12.99,"orderStatus":"verzamelen","paymentMethod":"overschrijving","deliverer":"DHL","orderDate":"2025-12-06T10:05:00Z"},
+  {"id":"10","customerName":"Jasmijn de Boer","product":"Portable Charger","quantity":1,"price":29.99,"orderStatus":"bezorgd","paymentMethod":"creditcard","deliverer":"postnl","orderDate":"2025-12-06T13:50:00Z"},
+  {"id":"11","customerName":"Kees van Leeuwen","product":"LED Desk Lamp","quantity":1,"price":22.99,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2025-12-07T11:15:00Z"},
+  {"id":"12","customerName":"Lotte van den Berg","product":"Wireless Keyboard","quantity":1,"price":45.99,"orderStatus":"verzamelen","paymentMethod":"overschrijving","deliverer":"DHL","orderDate":"2025-12-07T14:30:00Z"},
+  {"id":"13","customerName":"Martijn Smit","product":"Noise Cancelling Headphones","quantity":1,"price":129.99,"orderStatus":"bezorgd","paymentMethod":"creditcard","deliverer":"postnl","orderDate":"2025-12-08T09:45:00Z"},
+  {"id":"14","customerName":"Nina Vos","product":"Smartwatch","quantity":1,"price":199.99,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2025-12-08T12:10:00Z"},
+  {"id":"15","customerName":"Oscar de Haan","product":"Laptop Sleeve","quantity":2,"price":24.50,"orderStatus":"verzamelen","paymentMethod":"overschrijving","deliverer":"DHL","orderDate":"2025-12-09T10:20:00Z"},
+  {"id":"16","customerName":"Pim Bakker","product":"Wireless Earbuds","quantity":1,"price":59.99,"orderStatus":"bezorgd","paymentMethod":"creditcard","deliverer":"postnl","orderDate":"2025-12-09T13:15:00Z"},
+  {"id":"17","customerName":"Quinty de Jong","product":"Action Camera","quantity":1,"price":149.99,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2025-12-10T09:40:00Z"},
+  {"id":"18","customerName":"Ruben Kuiper","product":"Fitness Tracker","quantity":1,"price":89.99,"orderStatus":"verzamelen","paymentMethod":"overschrijving","deliverer":"DHL","orderDate":"2025-12-10T12:50:00Z"},
+  {"id":"19","customerName":"Sanne Visser","product":"Bluetooth Speaker","quantity":2,"price":39.99,"orderStatus":"bezorgd","paymentMethod":"creditcard","deliverer":"postnl","orderDate":"2025-12-11T10:05:00Z"},
+  {"id":"20","customerName":"Thijs van Dam","product":"Gaming Chair","quantity":1,"price":249.99,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2025-12-11T14:30:00Z"},
+  {"id":"21","customerName":"Ulrike de Wit","product":"Monitor 27 inch","quantity":1,"price":179.99,"orderStatus":"verzamelen","paymentMethod":"overschrijving","deliverer":"DHL","orderDate":"2025-12-12T09:25:00Z"},
+  {"id":"22","customerName":"Victor Peters","product":"Laptop Cooling Pad","quantity":1,"price":34.99,"orderStatus":"bezorgd","paymentMethod":"creditcard","deliverer":"postnl","orderDate":"2025-12-12T11:50:00Z"},
+  {"id":"23","customerName":"Wendy Jansen","product":"Smartphone Stand","quantity":2,"price":19.99,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2025-12-13T10:15:00Z"},
+  {"id":"24","customerName":"Xander de Bruin","product":"Portable SSD","quantity":1,"price":129.50,"orderStatus":"verzamelen","paymentMethod":"overschrijving","deliverer":"DHL","orderDate":"2025-12-13T14:40:00Z"},
+  {"id":"25","customerName":"Yara van Dijk","product":"Wireless Mouse","quantity":3,"price":25.99,"orderStatus":"bezorgd","paymentMethod":"creditcard","deliverer":"postnl","orderDate":"2025-12-14T09:55:00Z"},
+  {"id":"26","customerName":"Zeger Vos","product":"Mechanical Keyboard","quantity":1,"price":99.99,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2025-12-14T12:35:00Z"},
+  {"id":"27","customerName":"Amber de Graaf","product":"Laptop Stand","quantity":1,"price":34.95,"orderStatus":"verzamelen","paymentMethod":"overschrijving","deliverer":"DHL","orderDate":"2025-12-15T10:20:00Z"},
+  {"id":"28","customerName":"Bram van Loon","product":"USB-C Charger","quantity":2,"price":19.99,"orderStatus":"bezorgd","paymentMethod":"creditcard","deliverer":"postnl","orderDate":"2025-12-15T13:10:00Z"},
+  {"id":"29","customerName":"Claudia Smits","product":"Bluetooth Headphones","quantity":1,"price":79.49,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2025-12-16T09:45:00Z"},
+  {"id":"30","customerName":"Daan de Wit","product":"Wireless Keyboard","quantity":1,"price":45.99,"orderStatus":"verzamelen","paymentMethod":"overschrijving","deliverer":"DHL","orderDate":"2025-12-16T12:30:00Z"},
+  {"id":"31","customerName":"Esmee Brouwer","product":"LED Desk Lamp","quantity":1,"price":22.99,"orderStatus":"bezorgd","paymentMethod":"creditcard","deliverer":"postnl","orderDate":"2025-12-17T10:15:00Z"},
+  {"id":"32","customerName":"Ferry Kuipers","product":"Gaming Mouse Pad","quantity":2,"price":15.99,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2025-12-17T14:00:00Z"},
+  {"id":"33","customerName":"Giselle van Leeuwen","product":"Webcam HD","quantity":1,"price":49.99,"orderStatus":"verzamelen","paymentMethod":"overschrijving","deliverer":"DHL","orderDate":"2025-12-18T09:25:00Z"},
+  {"id":"34","customerName":"Hugo de Ruiter","product":"External Hard Drive","quantity":2,"price":64.50,"orderStatus":"bezorgd","paymentMethod":"creditcard","deliverer":"postnl","orderDate":"2025-12-18T12:45:00Z"},
+  {"id":"35","customerName":"Ilse van den Berg","product":"Smartphone Case","quantity":3,"price":12.99,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2025-12-19T10:10:00Z"},
+  {"id":"36","customerName":"Joris Smit","product":"Portable Charger","quantity":1,"price":29.99,"orderStatus":"verzamelen","paymentMethod":"overschrijving","deliverer":"DHL","orderDate":"2025-12-19T13:20:00Z"},
+  {"id":"37","customerName":"Kim de Jong","product":"Gaming Chair","quantity":1,"price":249.99,"orderStatus":"bezorgd","paymentMethod":"creditcard","deliverer":"postnl","orderDate":"2025-12-20T09:35:00Z"},
+  {"id":"38","customerName":"Leon van Dam","product":"Fitness Tracker","quantity":1,"price":89.99,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2025-12-20T12:55:00Z"},
+  {"id":"39","customerName":"Mara de Graaf","product":"Bluetooth Speaker","quantity":2,"price":39.99,"orderStatus":"verzamelen","paymentMethod":"overschrijving","deliverer":"DHL","orderDate":"2025-12-21T10:15:00Z"},
+  {"id":"40","customerName":"Niek Brouwer","product":"Monitor 27 inch","quantity":1,"price":179.99,"orderStatus":"bezorgd","paymentMethod":"creditcard","deliverer":"postnl","orderDate":"2025-12-21T14:10:00Z"},
+  {"id":"41","customerName":"Olga Peters","product":"Laptop Cooling Pad","quantity":1,"price":34.99,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2025-12-22T09:45:00Z"},
+  {"id":"42","customerName":"Peter van Loon","product":"Smartphone Stand","quantity":2,"price":19.99,"orderStatus":"verzamelen","paymentMethod":"overschrijving","deliverer":"DHL","orderDate":"2025-12-22T12:30:00Z"},
+  {"id":"43","customerName":"Quinn de Haan","product":"Portable SSD","quantity":1,"price":129.50,"orderStatus":"bezorgd","paymentMethod":"creditcard","deliverer":"postnl","orderDate":"2025-12-23T10:20:00Z"},
+  {"id":"44","customerName":"Romy van der Meer","product":"Wireless Mouse","quantity":3,"price":25.99,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2025-12-23T13:40:00Z"},
+  {"id":"45","customerName":"Stefan de Bruin","product":"Mechanical Keyboard","quantity":1,"price":99.99,"orderStatus":"verzamelen","paymentMethod":"overschrijving","deliverer":"DHL","orderDate":"2025-12-24T09:55:00Z"},
+  {"id":"46","customerName":"Tessa Kuipers","product":"Laptop Stand","quantity":1,"price":34.95,"orderStatus":"bezorgd","paymentMethod":"creditcard","deliverer":"postnl","orderDate":"2025-12-24T12:30:00Z"},
+  {"id":"47","customerName":"Ugo Smit","product":"USB-C Charger","quantity":2,"price":19.99,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2025-12-25T10:10:00Z"},
+  {"id":"48","customerName":"Vera van den Berg","product":"Bluetooth Headphones","quantity":1,"price":79.49,"orderStatus":"verzamelen","paymentMethod":"overschrijving","deliverer":"DHL","orderDate":"2025-12-25T13:25:00Z"},
+  {"id":"49","customerName":"Wout de Graaf","product":"Wireless Keyboard","quantity":1,"price":45.99,"orderStatus":"bezorgd","paymentMethod":"creditcard","deliverer":"postnl","orderDate":"2025-12-26T09:30:00Z"},
+  {"id":"50","customerName":"Xena Brouwer","product":"LED Desk Lamp","quantity":1,"price":22.99,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2025-12-26T12:45:00Z"},
+  {"id":"51","customerName":"Yannick de Wit","product":"Gaming Mouse Pad","quantity":2,"price":15.99,"orderStatus":"verzamelen","paymentMethod":"overschrijving","deliverer":"DHL","orderDate":"2025-12-27T10:15:00Z"},
+  {"id":"52","customerName":"Zoe van Leeuwen","product":"Webcam HD","quantity":1,"price":49.99,"orderStatus":"bezorgd","paymentMethod":"creditcard","deliverer":"postnl","orderDate":"2025-12-27T13:40:00Z"},
+  {"id":"53","customerName":"Adam de Ruiter","product":"External Hard Drive","quantity":2,"price":64.50,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2025-12-28T09:50:00Z"},
+  {"id":"54","customerName":"Bella van Dijk","product":"Smartphone Case","quantity":3,"price":12.99,"orderStatus":"verzamelen","paymentMethod":"overschrijving","deliverer":"DHL","orderDate":"2025-12-28T12:30:00Z"},
+  {"id":"55","customerName":"Casper Smit","product":"Portable Charger","quantity":1,"price":29.99,"orderStatus":"bezorgd","paymentMethod":"creditcard","deliverer":"postnl","orderDate":"2025-12-29T10:05:00Z"},
+  {"id":"56","customerName":"Daphne Kuipers","product":"Gaming Chair","quantity":1,"price":249.99,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2025-12-29T13:15:00Z"},
+  {"id":"57","customerName":"Emiel de Graaf","product":"Fitness Tracker","quantity":1,"price":89.99,"orderStatus":"verzamelen","paymentMethod":"overschrijving","deliverer":"DHL","orderDate":"2025-12-30T09:25:00Z"},
+  {"id":"58","customerName":"Fay van den Berg","product":"Bluetooth Speaker","quantity":2,"price":39.99,"orderStatus":"bezorgd","paymentMethod":"creditcard","deliverer":"postnl","orderDate":"2025-12-30T12:40:00Z"},
+  {"id":"59","customerName":"Gideon Brouwer","product":"Monitor 27 inch","quantity":1,"price":179.99,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2025-12-31T10:10:00Z"},
+  {"id":"60","customerName":"Hilda de Jong","product":"Laptop Cooling Pad","quantity":1,"price":34.99,"orderStatus":"verzamelen","paymentMethod":"overschrijving","deliverer":"DHL","orderDate":"2025-12-31T13:35:00Z"},
+  {"id":"61","customerName":"Ivo van Loon","product":"Smartphone Stand","quantity":2,"price":19.99,"orderStatus":"bezorgd","paymentMethod":"creditcard","deliverer":"postnl","orderDate":"2026-01-01T10:20:00Z"},
+  {"id":"62","customerName":"Jolien de Haan","product":"Portable SSD","quantity":1,"price":129.50,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2026-01-01T12:30:00Z"},
+  {"id":"63","customerName":"Karin van Dijk","product":"Wireless Mouse","quantity":2,"price":25.99,"orderStatus":"verzamelen","paymentMethod":"overschrijving","deliverer":"DHL","orderDate":"2026-01-02T10:15:00Z"},
+  {"id":"64","customerName":"Lars de Graaf","product":"Mechanical Keyboard","quantity":1,"price":99.99,"orderStatus":"bezorgd","paymentMethod":"creditcard","deliverer":"postnl","orderDate":"2026-01-02T13:45:00Z"},
+  {"id":"65","customerName":"Mira Kuipers","product":"Laptop Stand","quantity":1,"price":34.95,"orderStatus":"verstuurd","paymentMethod":"ideal","deliverer":"UPS","orderDate":"2026-01-03T09:50:00Z"},
 ];
 
 export type MyGetModel = {
   id: string;
-  orderNumber: string;
   customerName: string;
-  status: "Open" | "Afgerond";
-  address: string;
-  totalAmount: number;
+  product: string;
+  price: number;
+  orderStatus: "verzonden" | "verzamelen" | "bezorgd" | "geannuleerd";
+  paymentMethod: "creditcard" | "ideal" | "overschrijving";
+  deliverer: "DHL" | "postnl" | "UPS";
   orderDate: Date;
 };
 
-export type MyPostModel = {
-  id: string;
-  orderNumber: string;
-  customerName: string;
-  status: "Open" | "Afgerond";
-  address: string;
-  totalAmount: number;
-};
+export type MyPostModel = MyGetModel;
 
 export const getOrdersQuery = () => {
+  return {
+    queryKey: ["Orders"],
+    queryFn: async () => {
+      const resp = {
+        data,
+        status: 200,
+        statusText: 'Ok'
+      };
 
-    return {
-        queryKey: ["Orders"],
-        queryFn: async () => {
+      if (resp.status === 404) {
+        throw new NotFoundError();
+      }
 
-            const obj ={
-                data: data,
-                status: 200,
-                statusText: 'Ok'
-            }
+      if (resp.status >= 400) {
+        throw new Response("", {
+          status: resp.status,
+          statusText: resp.statusText,
+        });
+      }
 
-            const resp = obj;
-
-            if (resp.status === 404) {
-                throw new NotFoundError();
-            }
-
-            if (resp.status >= 400) {
-                throw new Response("", {
-                    status: resp.status,
-                    statusText: resp.statusText,
-                });
-            }
-
-            return (resp.data as MyGetModel[]);
-        }
-    };
+      return resp.data.map(order => ({
+        ...order,
+        orderDate: new Date(order.orderDate),
+      })) as MyGetModel[];
+    }
+  };
 };

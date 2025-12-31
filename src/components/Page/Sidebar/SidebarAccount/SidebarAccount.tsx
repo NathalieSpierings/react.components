@@ -1,7 +1,6 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { ColorDefinitions } from '../../../../lib/utils/definitions';
 import Dropdown, { DropdownDirection, DropdownHeader, DropdownItem, DropdownToggle } from '../../../Forms/Dropdown/Dropdown';
-import React from 'react';
 
 export interface SidebarAccountProps {
     direction?: DropdownDirection;

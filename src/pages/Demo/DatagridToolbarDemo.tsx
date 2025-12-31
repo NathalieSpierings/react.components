@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from "react";
-import { Button, Title, Toggle } from "../../components";
+import { Button, Subtitle, Title, Toggle } from "../../components";
 import Datagrid from "../../components/Data/Datagrid/Datagrid";
 import { TableGetDataArguments } from "../../components/Data/Table/TableData";
 import { Icon } from "../../components/UI/Icons/Icon";
@@ -35,7 +35,7 @@ const DatagridToolbarDemo = (): ReactElement => {
         <div>
             <Datagrid
                 toolbarBorderBottom={true}
-                toolbarTitle={<Title size="md">All orders</Title>}
+                toolbarTitle={<Subtitle>Alle orders</Subtitle>}
                 toolbarPrefixItems={[
                     <Button key="create" onClick={() => alert('Create')}>
                         <Icon icon={IconDefinitions.plus} />
@@ -58,27 +58,29 @@ const DatagridToolbarDemo = (): ReactElement => {
                 total={total || 0}
                 loading={status === "pending"}
                 onFilterUpdate={handleFilterUpdate}
-                tableInfoContent={<div>Toon info over de orders hier</div>}
                 rowSingleClickAction={(row) => console.log('Clicked row:', row)}
                 rowDoubleClickAction={(row) => console.log('Double click:', row)}
                 properties={
                     [
-                        { prop: "orderNumber", title: "Order #", sortable: true },
                         { prop: "customerName", title: "Klant", sortable: true },
-                        { prop: "status", title: "Status", sortable: true },
-                        { prop: "address", title: "Adres" },
-                        { prop: "totalAmount", title: "Totaal (€)", sortable: false },
+                        { prop: "product", title: "Product", sortable: true },
+                        { prop: "quantity", title: "Aantal", sortable: true },
+                        { prop: "price", title: "Prijs (€)", sortable: false },
+                        { prop: "orderStatus", title: "orderStatus", sortable: true },
+                        { prop: "paymentMethod", title: "Betaalmethode", sortable: true },
+                        { prop: "deliverer", title: "Verzender", sortable: true },
+                        // { prop: "orderDate", title: "Besteldatum", sortable: true},
                     ]
                 }
                 rowActions={
                     [
                         {
                             label: "Bekijk",
-                            action: item => (<Icon icon={IconDefinitions.eye} onClick={() => alert(`Bekijk order ${item.orderNumber}`)} />)
+                            action: item => (<Icon icon={IconDefinitions.eye} onClick={() => alert(`Bekijk order ${item.product}`)} />)
                         },
                         {
                             label: "Verwijder",
-                            action: item => (<Icon icon={IconDefinitions.bin} onClick={() => alert(`Verwijder order ${item.orderNumber}`)} />)
+                            action: item => (<Icon icon={IconDefinitions.bin} onClick={() => alert(`Verwijder order ${item.product}`)} />)
                         }
                     ]
                 }

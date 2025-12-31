@@ -8,6 +8,7 @@ import DemoPage from "./DemoPage";
 import HomePage from "./HomePage";
 import DatagridToolbarDemo from "./Demo/DatagridToolbarDemo";
 import DatagridFilterDemo from "./Demo/DatagridFilterDemo";
+import DropdownDemo from "./Demo/DropdownDemo";
 
 export const getInitialMenuItem = (pathname: string) => {
 	if (matchPath(proxyPrefix + "/", pathname)) {
@@ -52,6 +53,10 @@ export const routes = [
 	{
 		path: "/demo/datagridfilter",
 		element: <DatagridFilterDemo />
+	},
+	{
+		path: "/demo/dropdown",
+		element: <DropdownDemo />
 	},
 ];
 

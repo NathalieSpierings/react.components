@@ -8,8 +8,8 @@ export interface TableHeaderProps<TData> {
     setSort: (prop: string) => void;
     cssClass?: string;
 
-    filterValue?: string | number | boolean | null;
-    onFilterChange?: (value: string | null) => void;
+    // filterValue?: string | number | boolean | null;
+    // onFilterChange?: (value: string | null) => void;
 }
 
 export function TableHeader<TData>({
@@ -17,8 +17,8 @@ export function TableHeader<TData>({
     sortConfig,
     setSort,
     cssClass = '',
-    filterValue,
-    onFilterChange,
+    // filterValue,
+    // onFilterChange,
 }: Readonly<TableHeaderProps<TData>>): ReactElement {
 
     const filter = item.filter;
@@ -51,52 +51,10 @@ export function TableHeader<TData>({
             scope="col"
             data-label={item.title}
             data-sort={item.title}
+            onClick={handleSortClick}
         >
-            <div className="table-header">
-                <span onClick={handleSortClick}>{item.title}</span>
-
-                {filter && onFilterChange && (
-                    <div className="table-header__filter">
-                        {filter.type === 'text' && (
-                            <input
-                                type="text"
-                                className="form-control form-control--xs"
-                                value={(filterValue ?? '') as string}
-                                onClick={(e) => e.stopPropagation()}
-                                onChange={(e) =>
-                                    onFilterChange(
-                                        e.target.value || null
-                                    )
-                                }
-                                placeholder="Filter…"
-                            />
-                        )}
-
-                        {filter.type === 'select' && (
-                            <select
-                                className="form-control form-control--xs"
-                                value={(filterValue ?? '') as string}
-                                onClick={(e) => e.stopPropagation()}
-                                onChange={(e) =>
-                                    onFilterChange(
-                                        e.target.value || null
-                                    )
-                                }
-                            >
-                                <option value="">Alles</option>
-                                {filter.options?.map((opt) => (
-                                    <option
-                                        key={opt.value}
-                                        value={opt.value}
-                                    >
-                                        {opt.label}
-                                    </option>
-                                ))}
-                            </select>
-                        )}
-                    </div>
-                )}
-            </div>
+            {item.title}
+           
         </th>
     );
 }

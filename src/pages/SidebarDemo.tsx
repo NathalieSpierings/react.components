@@ -11,6 +11,10 @@ export const SidebarDemo = () => {
         { title: 'Datagrid Filter', url: '/demo/datagridfilter' },
     ];
 
+     const formItems: SidebarMenuItem[] = [
+        { title: 'Dropdown', url: '/demo/dropdown' },
+    ];
+
     return (
         <>
             <SidebarContentPanel>
@@ -18,6 +22,12 @@ export const SidebarDemo = () => {
             </SidebarContentPanel>
 
             <SidebarMenu menuItems={tableItems} />
+
+             <SidebarContentPanel>
+                <h4>Form elements</h4>
+            </SidebarContentPanel>
+
+            <SidebarMenu menuItems={formItems} />
 
         </>
     )

@@ -3,10 +3,7 @@ import { ColorDefinitions, SizeDefinitions } from '../../../lib/utils/definition
 
 export type ElementType = 'div' | 'span' | 'fieldset';
 
-export interface BoxProps
-    extends PropsWithChildren,
-    React.AriaAttributes,
-    React.HTMLAttributes<HTMLDivElement | HTMLSpanElement | HTMLFieldSetElement> {
+export interface BoxProps extends PropsWithChildren, React.AriaAttributes, React.HTMLAttributes<HTMLDivElement | HTMLSpanElement | HTMLFieldSetElement> {
     colorMute?: ColorDefinitions;
     color?: ColorDefinitions;
     background?: ColorDefinitions;
@@ -61,7 +58,10 @@ const Box = React.forwardRef<HTMLDivElement | HTMLSpanElement, BoxProps>(
         },
         ref
     ) => {
+
+
         const addClass = (prefix: string, value?: string) => (value ? `${prefix}-${value}` : '');
+
         const cls = [
             addClass('text-mute', colorMute),
             addClass('text', color),
@@ -86,6 +86,8 @@ const Box = React.forwardRef<HTMLDivElement | HTMLSpanElement, BoxProps>(
         ]
             .filter(Boolean)
             .join(' ');
+
+
 
         return React.createElement(renderAs, { className: cls, ref, style, ...rest }, children);
     }

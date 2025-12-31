@@ -36,41 +36,42 @@ const DatagridCollapsibleDemo = (): ReactElement => {
         <div>
 
             <Datagrid
-            toolbarTitle={<Subtitle>All orders</Subtitle>}
+                toolbarTitle={<Subtitle>Alle orders</Subtitle>}
                 data={data || []}
                 total={total || 0}
                 loading={status === "pending"}
                 onFilterUpdate={handleFilterUpdate}
-                tableInfoContent={<div>Toon info over de orders hier</div>}
-                onRowsChecked={(checkedItems) => console.log('Checked rows:', checkedItems)}
                 rowSingleClickAction={(row) => console.log('Clicked row:', row)}
                 rowDoubleClickAction={(row) => console.log('Double click:', row)}
 
                 collapsibleRowData={(row) => (
                     <div style={{ padding: '1rem' }}>
-                        <strong>Adres:</strong> {row.address}<br />
-                        <strong>Status:</strong> {row.status}
+                        <strong>Naam:</strong> {row.customerName}<br />
+                        <strong>product:</strong> {row.product}<br />
+                        <strong>Status:</strong> {row.orderStatus}
                     </div>
                 )}
                 properties={
                     [
-                        { prop: "orderNumber", title: "Order #", sortable: true },
                         { prop: "customerName", title: "Klant", sortable: true },
-                        { prop: "status", title: "Status", sortable: true },
-                        { prop: "address", title: "Adres" },
-                        { prop: "totalAmount", title: "Totaal (€)", sortable: false },
-                        // { prop: "orderDate", title: "Datum", sortable: true }
+                        { prop: "product", title: "Product", sortable: true },
+                        { prop: "quantity", title: "Aantal", sortable: true },
+                        { prop: "price", title: "Prijs (€)", sortable: false },
+                        { prop: "orderStatus", title: "orderStatus", sortable: true },
+                        { prop: "paymentMethod", title: "Betaalmethode", sortable: true },
+                        { prop: "deliverer", title: "Verzender", sortable: true },
+                        // { prop: "orderDate", title: "Besteldatum", sortable: true},
                     ]
                 }
                 rowActions={
                     [
                         {
                             label: "Bekijk",
-                            action: item => (<Icon icon={IconDefinitions.eye} onClick={() => alert(`Bekijk order ${item.orderNumber}` )}/>)
+                            action: item => (<Icon icon={IconDefinitions.eye} onClick={() => alert(`Bekijk order ${item.product}`)} />)
                         },
                         {
                             label: "Verwijder",
-                            action: item => (<Icon icon={IconDefinitions.bin} onClick={() => alert(`Verwijder order ${item.orderNumber}` )}/>)
+                            action: item => (<Icon icon={IconDefinitions.bin} onClick={() => alert(`Verwijder order ${item.product}`)} />)
                         }
                     ]
                 }

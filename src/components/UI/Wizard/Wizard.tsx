@@ -42,7 +42,7 @@ const Wizard: FC<WizardProps> = ({ steps, onCompleteLabel, onComplete, enabled }
         onComplete();
     };
 
-    const dropdownItems: DropdownItem[] = steps.map((step, index) => ({
+    const items: DropdownItem[] = steps.map((step, index) => ({
         id: index,
         content: step.title,
         selected: index == currentStep,
@@ -67,7 +67,7 @@ const Wizard: FC<WizardProps> = ({ steps, onCompleteLabel, onComplete, enabled }
                             dropdownToggle={{
                                 prefix: <Icon icon={IconDefinitions.angle_down} />,
                             }}
-                            menuItems={dropdownItems}
+                            menuItems={items}
                         />
                     </div>
                 </div>

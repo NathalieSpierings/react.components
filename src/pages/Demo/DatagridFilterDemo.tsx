@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from "react";
-import { Button, Title, Toggle } from "../../components";
+import { Button, Subtitle, Title, Toggle } from "../../components";
 import Datagrid from "../../components/Data/Datagrid/Datagrid";
 import { TableGetDataArguments } from "../../components/Data/Table/TableData";
 import { Icon } from "../../components/UI/Icons/Icon";
@@ -35,7 +35,7 @@ const DatagridFilterDemo = (): ReactElement => {
         <div>
             <Datagrid
                 toolbarBorderBottom={true}
-                toolbarTitle={<Title size="md">All orders</Title>}
+                toolbarTitle={<Subtitle>Alle orders</Subtitle>}
                 toolbarPrefixItems={[
                     <Button key="create" onClick={() => alert('Create')}>
                         <Icon icon={IconDefinitions.plus} />
@@ -52,30 +52,50 @@ const DatagridFilterDemo = (): ReactElement => {
                     />
                 ]}
 
-                enableSearch={true}
                 enableCompactView={true}
                 data={data || []}
                 total={total || 0}
                 loading={status === "pending"}
                 onFilterUpdate={handleFilterUpdate}
-                tableInfoContent={<div>Toon info over de orders hier</div>}
                 rowSingleClickAction={(row) => console.log('Clicked row:', row)}
                 rowDoubleClickAction={(row) => console.log('Double click:', row)}
                 properties={
                     [
-                        { prop: "orderNumber", title: "Order #", sortable: true, filter: { type: 'text' } },
                         { prop: "customerName", title: "Klant", sortable: true, filter: { type: 'text' } },
-                         { 
-                        prop: "status", title: "Status", sortable: true, filter: { 
+                        { prop: "product", title: "Product", sortable: true, filter: { type: 'text' } },
+                        { prop: "quantity", title: "Aantal", sortable: true, filter: { type: 'text' } },
+                        { prop: "price", title: "Prijs (€)", sortable: false, filter: { type: 'text' } },
+                        { prop: "orderStatus", title: "orderStatus", sortable: true, 
+                            filter: { 
                             type: 'select', 
-                            options: [
-                                { label: "Open", value: "open" },
-                                { label: "Afgerond", value: "afgerond" },
-                            ] 
-                        } 
-                    },
-                        { prop: "address", title: "Adres" },
-                        { prop: "totalAmount", title: "Totaal (€)", sortable: false },
+                                options: [
+                                    { label: "Verstuurd", value: "shipped" },
+                                    { label: "Verzamelen", value: "pending" },
+                                    { label: "Bezorgd", value: "delivered" },
+                                    { label: "Geannuleerd", value: "canceled" },
+                                ] 
+                            }  
+                        },
+                        { prop: "paymentMethod", title: "Betaalmethode", sortable: true, 
+                            filter: { 
+                                type: 'select', 
+                                options: [
+                                    { label: "Creditcard", value: "creditcard" },
+                                    { label: "Ideal", value: "ideal" },
+                                    { label: "Overschrijving", value: "overschrijving" },
+                                ] 
+                            }  
+                        },
+                        { prop: "deliverer", title: "Verzender", sortable: true, 
+                            filter: { 
+                                type: 'select', 
+                                options: [
+                                    { label: "DHL", value: "DHL" },
+                                    { label: "UPS", value: "UPS" },
+                                    { label: "Post NL", value: "postnl" },
+                                ] 
+                            }  
+                        },
                     ]
                 }
                 rowActions={

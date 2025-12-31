@@ -11,6 +11,7 @@ import TableInfo from '../Table/TableInfo';
 import { TableRowConfig } from '../Table/TableRowConfig';
 import { TableSortConfig } from '../Table/TableSort';
 import DatagridSearch from './DatagridSearch';
+import DatagridFilterToolbar from './DatagridFilterToolbar';
 
 export type TableColumnFilters = Record<string, any>;
 
@@ -24,11 +25,15 @@ export interface DatagridProps<TData> {
     enableSearch?: boolean;
     enableCompactView?: boolean;
     rowActions?: TableAction<TData>[];
-    onRowsChecked?: (checkedItems: TData[]) => void;
+
     rowSingleClickAction?: (item: TData) => void;
     rowDoubleClickAction?: (item: TData) => void;
+
     tableInfoContent?: ReactElement;
     tooltipColor?: ColorDefinitions;
+
+    enableCheckboxes?: boolean;
+    onRowsChecked?: (checkedItems: TData[]) => void;
 
     collapsibleRowData?: (item: TData) => ReactElement;
 
@@ -39,7 +44,7 @@ export interface DatagridProps<TData> {
     toolbarSeparator?: boolean;
     toolbarBorderBottom?: boolean;
 
-    
+
 }
 
 function Datagrid<TData extends { id: string | number }>({
@@ -52,8 +57,8 @@ function Datagrid<TData extends { id: string | number }>({
     enableSearch = false,
     enableCompactView = false,
     rowActions,
-    onRowsChecked,
     tooltipColor,
+    enableCheckboxes = false,
     rowSingleClickAction,
     rowDoubleClickAction,
     tableInfoContent,
@@ -83,7 +88,6 @@ function Datagrid<TData extends { id: string | number }>({
 
 
     const [columnFilters, setColumnFilters] = useState<Record<string, string | number | boolean | null>>({});
-
 
     const toggleCollapsibleRow = (id: string | number) => {
         setCollapsibleRowIds(prev => {
@@ -146,7 +150,7 @@ function Datagrid<TData extends { id: string | number }>({
         );
     }
 
-
+    const hasFilterableColumns = properties?.some(p => p.filter) ?? false;
 
     return (
         <div className="datagrid">
@@ -161,6 +165,17 @@ function Datagrid<TData extends { id: string | number }>({
                     borderBottom={toolbarBorderBottom}
                 />
             )}
+
+            {hasFilterableColumns && (
+                <DatagridFilterToolbar
+                    properties={properties}
+                    searchTerm={searchTerm}
+                    onSearchChange={updateQ}
+                    columnFilters={columnFilters}
+                    setColumnFilters={setColumnFilters}
+                />
+            )}
+           
 
             {(tableInfoContent || checkedItems.length > 0) && (
                 <TableInfo>
@@ -185,8 +200,9 @@ function Datagrid<TData extends { id: string | number }>({
                 properties={properties}
                 total={total}
                 rowActions={rowActions}
-                checkedItems={checkedItems}
-                onCheckedItemsChange={setCheckedItems}
+                enableCheckboxes={enableCheckboxes}
+                checkedItems={enableCheckboxes ? checkedItems : []}
+                onRowsChecked={enableCheckboxes ? setCheckedItems : undefined}
                 rowSingleClickAction={rowSingleClickAction}
                 rowDoubleClickAction={rowDoubleClickAction}
                 sort={sort}
@@ -198,6 +214,7 @@ function Datagrid<TData extends { id: string | number }>({
                 toggleCollapsibleRow={toggleCollapsibleRow}
                 columnFilters={columnFilters}
                 setColumnFilters={setColumnFilters}
+
             />
 
             <Pagination total={total} pagination={pagination} setPagination={setPagination} />

@@ -16,8 +16,9 @@ export interface TableProps<TData> {
     enableCompactView?: boolean;
     rowActions?: TableAction<TData>[];
 
+    enableCheckboxes?: boolean;
     checkedItems?: TData[];
-    onCheckedItemsChange?: (checkedItems: TData[]) => void;
+    onRowsChecked?: (checkedItems: TData[]) => void;
 
     rowSingleClickAction?: (item: TData) => void;
     rowDoubleClickAction?: (item: TData) => void;
@@ -42,9 +43,9 @@ function Table<TData extends { id: string | number }>({
     data,
     properties,
     rowActions,
-
+    enableCheckboxes,
     checkedItems = [],
-    onCheckedItemsChange,
+    onRowsChecked,
 
     rowSingleClickAction,
     rowDoubleClickAction,
@@ -59,7 +60,7 @@ function Table<TData extends { id: string | number }>({
     setColumnFilters
 }: Readonly<TableProps<TData>>): ReactElement {
 
-    const useCheckboxes = onCheckedItemsChange !== undefined;
+    const useCheckboxes = enableCheckboxes && onRowsChecked !== undefined;
     const [selected, setSelected] = React.useState<string | number | null>(null);
 
 
@@ -82,10 +83,8 @@ function Table<TData extends { id: string | number }>({
 
 
     const handleCheckedItems = (items: TData[]) => {
-        onCheckedItemsChange?.(items);
+        onRowsChecked?.(items);
     };
-
-
 
     const colSpan =
         columns.length +
@@ -105,7 +104,7 @@ function Table<TData extends { id: string | number }>({
                                 <Checkbox
                                     color={ColorDefinitions.Primary}
                                     checked={data.length > 0 && data.length === checkedItems.length}
-                                    onChange={checked => onCheckedItemsChange?.(checked ? data : [])}
+                                    onChange={checked => onRowsChecked?.(checked ? data : [])}
                                 />
                             </th>
                         )
@@ -118,13 +117,6 @@ function Table<TData extends { id: string | number }>({
                             sortConfig={sort}
                             setSort={() => handleSorting(col.prop)}
                             cssClass={col.cssClass}
-                            filterValue={columnFilters?.[col.prop]}
-                            onFilterChange={(value) => {
-                                setColumnFilters?.(prev => ({
-                                    ...prev,
-                                    [col.prop]: value,
-                                }));
-                            }}
                         />
                     ))}
 
