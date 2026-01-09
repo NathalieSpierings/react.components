@@ -116,10 +116,11 @@ function DatagridFilterToolbar<TData>({
                                     dropdownToggle={{
                                         label: (
                                             <>
-                                                <span> {col.title}:{" "}</span>
+                                                <span>{col.title}:{" "}</span>
                                                 <strong>{col.filter?.options?.find(o => o.value === selectedValue)?.label ?? ""}</strong>
                                             </>
-                                        )
+                                        ),
+                                        arrow: true,
                                     }}
                                     menuItems={[
                                         {
@@ -167,7 +168,7 @@ function DatagridFilterToolbar<TData>({
                             onClick={clearAll}
                             title="Filters wissen"
                         >
-                            <Icon icon={IconDefinitions.cross} size={SizeDefinitions.Medium} />
+                            <Icon icon={IconDefinitions.cross} />
                         </button>
                     )}
                 </div>

@@ -37,6 +37,7 @@ export interface TableProps<TData> {
     setColumnFilters?: React.Dispatch<
         React.SetStateAction<Record<string, any>>
     >;
+    tableCss?: string;
 }
 
 function Table<TData extends { id: string | number }>({
@@ -57,7 +58,8 @@ function Table<TData extends { id: string | number }>({
     collapsibleRowIds,
     toggleCollapsibleRow,
     columnFilters,
-    setColumnFilters
+    setColumnFilters,
+    tableCss = ''
 }: Readonly<TableProps<TData>>): ReactElement {
 
     const useCheckboxes = enableCheckboxes && onRowsChecked !== undefined;
@@ -93,14 +95,14 @@ function Table<TData extends { id: string | number }>({
         (collapsibleRowData ? 1 : 0);
 
     return (
-        <table className={`table sortable ${enableCompactView ? 'table--compact' : ''}`}>
+        <table className={`table sortable ${enableCompactView ? 'table--compact' : ''} ${tableCss}`}>
             <thead>
                 <tr>
                     {collapsibleRowData && <th scope="col" className="tw-3 text-center"></th>}
 
                     {
                         useCheckboxes && (
-                            <th scope="col" className="tw-3 table-text-center">
+                            <th scope="col" className="tw-3 text-center">
                                 <Checkbox
                                     color={ColorDefinitions.Primary}
                                     checked={data.length > 0 && data.length === checkedItems.length}

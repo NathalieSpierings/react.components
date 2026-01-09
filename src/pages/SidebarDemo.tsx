@@ -5,14 +5,18 @@ import { SidebarContentPanel } from "../components/Page/Sidebar/SidebarContentPa
 export const SidebarDemo = () => {
     const tableItems: SidebarMenuItem[] = [
         { title: 'Datagrid', url: '/demo/datagrid' },
+        { title: 'Datagrid all', url: '/demo/datagridall' },
         { title: 'Datagrid collapsibe row', url: '/demo/datagridcollapsible' },
+        { title: 'Datagrid nested table', url: '/demo/datagridnestedteable' },
         { title: 'Datagrid checkboxes', url: '/demo/datagridcheckbox' },
         { title: 'Datagrid Toolbar', url: '/demo/datagridtoolbar' },
         { title: 'Datagrid Filter', url: '/demo/datagridfilter' },
     ];
 
      const formItems: SidebarMenuItem[] = [
+        { title: 'Icons', url: '/demo/icons' },
         { title: 'Dropdown', url: '/demo/dropdown' },
+        { title: 'Button', url: '/demo/button' },
     ];
 
     return (

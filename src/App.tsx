@@ -14,7 +14,6 @@ const queryClient = new QueryClient();
 
 const TemplateSidebarAccountMenu = () => {
 
-  // const { auth, logout } = useAuthContext();
 
   const auth = {
     name: 'John Do',
@@ -26,8 +25,10 @@ const TemplateSidebarAccountMenu = () => {
 
   return (
     <SidebarAccount
+
       dropdownToggle={{
-        prefix: (<Avatar size={SizeDefinitions.Small} icon={IconDefinitions.user} />)
+        prefix: (<Avatar size={SizeDefinitions.Small} icon={IconDefinitions.user} />),
+        enableDropdownArrow: false
       }}
       dropdownHeader={{
         borderColor: ColorDefinitions.Surface,
@@ -59,7 +60,7 @@ const TemplateLayout = () => {
       placement: SidebarMenuPlacement.Top,
       url: '/'
     },
-     {
+    {
       id: 'demo',
       title: 'demo',
       tooltip: 'Demo',

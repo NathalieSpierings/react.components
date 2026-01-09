@@ -1,7 +1,8 @@
 import React, { FC, ReactElement, ReactNode, useEffect, useRef, useState } from "react";
-import { ColorDefinitions } from "../../../lib/utils/definitions";
+import { ColorDefinitions, IconDefinitions } from "../../../lib/utils/definitions";
 import Box, { BoxProps } from "../../Base/Box/Box";
-import { ba } from "react-router/dist/development/instrumentation-BlrVzjbg";
+import Icon from "../../UI/Icons/Icon/Icon";
+import Button from "../../UI/Button/Button";
 
 export type DropdownDirection = "up" | "down";
 
@@ -9,7 +10,8 @@ export interface DropdownToggle {
     prefix?: ReactElement | string;
     label?: ReactElement | string;
     renderAsInput?: boolean;
-    renderArrow?: boolean;
+    arrow?: boolean;
+    ghost?: boolean;
 }
 
 export interface DropdownHeader {
@@ -131,7 +133,7 @@ export const Dropdown: FC<DropdownProps> = ({
 
 
     const renderToggleContent = () => (
-        <>     
+        <>
 
             {dropdownToggle.prefix && (
                 <>{dropdownToggle.prefix}</>
@@ -141,12 +143,8 @@ export const Dropdown: FC<DropdownProps> = ({
                 <div className="dropdown__toggle__title">{dropdownToggle.label}</div>
             )}
 
-            {dropdownToggle.renderArrow !== false && (
-                <div className="icon">
-                    <svg>
-                        <use xlinkHref="#svg_icon_angle_down" />
-                    </svg>
-                </div>
+            {dropdownToggle.arrow  && (
+                <Icon icon={IconDefinitions.angle_down} />
             )}
         </>
     );
@@ -182,15 +180,16 @@ export const Dropdown: FC<DropdownProps> = ({
 
     return (
         <div className={`dropdown`}>
+            
             <button
                 ref={dropdownToggleRef}
-                className={`dropdown__toggle ${dropdownToggle.renderAsInput ? "dropdown__toggle--input" : ""}`}
+                className={`dropdown__toggle ${dropdownToggle.renderAsInput ? "dropdown__toggle--input" : ""} ${dropdownToggle.ghost ? "btn btn-ghost" : ""}`}
                 onClick={toggleDropdown}
             >
                 {renderToggleContent()}
             </button>
 
-            <Box {...boxProps} 
+            <Box {...boxProps}
                 ref={menuRef}
                 background={background}
                 css={`dropdown__menu ${open ? "shown" : ""} ${direction === "up" ? "dropdown__menu--up" : ""}`}
@@ -204,22 +203,22 @@ export const Dropdown: FC<DropdownProps> = ({
 
                 {
                     children ?? menuItems?.map((item, idx) =>
-                           item.divider || item.dividerColor ? (
-                                <div key={"ddl_divider_" + idx} className={`dropdown__menu__divider ${item.dividerColor ? 'border-' + item.dividerColor : ''}`}></div>
-                            ) :
-                                (
-                                    <button
-                                        key={"ddl_item_" +idx}
-                                        className={`dropdown__menu__item ${item.selected ? "selected" : ""}`}
-                                        onClick={() => {
-                                            item.onClick?.();
-                                            closeDropdown();
-                                        }}
-                                    >
-                                       
-                                        {renderContent(item)}
-                                    </button>
-                                ))
+                        item.divider || item.dividerColor ? (
+                            <div key={"ddl_divider_" + idx} className={`dropdown__menu__divider ${item.dividerColor ? 'border-' + item.dividerColor : ''}`}></div>
+                        ) :
+                            (
+                                <button
+                                    key={"ddl_item_" + idx}
+                                    className={`dropdown__menu__item ${item.selected ? "selected" : ""}`}
+                                    onClick={() => {
+                                        item.onClick?.();
+                                        closeDropdown();
+                                    }}
+                                >
+
+                                    {renderContent(item)}
+                                </button>
+                            ))
                 }
 
             </Box>

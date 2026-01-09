@@ -24,27 +24,23 @@ export interface DatagridProps<TData> {
     initialSortConfig?: TableSortConfig;
     enableSearch?: boolean;
     enableCompactView?: boolean;
+    enablePagination?: boolean;
     rowActions?: TableAction<TData>[];
-
     rowSingleClickAction?: (item: TData) => void;
     rowDoubleClickAction?: (item: TData) => void;
-
     tableInfoContent?: ReactElement;
     tooltipColor?: ColorDefinitions;
-
     enableCheckboxes?: boolean;
     onRowsChecked?: (checkedItems: TData[]) => void;
-
     collapsibleRowData?: (item: TData) => ReactElement;
-
     toolbarTitle?: string | ReactElement;
     toolbarNavItems?: ReactNode;
     toolbarPrefixItems?: ReactNode[];
     toolbarPostfixItems?: ReactNode[];
     toolbarSeparator?: boolean;
     toolbarBorderBottom?: boolean;
-
-
+    tableCss?: string;
+    footerContent?: ReactNode;
 }
 
 function Datagrid<TData extends { id: string | number }>({
@@ -55,6 +51,7 @@ function Datagrid<TData extends { id: string | number }>({
     properties,
     initialSortConfig,
     enableSearch = false,
+    enablePagination = true,
     enableCompactView = false,
     rowActions,
     tooltipColor,
@@ -69,7 +66,8 @@ function Datagrid<TData extends { id: string | number }>({
     toolbarPostfixItems = [],
     toolbarSeparator,
     toolbarBorderBottom,
-
+    tableCss = '',
+    footerContent
 }: Readonly<DatagridProps<TData>>): ReactElement {
 
     const [showCompact, setShowCompact] = useState(false);
@@ -122,19 +120,19 @@ function Datagrid<TData extends { id: string | number }>({
         postfixElements.push(...toolbarPostfixItems);
     }
 
-    if (enableSearch) {
-        postfixElements.push(
-            <Tooltip key="search" content="Zoeken" direction="top-left">
-                <Icon
-                    icon={IconDefinitions.search}
-                    variant="circle"
-                    duotone={true}
-                    size={SizeDefinitions.Small}
-                    onClick={() => setShowSearch(!showSearch)}
-                />
-            </Tooltip>
-        );
-    }
+    // if (enableSearch) {
+    //     postfixElements.push(
+    //         <Tooltip key="search" content="Zoeken" direction="top-left">
+    //             <Icon
+    //                 icon={IconDefinitions.search}
+    //                 variant="circle"
+    //                 duotone={true}
+    //                 size={SizeDefinitions.Small}
+    //                 onClick={() => setShowSearch(!showSearch)}
+    //             />
+    //         </Tooltip>
+    //     );
+    // }
 
     if (enableCompactView) {
         postfixElements.push(
@@ -175,7 +173,7 @@ function Datagrid<TData extends { id: string | number }>({
                     setColumnFilters={setColumnFilters}
                 />
             )}
-           
+
 
             {(tableInfoContent || checkedItems.length > 0) && (
                 <TableInfo>
@@ -214,10 +212,20 @@ function Datagrid<TData extends { id: string | number }>({
                 toggleCollapsibleRow={toggleCollapsibleRow}
                 columnFilters={columnFilters}
                 setColumnFilters={setColumnFilters}
-
+                tableCss={tableCss}
             />
 
-            <Pagination total={total} pagination={pagination} setPagination={setPagination} />
+            {enablePagination &&
+                <Pagination total={total} pagination={pagination} setPagination={setPagination} />
+            }
+
+            {footerContent && (
+                <div className="datagrid__content__footer">
+                    {footerContent}
+                </div>
+            )}
+
+
         </div>
     )
 

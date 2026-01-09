@@ -2,7 +2,7 @@ import React, { MouseEventHandler, ReactElement } from 'react';
 import { IconDefinitions, SizeDefinitions } from '../../../../lib/utils/definitions';
 import Box, { BoxProps } from '../../../Base/Box/Box';
 
-export type IconVariant = 'circle' | 'square' | 'triangle';
+export type IconVariant = 'circle' | 'square' ;
 
 export interface IconProps extends BoxProps {
     icon?: IconDefinitions;

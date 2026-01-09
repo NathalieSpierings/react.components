@@ -2,7 +2,7 @@ import React, { HTMLProps, MouseEventHandler, ReactNode } from 'react';
 import { ColorDefinitions, SizeDefinitions } from '../../../lib/utils/definitions';
 import Ripple from '../../Base/Ripple/Ripple';
 
-export type ButtonVariant = 'outline' | 'flat';
+export type ButtonVariant = 'outline' | 'flat' | 'ghost';
 
 export interface ButtonProps extends Omit<HTMLProps<HTMLButtonElement>, 'size' | 'type'> {
     variant?: ButtonVariant;

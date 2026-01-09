@@ -55,11 +55,14 @@ const DropdownDemo = (): ReactElement => {
     return (
         <section className="centered centered--wide">
 
-            <Title>Defaults</Title>
             <div className="grid">
                 <div>
                     <h5>Default</h5>
                     <Dropdown menuItems={menuItems} dropdownToggle={{ label: 'Click me!' }} />
+                </div>
+                <div>
+                    <h5>Ghost</h5>
+                    <Dropdown menuItems={menuItems} dropdownToggle={{ label: 'Click me!',  arrow:true, ghost: true }}/>
                 </div>
                 <div>
                     <h5>Direction up</h5>
@@ -131,14 +134,14 @@ const DropdownDemo = (): ReactElement => {
                     <Dropdown
                         background={ColorDefinitions.Olive}
                         menuItems={menuItems}
-                        dropdownToggle={{ label: 'Click me!', renderArrow: false }}
+                        dropdownToggle={{ label: 'Click me!', enableDropdownArrow: false }}
                     />
                 </div>
                 <div>
                     <h5>Toggle icon prefix</h5>
                     <Dropdown menuItems={menuItems}
                         dropdownToggle={{
-                            renderArrow: false,
+                            enableDropdownArrow: false,
                             prefix: (<Icon icon={IconDefinitions.ellipsis_h} ring={"ring-2"} ringColor={ColorDefinitions.Blue} rounded={SizeDefinitions.Full} />)
                         }} />
                 </div>

@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { ReactElement } from 'react';
-import { IconDefinitions } from '../../../lib/utils/definitions';
+import { ColorDefinitions, IconDefinitions, SizeDefinitions } from '../../../lib/utils/definitions';
 import Checkbox from '../../Forms/Checkbox/Checkbox';
 import Icon from '../../UI/Icons/Icon/Icon';
 import { TableAction, TableActionComponent } from './TableAction';
@@ -49,7 +49,7 @@ function TableRow<TData extends { id: string | number }>({
         return col.wrapValue ? col.wrapValue(item, strValue) : strValue;
     };
 
-     const colSpan =
+    const colSpan =
         columns.length +
         (onRowCheckedChanged ? 1 : 0) +
         (actions ? 1 : 0) +
@@ -62,12 +62,12 @@ function TableRow<TData extends { id: string | number }>({
                 onClick={() => handleSingleClick(item)}
                 onDoubleClick={() => handleDoubleClick(item)}
             >
-                 {collapsibleRowData && onToggleCollapsibleRow && (
-                    <td className="table-text-center">
-                        <button  onClick={e => { e.stopPropagation(); onToggleCollapsibleRow(); }}>
-                            {expanded 
-                            ? (<Icon icon={IconDefinitions.angle_down}  ring="ring-2"  />) //'▾' 
-                            : (<Icon icon={IconDefinitions.angle_right} ring="ring-2" />) //'▸'
+                {collapsibleRowData && onToggleCollapsibleRow && (
+                   <td scope="row" className="table-text-center">
+                        <button onClick={e => { e.stopPropagation(); onToggleCollapsibleRow(); }} style={{cursor: 'pointer'}}>
+                            {expanded
+                                ? (<Icon icon={IconDefinitions.angle_down} size={SizeDefinitions.Small}  hoverBackground={ColorDefinitions.SurfaceLight}  />)
+                                : (<Icon icon={IconDefinitions.angle_right} size={SizeDefinitions.Small} hoverBackground={ColorDefinitions.SurfaceLight} />)
                             }
                         </button>
                     </td>
@@ -76,7 +76,7 @@ function TableRow<TData extends { id: string | number }>({
 
 
                 {onRowCheckedChanged && (
-                    <td className="table-text-center">
+                    <td scope="row" className="table-text-center">
                         <Checkbox checked={checked} onChange={onRowCheckedChanged} />
                     </td>
                 )}
@@ -113,27 +113,24 @@ function TableRow<TData extends { id: string | number }>({
 
             <AnimatePresence initial={false}>
                 {expanded && collapsibleRowData && (
-                    <motion.tr
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.25 }}
-                        className="expanded-row"
-                    >
+                    <tr className="expandable">
                         <td colSpan={colSpan}>
                             <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                                className='expanded-row__container'
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.25, ease: 'easeInOut' }}
+                                style={{ overflow: 'hidden' }}
+                                className="expandable__container"
                             >
                                 {collapsibleRowData(item)}
                             </motion.div>
                         </td>
-                    </motion.tr>
+                    </tr>
                 )}
             </AnimatePresence>
+
+
         </>
     );
 }

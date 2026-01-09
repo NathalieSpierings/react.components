@@ -18,10 +18,11 @@ export interface BoxProps extends PropsWithChildren, React.AriaAttributes, React
     hoverShadowBeforeColor?: ColorDefinitions;
     rounded?: SizeDefinitions;
     dashed?: boolean;
-    ring?: 'ring-0' | 'ring-1' | 'ring-2' | 'ring-3';
+    ring?: boolean;
+    ringSize?: 'ring-0' | 'ring-1' | 'ring-2' | 'ring-3';
     ringColor?: ColorDefinitions;
     ringOffsetColor?: ColorDefinitions;
-    ringOffsetBorderColor?: ColorDefinitions;
+    ringHoverColor?: ColorDefinitions;
     ringOffset?: 'ring-offset-2' | 'ring-offset-4';
     css?: string;
     style?: CSSProperties;
@@ -46,9 +47,10 @@ const Box = React.forwardRef<HTMLDivElement | HTMLSpanElement, BoxProps>(
             rounded,
             dashed,
             ring,
+            ringSize,
             ringColor,
             ringOffsetColor,
-            ringOffsetBorderColor,
+            ringHoverColor,
             ringOffset,
             css,
             style = {},
@@ -77,10 +79,11 @@ const Box = React.forwardRef<HTMLDivElement | HTMLSpanElement, BoxProps>(
             addClass('hover:shadow-before', hoverShadowBeforeColor),
             rounded ? `rounded-${rounded}` : '',
             dashed ? 'dashed' : '',
-            ring ? `ring ${ring}` : '',
+            ring ? `ring` : '',
+            ringSize ? `ring ${ringSize}` : '',
             addClass('ring', ringColor),
             addClass('ring-offset', ringOffsetColor),
-            addClass('ring-offset-border', ringOffsetBorderColor),
+            addClass('ring-hover', ringHoverColor),
             ringOffset || '',
             css || '',
         ]

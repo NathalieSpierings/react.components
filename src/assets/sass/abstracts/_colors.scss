@@ -4,7 +4,6 @@
 @use "sass:string";
 @use "sass:map";
 
-
 $colors: (
 	"black": #000000,
 	"white": #FFFFFF,
@@ -17,114 +16,32 @@ $colors: (
 	"bordeaux": #852D37,
 	"rose": #F77584,
 	"magenta": #ED344E,
-	"spring": #67D07E
+	"spring": #67D07E,
+	"transparent": transparent
 );
 
 
 $shades: (
-	"purple": (
-		"base": #AF88FD,
-		"5": #f3edff,
-		"10": #e7dbfe,
-		"20": #cfb8fe,
-		"30": #8C6DCA
-		),
-	"violet": (
-		"base": #C08EE4,
-		"5": #f2e8fa,
-		"10": #e6d2f4,
-		"20": #d3b0ec,
-		"30": #9A72B6
-		),
-	"royalblue": (
-		"base": #2D7FCA,
-		"5": #eaf2fa,
-		"10": #c0d9ef,
-		"20": #6ca5da,
-		"30": #2466A2
-		),
-	"blue": (
-		"base": #8BC2D5,
-		"5": #e8f3f7,
-		"10": #d1e7ee,
-		"20": #aed4e2,
-		"30": #3882A2
-		),
-	"sea": (
-		"base": #80C8C2,
-		"5": #ecf7f6,
-		"10": #d9efed,
-		"20": #a6d9d4,
-		"30": #66A09B
-		),
-	"green": (
-		"base": #8CC996,
-		"5": #e8f4ea,
-		"10": #d1e9d5,
-		"20": #afd9b6,
-		"30": #70A178
-		),
-	"olive": (
-		"base": #8E9B80,
-		"5": #e8ebe6,
-		"10": #d2d7cc,
-		"20": #b0b9a6,
-		"30": #727C66
-		),
-	"red": (
-		"base": #E16268,
-		"5": #fceff0,
-		"10": #f6d0d2,
-		"20": #ea9195,
-		"30": #A5313B
-		),
-	"mulberry": (
-		"base": #D06495,
-		"5": #f6e0ea,
-		"10":#ecc1d5,
-		"20": #de93b5,
-		"30": #A65077
-		),
-	"pink": (
-		"base": #F691BE,
-		"5": #fde9f2,
-		"10": #fbd3e5,
-		"20": #f9b2d2,
-		"30": #E17EAA
-		),
-	"orange": (
-		"base": #FFB064,
-		"5": #ffefe0,
-		"10": #ffdfc1,
-		"20": #ffc893,
-		"30": #F38E40
-		),
-	"yellow": (
-		"base": #FCCB7A,
-		"5": #fef5e4,
-		"10": #feeaca,
-		"20": #fddba2,
-		"30": #FABB61
-		),
-	"brown": (
-		"base": #87705B,
-		"5": #e7e2de,
-		"10": #cfc6bd,
-		"20": #ab9b8c,
-		"30": #6C5A49
-		),
-	"nude": (
-		"base": #E1A299,
-		"5": #F1D5D1,
-		"10": #F5C9C0,
-		"20": #E6B7AF,
-		"30": #D3948B
-		)
+	"purple": ("base": #AF88FD, "5": #f3edff, "10": #e7dbfe, "20": #cfb8fe, "30": #8C6DCA),
+	"violet": ("base": #C08EE4, "5": #f2e8fa, "10": #e6d2f4, "20": #d3b0ec, "30": #9A72B6),
+	"royalblue": ("base": #2D7FCA, "5": #eaf2fa, "10": #c0d9ef, "20": #6ca5da, "30": #2466A2),
+	"blue": ("base": #8BC2D5, "5": #e8f3f7, "10": #d1e7ee, "20": #aed4e2, "30": #3882A2),
+	"sea": ("base": #80C8C2, "5": #ecf7f6, "10": #d9efed, "20": #a6d9d4, "30": #66A09B),
+	"green": ("base": #8CC996, "5": #e8f4ea, "10": #d1e9d5, "20": #afd9b6, "30": #70A178),
+	"olive": ("base": #8E9B80, "5": #e8ebe6, "10": #d2d7cc, "20": #b0b9a6, "30": #727C66),
+	"red": ("base": #E16268, "5": #fceff0, "10": #f6d0d2, "20": #ea9195, "30": #A5313B),
+	"mulberry": ("base": #D06495, "5": #f6e0ea, "10":#ecc1d5, "20": #de93b5, "30": #A65077),
+	"pink": ("base": #F691BE, "5": #fde9f2, "10": #fbd3e5, "20": #f9b2d2, "30": #E17EAA),
+	"orange": ("base": #FFB064, "5": #ffefe0, "10": #ffdfc1, "20": #ffc893, "30": #F38E40),
+	"yellow": ("base": #FCCB7A, "5": #fef5e4, "10": #feeaca, "20": #fddba2, "30": #FABB61),
+	"brown": ("base": #87705B, "5": #e7e2de, "10": #cfc6bd, "20": #ab9b8c, "30": #6C5A49),
+	"nude": ("base": #E1A299, "5": #F1D5D1, "10": #F5C9C0, "20": #E6B7AF, "30": #D3948B)
 );
 
 
 $themes: (
-	light: (theme-100: #fffffe,
+	light: (
+		theme-100: #fffffe,
 		theme-200: #fdfbfa,
 		theme-300: #f6f2ef,
 		theme-400: #f1edea,
@@ -133,13 +50,12 @@ $themes: (
 		theme-700: #cfcbc9,
 		theme-800: #c5c2bf,
 		theme-900: #bbb8b6,
-		surface-light: #fdfbfa, // theme-200 | bg light
-		surface: #f6f2ef, // theme-300 | bg
-		surface-dark: #ece8e5, // theme-400 | bg dark
-		foreground-light: #a2a1a0, // light txt | mute
-		foreground: #3c3c3c, // txt
-		foreground-dark: #0c0c0c, // dark txt	
-
+		surface-light: #fdfbfa,
+		surface: #f6f2ef,
+		surface-dark: #f1edea,
+		text-light: #a2a1a0, 
+		text: #3c3c3c, 
+		text-dark: #0c0c0c, // dark txt	
 		primary: #ff8b5d,
 		primary-5: #ffe8df,
 		primary-10: #ffd1be,
@@ -150,7 +66,8 @@ $themes: (
 		dark: #3F3F3F,
 		light: #F3F1EE,
 	),
-	dimmed: (theme-100: #8d8d8d,
+	dimmed: (
+		theme-100: #8d8d8d,
 		theme-200: #808080,
 		theme-300: #727272,
 		theme-400: #676767,
@@ -159,14 +76,12 @@ $themes: (
 		theme-700: #565656,
 		theme-800: #505050,
 		theme-900: #4a4a4a,
-
-		surface-light: #808080, // bg light
-		surface: #727272, // bg
-		surface-dark: #676767, // bg dark
-		foreground-light: #A8A8A8, // light txt | mute
-		foreground: #D3D3D3, // txt
-		foreground-dark: #F2F2F2, // dark txt	
-
+		surface-light: #808080, 
+		surface: #727272, 
+		surface-dark: #676767, 
+		text-light: #A8A8A8, 
+		text: #D3D3D3, 
+		text-dark: #F2F2F2, 
 		primary: #ff8b5d,
 		primary-5: #ffd1be,
 		primary-10: #ffd1be,
@@ -177,7 +92,8 @@ $themes: (
 		dark: #3F3F3F,
 		light: #F3F1EE,
 	),
-	dark: (theme-100: #545454,
+	dark: (  
+		theme-100: #545454,
 		theme-200: #4b4b4b,
 		theme-300: #414141,
 		theme-400: #373737,
@@ -186,15 +102,12 @@ $themes: (
 		theme-700: #252525,
 		theme-800: #202020,
 		theme-900: #1a1a1a,
-
-
-		surface-light: #4b4b4b, // bg light
-		surface: #414141, // bg
-		surface-dark: #373737, // bg dark
-		foreground-light: #878787, // light txt | mute
-		foreground: #cdcdcd, // txt
-		foreground-dark: #fdfdfd, // dark txt	
-
+		surface-light: #4b4b4b,
+		surface: #414141,
+		surface-dark: #373737,
+		text-light: #878787, 
+		text: #cdcdcd, 
+		text-dark: #fdfdfd, 
 		primary: #ff8b5d,
 		primary-5: #ffd1be,
 		primary-10: #ffd1be,
@@ -207,279 +120,323 @@ $themes: (
 	)
 );
 
-// Define surface name aliases
-$surfaceMap: (
-	'theme-200': 'surface-light',
-	'theme-300': 'surface',
-	'theme-400': 'surface-dark',
+
+$excludedThemeProps: (
+	text, 
+	text-light, 
+	text-dark, 
+	inverted
 );
 
+$lightTextRequiredProps: (
+	dark,
+	primary,
+	primary-20,
+	primary-30,
+	secondary
+);
+
+$darkTextRequiredProps: (
+	"white", 
+	"offwhite", 
+	"beige", 
+	"silver",
+	primary-5, 
+	primary-10, 
+	"transparent",
+	theme-100,
+	theme-200,
+	theme-300,
+	theme-400,
+	surface,
+	surface-light,
+	surface-dark
+);
+
+@function determineForeground($name, $isThemeProp: false) {
+
+	$foreground: var(--color-offwhite);
+
+	@if $isThemeProp {
+		$foreground: var(--color-text);
+
+		@if list.index($lightTextRequiredProps, $name) {
+			$foreground: var(--color-offwhite);
+		}
+	} @else {   
+		@if list.index($darkTextRequiredProps, $name) {
+			$foreground: var(--color-text);
+		}
+	}
+
+	@return $foreground;
+}
+
+@function determineBorder($name, $isThemeProp: false, $theme: null) {
+	$borderLight: color-mix(in oklab, var(--color-#{$name}) 70%, white 30%);
+	$borderDark: color-mix(in oklab, var(--color-#{$name}) 50%, black 10%);
+
+	$border: $borderLight;
+
+	@if $isThemeProp {
+		@if $theme == dimmed or $theme == dark {
+			$border: $borderLight;
+		} @else {
+			$border: $borderDark;
+		}
+
+		@if list.index($lightTextRequiredProps, $name) {
+			$border: $borderLight;
+		}
+	} @else {   
+		@if list.index($darkTextRequiredProps, $name) {
+			$border: $borderDark;
+		}
+	}
+
+	@return $border;
+}
 
 
-// Generate theme CSS variables
-@each $theme, $theme-map in $themes {
-	$className: if($theme =="light", ":root, .theme-#{$theme}", ".theme-#{$theme}");
+@function determineMute($name, $isThemeProp: false) {
 
-	#{$className} {
-		@each $key, $value in $theme-map {
+	$mutedLight: color-mix(in oklab, var(--color-#{$name}) 100%, white 80%);
+	$mutedDark: color-mix(in oklab, var(--color-#{$name}) 100%, black 25%);
 
-			// Get aliases if any
-			$itemsToGenerate: (
-				$key
-			);
+	$mute: $mutedLight;
 
-		@each $alias in $itemsToGenerate {
-			--color-#{$alias}: #{$value};
+	@if $isThemeProp {
+		$mute: var(--color-text-light);
 
-			$isForeground: list.index(("foreground-light", "foreground", "foreground-dark"), $alias) !=null;
-			$isPrimary: list.index(("primary", "primary-5", "primary-10", "primary-20", "primary-30", "secondary"), $alias) !=null;
+		@if list.index($lightTextRequiredProps, $name) {
+			$mute: $mutedLight;
+		}
+	} @else {   
+		@if list.index($darkTextRequiredProps, $name) {
+			$mute: var(--color-text-light);
+		}
+	}
+
+	@return $mute;
+}
 
 
-			@if $isForeground {
-				@if $key =="foreground-light" {
-					--color-mute: var(--color-foreground-light, #{$value});
-				}
+@mixin applyBasicStyles($name, $value, $isThemeProp: false, $theme: null) {
+	$border:  determineBorder($name, $isThemeProp, $theme);
+	$mute: determineMute($name, $isThemeProp);
+
+	--color-#{$name}: #{$value};
+	--color-border-#{$name}:#{$border};
+	--color-mute-#{$name}: #{$mute};
+
+	 // Shadows
+	--color-shadow-from-#{$name}: hsl(from var(--color-#{$name}, #{$value}) h s l / 42%);
+	--color-shadow-to-#{$name}: hsl(from var(--color-#{$name}, #{$value}) h s l / 20%);
+	--color-shadow-#{$name}: 0 14px 26px -12px var(--color-shadow-from-#{$name}, #{$value}), 0 4px 23px 0 rgb(0 0 0 / 12%), 0 8px 10px -5px var(--color-shadow-to-#{$name},#{$value});
+}
+
+@mixin generateComponentStyles($name, $value, $isThemeProp: false){
+	$isThemeColor: string.index($name, "theme-")or string.index($name, "surface") or string.index($name, "surface-");
+	$foreground: determineForeground($name, $isThemeProp);
+
+	.bg-#{$name},
+	.hover\:bg-#{$name}:hover {
+		--color-background: var(--color-#{$name});
+		--color-foreground: #{$foreground};
+		--color-border: var(--color-border-#{$name});
+		--color-mute: var(--color-mute-#{$name});
+
+		--table-head-bg: var(--color-#{$name}-30);
+		--table-head-border: var(--color-border-#{$name}-30);
+		--table-expanded-bg: var(--color-border-#{$name}-20);
+		--table-hover-color: var(--color-#{$name}-30);
+
+		background: var(--color-background) !important;
+		color: var(--color-foreground) !important;
+	}
+
+	.text-#{$name},
+	.hover\:text-#{$name}:hover {
+		--color-foreground: var(--color-#{$name});
+		color: var(--color-#{$name}) !important;
+	}
+
+
+	.text-mute-#{$name},
+	.hover\:text-mute-#{$name}:hover {
+		--color-mute: var(--color-mute-#{$name});
+		color: var(--color-mute-#{$name}) !important;
+	}
+
+
+	.border-#{$name},
+	.hover\:border-#{$name}:hover {      
+		border-color: var(--color-border-#{$name}) !important;
+	}
+
+	.border-before-#{$name},
+	.hover\:border-before-#{$name}:hover {
+		&::before {
+			border-color: var(--color-border-#{$name}) !important;
+		}
+	}
+
+	.border-after-#{$name},
+	.hover\:border-after-#{$name}:hover {
+		&::after {
+			border-color: var(--color-border-#{$name}) !important;
+		}
+	}
+
+
+	.shadow-#{$name},
+	.hover\:shadow-#{$name}:hover {
+		box-shadow: var(--color-shadow-#{$name}, 0 0 0 transparent) !important;
+	}
+
+	.shadow-from-#{$name}{
+		--color-shadow-from: var(--color-shadow-from-#{$name}) !important;
+	}  
+	
+	.shadow-before-#{$name},
+	.hover\:shadow-before-#{$name}:hover {
+		&::before {
+			box-shadow: var(--color-shadow-#{$name}, 0 0 0 transparent) !important;
+		}
+	}
+
+	.ring-#{$name} {
+		--ring-color: var(--color-#{$name},#{$value});
+	}
+
+	.ring-offset-#{$name} {
+		--ring-offset-color: var(--color-#{$name}, #{$value});
+	}
+
+	.ring-hover-#{$name} {
+		--ring-hover-color: var(--color-#{$name}, #{$value});
+	}
+
+	.btn-#{$name} {
+		--button-foreground: #{$foreground};
+		--color-shadow: var(--color-shadow-#{$name});
+		--color-border: var(--color-#{$name});
+		--color-background: var(--color-#{$name});	  
+	}
+
+	.btn-outline.btn-#{$name},
+	.btn-ghost.btn-#{$name}{
+		--color-border: var(--color-border-#{$name});
+		
+		@if($isThemeColor){
+			--button-foreground: var(--color-foreground);
+		}@else{
+			--button-foreground: var(--color-#{$name});
+		}
+
+		&:hover{
+			--button-foreground:#{$foreground};
+		}
+	}
+	
+	.btn-flat.btn-#{$name}{
+		@if($isThemeColor){
+			--button-foreground: var(--color-foreground);
+		}@else{
+			--button-foreground: var(--color-#{$name});
+		}
+	}
+
+
+	.formcontrol-#{$name} {
+		--formcontrol-background: var(--color-#{$name});
+		--formcontrol-border: var(--color-border-#{$name});      
+	}
+
+	.tooltip-#{$name} {
+		--tooltip-background: var(--color-#{$name});
+		--tooltip-foreground: #{$foreground};
+	}
+
+}
+
+
+
+// Generate css variables
+:root{
+	@each $name, $value in $colors {
+		@include applyBasicStyles($name, $value, false);    
+	}
+
+	@each $name, $map in $shades {
+		@each $shade, $val in $map {
+			$key: null;
+
+			@if $shade ==base {
+				$key: $name;
 			}
-
 			@else {
-				// Shadows
-				--color-shadow-from-#{$alias}: hsl(from var(--color-#{$alias}, #{$value}) h s l / 42%);
-				--color-shadow-to-#{$alias}: hsl(from var(--color-#{$alias}, #{$value}) h s l / 20%);
-				--color-shadow-#{$alias}: 0 14px 26px -12px var(--color-shadow-from-#{$alias}, #{$value}),
-				0 4px 23px 0 rgb(0 0 0 / 12%),
-				0 8px 10px -5px var(--color-shadow-to-#{$alias}, #{$value});
-
-				// Borders 
-				@if $isPrimary {
-					--color-border-#{$alias}: color-mix(in oklab, var(--color-#{$alias}, #{$value}), white 30%);
-				}
-
-				@else if $theme =="light" {
-					--color-border-#{$alias}: color-mix(in oklab, var(--color-#{$alias}, #{$value}), black 10%);
-				}
-
-				@else {
-					--color-border-#{$alias}: color-mix(in oklab, var(--color-#{$alias}, #{$value}), white 17%);
-				}
+				$key: "#{$name}-#{$shade}";
 			}
+
+			@include applyBasicStyles($key, $val, $shade == "5" or $shade == "10");
 		}
-	}
-}
-}
+	}  
 
-
-:root {
-
-	// Colors
-	@each $key, $value in $colors {
-		$lightColors: list.index(("white", "offwhite", "light", "beige"), $key) !=null;
-		--color-#{$key}: #{$value};
-
-		--color-shadow-from-#{$key}: hsl(from var(--color-#{$key}, #{$value}) h s l / 42%);
-		--color-shadow-to-#{$key}: hsl(from var(--color-#{$key}, #{$value}) h s l / 20%);
-		--color-shadow-#{$key}: 0 14px 26px -12px var(--color-shadow-from-#{$key}, #{$value}),
-		0 4px 23px 0 rgb(0 0 0 / 12%),
-		0 8px 10px -5px var(--color-shadow-to-#{$key});
-
-		@if $lightColors {
-			--color-border-#{$key}: color-mix(in oklab, var(--color-#{$key}, #{$value}), black 24%);
-		}
-
-		@else {
-			--color-border-#{$key}: color-mix(in oklab, var(--color-#{$key}, #{$value}), white 40%);
-		}
-	}
-
-	// Shades
-	@each $key, $value in $shades {
-		@if meta.type-of($value)=="map" {
-			@each $shade, $shadeValue in $value {
-
-				$prefix: if($shade =="base", #{$key}, #{$key}-#{$shade});
-
-				--color-#{$prefix}: #{$shadeValue};
-
-				--color-shadow-from-#{$prefix}: hsl(from var(--color-#{$prefix}, #{$shadeValue}) h s l / 42%);
-				--color-shadow-to-#{$prefix}: hsl(from var(--color-#{$prefix}, #{$shadeValue}) h s l / 20%);
-				--color-shadow-#{$prefix}: 0 14px 26px -12px var(--color-shadow-from-#{$prefix}, #{$shadeValue}),
-				0 4px 23px 0 rgb(0 0 0 / 12%),
-				0 8px 10px -5px var(--color-shadow-to-#{$prefix}, #{$shadeValue});
-
-				@if $shade =="5" {
-					--color-border-#{$prefix}: color-mix(in oklab, var(--color-#{$prefix}, #{$shadeValue}), black 8%);
-				}
-
-				@else if $shade =="10" {
-					--color-border-#{$prefix}: color-mix(in oklab, var(--color-#{$prefix}, #{$shadeValue}), black 10%);
-				}
-
-				@else {
-					--color-border-#{$prefix}: color-mix(in oklab, var(--color-#{$prefix}, #{$shadeValue}), white 30%);
-				}
-			}
-		}
-	}
-
-
-
-	// Globals
 	--color-background: var(--color-surface);
+	--color-foreground: var(--color-text);
 	--color-border: var(--color-border-surface);
-	--color-shadow-from: var(--color-shadow-from-surface);
+	--color-mute: var(--color-text-light);
+	--color-shadow: var(--color-shadow-surface);
 }
 
+// Generate css variables & component styles for themes
+@each $theme, $map in $themes {
+	$selector: null;
 
-@function GenerateForeground($key, $val, $isTheme: false) {
-	$textColor: null;
-	$primaryColors: list.index(("primary", "primary-20", "primary-30", "secondary"), $key);
-	$whiteText: list.index(("white", "offwhite", "light", "beige", "primary-5", "primary-10"), $key);
-
-	// Force white text if color ends in 5 or 10
-	@if string.slice($key, -1)=="5" or string.slice($key, -2)=="10" {
-		$whiteText: 1;
+	@if $theme =="light" {
+		$selector: ":root,.theme-light";
 	}
-
-	@if $whiteText {
-		$textColor: var(--color-dark);
-	}
-
-	@else if $isTheme {
-		@if $primaryColors {
-			$textColor: var(--color-offwhite);
-		}
-
-		@else {
-			$textColor: var(--color-foreground);
-		}
-	}
-
 	@else {
-		$textColor: var(--color-offwhite);
+		$selector: ".theme-#{$theme}";
 	}
 
-	@return $textColor;
-}
-
-@mixin generateStyles($key, $val, $isTheme: null) {
-	// Determine foreground color
-	$textColor: GenerateForeground($key, $val, $isTheme);
-
-	$keys: if(map.has-key($surfaceMap, $key), ($key, map.get($surfaceMap, $key)), ($key));
-
-	@each $item in $keys {
-
-		.bg-#{$item},
-		.hover\:bg-#{$item}:hover {
-			@if($textColor !='var(--color-foreground)') {
-				--color-foreground: #{$textColor} !important;
-			}
-
-			--color-background: var(--color-#{$item}) !important;
-			--color-border: var(--color-border-#{$item}) !important;
-			--color-shadow: var(--color-shadow-#{$item}) !important;
-
-			color: #{$textColor} !important;
-			background: var(--color-#{$item}) !important;
+	#{$selector} {
+		@each $name, $value in $map{
+			@if not list.index($excludedThemeProps, $name) {
+				@include applyBasicStyles($name, $value, true, $theme);  
+			}@else{
+				--color-#{$name}: #{$value};
+			}     
 		}
-
-		.text-#{$item},
-		.hover\:text-#{$item}:hover {
-			color: var(--color-#{$item}) !important;
-		}
-
-		.border-#{$item},
-		.hover\:border-#{$item}:hover {
-			border-width: 1px !important;
-			border-color: var(--color-border-#{$item}) !important;
-		}
-
-		.border-before-#{$item},
-		.hover\:border-before-#{$item}:hover {
-			&::before {
-				border-width: 1px !important;
-				border-color: var(--color-border-#{$item}) !important;
-			}
-		}
-
-		.border-after-#{$item},
-		.hover\:border-after-#{$item}:hover {
-			&::after {
-				border-width: 1px !important;
-				border-color: var(--color-border-#{$item}) !important;
-			}
-		}
-
-
-		.shadow-#{$item},
-		.hover\:shadow-#{$item}:hover {
-			box-shadow: var(--color-shadow-#{$item}) !important;
-		}
-
-		.shadow-from-#{$item} {
-			--color-shadow-from: var(--color-shadow-from-#{$item}) !important;
-		}
-
-		.shadow-before-#{$item},
-		.hover\:shadow-before-#{$item}:hover {
-			&::before {
-				box-shadow: var(--color-shadow-#{$item}) !important;
-			}
-		}
-
-		.ring-#{$item} {
-			--ring-color: var(--color-#{$item}) !important;
-		}
-
-		.ring-offset-#{$item} {
-			--ring-offset-color:var(--color-#{$item}) !important;
-		}
-
-		.ring-offset-border-#{$item} {
-			--ring-offset-border-color: var(--color-#{$item}) !important;
-		}
-
-		.btn.btn-#{$item} {
-			--color-shadow: var(--color-shadow-#{$item}) !important;
-			--button-border: var(--color-#{$item});
-			--button-foreground: #{$textColor};
-			--button-background: var(--color-#{$item});
-		}
-
-		.formcontrol-#{$item} {
-			--formcontrol-background: var(--color-#{$item}) !important;
-			--formcontrol-border: var(--color-#{$item}) !important;
-		}
-
-		.tooltip-#{$item} {
-			--tooltip-background: var(--color-#{$item}) !important;
-			--tooltip-foreground: #{$textColor} !important;
-		}
-
 	}
+
+	@if($theme == dark){
+		@each $key, $val in $map {
+			@if not list.index($excludedThemeProps, $key) {
+				@include generateComponentStyles($key, $val, true);
+			}
+		}
+	}   
 }
 
-// Generate styles for themes
-@each $key, $value in map.get($themes, dark) {
-	$textColors: (
-		foreground,
-		foreground-light,
-		foreground-dark
-	);
-
-@if not list.index($textColors, $key) {
-	@include generateStyles($key, $value, true);
-}
+// Generate component styles for colors
+@each $key, $val in $colors {
+	@include generateComponentStyles($key, $val, false);
 }
 
-// Generate styles for colors
-@each $key, $value in $colors {
-	@include generateStyles($key, $value);
-}
+// Generate component styles for shades
+@each $name, $map in $shades {
+	@each $shade, $val in $map {
+		$key: null;
 
-// Generate styles for shade colors
-@each $key, $value in $shades {
-	@each $shade, $shadeValue in $value {
-		$prefix: if($shade =="base", #{$key}, #{$key}-#{$shade});
-		@include generateStyles($prefix, $value);
+		@if $shade ==base {
+			$key: $name;
+		}
+		@else {
+			$key: "#{$name}-#{$shade}";
+		}
+
+		@include generateComponentStyles($key, $val, $shade == "5" or $shade == "10");
 	}
 }

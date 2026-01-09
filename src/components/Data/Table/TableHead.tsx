@@ -7,9 +7,6 @@ export interface TableHeaderProps<TData> {
     sortConfig?: TableSortConfig;
     setSort: (prop: string) => void;
     cssClass?: string;
-
-    // filterValue?: string | number | boolean | null;
-    // onFilterChange?: (value: string | null) => void;
 }
 
 export function TableHeader<TData>({
@@ -17,11 +14,7 @@ export function TableHeader<TData>({
     sortConfig,
     setSort,
     cssClass = '',
-    // filterValue,
-    // onFilterChange,
 }: Readonly<TableHeaderProps<TData>>): ReactElement {
-
-    const filter = item.filter;
 
     const sortable = item.sortable !== false;
 

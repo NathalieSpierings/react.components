@@ -9,6 +9,10 @@ import HomePage from "./HomePage";
 import DatagridToolbarDemo from "./Demo/DatagridToolbarDemo";
 import DatagridFilterDemo from "./Demo/DatagridFilterDemo";
 import DropdownDemo from "./Demo/DropdownDemo";
+import DatagridNestedTableDemo from "./Demo/DatagridNestedTableDemo";
+import ButtonDemo from "./Demo/ButtonDemo";
+import IconDemo from "./Demo/IconDemo";
+import DatagridAllDemo from "./Demo/DatagridAllDemo";
 
 export const getInitialMenuItem = (pathname: string) => {
 	if (matchPath(proxyPrefix + "/", pathname)) {
@@ -39,8 +43,17 @@ export const routes = [
 		element: <DatagridDemo />
 	},
 	{
+		path: "/demo/datagridall",
+		element: <DatagridAllDemo />
+	},
+
+	{
 		path: "/demo/datagridcollapsible",
 		element: <DatagridCollapsibleDemo />
+	},
+	{
+		path: "/demo/datagridnestedteable",
+		element: <DatagridNestedTableDemo />
 	},
 	{
 		path: "/demo/datagridcheckbox",
@@ -55,8 +68,16 @@ export const routes = [
 		element: <DatagridFilterDemo />
 	},
 	{
+		path: "/demo/icons",
+		element: <IconDemo />
+	},
+	{
 		path: "/demo/dropdown",
 		element: <DropdownDemo />
+	},
+	{
+		path: "/demo/button",
+		element: <ButtonDemo />
 	},
 ];
 

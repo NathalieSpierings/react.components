@@ -1,13 +1,16 @@
+import moment from "moment";
+import "moment/locale/nl";
 import React, { ReactElement, useState } from "react";
-import { Button, Subtitle, Title, Toggle } from "../../components";
+import { Button, Title, Toggle, Tooltip } from "../../components";
 import Datagrid from "../../components/Data/Datagrid/Datagrid";
 import { TableGetDataArguments } from "../../components/Data/Table/TableData";
 import { Icon } from "../../components/UI/Icons/Icon";
 import useBreadcrumb from "../../lib/hooks/useBreadcrumb";
 import usePageTitle from "../../lib/hooks/usePageTitle";
 import useTableQueryClientFilter from "../../lib/hooks/useTableQueryClientFilter";
-import { getOrdersQuery, MyGetModel } from "../../lib/testdata/models";
+import {  getProductsQuery, ProductGetModel } from "../../lib/testdata/models";
 import { ColorDefinitions, IconDefinitions } from "../../lib/utils/definitions";
+
 
 const DatagridFilterDemo = (): ReactElement => {
 
@@ -19,13 +22,13 @@ const DatagridFilterDemo = (): ReactElement => {
         { label: "Datagrid", href: "/demo/datagrid" },
     ]);
 
-    const [tableOptions, setTableOptions] = useState<TableGetDataArguments<MyGetModel> | null>(null);
+    const [tableOptions, setTableOptions] = useState<TableGetDataArguments<ProductGetModel> | null>(null);
     const [data, total, status] = useTableQueryClientFilter({
-        queryFn: getOrdersQuery(),
+        queryFn: getProductsQuery(),
         filters: tableOptions
     });
 
-    const handleFilterUpdate = (options: TableGetDataArguments<MyGetModel>) => {
+    const handleFilterUpdate = (options: TableGetDataArguments<ProductGetModel>) => {
         setTableOptions(options);
     };
 
@@ -34,8 +37,8 @@ const DatagridFilterDemo = (): ReactElement => {
     return (
         <div>
             <Datagrid
+                toolbarTitle={<Title size="md">Alle orders</Title>}
                 toolbarBorderBottom={true}
-                toolbarTitle={<Subtitle>Alle orders</Subtitle>}
                 toolbarPrefixItems={[
                     <Button key="create" onClick={() => alert('Create')}>
                         <Icon icon={IconDefinitions.plus} />
@@ -61,53 +64,47 @@ const DatagridFilterDemo = (): ReactElement => {
                 rowDoubleClickAction={(row) => console.log('Double click:', row)}
                 properties={
                     [
-                        { prop: "customerName", title: "Klant", sortable: true, filter: { type: 'text' } },
                         { prop: "product", title: "Product", sortable: true, filter: { type: 'text' } },
-                        { prop: "quantity", title: "Aantal", sortable: true, filter: { type: 'text' } },
-                        { prop: "price", title: "Prijs (€)", sortable: false, filter: { type: 'text' } },
-                        { prop: "orderStatus", title: "orderStatus", sortable: true, 
-                            filter: { 
-                            type: 'select', 
+                        {
+                            prop: "categorie", title: "Categorie", sortable: true,
+                            filter: {
+                                type: 'select',
                                 options: [
-                                    { label: "Verstuurd", value: "shipped" },
-                                    { label: "Verzamelen", value: "pending" },
-                                    { label: "Bezorgd", value: "delivered" },
-                                    { label: "Geannuleerd", value: "canceled" },
-                                ] 
-                            }  
+                                    { label: "Meubels", value: "Meubels" },
+                                    { label: "Huishouden", value: "Huishouden" },
+                                    { label: "Elektronica", value: "Elektronica" },
+                                    { label: "Kleding", value: "Kleding" },
+                                    { label: "Sport", value: "Sport" },
+                                    { label: "Boeken", value: "Boeken" },
+                                ]
+                            }
                         },
-                        { prop: "paymentMethod", title: "Betaalmethode", sortable: true, 
-                            filter: { 
-                                type: 'select', 
+                        {
+                            prop: "status", title: "Status", sortable: true,
+                            filter: {
+                                type: 'select',
                                 options: [
-                                    { label: "Creditcard", value: "creditcard" },
-                                    { label: "Ideal", value: "ideal" },
-                                    { label: "Overschrijving", value: "overschrijving" },
-                                ] 
-                            }  
+                                    { label: "Pre-order", value: "Pre-order" },
+                                    { label: "Op voorraad", value: "Op voorraad" },
+                                    { label: "Uitverkocht", value: "Uitverkocht" },
+                                ]
+                            }
                         },
-                        { prop: "deliverer", title: "Verzender", sortable: true, 
-                            filter: { 
-                                type: 'select', 
-                                options: [
-                                    { label: "DHL", value: "DHL" },
-                                    { label: "UPS", value: "UPS" },
-                                    { label: "Post NL", value: "postnl" },
-                                ] 
-                            }  
-                        },
+                         { prop: "merk", title: "Merk", sortable: true, filter: { type: 'text' } },
+                        { prop: "prijs", title: "Prijs (€)", sortable: false, wrapValue: item => { return <>€  {item.prijs.toFixed(2)}</> } },
+                        { prop: "beschikbaarVanaf", title: "Beschikbaar vanaf", sortable: true, filter: { type: 'text' }, transformValue: (value) => value ? moment(value).locale("nl").format("DD-MM-YYYY") : "" },
                     ]
                 }
                 rowActions={
                     [
                         {
-                            label: "Bekijk",
-                            action: item => (<Icon icon={IconDefinitions.eye} onClick={() => alert(`Bekijk order ${item.orderNumber}`)} />)
+                            icon: <Tooltip content="Bekijk"><Icon icon={IconDefinitions.eye} hover={true} iconCss="pointer" /></Tooltip>,
+                            action: (item) => { alert(`Bekijk order ${item.product}`) }
                         },
                         {
-                            label: "Verwijder",
-                            action: item => (<Icon icon={IconDefinitions.bin} onClick={() => alert(`Verwijder order ${item.orderNumber}`)} />)
-                        }
+                            icon: <Tooltip content="Verwijder"><Icon icon={IconDefinitions.bin} hover={true} iconCss="pointer" /></Tooltip>,
+                            action: (item) => { alert(`Verwijder order ${item.product}`) }
+                        },
                     ]
                 }
             />
