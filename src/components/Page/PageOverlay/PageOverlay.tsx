@@ -24,7 +24,7 @@ const PageOverlay: FC<PageOverlayProps> = ({
     centeredSize = CenteredSizeDefinition.Narrow,
     dismissCss,
     dismissCircle,
-    dismissSize = SizeDefinitions.ExtraLarge,
+    dismissSize = SizeDefinitions.Medium,
     dismissLabel = 'sluiten',
     dismissLabelColor,
     dismissBackground,

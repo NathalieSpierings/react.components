@@ -56,7 +56,7 @@ export * from './Forms/PasswordInput';
 export * from './Forms/RadioButton';
 export * from './Forms/Select';
 export * from './Forms/SearchInput';
-export * from './Forms/Tagsinput';
+export * from './Forms/TagsInput';
 export * from './Forms/TextArea';
 export * from './Forms/Toggle';
 export * from './UI/Accordion';

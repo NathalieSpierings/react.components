@@ -57,7 +57,6 @@ const ButtonDemo: React.FC = () => {
 
       <h1>Sizes</h1>
       <div className="flex gap-1">
-        <Button color={ColorDefinitions.Olive} size={SizeDefinitions.Tiny}>Button</Button>
         <Button color={ColorDefinitions.Olive} size={SizeDefinitions.ExtraSmall}>Button</Button>
         <Button color={ColorDefinitions.Olive} size={SizeDefinitions.Small}>Button</Button>
         <Button color={ColorDefinitions.Olive} size={SizeDefinitions.Medium}>Button</Button>
@@ -68,7 +67,6 @@ const ButtonDemo: React.FC = () => {
       </div>
 
       <div className="flex gap-1">
-        <Button color={ColorDefinitions.Olive} size={SizeDefinitions.Tiny}><Icon icon={IconDefinitions.bulb} position="left" />Button</Button>
         <Button color={ColorDefinitions.Olive} size={SizeDefinitions.ExtraSmall}><Icon icon={IconDefinitions.bulb} position="left" />Button</Button>
         <Button color={ColorDefinitions.Olive} size={SizeDefinitions.Small}><Icon icon={IconDefinitions.bulb} position="left" />Button</Button>
         <Button color={ColorDefinitions.Olive} size={SizeDefinitions.Medium}><Icon icon={IconDefinitions.bulb} position="left" />Button</Button>

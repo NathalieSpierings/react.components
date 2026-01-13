@@ -12,6 +12,7 @@ import { TableRowConfig } from '../Table/TableRowConfig';
 import { TableSortConfig } from '../Table/TableSort';
 import DatagridSearch from './DatagridSearch';
 import DatagridFilterToolbar from './DatagridFilterToolbar';
+import { Loader } from '../../UI/Loader';
 
 export type TableColumnFilters = Record<string, any>;
 
@@ -41,6 +42,18 @@ export interface DatagridProps<TData> {
     toolbarBorderBottom?: boolean;
     tableCss?: string;
     footerContent?: ReactNode;
+
+    loaderDuration?: number;
+    loaderLoading?: boolean;
+    loaderBackground?: ColorDefinitions;
+    loaderLabels?: string[];
+    loaderShowLabels?: boolean;
+    loaderLabelColor?: ColorDefinitions;
+    loaderShowOverlay?: boolean;
+    loaderTableOverlay?: boolean;
+    loaderCentered?: boolean;
+    loaderShowAnimation?: boolean;
+    loaderAnimationColor?: ColorDefinitions;
 }
 
 function Datagrid<TData extends { id: string | number }>({
@@ -67,7 +80,17 @@ function Datagrid<TData extends { id: string | number }>({
     toolbarSeparator,
     toolbarBorderBottom,
     tableCss = '',
-    footerContent
+    footerContent,
+    loaderDuration,
+    loaderBackground,
+    loaderLabels,
+    loaderShowLabels = false,
+    loaderLabelColor,
+    loaderShowOverlay,
+    loaderTableOverlay = true,
+    loaderCentered = true,
+    loaderShowAnimation,
+    loaderAnimationColor,
 }: Readonly<DatagridProps<TData>>): ReactElement {
 
     const [showCompact, setShowCompact] = useState(false);
@@ -119,20 +142,6 @@ function Datagrid<TData extends { id: string | number }>({
     if (toolbarPostfixItems) {
         postfixElements.push(...toolbarPostfixItems);
     }
-
-    // if (enableSearch) {
-    //     postfixElements.push(
-    //         <Tooltip key="search" content="Zoeken" direction="top-left">
-    //             <Icon
-    //                 icon={IconDefinitions.search}
-    //                 variant="circle"
-    //                 duotone={true}
-    //                 size={SizeDefinitions.Small}
-    //                 onClick={() => setShowSearch(!showSearch)}
-    //             />
-    //         </Tooltip>
-    //     );
-    // }
 
     if (enableCompactView) {
         postfixElements.push(
@@ -191,6 +200,25 @@ function Datagrid<TData extends { id: string | number }>({
                 searchTerm={searchTerm}
                 onSearchChange={updateQ}
             />}
+
+            {loading ? (
+
+                <Loader
+                    tableOverlay={loaderTableOverlay}
+                    duration={loaderDuration}
+                    loading={loading}
+                    background={loaderBackground}
+                    labels={loaderLabels}
+                    showLabels={loaderShowLabels}
+                    labelColor={loaderLabelColor}
+                    showOverlay={loaderShowOverlay}
+                    centered={loaderCentered}
+                    showAnimation={loaderShowAnimation}
+                    animationColor={loaderAnimationColor}
+                />
+
+            ) : null}
+
 
             <Table
                 data={data}

@@ -1,10 +1,10 @@
 import React, { ReactElement } from "react";
-import usePageTitle from "../../lib/hooks/usePageTitle";
-import useBreadcrumb from "../../lib/hooks/useBreadcrumb";
-import { Dropdown } from "../../components/Forms/Dropdown";
-import { ColorDefinitions, IconDefinitions, SizeDefinitions } from "../../lib/utils/definitions";
-import { Icon } from "../../components/UI/Icons/Icon";
-import { Avatar, AvatarDefinitions, Multiselect, Title } from "../../components";
+import usePageTitle from "../../../lib/hooks/usePageTitle";
+import useBreadcrumb from "../../../lib/hooks/useBreadcrumb";
+import { Dropdown } from "../../../components/Forms/Dropdown";
+import { ColorDefinitions, IconDefinitions, SizeDefinitions } from "../../../lib/utils/definitions";
+import { Icon } from "../../../components/UI/Icons/Icon";
+import { Avatar, AvatarDefinitions, Multiselect, Title } from "../../../components";
 
 const DropdownDemo = (): ReactElement => {
 
@@ -134,15 +134,15 @@ const DropdownDemo = (): ReactElement => {
                     <Dropdown
                         background={ColorDefinitions.Olive}
                         menuItems={menuItems}
-                        dropdownToggle={{ label: 'Click me!', enableDropdownArrow: false }}
+                        dropdownToggle={{ label: 'Click me!', arrow: false }}
                     />
                 </div>
                 <div>
                     <h5>Toggle icon prefix</h5>
                     <Dropdown menuItems={menuItems}
                         dropdownToggle={{
-                            enableDropdownArrow: false,
-                            prefix: (<Icon icon={IconDefinitions.ellipsis_h} ring={"ring-2"} ringColor={ColorDefinitions.Blue} rounded={SizeDefinitions.Full} />)
+                            arrow: false,
+                            prefix: (<Icon icon={IconDefinitions.ellipsis_h} ring ringSize={"ring-2"} ringColor={ColorDefinitions.Blue} rounded={SizeDefinitions.Full} />)
                         }} />
                 </div>
 

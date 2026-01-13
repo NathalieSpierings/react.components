@@ -28,7 +28,7 @@ const TemplateSidebarAccountMenu = () => {
 
       dropdownToggle={{
         prefix: (<Avatar size={SizeDefinitions.Small} icon={IconDefinitions.user} />),
-        enableDropdownArrow: false
+        arrow: false
       }}
       dropdownHeader={{
         borderColor: ColorDefinitions.Surface,

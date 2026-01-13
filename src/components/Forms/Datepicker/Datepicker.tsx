@@ -17,29 +17,29 @@ export type OurDatepickerProps = Omit<
     validationErrorMessage?: string;
 } & (
         | {
-            selectsRange?: never;
-            selectsMultiple?: never;
-            onChange: (
-                date: Date | null,
-                event?: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>
-            ) => void;
-        }
+              selectsRange?: never;
+              selectsMultiple?: never;
+              onChange: (
+                  date: Date | null,
+                  event?: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>
+              ) => void;
+          }
         | {
-            selectsRange: true;
-            selectsMultiple?: never;
-            onChange: (
-                date: [Date | null, Date | null],
-                event?: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>
-            ) => void;
-        }
+              selectsRange: true;
+              selectsMultiple?: never;
+              onChange: (
+                  date: [Date | null, Date | null],
+                  event?: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>
+              ) => void;
+          }
         | {
-            selectsRange?: never;
-            selectsMultiple: true;
-            onChange: (
-                date: Date[] | null,
-                event?: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>
-            ) => void;
-        }
+              selectsRange?: never;
+              selectsMultiple: true;
+              onChange: (
+                  date: Date[] | null,
+                  event?: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>
+              ) => void;
+          }
     );
 
 const Datepicker = forwardRef<DatePicker, OurDatepickerProps>((props, ref) => {
@@ -71,8 +71,8 @@ export interface FormDatepickerProps
         'onChange' | 'selectsRange' | 'selectsMultiple' | 'onChange' | 'value' | 'onBlur' | 'name'
     > {
     rules?:
-    | Omit<RegisterOptions<FieldValues, string>, 'disabled' | 'valueAsNumber' | 'valueAsDate' | 'setValueAs'>
-    | undefined;
+        | Omit<RegisterOptions<FieldValues, string>, 'disabled' | 'valueAsNumber' | 'valueAsDate' | 'setValueAs'>
+        | undefined;
     control: Control<any, any>;
     name: string;
 }
@@ -90,8 +90,7 @@ export const FormDatepicker: FC<FormDatepickerProps> = (props) => {
     const validationErr = invalid ? error?.message! : '';
 
     return (
-        <>
-            <Datepicker
+       <Datepicker
                 {...rest}
                 ref={field.ref}
                 onChange={field.onChange}
@@ -100,7 +99,6 @@ export const FormDatepicker: FC<FormDatepickerProps> = (props) => {
                 name={field.name}
                 validationErrorMessage={validationErr ? validationErr : undefined}
             />
-        </>
     );
 };
 

@@ -1,15 +1,13 @@
 import { ChangeEvent, DragEventHandler, ReactElement, useRef, useState } from 'react';
 import { ColorDefinitions, IconDefinitions, SizeDefinitions } from '../../../lib/utils/definitions';
 import { filesize, matchFileType, matchKlantNummer } from '../../../lib/utils/files';
-
 import Button from '../../UI/Button/Button';
 import { Collection } from '../../UI/Collection';
 import { DividerSplitted } from '../../UI/DividerSplitted';
+import FileIcon, { FileToIconVariant } from '../../UI/Icons/FileIcon/FileIcon';
+import Icon from '../../UI/Icons/Icon/Icon';
 import Modal from '../../UI/Modal/Modal';
 import Tooltip from '../../UI/Tooltip/Tooltip';
-import React from 'react';
-import Icon from '../../UI/Icons/Icon/Icon';
-import FileIcon, { FileToIconVariant } from '../../UI/Icons/FileIcon/FileIcon';
 
 export interface FileuploadValidationError {
     fileName: string;
@@ -213,13 +211,13 @@ const FileSelect = ({
                 FileSelectError.InvalidFileType,
                 <>
                     <p>De volgende bestanden kunnen niet worden geüpload:</p>
-                    <ul className="list-square">
+                    <ul className="list-upload-warnings">
                         {fileErrors.map((err) => (
                             <li key={err.fileName}>
                                 <strong>{err.fileName}</strong>
-                                <ul className="list-disc ml-4">
+                                <ul>
                                     {err.reasons.map((reason, idx) => (
-                                        <li key={idx}>{reason}</li>
+                                        <li key={'warning_' + idx}>{reason}</li>
                                     ))}
                                 </ul>
                             </li>

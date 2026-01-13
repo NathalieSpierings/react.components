@@ -1,5 +1,4 @@
-@layer fieldset, inputElements, checkbox, checkboxAnimated,
-radio, toggleSwith, tagsInput, dropdown, multiSelect, datepicker, fileupload;
+@layer fieldset, checkbox, radio, inputElements, checkboxAnimated, toggleSwith, tagsInput, dropdown, multiSelect, datepicker, fileupload;
 
 
 
@@ -343,17 +342,10 @@ radio, toggleSwith, tagsInput, dropdown, multiSelect, datepicker, fileupload;
         &.prefix__before {
             .icon {
                 position: absolute;
-                top: .7rem;
-                left: -1rem;
+                top: .1.5rem;
                 padding: 0;
                 margin: 0;
                 z-index: 2;
-
-                svg {
-                    fill: currentcolor;
-                    width: var(--iconsize, 1.3em);
-                    height: var(--iconsize, 1.3em);
-                }
             }
 
             label,
@@ -377,18 +369,12 @@ radio, toggleSwith, tagsInput, dropdown, multiSelect, datepicker, fileupload;
 
         &.prefix__inline {
             .icon {
-                position: absolute;
-                top: .7rem;
-                left: 0;
-                padding: 0;
-                margin: 0;
                 z-index: 2;
-
-                svg {
-                    fill: currentcolor;
-                    width: var(--iconsize, 1.3em);
-                    height: var(--iconsize, 1.3em);
-                }
+                margin: 0;
+                padding: 0;
+                position: absolute;
+                top: 1.5rem;
+                left: 1.5rem;
             }
 
             label {
@@ -420,7 +406,7 @@ radio, toggleSwith, tagsInput, dropdown, multiSelect, datepicker, fileupload;
         &.prefix__focus {
             .icon {
                 position: absolute;
-                top: .7rem;
+                top: 1.5rem;
                 left: 0;
                 padding: 0;
                 margin: 0;
@@ -428,12 +414,6 @@ radio, toggleSwith, tagsInput, dropdown, multiSelect, datepicker, fileupload;
                 opacity: 0;
                 transform: translateX(-100%);
                 transition: color 0.3s 0s ease, transform 0.3s 0s ease;
-
-                svg {
-                    fill: currentcolor;
-                    width: var(--iconsize, 1.3em);
-                    height: var(--iconsize, 1.3em);
-                }
             }
 
             .form-control {
@@ -441,7 +421,7 @@ radio, toggleSwith, tagsInput, dropdown, multiSelect, datepicker, fileupload;
                     padding-left: 42px;
 
                     ~.icon {
-                        left: 0;
+                        left: 1.5rem;
                         opacity: 1;
                         transform: translateX(0);
                     }
@@ -462,7 +442,7 @@ radio, toggleSwith, tagsInput, dropdown, multiSelect, datepicker, fileupload;
                 }
 
                 .icon {
-                    left: 0;
+                    left: 1.5rem;
                     opacity: 1;
                     transform: translateX(0);
                 }
@@ -603,9 +583,10 @@ radio, toggleSwith, tagsInput, dropdown, multiSelect, datepicker, fileupload;
 
         .icon {
             position: absolute;
-            top: 1px;
+            top: .5rem;
             inset-inline-start: 4px;
             color: var(--formcontrol-foreground);
+            left: 1rem;
         }
 
         input {
@@ -1351,7 +1332,7 @@ radio, toggleSwith, tagsInput, dropdown, multiSelect, datepicker, fileupload;
                     margin-right: 1rem;
                 }
 
-                .dismiss {
+                >.dismiss {
                     position: absolute;
                     top: .5rem;
                     right: .5rem;
@@ -1371,245 +1352,167 @@ radio, toggleSwith, tagsInput, dropdown, multiSelect, datepicker, fileupload;
 }
 
 @layer dropdown {
-
-    
-
-.dropdown {
-	position: relative;
-	display: inline-flex;
-
-	&__toggle {
-		position: relative;
-		display: inline-flex;
-		align-items: center;
-		white-space: nowrap;
-		cursor: pointer;
-
-        &:active,
-		&.active {
-            transform: scale(1) !important;
-        }
-
-		&__title {
-			margin-right: 2rem;
-			margin-left: 0.75rem;
-		}
-
-		&--input {
-			width: 100%;
-			height: 48px;
-			padding: var(--page-padding-sm);
-			appearance: none;
-			transition: all 0.1s ease-in-out;
-			color: var(--color-foreground);
-			border: 1px solid var(--formcontrol-border);
-			border-radius: var(--radius);
-			background: var(--formcontrol-background);
-
-			&:focus {
-				outline: 0;
-			}
-
-			&:focus-visible {
-				border-radius: var(--radius);
-				outline-offset: var(--accessibility-focus-outline-offset);
-				outline-width: var(--accessibility-focus-outline-width);
-				outline-style: var(--accessibility-focus-outline-style);
-				outline-color: var(--accessibility-focus-outline-color);
-			}
-
-			&.disabled,
-			&:disabled,
-			&[readonly] {
-				opacity: 0.6;
-				pointer-events: none;
-				cursor: default;
-				border: 1px dashed var(--formcontrol-border);
-			}
-
-			&::after {
-				position: absolute;
-				content: "";
-				right: 0.71429em;
-				top: 50%;
-				margin-top: -0.17857em;
-				border: 0.35714em solid transparent;
-				border-top-color: var(--formcontrol-border);
-			}
-
-			> .dropdown__toggle__title {
-				margin-right: 1.5rem;
-			}
-		}
-	}
-
-	&__menu {
-		display: none;
-		flex-direction: column;
-		position: fixed;   
-		z-index: 1000;
-		min-width: 22rem;
-		padding: 0;
-		margin: 0;
-		font-size: var(--fontsize-base);
-		list-style: none;
-		color: var(--color-foreground);
-		background: var(--color-background);
-		border-radius: var(--radius);
-		box-shadow: 0 6px 15px #0000001f;
-		transform: scale(0.95);
-		transform-origin: top right;  
-		opacity: 0;
-		transition: transform 0.15s ease, opacity 0.15s ease;
-
-		&.shown {
-			display: flex;
-			transform: scale(1);
-			opacity: 1;
-		}
-
-		&__item {
-			padding: calc(var(--page-padding-sm) / 2) var(--page-padding-sm);
-			cursor: pointer;
-			white-space: nowrap;
-			transition: background 0.15s ease;
-
-			&:hover {
-				background: rgb(0 0 0 / 6%);
-				border-radius: var(--radius);
-			}
-
-			&.selected {
-				background: rgb(0 0 0 / 8%);
-			}
-
-			svg {
-				width: 1.3em;
-				height: 1.3em;
-				fill: currentcolor;
-			}
-
-			.form-field {
-				margin-bottom: 0;
-			}
-		}
-
-		&__header {
-			display: flex;
-			align-items: center;
-			line-height: 36px;
-			padding: 1rem 2rem;
-			margin-bottom: 0;
-			opacity: 0.5;
-			white-space: nowrap;
-
-			&--border {
-				border-bottom: 1px solid var(--color-border);
-				margin-bottom: 0;
-				border-radius: 0;
-			}
-		}
-
-		&__divider {
-			height: 1px;
-			background: var(--color-border);
-		}
-
-		&--border {
-			.dropdown__menu__divider {
-				border: 0;
-			}
-			.dropdown__menu__item {
-				border-bottom: 1px solid var(--color-border);
-				margin-bottom: 0;
-				border-radius: 0;
-
-				&:first-child {
-					border-top: 0;
-				}
-
-				&:last-child {
-					border-bottom: 0;
-					border-radius: inherit;
-				}
-			}
-		}
-	}
-
-	&--wide {
-		.dropdown__menu {
-			min-width: 36rem;
-		}
-	}
-
-	&__search {
-		display: block;
-		appearance: none;
-		width: 100%;
-		min-width: 20rem;
-		font-size: inherit;
-		font-weight: inherit;
-		line-height: inherit;
-		outline: 0;
-		background-clip: padding-box;
-		border-radius: var(--formcontrol-radius);
-		background-color: var(--formcontrol-background);
-		padding: var(--formcontrol-padding);
-		border: 1px solid var(--formcontrol-border);
-		color: var(--color-foreground);
-		box-shadow: none;
-		text-align: left;
-		filter: none;
-		transition: all 0.2s ease-in-out;
-
-		&:focus {
-			border: 1px solid var(--formcontrol-accent);
-			box-shadow: none;
-		}
-	}
-
-	.form-group {
-		width: 100%;
-	}
-
-	.form-field {
-		margin-bottom: 0;
-		margin-right: 1rem;
-	}
-
-	.multiselect__container {
-		margin-bottom: 0;
-	}
-
-	.multiselect__title {
-		margin: 0;
-	}
-}
-
-/*
     .dropdown {
-        --dropdown-offset: 45px;
-
         position: relative;
         display: inline-flex;
 
-      
+        &__toggle {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+            cursor: pointer;
 
+            &:active,
+            &.active {
+                transform: scale(1) !important;
+            }
 
-        &--up {
-            .dropdown__menu.shown {
-                position: absolute;
-                inset: auto auto 0px 0px;
-                margin: 0px;
-                transform: translate(0px, -40px);
+            &__title {
+                margin-right: 2rem;
+                margin-left: 0.75rem;
+            }
+
+            &--input {
+                width: 100%;
+                height: 48px;
+                padding: var(--page-padding-sm);
+                appearance: none;
+                transition: all 0.1s ease-in-out;
+                color: var(--color-foreground);
+                border: 1px solid var(--formcontrol-border);
+                border-radius: var(--radius);
+                background: var(--formcontrol-background);
+
+                &:focus {
+                    outline: 0;
+                }
+
+                &:focus-visible {
+                    border-radius: var(--radius);
+                    outline-offset: var(--accessibility-focus-outline-offset);
+                    outline-width: var(--accessibility-focus-outline-width);
+                    outline-style: var(--accessibility-focus-outline-style);
+                    outline-color: var(--accessibility-focus-outline-color);
+                }
+
+                &.disabled,
+                &:disabled,
+                &[readonly] {
+                    opacity: 0.6;
+                    pointer-events: none;
+                    cursor: default;
+                    border: 1px dashed var(--formcontrol-border);
+                }
+
+                &::after {
+                    position: absolute;
+                    content: "";
+                    right: 0.71429em;
+                    top: 50%;
+                    margin-top: -0.17857em;
+                    border: 0.35714em solid transparent;
+                    border-top-color: var(--formcontrol-border);
+                }
+
+                >.dropdown__toggle__title {
+                    margin-right: 1.5rem;
+                }
             }
         }
 
-        &--right {
-            .dropdown__menu.shown {
-                right: 0;
-                left: auto;
-                transform: translateX(0);
+        &__menu {
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            z-index: 1000;
+            min-width: 22rem;
+            padding: 0;
+            margin: 0;
+            font-size: var(--fontsize-base);
+            list-style: none;
+            color: var(--color-foreground);
+            background: var(--color-background);
+            border-radius: var(--radius);
+            box-shadow: 0 6px 15px #0000001f;
+            transform: scale(0.95);
+            transform-origin: top right;
+            opacity: 0;
+            transition: transform 0.15s ease, opacity 0.15s ease;
+
+            &.shown {
+                display: flex;
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            &__item {
+                padding: calc(var(--page-padding-sm) / 2) var(--page-padding-sm);
+                cursor: pointer;
+                white-space: nowrap;
+                color: inherit;
+                transition: background 0.15s ease;
+
+                &:hover {
+                    background: rgb(0 0 0 / 6%);
+                    border-radius: var(--radius);
+                }
+
+                &.selected {
+                    background: rgb(0 0 0 / 8%);
+                }
+
+                svg {
+                    width: 1.3em;
+                    height: 1.3em;
+                    fill: currentcolor;
+                }
+
+                .form-field {
+                    margin-bottom: 0;
+                }
+            }
+
+            &__header {
+                display: flex;
+                align-items: center;
+                line-height: 36px;
+                padding: 1rem 2rem;
+                margin-bottom: 0;
+                opacity: 0.5;
+                white-space: nowrap;
+
+                 &[class*="border-"] {
+                    border-bottom: 1px solid var(--color-border);
+                    margin-bottom: 0;
+                    border-radius: 0;
+                }
+            }
+
+            &__divider {
+                height: 1px;
+                background: var(--color-border);
+            }
+
+            &--border {
+                .dropdown__menu__divider {
+                    border: 0;
+                }
+
+                .dropdown__menu__item {
+                    border-bottom: 1px solid var(--color-border);
+                    margin-bottom: 0;
+                    border-radius: 0;
+
+                    &:first-child {
+                        border-top: 0;
+                    }
+
+                    &:last-child {
+                        border-bottom: 0;
+                        border-radius: inherit;
+                    }
+                }
             }
         }
 
@@ -1662,8 +1565,6 @@ radio, toggleSwith, tagsInput, dropdown, multiSelect, datepicker, fileupload;
             margin: 0;
         }
     }
-
-    */
 }
 
 @layer multiSelect {
@@ -1683,6 +1584,10 @@ radio, toggleSwith, tagsInput, dropdown, multiSelect, datepicker, fileupload;
             flex: 0 0 auto;
             padding: var(--page-padding-sm);
             border-bottom: 0px solid var(--color-border);
+
+            &__title {
+                margin-bottom: 1.5rem;
+            }
 
             &__content {
                 display: flex;

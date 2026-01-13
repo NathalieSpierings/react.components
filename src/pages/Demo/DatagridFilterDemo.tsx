@@ -28,9 +28,6 @@ const DatagridFilterDemo = (): ReactElement => {
         filters: tableOptions
     });
 
-    const handleFilterUpdate = (options: TableGetDataArguments<ProductGetModel>) => {
-        setTableOptions(options);
-    };
 
     const [toggleChecked, setToggleChecked] = useState(true);
 
@@ -59,7 +56,7 @@ const DatagridFilterDemo = (): ReactElement => {
                 data={data || []}
                 total={total || 0}
                 loading={status === "pending"}
-                onFilterUpdate={handleFilterUpdate}
+                onFilterUpdate={setTableOptions}
                 rowSingleClickAction={(row) => console.log('Clicked row:', row)}
                 rowDoubleClickAction={(row) => console.log('Double click:', row)}
                 properties={

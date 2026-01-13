@@ -1,19 +1,18 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { FC, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { ColorDefinitions, IconDefinitions, SizeDefinitions } from '../../../lib/utils/definitions';
 import Box, { BoxProps } from '../../Base/Box/Box';
 import Icon from '../../UI/Icons/Icon/Icon';
 import DismissButton from '../DismissButton/DismissButton';
-import React from 'react';
 
-export type ModalVariant = 'primary' | 'warning' | 'informational' | 'positive' | 'negative';
+export type ModalVariant = 'default' | 'primary' | 'warning' | 'informational' | 'positive' | 'negative';
 
 export interface ModalProps extends BoxProps {
     title?: string;
     titleContent?: ReactElement;
     variant?: ModalVariant;
-    headerStyledDivProps?: BoxProps;
-    footerStyledDivProps?: BoxProps;
+    headerBoxProps?: BoxProps;
+    footerBoxProps?: BoxProps;
     footerActions?: ReactElement;
     footerActionPosition?: 'left' | 'center' | 'right';
     background?: ColorDefinitions;
@@ -25,8 +24,8 @@ const Modal: FC<ModalProps> = ({
     title,
     titleContent,
     variant,
-    headerStyledDivProps = { borderColor: ColorDefinitions.Surface },
-    footerStyledDivProps = { borderColor: ColorDefinitions.Surface },
+    headerBoxProps = { borderColor: ColorDefinitions.Surface },
+    footerBoxProps = { borderColor: ColorDefinitions.Surface },
     footerActions,
     footerActionPosition = 'left',
     background,
@@ -78,9 +77,9 @@ const Modal: FC<ModalProps> = ({
                         }}
                         transition={{ duration: 0.5 }}
                     >
-                        <Box {...headerStyledDivProps} css="modal__header shown">
+                        <Box {...headerBoxProps} css="modal__header shown">
                             {variant ? (
-                                <Icon icon={IconDefinitions.warning} duotone={true} size={SizeDefinitions.ExtraLarge} />
+                                <Icon icon={IconDefinitions.warning} size={SizeDefinitions.ExtraLarge} />
                             ) : null}
                             {title ? <h3>{title}</h3> : <>{titleContent}</>}
 
@@ -88,7 +87,7 @@ const Modal: FC<ModalProps> = ({
                         </Box>
                         <div className="modal__content">{children}</div>
                         <Box
-                            {...footerStyledDivProps}
+                            {...footerBoxProps}
                             css={`modal__footer ${footerActionPosition ? "modal__footer--" + footerActionPosition : ''}`}
                         >
                             {footerActions}

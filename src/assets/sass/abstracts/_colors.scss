@@ -384,7 +384,9 @@ $darkTextRequiredProps: (
 	}  
 
 	--color-background: var(--color-surface);
+	--color-foreground-light: var(--color-text-light);
 	--color-foreground: var(--color-text);
+	--color-foreground-dark: var(--color-text-dark);
 	--color-border: var(--color-border-surface);
 	--color-mute: var(--color-text-light);
 	--color-shadow: var(--color-shadow-surface);

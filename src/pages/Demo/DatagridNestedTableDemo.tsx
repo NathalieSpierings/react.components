@@ -91,7 +91,6 @@ const DatagridNestedTableDemo = (): ReactElement => {
                 onFilterUpdate={setTableOptions}
                 rowSingleClickAction={(row) => console.log('Clicked row:', row)}
                 rowDoubleClickAction={(row) => console.log('Double click:', row)}
-
                 collapsibleRowData={(item) => (
                     <ProductOrdersTable productId={item.id} />
                 )}

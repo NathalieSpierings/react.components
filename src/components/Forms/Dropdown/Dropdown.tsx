@@ -2,7 +2,6 @@ import React, { FC, ReactElement, ReactNode, useEffect, useRef, useState } from 
 import { ColorDefinitions, IconDefinitions } from "../../../lib/utils/definitions";
 import Box, { BoxProps } from "../../Base/Box/Box";
 import Icon from "../../UI/Icons/Icon/Icon";
-import Button from "../../UI/Button/Button";
 
 export type DropdownDirection = "up" | "down";
 

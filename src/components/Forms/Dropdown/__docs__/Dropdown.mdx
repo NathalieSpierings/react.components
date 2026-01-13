@@ -1,0 +1,34 @@
+import { Canvas, Meta, Controls  } from '@storybook/addon-docs/blocks';
+import * as DropdownStories from './Dropdown.stories';
+import DropdownComponent from '../Dropdown';
+ 
+<Meta of={DropdownStories} />
+ 
+
+# Dropdown Component
+
+Het `Dropdown` component biedt een flexibele manier om keuzemenu's weer te geven binnen je applicatie. Het ondersteunt zowel standaard menu-items als volledig aangepaste children, headers, icons, en verschillende richtingen. Het component is interactief, sluit automatisch wanneer er buiten wordt geklikt en kan gebruikt worden in formulieren of navigatie-elementen.
+
+## Belangrijkste functionaliteiten
+
+- **Toggle opties**: Ondersteunt standaard labels, prefix/postfix elementen of rendering als input.
+- **Menu-items**: Voeg meerdere items toe met optionele prefix, postfix, selectie-indicatoren en click handlers.
+- **Menu headers**: Voeg een header toe met optionele border kleur.
+- **Richting**: Kies de richting van het dropdown-menu (`default`, `up`, `right`).
+- **Automatisch sluiten**: Sluit het menu automatisch bij klikken buiten het component.
+- **Minimale breedte**: Pas de minimale breedte van het dropdown-menu aan.
+- **Custom styling**: Gebruik `StyledDiv` props zoals `background` en andere CSS-aanpassingen.
+- **Flexibele content**: Gebruik `children` voor volledig custom dropdown-inhoud in plaats van `menuItems`.
+
+Het `Dropdown` component is ideaal voor navigatie, filters of elke situatie waarbij een compact en interactief keuzemenu gewenst is. Het biedt uitgebreide aanpassingsmogelijkheden terwijl de interactie intuïtief blijft.
+
+
+### Default 
+
+<Canvas of={DropdownStories.Default} />
+
+
+### Props
+ 
+<Controls />
+

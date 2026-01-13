@@ -15,14 +15,12 @@ export enum ColorDefinitions {
     SurfaceLight = 'surface-light',
     Surface = 'surface',
     SurfaceDark = 'surface-dark',
-
     Inverted = 'inverted',
     Foreground = 'foreground',
     ForegroundLight = 'foreground-light',
     ForegroundDark = 'foreground-dark',
     Mute = 'mute',
     Background = 'background',
-
     Dark = 'dark',
     Light = 'light',
     Primary = 'primary',

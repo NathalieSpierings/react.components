@@ -1,2 +1,2 @@
-export * from './Tagsinput';
-export { default as Tagsinput } from './Tagsinput';
+export * from './TagsInput';
+export { default as TagsInput } from './TagsInput';

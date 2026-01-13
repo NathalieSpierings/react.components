@@ -1,0 +1,25 @@
+import { Canvas, Meta, Controls  } from '@storybook/addon-docs/blocks';
+import * as CiteStories from './Cite.stories';
+import CiteComponent from '../Cite';
+ 
+<Meta of={CiteStories} />
+ 
+# Cite Component
+
+Het **`Cite`** component wordt gebruikt om een bron of auteur van een citaat weer te geven.
+
+## Belangrijkste functionaliteiten
+
+- **Bronvermelding**: Toont een korte labeltekst (`label`) binnen een `<cite>` element.  
+- **Simpel en semantisch correct**: Geschikt voor gebruik binnen `Blockquote` of andere contexten waar een bronvermelding gewenst is.  
+- **Gemakkelijk te gebruiken**: Vereist slechts één prop (`label`) voor weergave.
+
+### Default
+
+<Canvas of={CiteStories.Default} />
+
+
+### Props
+ 
+<Controls />
+

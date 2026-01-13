@@ -38,30 +38,36 @@ const Slider: React.FC<SliderProps> = ({ children }) => {
 
     return (
         <div className="slider">
-            <Icon
-                icon={IconDefinitions.angle_left}
-                background={ColorDefinitions.SurfaceLight}
-                ring="ring-1"
-                rounded={SizeDefinitions.Full}
-                ringHoverColor={ColorDefinitions.Primary}
-                ringOffsetColor={ColorDefinitions.Theme100}
-                color={ColorDefinitions.Primary}
-                onClick={scrollLeft}
-            />
+            <button onClick={scrollLeft}>
+                <Icon
+                    icon={IconDefinitions.angle_left}
+                    background={ColorDefinitions.SurfaceLight}
+                    ringSize="ring-1"
+                    ring
+                    rounded={SizeDefinitions.Full}
+                    ringHoverColor={ColorDefinitions.Primary}
+                    ringOffsetColor={ColorDefinitions.Theme100}
+                    color={ColorDefinitions.Primary}
+                />
+
+            </button>
 
             <div className="slider__container" ref={containerRef}>
                 {children}
             </div>
-            <Icon
-                icon={IconDefinitions.angle_right}
-                rounded={SizeDefinitions.Full}
-                background={ColorDefinitions.SurfaceLight}
-                ring="ring-1"
-                ringHoverColor={ColorDefinitions.Primary}
-                ringOffsetColor={ColorDefinitions.Theme100}
-                color={ColorDefinitions.Primary}
-                onClick={scrollRight}
-            />
+            <button onClick={scrollRight}>
+                <Icon
+                    icon={IconDefinitions.angle_right}
+                    rounded={SizeDefinitions.Full}
+                    background={ColorDefinitions.SurfaceLight}
+                    ringSize="ring-1"
+                    ring
+                    ringHoverColor={ColorDefinitions.Primary}
+                    ringOffsetColor={ColorDefinitions.Theme100}
+                    color={ColorDefinitions.Primary}
+                />
+            </button>
+
         </div>
     );
 };

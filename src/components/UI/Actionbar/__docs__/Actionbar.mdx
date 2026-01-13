@@ -1,0 +1,32 @@
+import { Canvas, Meta, Controls  } from '@storybook/addon-docs/blocks';
+import * as ActionbarStories from './Actionbar.stories';
+import ActionbarComponent from '../Actionbar';
+ 
+<Meta of={ActionbarStories} />
+ 
+
+# Actionbar Component
+
+De `Actionbar` component is een eenvoudige container voor een `ContentItem`.  
+Het wordt vaak gebruikt om acties of informatie in één rij bovenaan of onderaan een sectie te tonen.
+
+---
+
+## Belangrijkste kenmerken
+
+- **Flexibele inhoud**: accepteert een `ContentItem` dat tekst, prefix of postfix kan bevatten.
+- **Custom styling**: via de prop `actionbarCss` kan eigen CSS of utility classes toegevoegd worden.
+- **Voorwaardelijk renderen**: de component render alleen als er een `contentItem` aanwezig is.
+
+
+---
+
+### Default
+
+<Canvas of={ActionbarStories.Default} />
+
+
+### Props
+ 
+<Controls />
+

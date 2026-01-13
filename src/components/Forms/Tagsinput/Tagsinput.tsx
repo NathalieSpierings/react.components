@@ -7,7 +7,7 @@ export interface TagItem {
     title: string;
 }
 
-export interface TagsinputProps {
+export interface TagsInputProps {
     tags: TagItem[];
     color?: ColorDefinitions;
     selectedTags: (items: TagItem[]) => void;
@@ -15,7 +15,7 @@ export interface TagsinputProps {
     placeholder?: string;
 }
 
-const Tagsinput: React.FC<TagsinputProps> = ({
+const TagsInput: React.FC<TagsInputProps> = ({
     tags,
     color,
     selectedTags,
@@ -69,4 +69,4 @@ const Tagsinput: React.FC<TagsinputProps> = ({
     );
 };
 
-export default Tagsinput;
+export default TagsInput;

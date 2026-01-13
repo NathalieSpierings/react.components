@@ -76,7 +76,7 @@
 
     // Colors
 
-    --color-shadow: ;
+    --color-shadow: --color-shadow-surface;
     --color-accent: var(--color-primary);
     --color-shadow-accent: var(--color-shadow-primary);
 
@@ -104,8 +104,6 @@
     --pageoverlay-zindex: 1005;
     --drawer-zindex: 1004;
 
-
-
     --sb-main-zindex: 203;
     --sb-sub-zindex: 201;
     // Drawer on top of sidebar sub
@@ -119,7 +117,6 @@
     --card-sticky-header-zindex: 97;
 
     --bottom-sheet-zindex: 80;
-
 
     // Illustrations
     --art-background: var(--color-theme-500);

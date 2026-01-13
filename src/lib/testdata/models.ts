@@ -1,7 +1,7 @@
 
 import { NotFoundError } from "../errors";
 
-const products = [
+export const products = [
   { "id": "1", "naam": "Eettafel Acacia", "categorie": "Meubels", "status": "Beschikbaar", "merk": "IKEA", "prijs": 50.7, "beschikbaarVanaf": "2025-02-04" },
   { "id": "2", "naam": "Bouwset Mega Blocks", "categorie": "Speelgoed", "status": "Uitverkocht", "merk": "LEGO", "prijs": 1335.81, "beschikbaarVanaf": "2025-03-11" },
   { "id": "3", "naam": "Laptop Pro 16", "categorie": "Electronics", "status": "Pre-order", "merk": "Apple", "prijs": 1264.65, "beschikbaarVanaf": "2025-03-10" },
@@ -70,7 +70,7 @@ const products = [
 ];
 
 
-const orders = [
+export const orders = [
   { "id": "1", "productId": "1", "klant": "Jan de Vries", "aantal": 2, "datumBesteld": "2025-03-01", "status": "Verzonden" },
   { "id": "2", "productId": "1", "klant": "Sofie Jansen", "aantal": 1, "datumBesteld": "2025-03-05", "status": "In behandeling" },
   { "id": "3", "productId": "2", "klant": "Tom Bakker", "aantal": 3, "datumBesteld": "2025-03-10", "status": "Geannuleerd" },

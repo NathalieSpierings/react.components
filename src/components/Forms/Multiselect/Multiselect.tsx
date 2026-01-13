@@ -219,7 +219,7 @@ const Multiselect = ({
     title,
     searchPlaceholder = 'Zoeken...',
     children,
-    ...styledDivProps
+    ...boxProps
 }: MultiselectProps): ReactElement => {
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -258,7 +258,7 @@ const Multiselect = ({
         .join(' ');
 
     return (
-        <Box {...styledDivProps} css="multiselect">
+        <Box {...boxProps} css="multiselect">
             <MultiselectHeader
                 showHeader={showHeader}
                 headerBorderColor={headerBorderColor}

@@ -13,10 +13,51 @@ export const SidebarDemo = () => {
         { title: 'Datagrid Filter', url: '/demo/datagridfilter' },
     ];
 
-     const formItems: SidebarMenuItem[] = [
-        { title: 'Icons', url: '/demo/icons' },
+    const formItems: SidebarMenuItem[] = [
+        { title: 'Checkbox', url: '/demo/checkbox' },
+        { title: 'DateInput', url: '/demo/dateinput' },
+        { title: 'DatePicker', url: '/demo/datepicker' },
         { title: 'Dropdown', url: '/demo/dropdown' },
+        { title: 'Input', url: '/demo/input' },
+        { title: 'Multiselect', url: '/demo/multiselect' },
+        { title: 'FileSelect', url: '/demo/fileselect' },
+        { title: 'Radiobutton', url: '/demo/radiobutton' },
+        { title: 'TagsInput', url: '/demo/tagsinput' },
+        { title: 'Toggleswitch', url: '/demo/toggleswitch' },
+    ];
+
+    const uiItems: SidebarMenuItem[] = [
+        { title: 'Accordion', url: '/demo/accordion' },
+        { title: 'Alert', url: '/demo/alert' },
+        { title: 'Avatar', url: '/demo/avatar' },
+        { title: 'Badge', url: '/demo/badge' },
         { title: 'Button', url: '/demo/button' },
+        { title: 'Card', url: '/demo/card' },
+        { title: 'Checkbox animated', url: '/demo/checkboxanimated' },
+        { title: 'Collapsible', url: '/demo/collapsible' },
+        { title: 'Collection', url: '/demo/collection' },
+        { title: 'ConfirmDialog', url: '/demo/confirm' },
+        { title: 'Content Item', url: '/demo/contentitem' },
+        { title: 'Dismiss button', url: '/demo/dismiss' },
+        { title: 'Divider', url: '/demo/divider' },
+        { title: 'Drawer', url: '/demo/drawer' },
+        { title: 'DuoColum', url: '/demo/duocolumn' },
+        { title: 'Error 403', url: '/demo/error403' },
+        { title: 'Error 404', url: '/demo/error404' },
+        { title: 'Error 500', url: '/demo/error500' },
+        { title: 'Fieldset', url: '/demo/fieldset' },
+        { title: 'Icons', url: '/demo/icons' },
+        { title: 'Landingspage', url: '/demo/landingspage' },
+        { title: 'Loader', url: '/demo/loader' },
+        { title: 'Modals', url: '/demo/modal' },
+        { title: 'Page overlay', url: '/demo/pageoverlay' },
+        { title: 'Ripple effect', url: '/demo/ripple' },
+        { title: 'Slider', url: '/demo/slider' },
+        { title: 'Tabs', url: '/demo/tab' },
+        { title: 'Toastr', url: '/demo/toastr' },
+        { title: 'Tooltip', url: '/demo/tooltip' },
+        { title: 'Widget', url: '/demo/widget' },
+        { title: 'Wizard', url: '/demo/wizard' },
     ];
 
     return (
@@ -24,14 +65,18 @@ export const SidebarDemo = () => {
             <SidebarContentPanel>
                 <h4>Datagrid</h4>
             </SidebarContentPanel>
-
             <SidebarMenu menuItems={tableItems} />
 
-             <SidebarContentPanel>
+            <SidebarContentPanel>
                 <h4>Form elements</h4>
             </SidebarContentPanel>
-
             <SidebarMenu menuItems={formItems} />
+
+            <SidebarContentPanel>
+                <h4>UI elements</h4>
+            </SidebarContentPanel>
+            <SidebarMenu menuItems={uiItems} />
+
 
         </>
     )

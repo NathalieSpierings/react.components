@@ -29,11 +29,6 @@ const DatagridCollapsibleDemo = (): ReactElement => {
         filters: tableOptions
     });
 
-    const handleFilterUpdate = (options: TableGetDataArguments<ProductGetModel>) => {
-        setTableOptions(options);
-    };
-
-
     return (
         <div>
 
@@ -42,10 +37,9 @@ const DatagridCollapsibleDemo = (): ReactElement => {
                 data={data || []}
                 total={total || 0}
                 loading={status === "pending"}
-                onFilterUpdate={handleFilterUpdate}
+                onFilterUpdate={setTableOptions}
                 rowSingleClickAction={(row) => console.log('Clicked row:', row)}
                 rowDoubleClickAction={(row) => console.log('Double click:', row)}
-
                 collapsibleRowData={(row) => (
                     <>
                         <strong>Product:</strong> {row.product}<br />
