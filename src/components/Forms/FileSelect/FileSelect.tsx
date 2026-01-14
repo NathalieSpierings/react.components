@@ -8,6 +8,7 @@ import FileIcon, { FileToIconVariant } from '../../UI/Icons/FileIcon/FileIcon';
 import Icon from '../../UI/Icons/Icon/Icon';
 import Modal from '../../UI/Modal/Modal';
 import Tooltip from '../../UI/Tooltip/Tooltip';
+import React from 'react';
 
 export interface FileuploadValidationError {
     fileName: string;

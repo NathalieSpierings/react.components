@@ -89,7 +89,7 @@ function TableRow<TData extends { id: string | number }>({
                         data-label={column.title}
                     >
                         <TableCell
-                            textMute={column.textMute}
+                            textMute={column.textMuted}
                             textAlign={column.textAlign}
                             showTooltip={column.showTooltip}
                             tooltipContent={column.tooltipContent}

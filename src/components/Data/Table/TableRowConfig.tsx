@@ -17,7 +17,7 @@ export interface TableRowConfig<TData> {
 
     cssClass?: string;
     textAlign?: 'left' | 'center' | 'right';
-    textMute?: boolean;
+    textMuted?: boolean;
     
     tooltipContent?: ReactNode | string;
     showTooltip?: boolean;
@@ -25,5 +25,5 @@ export interface TableRowConfig<TData> {
     tooltipArrow?: boolean;
     overflow?: boolean;
 
-    filter?: TableColumnFilterConfig;
+    filter?: TableColumnFilterConfig<TData>;
 }

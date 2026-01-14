@@ -1,10 +1,11 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { IconDefinitions, SizeDefinitions } from "../../../lib/utils/definitions";
 import { Dropdown } from "../../Forms/Dropdown";
 import Icon from "../../UI/Icons/Icon/Icon";
 import { TableRowConfig } from "../Table/TableRowConfig";
 
 export interface DatagridFilterToolbarProps<TData> {
+    data: TData[];
     properties?: TableRowConfig<TData>[];
     searchTerm: string;
     onSearchChange: (value: string) => void;
@@ -14,6 +15,7 @@ export interface DatagridFilterToolbarProps<TData> {
 }
 
 function DatagridFilterToolbar<TData>({
+    data,
     properties,
     searchTerm,
     onSearchChange,
@@ -42,16 +44,47 @@ function DatagridFilterToolbar<TData>({
         };
     }, [properties, columnFilters]);
 
+    const resolvedOptions = useMemo(() => {
+        if (!properties) return {};
 
-    if (!properties)
-        return null;
+        return Object.fromEntries(
+            properties
+                .filter(p => p.filter?.type === 'select')
+                .map(col => {
+                    const filter = col.filter!;
+                    if (filter.options) {
+                        return [col.prop, filter.options];
+                    }
+
+                    if (filter.optionsSource) {
+                        const values = filter.optionsSource(data);
+                        const map =
+                            filter.mapOption ??
+                            ((v: any) => ({
+                                label: String(v),
+                                value: String(v),
+                            }));
+
+                        return [col.prop, values.map(map)];
+                    }
+
+                    return [col.prop, []];
+                })
+        );
+    }, [properties, data]);
+
+
+
+    if (!properties) return null;
 
 
     const selectFilters = properties.filter(
         p => p.filter?.type === 'select'
     );
 
-    const hasFilters = searchTerm.trim().length > 0 || Object.values(columnFilters).some(v => v != null && v !== '');
+    const hasFilters =
+        searchTerm.trim().length > 0 ||
+        Object.values(columnFilters).some(v => v != null && v !== '');
 
 
     const clearAll = () => {
@@ -83,7 +116,7 @@ function DatagridFilterToolbar<TData>({
             behavior: 'smooth',
         });
     };
-   
+
     const setFilterValue = (prop: string, value: any) => {
         setColumnFilters(prev => ({
             ...prev,
@@ -91,10 +124,15 @@ function DatagridFilterToolbar<TData>({
         }));
     };
 
+
     return (
         <div className="filterbar">
             <div className="filterbar__container">
-                <div className="filterbar__left" ref={scrollRef} onScroll={updateScrollButtons}>
+                <div
+                    className="filterbar__left"
+                    ref={scrollRef}
+                    onScroll={updateScrollButtons}
+                >
 
                     <div className="filterbar__item filterbar__item--keyword">
                         <Icon icon={IconDefinitions.filter} size={SizeDefinitions.Small} />
@@ -109,6 +147,7 @@ function DatagridFilterToolbar<TData>({
 
                     {selectFilters.map(col => {
                         const selectedValue = columnFilters[col.prop];
+                        const options = resolvedOptions[col.prop] ?? [];
 
                         return (
                             <div key={col.prop} className="filterbar__item filterbar__item--dropdown">
@@ -117,7 +156,9 @@ function DatagridFilterToolbar<TData>({
                                         label: (
                                             <>
                                                 <span>{col.title}:{" "}</span>
-                                                <strong>{col.filter?.options?.find(o => o.value === selectedValue)?.label ?? ""}</strong>
+                                                <strong>
+                                                    {options.find(o => o.value === selectedValue)?.label ?? ''}
+                                                </strong>
                                             </>
                                         ),
                                         arrow: true,
@@ -128,11 +169,11 @@ function DatagridFilterToolbar<TData>({
                                             selected: selectedValue == null,
                                             onClick: () => setFilterValue(col.prop, null),
                                         },
-                                        ...(col.filter?.options?.map(opt => ({
+                                        ...options.map(opt => ({
                                             content: opt.label,
                                             selected: opt.value === selectedValue,
                                             onClick: () => setFilterValue(col.prop, opt.value),
-                                        })) ?? []),
+                                        })),
                                     ]}
                                 />
                             </div>
@@ -150,8 +191,6 @@ function DatagridFilterToolbar<TData>({
                             >
                                 <Icon icon={IconDefinitions.angle_left} />
                             </button>
-
-
 
                             <button className="filterbar__control filterbar__control--next"
                                 onClick={() => scrollBy('next')}

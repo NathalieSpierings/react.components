@@ -1,9 +1,11 @@
 import React from "react";
 import { matchPath } from "react-router";
 import { proxyPrefix } from "../config";
+
 import DatagridCheckboxDemo from "./Demo/DatagridCheckboxDemo";
 import DatagridCollapsibleDemo from "./Demo/DatagridCollapsibleDemo";
 import DatagridDemo from "./Demo/DatagridDemo";
+import DatagridGridLayoutDemo from "./Demo/DatagridGridLayoutDemo";
 import DemoPage from "./DemoPage";
 import HomePage from "./HomePage";
 import DatagridToolbarDemo from "./Demo/DatagridToolbarDemo";
@@ -51,6 +53,7 @@ import ToastrDemo from "./Demo/ToasterDemo";
 import TooltipDemo from "./Demo/TooltipDemo";
 import WidgetDemo from "./Demo/WidgetDemo";
 import WizardDemo from "./Demo/WizardDemo/WizrdDemo";
+import DatagridFilterDatabindDemo from "./Demo/DatagridFilterDatabindDemo";
 
 export const getInitialMenuItem = (pathname: string) => {
 	if (matchPath(proxyPrefix + "/", pathname)) {
@@ -146,6 +149,11 @@ export const routes = [
 		element: <DatagridDemo />
 	},
 	{
+		path: "/demo/datagridgridlayout",
+		element: <DatagridGridLayoutDemo />
+	},
+	
+	{
 		path: "/demo/datagridall",
 		element: <DatagridAllDemo />
 	},
@@ -170,6 +178,11 @@ export const routes = [
 		path: "/demo/datagridfilter",
 		element: <DatagridFilterDemo />
 	},
+{
+		path: "/demo/datagridfilterdatabind",
+		element: <DatagridFilterDatabindDemo />
+	},
+	
 	{
 		path: "/demo/icons",
 		element: <IconDemo />

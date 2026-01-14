@@ -6,6 +6,7 @@ import Icon from '../../../UI/Icons/Icon/Icon';
 import { Multiselect } from '../../Multiselect';
 import Dropdown from '../Dropdown';
 import { SvgSprite } from '../../../../assets/SvgSprite';
+import React from 'react';
 
 const meta: Meta<typeof Dropdown> = {
     title: 'Forms/Dropdown',

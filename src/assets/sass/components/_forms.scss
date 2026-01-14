@@ -1447,7 +1447,7 @@
             }
 
             &__item {
-                padding: calc(var(--page-padding-sm) / 2) var(--page-padding-sm);
+                padding: var(--page-padding-sm) var(--page-padding-sm);
                 cursor: pointer;
                 white-space: nowrap;
                 color: inherit;

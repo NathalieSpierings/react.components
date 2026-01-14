@@ -10,9 +10,9 @@ import { FilterUpdateFunc } from '../Table/TableData';
 import TableInfo from '../Table/TableInfo';
 import { TableRowConfig } from '../Table/TableRowConfig';
 import { TableSortConfig } from '../Table/TableSort';
-import DatagridSearch from './DatagridSearch';
-import DatagridFilterToolbar from './DatagridFilterToolbar';
+import DatagridSearch from '../DatagridSearch/DatagridSearch';
 import { Loader } from '../../UI/Loader';
+import { DatagridFilterToolbar } from '../DatagridFilterToolbar';
 
 export type TableColumnFilters = Record<string, any>;
 
@@ -42,7 +42,6 @@ export interface DatagridProps<TData> {
     toolbarBorderBottom?: boolean;
     tableCss?: string;
     footerContent?: ReactNode;
-
     loaderDuration?: number;
     loaderLoading?: boolean;
     loaderBackground?: ColorDefinitions;
@@ -175,6 +174,7 @@ function Datagrid<TData extends { id: string | number }>({
 
             {hasFilterableColumns && (
                 <DatagridFilterToolbar
+                    data={data}
                     properties={properties}
                     searchTerm={searchTerm}
                     onSearchChange={updateQ}

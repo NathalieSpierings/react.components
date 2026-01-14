@@ -7,6 +7,7 @@ import { SidebarMenuPlacement } from '../../Navigation/MainMenu';
 import Sidebar from '../Sidebar';
 import { SidebarAccount } from '../SidebarAccount';
 import { SvgSprite } from '../../../../assets/SvgSprite';
+import React from 'react';
 const meta: Meta<typeof Sidebar> = {
     title: 'Page/Aside/Sidebar',
     component: Sidebar,

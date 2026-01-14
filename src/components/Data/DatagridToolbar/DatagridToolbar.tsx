@@ -1,5 +1,6 @@
 import React, { ReactElement, ReactNode } from 'react';
-import Toolbar from '../../UI/Toolbar/Toolbar';
+import { Toolbar } from '../../UI/Toolbar';
+
 
 export interface DatagridToolbarProps {
     title?: string | ReactElement;
@@ -25,9 +26,9 @@ const DatagridToolbar: React.FC<DatagridToolbarProps> = ({
             navItems={navItems}
             showSeparator={showSeparator}
             prefixItems={prefixItems}
-            postfixItems={postfixItems} 
+            postfixItems={postfixItems}
             borderBottom={borderBottom}
-            />
+        />
     );
 };
 
