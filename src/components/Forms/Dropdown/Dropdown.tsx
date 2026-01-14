@@ -30,6 +30,7 @@ export interface DropdownItem {
     postfixPosition?: 'start' | 'end';
     selected?: boolean;
     onClick?: () => void;
+    keepOpen?: boolean;
 }
 
 interface DropdownProps extends BoxProps {
@@ -56,7 +57,6 @@ export const Dropdown: FC<DropdownProps> = ({
     const menuRef = useRef<HTMLDivElement | null>(null);
     const [open, setOpen] = useState(false);
 
-
     const positionDropdown = () => {
         const dropdownToggleEl = dropdownToggleRef.current;
         const menuEl = menuRef.current;
@@ -64,27 +64,20 @@ export const Dropdown: FC<DropdownProps> = ({
 
         const dropdownToggleRect = dropdownToggleEl.getBoundingClientRect();
         const menuRect = menuEl.getBoundingClientRect();
-
-        const isInputToggle = dropdownToggle.renderAsInput === true;
-
-        // toggle as input krijgt spacing, tekst niet
-        const verticalOffset = isInputToggle ? 8 : 0;
+        const verticalOffset = dropdownToggle.renderAsInput ? 8 : 0;
         const viewportOffset = 8;
 
         let top: number;
-
         if (direction === "up") {
             top = dropdownToggleRect.top - menuRect.height - verticalOffset;
         } else {
             top = dropdownToggleRect.bottom + verticalOffset;
-
             if (top + menuRect.height > window.innerHeight) {
                 top = dropdownToggleRect.top - menuRect.height - verticalOffset;
             }
         }
 
         let left = dropdownToggleRect.right - menuRect.width;
-
         if (left < viewportOffset) {
             left = dropdownToggleRect.left;
             if (left + menuRect.width > window.innerWidth - viewportOffset) {
@@ -99,25 +92,15 @@ export const Dropdown: FC<DropdownProps> = ({
 
     const toggleDropdown = (e: React.MouseEvent) => {
         e.stopPropagation();
-        setOpen((prev) => !prev);
+        setOpen(prev => !prev);
     };
 
     const closeDropdown = () => setOpen(false);
 
-
-
     useEffect(() => {
         if (!open) return;
 
-        const menu = menuRef.current;
-
-        // belangrijk i.v.m. overflow:hidden parents
-        if (menu && !document.body.contains(menu)) {
-            document.body.appendChild(menu);
-        }
-
         positionDropdown();
-
         document.addEventListener("click", closeDropdown);
         window.addEventListener("resize", closeDropdown);
         window.addEventListener("scroll", closeDropdown);
@@ -130,56 +113,41 @@ export const Dropdown: FC<DropdownProps> = ({
     }, [open, direction, dropdownToggle.renderAsInput]);
 
 
-
     const renderToggleContent = () => (
         <>
-
-            {dropdownToggle.prefix && (
-                <>{dropdownToggle.prefix}</>
-            )}
-
+            {dropdownToggle.prefix && <>{dropdownToggle.prefix}</>}
             {dropdownToggle.label && (
                 <div className="dropdown__toggle__title">{dropdownToggle.label}</div>
             )}
-
-            {dropdownToggle.arrow  && (
-                <Icon icon={IconDefinitions.angle_down} />
-            )}
+            {dropdownToggle.arrow && <Icon icon={IconDefinitions.angle_down} />}
         </>
     );
 
     const renderContent = (item: DropdownItem) => (
         <div className="content-item">
             {item.prefix && (
-                <div
-                    className={`actions ${item.prefixPosition ? 'actions--' + item.prefixPosition : ''
-                        }`}
-                >
+                <div className={`actions ${item.prefixPosition ? 'actions--' + item.prefixPosition : ''}`}>
                     {item.prefix}
                 </div>
             )}
             {item.content && (
-                <div
-                    className={`meta ${item.contentPositon ? 'meta--' + item.contentPositon : ''
-                        }`}
-                >
+                <div className={`meta ${item.contentPositon ? 'meta--' + item.contentPositon : ''}`}>
                     {item.content}
                 </div>
             )}
             {item.postfix && (
-                <div
-                    className={`actions ${item.postfixPosition ? 'actions--' + item.postfixPosition : ''
-                        }`}
-                >
+                <div className={`actions ${item.postfixPosition ? 'actions--' + item.postfixPosition : ''}`}>
                     {item.postfix}
                 </div>
             )}
         </div>
-    )
+    );
+
+
+    console.log('Rendering dropdown');
 
     return (
-        <div className={`dropdown`}>
-            
+        <div className="dropdown">
             <button
                 ref={dropdownToggleRef}
                 className={`dropdown__toggle ${dropdownToggle.renderAsInput ? "dropdown__toggle--input" : ""} ${dropdownToggle.ghost ? "btn btn-ghost" : ""}`}
@@ -188,10 +156,11 @@ export const Dropdown: FC<DropdownProps> = ({
                 {renderToggleContent()}
             </button>
 
-            <Box {...boxProps}
+            <Box
+                {...boxProps}
                 ref={menuRef}
                 background={background}
-                css={`dropdown__menu ${open ? "shown" : ""} ${direction === "up" ? "dropdown__menu--up" : ""}`}
+                className={`dropdown__menu ${open ? "shown" : ""} ${direction === "up" ? "dropdown__menu--up" : ""}`}
                 style={minWidth ? { minWidth } : {}}
             >
                 {dropdownHeader && (
@@ -200,28 +169,29 @@ export const Dropdown: FC<DropdownProps> = ({
                     </div>
                 )}
 
-                {
-                    children ?? menuItems?.map((item, idx) =>
-                        item.divider || item.dividerColor ? (
-                            <div key={"ddl_divider_" + idx} className={`dropdown__menu__divider ${item.dividerColor ? 'border-' + item.dividerColor : ''}`}></div>
-                        ) :
-                            (
-                                <button
-                                    key={"ddl_item_" + idx}
-                                    className={`dropdown__menu__item ${item.selected ? "selected" : ""}`}
-                                    onClick={() => {
-                                        item.onClick?.();
-                                        closeDropdown();
-                                    }}
-                                >
+                {children ?? menuItems?.map((item, idx) => {
+                    if (item.divider || item.dividerColor) {
+                        return <div key={"ddl_divider_" + idx} className={`dropdown__menu__divider ${item.dividerColor ? 'border-' + item.dividerColor : ''}`} />;
+                    }
 
-                                    {renderContent(item)}
-                                </button>
-                            ))
-                }
+                    // Gebruik div voor multi-select items om problemen met checkbox + button te vermijden
+                    const Wrapper: any = item.keepOpen ? 'div' : 'button';
 
+                    return (
+                        <Wrapper
+                            key={"ddl_item_" + idx}
+                            className={`dropdown__menu__item ${item.selected ? "selected" : ""}`}
+                            onClick={(e: React.MouseEvent) => {
+                                if (!item.keepOpen) closeDropdown();
+                                item.onClick?.();
+                                e.stopPropagation();
+                            }}
+                        >
+                            {renderContent(item)}
+                        </Wrapper>
+                    );
+                })}
             </Box>
-
         </div>
     );
 };

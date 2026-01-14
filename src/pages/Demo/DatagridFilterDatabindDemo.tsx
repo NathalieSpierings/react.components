@@ -1,7 +1,7 @@
 import moment from "moment";
 import "moment/locale/nl";
-import React, { ReactElement, useState } from "react";
-import { Button, Title, Toggle, Tooltip } from "../../components";
+import React, { ReactElement, useEffect, useMemo, useState } from "react";
+import { Button, Checkbox, Dropdown, Title, Toggle, Tooltip } from "../../components";
 import Datagrid from "../../components/Data/Datagrid/Datagrid";
 import { TableGetDataArguments } from "../../components/Data/Table/TableData";
 import { Icon } from "../../components/UI/Icons/Icon";
@@ -30,6 +30,22 @@ const DatagridFilterDatabindDemo = (): ReactElement => {
 
 
     const [toggleChecked, setToggleChecked] = useState(true);
+
+    const [categoryOptions, setCategoryOptions] = useState<
+        { label: string; value: string }[]
+    >([]);
+
+    useEffect(() => {
+    // Alleen de eerste keer vullen
+    if (categoryOptions.length > 0) return;
+    if (!data || data.length === 0) return;
+
+    const unique = Array.from(
+        new Set(data.map(x => String(x.categorie)))
+    ).map(v => ({ label: v, value: v }));
+
+    setCategoryOptions(unique);
+}, [data, categoryOptions.length]);
 
     return (
         <div>
@@ -66,14 +82,16 @@ const DatagridFilterDatabindDemo = (): ReactElement => {
                             prop: "categorie", title: "Categorie", sortable: true,
                             filter: {
                                 type: 'select',
-                                optionsSource: (data) =>
-                                    Array.from(new Set(data.map(x => x.categorie))),
+                                multiSelect: true,
+                                options: categoryOptions
+                                //optionsSource: (data) => Array.from(new Set(data.map(x => String(x.categorie)))),
                             }
                         },
                         {
                             prop: "status", title: "Status", sortable: true,
                             filter: {
                                 type: 'select',
+                                multiSelect: true,
                                 options: [
                                     { label: "Pre-order", value: "Pre-order" },
                                     { label: "Op voorraad", value: "Op voorraad" },

@@ -3,6 +3,7 @@ import { IconDefinitions, SizeDefinitions } from "../../../lib/utils/definitions
 import { Dropdown } from "../../Forms/Dropdown";
 import Icon from "../../UI/Icons/Icon/Icon";
 import { TableRowConfig } from "../Table/TableRowConfig";
+import { Checkbox } from "../../Forms/Checkbox";
 
 export interface DatagridFilterToolbarProps<TData> {
     data: TData[];
@@ -10,8 +11,7 @@ export interface DatagridFilterToolbarProps<TData> {
     searchTerm: string;
     onSearchChange: (value: string) => void;
     columnFilters: Record<string, any>;
-    setColumnFilters: React.Dispatch<React.SetStateAction<Record<string, any>>
-    >;
+    setColumnFilters: React.Dispatch<React.SetStateAction<Record<string, any>>>;
 }
 
 function DatagridFilterToolbar<TData>({
@@ -45,6 +45,7 @@ function DatagridFilterToolbar<TData>({
     }, [properties, columnFilters]);
 
     const resolvedOptions = useMemo(() => {
+
         if (!properties) return {};
 
         return Object.fromEntries(
@@ -62,25 +63,20 @@ function DatagridFilterToolbar<TData>({
                             filter.mapOption ??
                             ((v: any) => ({
                                 label: String(v),
-                                value: String(v),
+                                value: String(v)
                             }));
-
                         return [col.prop, values.map(map)];
                     }
-
                     return [col.prop, []];
                 })
         );
     }, [properties, data]);
 
 
-
     if (!properties) return null;
 
 
-    const selectFilters = properties.filter(
-        p => p.filter?.type === 'select'
-    );
+    const selectFilters = properties.filter(p => p.filter?.type === 'select');
 
     const hasFilters =
         searchTerm.trim().length > 0 ||
@@ -118,12 +114,8 @@ function DatagridFilterToolbar<TData>({
     };
 
     const setFilterValue = (prop: string, value: any) => {
-        setColumnFilters(prev => ({
-            ...prev,
-            [prop]: value,
-        }));
+        setColumnFilters(prev => ({ ...prev, [prop]: value }));
     };
-
 
     return (
         <div className="filterbar">
@@ -146,8 +138,54 @@ function DatagridFilterToolbar<TData>({
                     </div>
 
                     {selectFilters.map(col => {
-                        const selectedValue = columnFilters[col.prop];
-                        const options = resolvedOptions[col.prop] ?? [];
+
+                        const isMultiSelect = col.filter?.multiSelect;
+                        const rawSelectedValue = columnFilters[col.prop];
+                        const selectedValue = isMultiSelect
+                            ? (Array.isArray(rawSelectedValue) ? rawSelectedValue.map(String) : [])
+                            : rawSelectedValue ?? '';
+                        const options: { label: string; value: string }[] = resolvedOptions[col.prop] ?? [];
+const dropdownItems = useMemo(() => {
+                            const items: any[] = [
+                                {
+                                    content: `${col.title}:`,
+                                    selected: isMultiSelect && selectedValue.length === 0,
+                                    onClick: isMultiSelect ? () => setFilterValue(col.prop, []) : undefined,
+                                    keepOpen: isMultiSelect,
+                                },
+                                ...options.map(opt => {
+                                    const isChecked = isMultiSelect && selectedValue.includes(opt.value);
+                                    if (isMultiSelect) {
+                                        return {
+                                            content: (
+                                                <Checkbox
+                                                    key={opt.value}
+                                                    checked={isChecked}
+                                                    label={opt.label}
+                                                    onChange={() => {
+                                                        const newValue = isChecked
+                                                            ? selectedValue.filter(v => v !== opt.value)
+                                                            : [...selectedValue, opt.value];
+                                                        setFilterValue(col.prop, newValue);
+                                                    }}
+                                                />
+                                            ),
+                                            keepOpen: true,
+                                            onClick: undefined,
+                                            selected: isChecked,
+                                        };
+                                    } else {
+                                        return {
+                                            content: opt.label,
+                                            onClick: () => setFilterValue(col.prop, opt.value),
+                                            keepOpen: false,
+                                            selected: opt.value === selectedValue,
+                                        };
+                                    }
+                                }),
+                            ];
+                            return items;
+                        }, [options, selectedValue, col.prop, isMultiSelect]);
 
                         return (
                             <div key={col.prop} className="filterbar__item filterbar__item--dropdown">
@@ -155,26 +193,20 @@ function DatagridFilterToolbar<TData>({
                                     dropdownToggle={{
                                         label: (
                                             <>
-                                                <span>{col.title}:{" "}</span>
+                                                <span>{col.title}: </span>
                                                 <strong>
-                                                    {options.find(o => o.value === selectedValue)?.label ?? ''}
+                                                    {isMultiSelect
+                                                        ? options
+                                                            .filter(o => selectedValue.includes(o.value))
+                                                            .map(o => o.label)
+                                                            .join(', ')
+                                                        : options.find(o => o.value === selectedValue)?.label ?? ''}
                                                 </strong>
                                             </>
                                         ),
                                         arrow: true,
                                     }}
-                                    menuItems={[
-                                        {
-                                            content: `${col.title}: `,
-                                            selected: selectedValue == null,
-                                            onClick: () => setFilterValue(col.prop, null),
-                                        },
-                                        ...options.map(opt => ({
-                                            content: opt.label,
-                                            selected: opt.value === selectedValue,
-                                            onClick: () => setFilterValue(col.prop, opt.value),
-                                        })),
-                                    ]}
+                                    menuItems={dropdownItems}
                                 />
                             </div>
                         );
