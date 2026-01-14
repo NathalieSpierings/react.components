@@ -8,7 +8,7 @@ import { Icon } from "../../components/UI/Icons/Icon";
 import useBreadcrumb from "../../lib/hooks/useBreadcrumb";
 import usePageTitle from "../../lib/hooks/usePageTitle";
 import useTableQueryClientFilter from "../../lib/hooks/useTableQueryClientFilter";
-import {  getProductsQuery, ProductGetModel } from "../../lib/testdata/models";
+import { getProductsQuery, ProductGetModel } from "../../lib/testdata/models";
 import { ColorDefinitions, IconDefinitions } from "../../lib/utils/definitions";
 
 
@@ -23,12 +23,7 @@ const DatagridFilterDemo = (): ReactElement => {
     ]);
 
     const [tableOptions, setTableOptions] = useState<TableGetDataArguments<ProductGetModel> | null>(null);
-    const [data, total, status] = useTableQueryClientFilter({
-        queryFn: getProductsQuery(),
-        filters: tableOptions
-    });
-
-
+    const [rawData, data, total, status] = useTableQueryClientFilter({ queryFn: getProductsQuery(), filters: tableOptions });
     const [toggleChecked, setToggleChecked] = useState(true);
 
     return (
@@ -51,9 +46,9 @@ const DatagridFilterDemo = (): ReactElement => {
                         labelPosition="left"
                     />
                 ]}
-
                 enableCompactView={true}
                 data={data || []}
+                rawData={rawData}
                 total={total || 0}
                 loading={status === "pending"}
                 onFilterUpdate={setTableOptions}
@@ -80,6 +75,7 @@ const DatagridFilterDemo = (): ReactElement => {
                             prop: "status", title: "Status", sortable: true,
                             filter: {
                                 type: 'select',
+                                multiSelect: true,
                                 options: [
                                     { label: "Pre-order", value: "Pre-order" },
                                     { label: "Op voorraad", value: "Op voorraad" },
@@ -87,7 +83,7 @@ const DatagridFilterDemo = (): ReactElement => {
                                 ]
                             }
                         },
-                         { prop: "merk", title: "Merk", sortable: true, filter: { type: 'text' } },
+                        { prop: "merk", title: "Merk", sortable: true, filter: { type: 'text' } },
                         { prop: "prijs", title: "Prijs (€)", sortable: false, wrapValue: item => { return <>€  {item.prijs.toFixed(2)}</> } },
                         { prop: "beschikbaarVanaf", title: "Beschikbaar vanaf", sortable: true, filter: { type: 'text' }, transformValue: (value) => value ? moment(value).locale("nl").format("DD-MM-YYYY") : "" },
                     ]

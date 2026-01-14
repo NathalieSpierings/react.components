@@ -17,7 +17,8 @@ import { DatagridFilterToolbar } from '../DatagridFilterToolbar';
 export type TableColumnFilters = Record<string, any>;
 
 export interface DatagridProps<TData> {
-    data: TData[];
+    data: TData[]; // filtered
+    rawData: TData[]; // raw
     total: number;
     loading: boolean;
     onFilterUpdate: FilterUpdateFunc<TData>;
@@ -57,6 +58,7 @@ export interface DatagridProps<TData> {
 
 function Datagrid<TData extends { id: string | number }>({
     data,
+    rawData,
     total,
     loading,
     onFilterUpdate,
@@ -175,6 +177,7 @@ function Datagrid<TData extends { id: string | number }>({
             {hasFilterableColumns && (
                 <DatagridFilterToolbar
                     data={data}
+                    rawData={rawData} 
                     properties={properties}
                     searchTerm={searchTerm}
                     onSearchChange={updateQ}

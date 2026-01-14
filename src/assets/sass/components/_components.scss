@@ -3170,75 +3170,6 @@ toolbar, wizard, themeSwitch, slider, pageOverlay, table, onboarding;
     }
 }
 
-@layer toolbar {
-
-    .toolbar {
-        display: flex;
-        flex-direction: column;
-        padding-bottom: 1rem;
-
-        &--border {
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        &__header {
-            flex: 0 0 auto;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            padding-bottom: 1rem;
-        }
-
-        &__container {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-
-        &__nav {
-            flex: 0 0 auto;
-        }
-
-        &__actions {
-            display: flex;
-            flex: 1 1 auto;
-            margin-left: auto;
-
-            &__prefix {
-                flex: 0 0 auto;
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-                justify-content: flex-start;
-            }
-
-            &__postfix {
-                flex: 1 1 auto;
-                text-align: right;
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-                justify-content: flex-end;
-            }
-
-            .form-field {
-                margin: 0;
-            }
-        }
-
-        &__separator {
-            flex: 0 1 auto;
-            align-self: center;
-            width: 1px;
-            min-width: 1px;
-            height: 24px;
-            background: var(--color-border);
-            margin: 0 8px 0 8px;
-        }
-    }
-
-}
-
 @layer wizard {
 
     .wizard {
@@ -3495,6 +3426,77 @@ toolbar, wizard, themeSwitch, slider, pageOverlay, table, onboarding;
         }
     }
 }
+
+
+@layer toolbar {
+
+    .toolbar {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 1rem;
+
+        &--border {
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        &__header {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            padding-bottom: 1rem;
+        }
+
+        &__container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        &__nav {
+            flex: 0 0 auto;
+        }
+
+        &__actions {
+            display: flex;
+            flex: 1 1 auto;
+            margin-left: auto;
+
+            &__prefix {
+                flex: 0 0 auto;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                justify-content: flex-start;
+            }
+
+            &__postfix {
+                flex: 1 1 auto;
+                text-align: right;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                justify-content: flex-end;
+            }
+
+            .form-field {
+                margin: 0 !important;
+            }
+        }
+
+        &__separator {
+            flex: 0 1 auto;
+            align-self: center;
+            width: 1px;
+            min-width: 1px;
+            height: 24px;
+            background: var(--color-border);
+            margin: 0 8px 0 8px;
+        }
+    }
+
+}
+
 
 @layer table {
     table {
@@ -4027,7 +4029,7 @@ toolbar, wizard, themeSwitch, slider, pageOverlay, table, onboarding;
         }
 
         .form-field {
-            margin: 0;
+            margin: 0 !important;
         }
 
         @include mixins.MQ-max(md) {

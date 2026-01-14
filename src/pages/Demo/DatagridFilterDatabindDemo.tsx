@@ -23,29 +23,8 @@ const DatagridFilterDatabindDemo = (): ReactElement => {
     ]);
 
     const [tableOptions, setTableOptions] = useState<TableGetDataArguments<ProductGetModel> | null>(null);
-    const [data, total, status] = useTableQueryClientFilter({
-        queryFn: getProductsQuery(),
-        filters: tableOptions
-    });
-
-
+    const [rawData, data, total, status] = useTableQueryClientFilter({ queryFn: getProductsQuery(), filters: tableOptions });
     const [toggleChecked, setToggleChecked] = useState(true);
-
-    const [categoryOptions, setCategoryOptions] = useState<
-        { label: string; value: string }[]
-    >([]);
-
-    useEffect(() => {
-    // Alleen de eerste keer vullen
-    if (categoryOptions.length > 0) return;
-    if (!data || data.length === 0) return;
-
-    const unique = Array.from(
-        new Set(data.map(x => String(x.categorie)))
-    ).map(v => ({ label: v, value: v }));
-
-    setCategoryOptions(unique);
-}, [data, categoryOptions.length]);
 
     return (
         <div>
@@ -67,9 +46,9 @@ const DatagridFilterDatabindDemo = (): ReactElement => {
                         labelPosition="left"
                     />
                 ]}
-
                 enableCompactView={true}
                 data={data || []}
+                rawData={rawData}
                 total={total || 0}
                 loading={status === "pending"}
                 onFilterUpdate={setTableOptions}
@@ -83,15 +62,14 @@ const DatagridFilterDatabindDemo = (): ReactElement => {
                             filter: {
                                 type: 'select',
                                 multiSelect: true,
-                                options: categoryOptions
-                                //optionsSource: (data) => Array.from(new Set(data.map(x => String(x.categorie)))),
+                                optionsSource: (data = []) =>
+                                    Array.from(new Set((data || []).map(x => String(x.categorie))))
                             }
                         },
                         {
                             prop: "status", title: "Status", sortable: true,
                             filter: {
                                 type: 'select',
-                                multiSelect: true,
                                 options: [
                                     { label: "Pre-order", value: "Pre-order" },
                                     { label: "Op voorraad", value: "Op voorraad" },

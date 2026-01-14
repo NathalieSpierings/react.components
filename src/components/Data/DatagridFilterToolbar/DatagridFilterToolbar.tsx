@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { IconDefinitions, SizeDefinitions } from "../../../lib/utils/definitions";
 import { Dropdown } from "../../Forms/Dropdown";
 import Icon from "../../UI/Icons/Icon/Icon";
@@ -6,7 +6,8 @@ import { TableRowConfig } from "../Table/TableRowConfig";
 import { Checkbox } from "../../Forms/Checkbox";
 
 export interface DatagridFilterToolbarProps<TData> {
-    data: TData[];
+    data: TData[]; // gefilterd
+    rawData: TData[]; // ongefilterd
     properties?: TableRowConfig<TData>[];
     searchTerm: string;
     onSearchChange: (value: string) => void;
@@ -16,6 +17,7 @@ export interface DatagridFilterToolbarProps<TData> {
 
 function DatagridFilterToolbar<TData>({
     data,
+    rawData,
     properties,
     searchTerm,
     onSearchChange,
@@ -28,10 +30,18 @@ function DatagridFilterToolbar<TData>({
     const [canScrollRight, setCanScrollRight] = useState(false);
     const [isScrollable, setIsScrollable] = useState(false);
 
+    const updateScrollButtons = () => {
+        const el = scrollRef.current;
+        if (!el) return;
+
+        const scrollable = el.scrollWidth > el.clientWidth;
+        setIsScrollable(scrollable);
+        setCanScrollLeft(scrollable && el.scrollLeft > 0);
+        setCanScrollRight(scrollable && el.scrollWidth > el.clientWidth + el.scrollLeft);
+    };
 
     useLayoutEffect(() => {
         updateScrollButtons();
-
         const el = scrollRef.current;
         if (!el) return;
 
@@ -44,78 +54,29 @@ function DatagridFilterToolbar<TData>({
         };
     }, [properties, columnFilters]);
 
-    const resolvedOptions = useMemo(() => {
-
-        if (!properties) return {};
-
-        return Object.fromEntries(
-            properties
-                .filter(p => p.filter?.type === 'select')
-                .map(col => {
-                    const filter = col.filter!;
-                    if (filter.options) {
-                        return [col.prop, filter.options];
-                    }
-
-                    if (filter.optionsSource) {
-                        const values = filter.optionsSource(data);
-                        const map =
-                            filter.mapOption ??
-                            ((v: any) => ({
-                                label: String(v),
-                                value: String(v)
-                            }));
-                        return [col.prop, values.map(map)];
-                    }
-                    return [col.prop, []];
-                })
-        );
-    }, [properties, data]);
-
-
     if (!properties) return null;
-
 
     const selectFilters = properties.filter(p => p.filter?.type === 'select');
 
     const hasFilters =
         searchTerm.trim().length > 0 ||
-        Object.values(columnFilters).some(v => v != null && v !== '');
-
+        Object.values(columnFilters).some(v => v != null && v !== '' && !(Array.isArray(v) && v.length === 0));
 
     const clearAll = () => {
         onSearchChange('');
         setColumnFilters({});
     };
 
-    const updateScrollButtons = () => {
-        const el = scrollRef.current;
-        if (!el) return;
-
-        const scrollable = el.scrollWidth > el.clientWidth;
-
-        setIsScrollable(scrollable);
-        setCanScrollLeft(scrollable && el.scrollLeft > 0);
-        setCanScrollRight(
-            scrollable &&
-            el.scrollWidth > el.clientWidth + el.scrollLeft
-        );
-    };
-
-
     const scrollBy = (direction: 'prev' | 'next') => {
         const el = scrollRef.current;
         if (!el) return;
-
-        el.scrollBy({
-            left: direction === 'next' ? 200 : -200,
-            behavior: 'smooth',
-        });
+        el.scrollBy({ left: direction === 'next' ? 200 : -200, behavior: 'smooth' });
     };
 
     const setFilterValue = (prop: string, value: any) => {
         setColumnFilters(prev => ({ ...prev, [prop]: value }));
     };
+
 
     return (
         <div className="filterbar">
@@ -133,59 +94,67 @@ function DatagridFilterToolbar<TData>({
                             className="filterbar__input"
                             placeholder="Filteren..."
                             value={searchTerm}
-                            onChange={e => onSearchChange(e.target.value)}
+                            onChange={e => {
+                                onSearchChange(e.target.value);
+                            }}
                         />
                     </div>
 
                     {selectFilters.map(col => {
 
-                        const isMultiSelect = col.filter?.multiSelect;
+                        const isMultiSelect = col.filter?.multiSelect ?? false;
                         const rawSelectedValue = columnFilters[col.prop];
-                        const selectedValue = isMultiSelect
+                        const selectedValue: string[] = isMultiSelect
                             ? (Array.isArray(rawSelectedValue) ? rawSelectedValue.map(String) : [])
-                            : rawSelectedValue ?? '';
-                        const options: { label: string; value: string }[] = resolvedOptions[col.prop] ?? [];
-const dropdownItems = useMemo(() => {
-                            const items: any[] = [
-                                {
-                                    content: `${col.title}:`,
-                                    selected: isMultiSelect && selectedValue.length === 0,
-                                    onClick: isMultiSelect ? () => setFilterValue(col.prop, []) : undefined,
-                                    keepOpen: isMultiSelect,
-                                },
-                                ...options.map(opt => {
-                                    const isChecked = isMultiSelect && selectedValue.includes(opt.value);
-                                    if (isMultiSelect) {
-                                        return {
-                                            content: (
-                                                <Checkbox
-                                                    key={opt.value}
-                                                    checked={isChecked}
-                                                    label={opt.label}
-                                                    onChange={() => {
-                                                        const newValue = isChecked
-                                                            ? selectedValue.filter(v => v !== opt.value)
-                                                            : [...selectedValue, opt.value];
-                                                        setFilterValue(col.prop, newValue);
-                                                    }}
-                                                />
-                                            ),
-                                            keepOpen: true,
-                                            onClick: undefined,
-                                            selected: isChecked,
-                                        };
-                                    } else {
-                                        return {
-                                            content: opt.label,
-                                            onClick: () => setFilterValue(col.prop, opt.value),
-                                            keepOpen: false,
-                                            selected: opt.value === selectedValue,
-                                        };
-                                    }
-                                }),
-                            ];
-                            return items;
-                        }, [options, selectedValue, col.prop, isMultiSelect]);
+                            : rawSelectedValue != null ? [String(rawSelectedValue)] : [];
+
+                        let options: { label: string; value: string }[] = [];
+                        if (col.filter?.options) {
+                            options = col.filter.options;
+                        } else if (col.filter?.optionsSource) {
+                            const values = col.filter.optionsSource(rawData);
+                            const mapOption = col.filter.mapOption ?? ((v: any) => ({ label: String(v), value: String(v) }));
+                            options = values.map(mapOption);
+                        }
+
+                        const dropdownItems: any[] = [
+                            {
+                                content: `${col.title}:`,
+                                selected: isMultiSelect && selectedValue.length === 0,
+                                onClick: isMultiSelect ? () => setFilterValue(col.prop, []) : undefined,
+                                keepOpen: isMultiSelect,
+                            },
+                            ...options.map(opt => {
+                                const isChecked = isMultiSelect && selectedValue.includes(opt.value);
+                                if (isMultiSelect) {
+                                    return {
+                                        content: (
+                                            <Checkbox
+                                                key={opt.value}
+                                                checked={isChecked}
+                                                label={opt.label}
+                                                onChange={() => {
+                                                    const newValue = isChecked
+                                                        ? selectedValue.filter(v => v !== opt.value)
+                                                        : [...selectedValue, opt.value];
+                                                    setFilterValue(col.prop, newValue);
+                                                }}
+                                            />
+                                        ),
+                                        keepOpen: true,
+                                        onClick: undefined,
+                                        selected: isChecked,
+                                    };
+                                } else {
+                                    return {
+                                        content: opt.label,
+                                        onClick: () => setFilterValue(col.prop, opt.value),
+                                        keepOpen: false,
+                                        selected: opt.value === selectedValue[0],
+                                    };
+                                }
+                            }),
+                        ];
 
                         return (
                             <div key={col.prop} className="filterbar__item filterbar__item--dropdown">
@@ -196,11 +165,15 @@ const dropdownItems = useMemo(() => {
                                                 <span>{col.title}: </span>
                                                 <strong>
                                                     {isMultiSelect
-                                                        ? options
-                                                            .filter(o => selectedValue.includes(o.value))
-                                                            .map(o => o.label)
-                                                            .join(', ')
-                                                        : options.find(o => o.value === selectedValue)?.label ?? ''}
+                                                        ? (() => {
+                                                            if (selectedValue.length === 0) return '';
+                                                            if (selectedValue.length === 1) {
+                                                                return options.find(o => o.value === selectedValue[0])?.label ?? '';
+                                                            }
+                                                            const firstLabel = options.find(o => o.value === selectedValue[0])?.label ?? '';
+                                                            return `${firstLabel}  (+ ${selectedValue.length - 1})`;
+                                                        })()
+                                                        : options.find(o => o.value === selectedValue[0])?.label ?? ''}
                                                 </strong>
                                             </>
                                         ),
