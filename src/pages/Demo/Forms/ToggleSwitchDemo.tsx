@@ -20,7 +20,47 @@ const ToggleSwitchDemo: React.FC = () => {
 
   return (
     <>
-      <section className="centered centered--wide">
+    
+      <section className="centered centered--wide bg-surface-light">
+        <h3>Default</h3>
+        <Toggle checked={checked}
+          label={`Are you sure you like this: ${checked ? 'sure!' : 'nahh'} `}
+          onChange={onChange} />
+
+
+        <h3>Label left</h3>
+        <Toggle checked={checked} labelPosition="left"
+          label={`Are you sure you like this: ${checked ? 'sure!' : 'nahh'} `}
+          onChange={onChange} />
+
+        <h3>Label right</h3>
+        <Toggle checked={checked} labelPosition="right"
+          label={`Are you sure you like this: ${checked ? 'sure!' : 'nahh'} `}
+          onChange={onChange} />
+
+        <h3>Colored</h3>
+        <Toggle checked={checked} labelPosition="right"
+          color={ColorDefinitions.Purple}
+          label={`Are you sure you like this: ${checked ? 'sure!' : 'nahh'} `}
+          onChange={onChange} />
+
+
+        <h3>Validation</h3>
+        <Toggle checked={checked}
+          color={ColorDefinitions.Primary}
+          validationErrorMessage='Field is required'
+          label={`Are you sure you like this: ${checked ? 'sure!' : 'nahh'} `}
+          onChange={onChange} />
+
+
+        <h3>Inline TODO</h3>
+        <Toggle checked={checked}
+          color={ColorDefinitions.Primary}
+          label={`Are you sure you like this: ${checked ? 'sure!' : 'nahh'} `}
+          onChange={onChange} />
+      </section>
+      
+      <section className="centered centered--wide bg-surface">
         <h3>Default</h3>
         <Toggle checked={checked}
           label={`Are you sure you like this: ${checked ? 'sure!' : 'nahh'} `}
@@ -59,44 +99,6 @@ const ToggleSwitchDemo: React.FC = () => {
           onChange={onChange} />
       </section>
       <section className="centered centered--wide bg-surface-dark">
-        <h3>Default</h3>
-        <Toggle checked={checked}
-          label={`Are you sure you like this: ${checked ? 'sure!' : 'nahh'} `}
-          onChange={onChange} />
-
-
-        <h3>Label left</h3>
-        <Toggle checked={checked} labelPosition="left"
-          label={`Are you sure you like this: ${checked ? 'sure!' : 'nahh'} `}
-          onChange={onChange} />
-
-        <h3>Label right</h3>
-        <Toggle checked={checked} labelPosition="right"
-          label={`Are you sure you like this: ${checked ? 'sure!' : 'nahh'} `}
-          onChange={onChange} />
-
-        <h3>Colored</h3>
-        <Toggle checked={checked} labelPosition="right"
-          color={ColorDefinitions.Purple}
-          label={`Are you sure you like this: ${checked ? 'sure!' : 'nahh'} `}
-          onChange={onChange} />
-
-
-        <h3>Validation</h3>
-        <Toggle checked={checked}
-          color={ColorDefinitions.Primary}
-          validationErrorMessage='Field is required'
-          label={`Are you sure you like this: ${checked ? 'sure!' : 'nahh'} `}
-          onChange={onChange} />
-
-
-        <h3>Inline TODO</h3>
-        <Toggle checked={checked}
-          color={ColorDefinitions.Primary}
-          label={`Are you sure you like this: ${checked ? 'sure!' : 'nahh'} `}
-          onChange={onChange} />
-      </section>
-      <section className="centered centered--wide bg-surface-light">
         <h3>Default</h3>
         <Toggle checked={checked}
           label={`Are you sure you like this: ${checked ? 'sure!' : 'nahh'} `}

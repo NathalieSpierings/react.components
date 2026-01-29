@@ -1,7 +1,8 @@
 import { UseQueryOptions, useQuery } from '@tanstack/react-query';
-import { useEffect, useMemo, useState } from 'react';
-import { defaultSearch, defaultSort } from '../utils/tableDataManipulation';
+import { useMemo } from 'react';
 import { TableGetDataArguments } from '../../components/Data/Table/TableData';
+import {  defaultSearch, defaultSort } from '../utils/tableDataManipulation';
+import { normalizeDate } from '../helpers/helpers';
 
 export interface UseTableQueryProps<TData> {
     queryFn: UseQueryOptions<TData[], unknown, TData[], any[]>;
@@ -10,10 +11,10 @@ export interface UseTableQueryProps<TData> {
 
 export type Status = 'error' | 'success' | 'pending';
 
-
 const filterData = <TData>(
     data: TData[] | undefined,
-    filters: TableGetDataArguments<TData> | null): [TData[], number] => {
+    filters: TableGetDataArguments<TData> | null
+): [TData[], number] => {
 
     if (!filters) {
         return [data || [], data?.length || 0];
@@ -24,52 +25,72 @@ const filterData = <TData>(
     let filtered = data || [];
 
 
-    // 1. Search
+    // Search
     if (searchTerm) {
         filtered = defaultSearch(filtered, searchTerm, propertyConfigs);
     }
 
-    // 2. Column filters (single + multi)
+    // Column filters (single + multi)
     if (columnFilters) {
         for (const [key, value] of Object.entries(columnFilters)) {
 
-            if (value == null || value === '' || (Array.isArray(value) && value.length === 0))
+            if (
+                value == null ||
+                value === '' ||
+                (Array.isArray(value) && value.length === 0)
+            ) {
                 continue;
-
+            }
 
             const colConfig = propertyConfigs?.find(p => p.prop === key);
-            const isText = colConfig?.filter?.type === 'text';
+            const filterType = colConfig?.filter?.type ?? 'text';
 
             filtered = filtered.filter(item => {
-
-                const val = (item as any)[key];
-                if (val == null) return false;
-
+                const rawVal = (item as any)[key];
+                if (rawVal == null) return false;
 
                 const filterValues = Array.isArray(value) ? value : [value];
 
-
-                // text filter
-                if (isText) {
+                // Text filter
+                if (filterType === 'text') {
+                    const text = String(rawVal).toLowerCase();
                     return filterValues.some(v =>
-                        val.toString().toLowerCase().includes(v.toString().toLowerCase())
+                        text.includes(String(v).toLowerCase())
                     );
                 }
 
-                // exact match for select / other types
+                // Date filter
+                if (filterType === 'date') {
+                    const itemDate = normalizeDate(rawVal);
+                    if (!itemDate) return false;
+
+                    return filterValues.some(v => {
+                        const filterDate = normalizeDate(v);
+                        if (!filterDate) return false;
+
+                        // same day comparising
+                        return (
+                            itemDate.getFullYear() === filterDate.getFullYear() &&
+                            itemDate.getMonth() === filterDate.getMonth() &&
+                            itemDate.getDate() === filterDate.getDate()
+                        );
+                    });
+                }
+
+                // Select / default exact match
                 return filterValues.some(v =>
-                    val.toString().toLowerCase() === v.toString().toLowerCase()
+                    String(rawVal).toLowerCase() === String(v).toLowerCase()
                 );
             });
         }
     }
 
-    // 3. Sorting
+    // Sorting
     if (sort) {
         filtered = defaultSort(filtered, sort, propertyConfigs);
     }
 
-    // 4. Pagination
+    // Pagination
     const total = filtered.length;
     const start = (pagination.page - 1) * pagination.perPage;
     const end = pagination.page * pagination.perPage;
@@ -83,10 +104,10 @@ function useTableQueryClientFilter<TData>({
     filters
 }: UseTableQueryProps<TData>): [TData[], TData[], number, Status] {
 
-    const { data: rawData, status } = useQuery(queryFn);
-    const [data, total] = useMemo(() => filterData(rawData, filters), [rawData, filters]);
+    const { data: dataRaw, status } = useQuery(queryFn);
+    const [data, total] = useMemo(() => filterData(dataRaw, filters), [dataRaw, filters]);
 
-    return [rawData ?? [], data, total, status as Status];
+    return [dataRaw ?? [], data, total, status as Status];
 }
 
 export default useTableQueryClientFilter;

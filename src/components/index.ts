@@ -8,7 +8,9 @@ export * from './Base/SessionIdleTimer';
 export * from './Data/Datagrid';
 export * from './Data/DatagridFilterToolbar';
 export * from './Data/DatagridSearch';
+export * from './Data/DatagridTableInfo';
 export * from './Data/DatagridToolbar';
+export * from './Data/DatagridGridLayout';
 export * from './Data/Pagination';
 export * from './Data/Table';
 
@@ -79,6 +81,7 @@ export * from './UI/Button';
 export * from './UI/Card';
 export * from './UI/CheckboxAnimated';
 export * from './UI/Collapsible';
+export * from './UI/Collection';
 export * from './UI/ColumnLayout';
 export * from './UI/ConfirmDialog';
 export * from './UI/ContentItem';

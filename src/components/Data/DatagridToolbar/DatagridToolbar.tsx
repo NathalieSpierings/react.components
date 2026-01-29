@@ -1,5 +1,6 @@
 import React, { ReactElement, ReactNode } from 'react';
 import { Toolbar } from '../../UI/Toolbar';
+import { ColorDefinitions } from '../../../lib/utils/definitions';
 
 
 export interface DatagridToolbarProps {
@@ -9,6 +10,7 @@ export interface DatagridToolbarProps {
     prefixItems?: ReactNode[];
     postfixItems?: ReactNode[];
     borderBottom?: boolean;
+    borderColor?: ColorDefinitions;
 }
 
 const DatagridToolbar: React.FC<DatagridToolbarProps> = ({
@@ -18,6 +20,7 @@ const DatagridToolbar: React.FC<DatagridToolbarProps> = ({
     prefixItems = [],
     postfixItems = [],
     borderBottom = false,
+    borderColor = ColorDefinitions.Surface
 }) => {
 
     return (
@@ -28,6 +31,7 @@ const DatagridToolbar: React.FC<DatagridToolbarProps> = ({
             prefixItems={prefixItems}
             postfixItems={postfixItems}
             borderBottom={borderBottom}
+            borderColor={borderColor}
         />
     );
 };

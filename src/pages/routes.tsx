@@ -38,6 +38,8 @@ import Error500Demo from "./Demo/Error500Damo";
 import FieldsetDemo from "./Demo/FieldsetDemo";
 import FileSelectDemo from "./Demo/Forms/FileSelectDemo";
 import InputDemo from "./Demo/Forms/InputDemo";
+import InputPasswordDemo from "./Demo/Forms/InputPasswordDemo";
+import InputSearchDemo from "./Demo/Forms/InputSearchDemo";
 import MultiselectDemo from "./Demo/Forms/MultiselectDemo";
 import RadioButtonDemo from "./Demo/Forms/RadioButtonDemo";
 import TagsinputDemo from "./Demo/Forms/TagsinputDemo";
@@ -54,6 +56,7 @@ import TooltipDemo from "./Demo/TooltipDemo";
 import WidgetDemo from "./Demo/WidgetDemo";
 import WizardDemo from "./Demo/WizardDemo/WizrdDemo";
 import DatagridFilterDatabindDemo from "./Demo/DatagridFilterDatabindDemo";
+import DatagridTableInfoDemo from "./Demo/DatagridTableInfoDemo";
 
 export const getInitialMenuItem = (pathname: string) => {
 	if (matchPath(proxyPrefix + "/", pathname)) {
@@ -132,7 +135,7 @@ export const routes = [
 		path: "/demo/datepicker",
 		element: <DatePickerDemo />
 	},
-	{	
+	{
 		path: "/demo/dismiss",
 		element: <DismissDemo />
 	},
@@ -152,7 +155,7 @@ export const routes = [
 		path: "/demo/datagridgridlayout",
 		element: <DatagridGridLayoutDemo />
 	},
-	
+
 	{
 		path: "/demo/datagridall",
 		element: <DatagridAllDemo />
@@ -178,11 +181,15 @@ export const routes = [
 		path: "/demo/datagridfilter",
 		element: <DatagridFilterDemo />
 	},
-{
+	{
 		path: "/demo/datagridfilterdatabind",
 		element: <DatagridFilterDatabindDemo />
 	},
-	
+	{
+		path: "/demo/datagridtableinfo",
+		element: <DatagridTableInfoDemo />
+	},
+
 	{
 		path: "/demo/icons",
 		element: <IconDemo />
@@ -207,7 +214,7 @@ export const routes = [
 		path: "/demo/error404",
 		element: <Error404Demo />
 	},
-	{	   
+	{
 		path: "/demo/error500",
 		element: <Error500Demo />
 	},
@@ -222,6 +229,14 @@ export const routes = [
 	{
 		path: "/demo/input",
 		element: <InputDemo />
+	},
+	{
+		path: "/demo/inputpassword",
+		element: <InputPasswordDemo />
+	},
+	{
+		path: "/demo/inputsearch",
+		element: <InputSearchDemo />
 	},
 	{
 		path: "/demo/landingspage",
@@ -242,7 +257,7 @@ export const routes = [
 	{
 		path: "/demo/pageoverlay",
 		element: <PageOverlayDemo />
-	},	
+	},
 	{
 		path: "/demo/radiobutton",
 		element: <RadioButtonDemo />
@@ -250,16 +265,16 @@ export const routes = [
 	{
 		path: "/demo/ripple",
 		element: <RippleDemo />
-	},	
+	},
 	{
 		path: "/demo/slider",
 		element: <SliderDemo />
-    },
+	},
 	{
 		path: "/demo/tab",
 		element: <TabsDemo />
 	},
-    {
+	{
 		path: "/demo/tagsinput",
 		element: <TagsinputDemo />
 	},
@@ -267,22 +282,22 @@ export const routes = [
 		path: "/demo/toastr",
 		element: <ToastrDemo />
 	},
-    {
+	{
 		path: "/demo/toggleswitch",
 		element: <ToggleSwitchDemo />
 	},
-    {
+	{
 		path: "/demo/tooltip",
 		element: <TooltipDemo />,
-    },
+	},
 	{
 		path: "/demo/widget",
 		element: <WidgetDemo />
 	},
 	{
 		path: "/demo/wizard",
-		element: <WizardDemo />    
-    }
+		element: <WizardDemo />
+	}
 ];
 
 // export const errorRoutes = [

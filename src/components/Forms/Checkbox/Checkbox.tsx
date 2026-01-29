@@ -12,6 +12,7 @@ export interface CheckboxProps extends PropsWithChildren {
     disabled?: boolean;
     onChange?: (checked: boolean) => void;
     onBlur?: React.FocusEventHandler<HTMLInputElement>;
+    css?: string;
 }
 
 const Checkbox = forwardRef(
@@ -21,11 +22,12 @@ const Checkbox = forwardRef(
             checked,
             defaultChecked,
             label,
-            color = ColorDefinitions.Default,
+            color,
             validationErrorMessage,
             disabled = false,
             onChange,
             onBlur,
+            css = '',
             children,
         }: CheckboxProps,
         ref: React.Ref<any>
@@ -49,11 +51,16 @@ const Checkbox = forwardRef(
             }
         };
 
-        const cls = ['checkbox', color ? `formcontrol-${color}` : ''].filter(Boolean).join(' ');
+        const handleWrapperClick = (e: React.MouseEvent) => {
+            e.stopPropagation();
+            if (!disabled) handleChange();
+        };
+
+        const cls = ['checkbox', css, color ? `formcontrol-${color}` : ''].filter(Boolean).join(' ');
 
         return (
             <div className="form-field">
-                <div className={cls}>
+                <div className={cls} >
                     <label htmlFor={id}>
                         <span className="sr-only">{label}</span> {/* screen-reader only */}
                         <input
@@ -94,8 +101,7 @@ const Checkbox = forwardRef(
 
 export interface FormCheckboxProps extends Omit<CheckboxProps, 'onChange' | 'checked' | 'ref' | 'onBlurs'> {
     rules?:
-        | Omit<RegisterOptions<FieldValues, string>, 'disabled' | 'valueAsNumber' | 'valueAsDate' | 'setValueAs'>
-        | undefined;
+    | Omit<RegisterOptions<FieldValues, string>, 'disabled' | 'valueAsNumber' | 'valueAsDate' | 'setValueAs'>;
     control: Control<any, any>;
     name: string;
 }

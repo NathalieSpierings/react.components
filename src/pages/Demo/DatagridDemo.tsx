@@ -24,15 +24,14 @@ const DatagridDemo = (): ReactElement => {
     ]);
 
     const [tableOptions, setTableOptions] = useState<TableGetDataArguments<ProductGetModel> | null>(null);
-    const [data, total, status] = useTableQueryClientFilter({
+    const [dataRaw, data, total, status] = useTableQueryClientFilter({
         queryFn: getProductsQuery(),
         filters: tableOptions
     });
 
-    const handleFilterUpdate = (options: TableGetDataArguments<ProductGetModel>) => {
-        setTableOptions(options);
-    };
-
+    const wrapPrice = (item: ProductGetModel) => {
+        return <>€  {item.prijs.toFixed(2)}</>
+    }
 
     return (
         <div>
@@ -40,9 +39,10 @@ const DatagridDemo = (): ReactElement => {
             <Datagrid
                 toolbarTitle={<Title size="md">Alle orders</Title>}
                 data={data || []}
+                dataRaw={dataRaw}
                 total={total || 0}
                 loading={status === "pending"}
-                onFilterUpdate={handleFilterUpdate}
+                onFilterUpdate={setTableOptions}
                 rowSingleClickAction={(row) => console.log('Clicked row:', row)}
                 rowDoubleClickAction={(row) => console.log('Double click:', row)}
                 properties={
@@ -51,8 +51,8 @@ const DatagridDemo = (): ReactElement => {
                         { prop: "categorie", title: "Categorie", sortable: true },
                         { prop: "status", title: "Status", sortable: true },
                         { prop: "merk", title: "Merk", sortable: true },
-                        { prop: "prijs", title: "Prijs (€)", sortable: false, wrapValue: item => { return <>€  {item.prijs.toFixed(2)}</> } },
-                        { prop: "beschikbaarVanaf", title: "Beschikbaar vanaf", sortable: true, transformValue: (value) => value ? moment(value).locale("nl").format("DD-MM-YYYY") : "" },
+                        { prop: "prijs", title: "Prijs (€)", sortable: false, wrapValue: wrapPrice },
+                        { prop: "beschikbaarVanaf", title: "Beschikbaar vanaf", sortable: true, filter: { type: 'text' }, transformValue: (value) => value ? moment(value).locale("nl").format("DD-MM-YYYY") : "" },
                     ]
                 }
                 rowActions={

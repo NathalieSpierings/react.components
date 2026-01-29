@@ -77,14 +77,11 @@ function getClassNames({
 
 function getContent(icon: IconDefinitions | undefined, svg: string | ReactElement | undefined, svgCss: string, duotone: boolean | undefined) {
 
-    const css = [
-        svgCss,
-        duotone && 'icon-duotone'
-    ].filter(Boolean).join(' ');
+  
 
     if (icon) {
         return (
-            <svg xmlns="http://www.w3.org/2000/svg" className={css} >
+            <svg xmlns="http://www.w3.org/2000/svg" className={`${svgCss} ${duotone ? 'icon-duotone' : ''}`} >
                 <use xlinkHref={`#svg_icon_${icon}`} />
             </svg>
         );
@@ -110,6 +107,7 @@ const Icon = ({
     children,
     ...styledDivProps
 }: IconProps): ReactElement => {
+
     const borderClass = getBorderClass(variant, styledDivProps.background, styledDivProps.borderColor);
     const hoverBorderClass = getHoverBorderClass(variant, styledDivProps.hoverBackground, styledDivProps.hoverBorderColor);
 

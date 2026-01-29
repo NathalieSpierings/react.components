@@ -1,4 +1,5 @@
 import React, { ReactElement, ReactNode } from "react"
+import { ColorDefinitions } from "../../../lib/utils/definitions";
 
 export interface ToolbarProps {
     title?: string | ReactElement;
@@ -7,6 +8,7 @@ export interface ToolbarProps {
     prefixItems?: ReactNode[];
     postfixItems?: ReactNode[];
     borderBottom?: boolean;
+    borderColor?: ColorDefinitions;
 }
 
 const Toolbar = ({
@@ -15,13 +17,14 @@ const Toolbar = ({
     showSeparator = false,
     prefixItems = [],
     postfixItems = [],
-    borderBottom = false
+    borderBottom = false,
+    borderColor = ColorDefinitions.Surface
 }: ToolbarProps) => {
 
     const hasActions = prefixItems.length > 0 || postfixItems.length > 0;
 
     return (
-        <div className={`toolbar ${borderBottom ? 'toolbar--border' : ''}`}>
+        <div className={`toolbar ${borderBottom ? 'border-' + borderColor : null}`}>
 
             {title && (
                 <div className="toolbar__header">
@@ -43,7 +46,7 @@ const Toolbar = ({
                         {prefixItems.length > 0 && (
                             <div className="toolbar__actions__prefix">
                                 {prefixItems.map((item, idx) => (
-                                    <div key={`prefix_${idx}`}>{item}</div>
+                                    <div key={`prefix_` + idx}>{item}</div>
                                 ))}
                             </div>
                         )}
@@ -51,7 +54,7 @@ const Toolbar = ({
                         {postfixItems.length > 0 && (
                             <div className="toolbar__actions__postfix">
                                 {postfixItems.map((item, idx) => (
-                                    <div key={`postfix_${idx}`}>{item}</div>
+                                    <div key={`prefix_` + idx}>{item}</div>
                                 ))}
                             </div>
                         )}

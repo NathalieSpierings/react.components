@@ -1,30 +1,29 @@
-
 import { NotFoundError } from "../errors";
 
 export const products = [
-  { "id": "1", "naam": "Eettafel Acacia", "categorie": "Meubels", "status": "Beschikbaar", "merk": "IKEA", "prijs": 50.7, "beschikbaarVanaf": "2025-02-04" },
-  { "id": "2", "naam": "Bouwset Mega Blocks", "categorie": "Speelgoed", "status": "Uitverkocht", "merk": "LEGO", "prijs": 1335.81, "beschikbaarVanaf": "2025-03-11" },
-  { "id": "3", "naam": "Laptop Pro 16", "categorie": "Electronics", "status": "Pre-order", "merk": "Apple", "prijs": 1264.65, "beschikbaarVanaf": "2025-03-10" },
-  { "id": "4", "naam": "Dames Trenchcoat", "categorie": "Kleding", "status": "Uitverkocht", "merk": "Zara", "prijs": 629.46, "beschikbaarVanaf": "2025-03-24" },
-  { "id": "5", "naam": "Poppenhuis Deluxe", "categorie": "Speelgoed", "status": "Pre-order", "merk": "Mattel", "prijs": 168.71, "beschikbaarVanaf": "2025-01-11" },
-  { "id": "6", "naam": "RC Raceauto X200", "categorie": "Speelgoed", "status": "Pre-order", "merk": "LEGO", "prijs": 479.02, "beschikbaarVanaf": "2025-02-27" },
-  { "id": "7", "naam": "Heren Casual Shirt", "categorie": "Kleding", "status": "Uitverkocht", "merk": "H&M", "prijs": 977.74, "beschikbaarVanaf": "2025-01-11" },
-  { "id": "8", "naam": "Bureaustoel Ergonomisch", "categorie": "Meubels", "status": "Pre-order", "merk": "BoConcept", "prijs": 221.15, "beschikbaarVanaf": "2025-03-22" },
-  { "id": "9", "naam": "Educatieve Puzzel 1000 pcs", "categorie": "Speelgoed", "status": "Uitverkocht", "merk": "Hasbro", "prijs": 1642.95, "beschikbaarVanaf": "2025-01-17" },
-  { "id": "10", "naam": "Pluche Knuffelbeer XL", "categorie": "Speelgoed", "status": "Uitverkocht", "merk": "Mattel", "prijs": 422.59, "beschikbaarVanaf": "2025-03-22" },
-  { "id": "11", "naam": "Bouwset Mega Blocks Deluxe", "categorie": "Speelgoed", "status": "Pre-order", "merk": "LEGO", "prijs": 100.29, "beschikbaarVanaf": "2025-01-17" },
-  { "id": "12", "naam": "Winterjas Parka", "categorie": "Kleding", "status": "Beschikbaar", "merk": "Nike", "prijs": 850.21, "beschikbaarVanaf": "2025-03-20" },
-  { "id": "13", "naam": "4K OLED TV 55 inch", "categorie": "Electronics", "status": "Uitverkocht", "merk": "LG", "prijs": 1080.52, "beschikbaarVanaf": "2025-01-19" },
-  { "id": "14", "naam": "Sportlegging High Waist", "categorie": "Kleding", "status": "Pre-order", "merk": "Adidas", "prijs": 1523.75, "beschikbaarVanaf": "2025-03-06" },
-  { "id": "15", "naam": "Sneakers Unisex", "categorie": "Kleding", "status": "Beschikbaar", "merk": "Nike", "prijs": 1829.83, "beschikbaarVanaf": "2025-03-23" },
-  { "id": "16", "naam": "RC Raceauto X200 Pro", "categorie": "Speelgoed", "status": "Pre-order", "merk": "Mattel", "prijs": 356.62, "beschikbaarVanaf": "2025-01-13" },
-  { "id": "17", "naam": "C# Masterclass", "categorie": "Boeken", "status": "Beschikbaar", "merk": "Pearson", "prijs": 1228.06, "beschikbaarVanaf": "2025-01-01" },
-  { "id": "18", "naam": "Filosofie voor Beginners", "categorie": "Boeken", "status": "Pre-order", "merk": "Van Dale", "prijs": 1401.22, "beschikbaarVanaf": "2025-02-02" },
-  { "id": "19", "naam": "Kinderboek Dierenrijk", "categorie": "Boeken", "status": "Beschikbaar", "merk": "Bruna", "prijs": 168.14, "beschikbaarVanaf": "2025-03-12" },
-  { "id": "20", "naam": "Heren Casual Shirt Premium", "categorie": "Kleding", "status": "Beschikbaar", "merk": "H&M", "prijs": 175.45, "beschikbaarVanaf": "2025-03-29" },
-  { "id": "21", "naam": "Leren Bankstel 3-zits", "categorie": "Meubels", "status": "Uitverkocht", "merk": "LeenBakker", "prijs": 1859.02, "beschikbaarVanaf": "2025-02-19" },
-  { "id": "22", "naam": "Smart Home Hub", "categorie": "Electronics", "status": "Pre-order", "merk": "Samsung", "prijs": 1098.87, "beschikbaarVanaf": "2025-01-23" },
-  { "id": "23", "naam": "Dames Trenchcoat Deluxe", "categorie": "Kleding", "status": "Uitverkocht", "merk": "Mango", "prijs": 258.71, "beschikbaarVanaf": "2025-03-04" },
+  { "id": "1", "naam": "Eettafel Acacia", "categorie": "Meubels", "status": "Beschikbaar", "merk": "IKEA", "prijs": 50.7, "beschikbaarVanaf": "2026-01-16T00:00:00.000Z" },
+  { "id": "2", "naam": "Bouwset Mega Blocks", "categorie": "Speelgoed", "status": "Uitverkocht", "merk": "LEGO", "prijs": 1335.81, "beschikbaarVanaf": "2025-12-11T00:00:00.000Z" },
+  { "id": "3", "naam": "Laptop Pro 16", "categorie": "Electronics", "status": "Pre-order", "merk": "Apple", "prijs": 1264.65, "beschikbaarVanaf": "2025-03-10T00:00:00.000Z" },
+  { "id": "4", "naam": "Dames Trenchcoat", "categorie": "Kleding", "status": "Uitverkocht", "merk": "Zara", "prijs": 629.46, "beschikbaarVanaf": "2025-03-24T00:00:00.000Z" },
+  { "id": "5", "naam": "Poppenhuis Deluxe", "categorie": "Speelgoed", "status": "Pre-order", "merk": "Mattel", "prijs": 168.71, "beschikbaarVanaf": "2025-01-11T00:00:00.000Z" },
+  { "id": "6", "naam": "RC Raceauto X200", "categorie": "Speelgoed", "status": "Pre-order", "merk": "LEGO", "prijs": 479.02, "beschikbaarVanaf": "2025-02-27T00:00:00.000Z" },
+  { "id": "7", "naam": "Heren Casual Shirt", "categorie": "Kleding", "status": "Uitverkocht", "merk": "H&M", "prijs": 977.74, "beschikbaarVanaf": "2025-01-11T00:00:00.000Z" },
+  { "id": "8", "naam": "Bureaustoel Ergonomisch", "categorie": "Meubels", "status": "Pre-order", "merk": "BoConcept", "prijs": 221.15, "beschikbaarVanaf": "2025-03-22T00:00:00.000Z" },
+  { "id": "9", "naam": "Educatieve Puzzel 1000 pcs", "categorie": "Speelgoed", "status": "Uitverkocht", "merk": "Hasbro", "prijs": 1642.95, "beschikbaarVanaf": "2025-01-17T00:00:00.000Z" },
+  { "id": "10", "naam": "Pluche Knuffelbeer XL", "categorie": "Speelgoed", "status": "Uitverkocht", "merk": "Mattel", "prijs": 422.59, "beschikbaarVanaf": "2025-03-22T00:00:00.000Z" },
+  { "id": "11", "naam": "Bouwset Mega Blocks Deluxe", "categorie": "Speelgoed", "status": "Pre-order", "merk": "LEGO", "prijs": 100.29, "beschikbaarVanaf": "2025-01-17T00:00:00.000Z" },
+  { "id": "12", "naam": "Winterjas Parka", "categorie": "Kleding", "status": "Beschikbaar", "merk": "Nike", "prijs": 850.21, "beschikbaarVanaf": "2025-03-20T00:00:00.000Z" },
+  { "id": "13", "naam": "4K OLED TV 55 inch", "categorie": "Electronics", "status": "Uitverkocht", "merk": "LG", "prijs": 1080.52, "beschikbaarVanaf": "2025-01-19T00:00:00.000Z" },
+  { "id": "14", "naam": "Sportlegging High Waist", "categorie": "Kleding", "status": "Pre-order", "merk": "Adidas", "prijs": 1523.75, "beschikbaarVanaf": "2025-03-06T00:00:00.000Z" },
+  { "id": "15", "naam": "Sneakers Unisex", "categorie": "Kleding", "status": "Beschikbaar", "merk": "Nike", "prijs": 1829.83, "beschikbaarVanaf": "2025-03-23T00:00:00.000Z" },
+  { "id": "16", "naam": "RC Raceauto X200 Pro", "categorie": "Speelgoed", "status": "Pre-order", "merk": "Mattel", "prijs": 356.62, "beschikbaarVanaf": "2025-01-13T00:00:00.000Z" },
+  { "id": "17", "naam": "C# Masterclass", "categorie": "Boeken", "status": "Beschikbaar", "merk": "Pearson", "prijs": 1228.06, "beschikbaarVanaf": "2025-01-01T00:00:00.000Z" },
+  { "id": "18", "naam": "Filosofie voor Beginners", "categorie": "Boeken", "status": "Pre-order", "merk": "Van Dale", "prijs": 1401.22, "beschikbaarVanaf": "2025-02-02T00:00:00.000Z" },
+  { "id": "19", "naam": "Kinderboek Dierenrijk", "categorie": "Boeken", "status": "Beschikbaar", "merk": "Bruna", "prijs": 168.14, "beschikbaarVanaf": "2025-03-12T00:00:00.000Z" },
+  { "id": "20", "naam": "Heren Casual Shirt Premium", "categorie": "Kleding", "status": "Beschikbaar", "merk": "H&M", "prijs": 175.45, "beschikbaarVanaf": "2025-03-29T00:00:00.000Z" },
+  { "id": "21", "naam": "Leren Bankstel 3-zits", "categorie": "Meubels", "status": "Uitverkocht", "merk": "LeenBakker", "prijs": 1859.02, "beschikbaarVanaf": "2025-02-19T00:00:00.000Z" },
+  { "id": "22", "naam": "Smart Home Hub", "categorie": "Electronics", "status": "Pre-order", "merk": "Samsung", "prijs": 1098.87, "beschikbaarVanaf": "2025-01-23T00:00:00.000Z" },
+  { "id": "23", "naam": "Dames Trenchcoat Deluxe", "categorie": "Kleding", "status": "Uitverkocht", "merk": "Mango", "prijs": 258.71, "beschikbaarVanaf": "2025-03-04T00:00:00.000Z" },
   { "id": "24", "naam": "TV-meubel Industrial", "categorie": "Meubels", "status": "Pre-order", "merk": "IKEA", "prijs": 1603.49, "beschikbaarVanaf": "2025-02-07" },
   { "id": "25", "naam": "Eettafel Acacia Premium", "categorie": "Meubels", "status": "Beschikbaar", "merk": "BoConcept", "prijs": 829.11, "beschikbaarVanaf": "2025-02-05" },
   { "id": "26", "naam": "Winterjas Parka Luxe", "categorie": "Kleding", "status": "Pre-order", "merk": "Nike", "prijs": 1697.56, "beschikbaarVanaf": "2025-03-09" },
@@ -261,6 +260,105 @@ export const getOrdersForProduct = (productId: string) => {
         })) as OrderGetModel[];
 
       return productOrders;
+    }
+  };
+};
+
+
+
+
+
+////////////////////////////////////
+export interface ProductServerQueryArgs {
+  page: number;
+  pageSize: number;
+  sortBy?: keyof ProductGetModel;
+  sortDirection?: "asc" | "desc";
+  filters?: {
+    product?: string;
+    categorie?: ProductGetModel["categorie"];
+    status?: ProductGetModel["status"];
+    merk?: string;
+  };
+}
+
+export const getProductsServerQuery = (args: ProductServerQueryArgs) => {
+  return {
+    queryKey: ["Products", "server", args],
+    queryFn: async (): Promise<{
+      data: ProductGetModel[];
+      total: number;
+    }> => {
+
+      let data: ProductGetModel[] = products.map(product => ({
+        id: product.id,
+        product: product.naam,
+        categorie: product.categorie as ProductGetModel["categorie"],
+        status: product.status as ProductGetModel["status"],
+        merk: product.merk,
+        prijs: product.prijs,
+        beschikbaarVanaf: new Date(product.beschikbaarVanaf),
+      }));
+
+      const { filters } = args;
+
+      if (filters?.product) {
+        const value = filters.product.toLowerCase();
+        data = data.filter(p =>
+          p.product.toLowerCase().includes(value)
+        );
+      }
+
+      if (filters?.categorie) {
+        data = data.filter(p => p.categorie === filters.categorie);
+      }
+
+      if (filters?.status) {
+        data = data.filter(p => p.status === filters.status);
+      }
+
+      if (filters?.merk) {
+        data = data.filter(p =>
+          p.merk.toLowerCase().includes(filters.merk!.toLowerCase())
+        );
+      }
+
+      // sorting
+      if (args.sortBy) {
+        const dir = args.sortDirection === "desc" ? -1 : 1;
+
+        data.sort((a, b) => {
+          const aVal = a[args.sortBy!];
+          const bVal = b[args.sortBy!];
+
+          if (aVal instanceof Date && bVal instanceof Date) {
+            return (aVal.getTime() - bVal.getTime()) * dir;
+          }
+
+          if (typeof aVal === "number" && typeof bVal === "number") {
+            return (aVal - bVal) * dir;
+          }
+
+          if (typeof aVal === "string" && typeof bVal === "string") {
+            return aVal.localeCompare(bVal) * dir;
+          }
+
+          return 0;
+        });
+      }
+
+      // pagination
+      const total = data.length;
+      const start = (args.page - 1) * args.pageSize;
+      const paged = data.slice(start, start + args.pageSize);
+
+      // fake latency
+      await new Promise(r => setTimeout(r, 300));
+
+      return {
+        data: paged,
+        total,
+      };
     }
   };
 };

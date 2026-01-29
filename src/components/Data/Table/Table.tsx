@@ -76,11 +76,11 @@ function Table<TData extends { id: string | number }>({
 
     const handleSorting = (prop: string) => {
         if (!setSort) return;
-        setSort(
-            sort?.prop !== prop
-                ? { prop, order: 'asc' }
-                : { prop, order: sort.order === 'asc' ? 'desc' : 'asc' }
-        );
+
+        setSort(sort?.prop === prop 
+            ? { prop, order: sort.order === 'asc' ? 'desc' : 'asc' } 
+            : { prop, order: 'asc' }
+        )
     };
 
 
@@ -98,11 +98,11 @@ function Table<TData extends { id: string | number }>({
         <table className={`table sortable ${enableCompactView ? 'table--compact' : ''} ${tableCss}`}>
             <thead>
                 <tr>
-                    {collapsibleRowData && <th scope="col" className="tw-3 text-center"></th>}
+                    {collapsibleRowData && <th scope="col" className="tw-3 table-text-center"></th>}
 
                     {
                         useCheckboxes && (
-                            <th scope="col" className="tw-3 text-center">
+                            <th scope="col" className="tw-3 table-text-center">
                                 <Checkbox
                                     color={ColorDefinitions.Primary}
                                     checked={data.length > 0 && data.length === checkedItems.length}

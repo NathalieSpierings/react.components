@@ -373,7 +373,7 @@ export const Overlay: StoryFn = () => {
 export const InsideTable: StoryFn = () => {
 
     const [tableOptions, setTableOptions] = useState<TableGetDataArguments<ProductGetModel> | null>(null);
-    const [data, total, status] = useTableQueryClientFilter({
+    const [dataRaw, data, total, status] = useTableQueryClientFilter({
         queryFn: getProductsQuery(),
         filters: tableOptions
     });
@@ -381,6 +381,7 @@ export const InsideTable: StoryFn = () => {
     return (
         <Datagrid
             data={data}
+            dataRaw={dataRaw}
             total={total}
             loading={true}
             loaderShowLabels={false}

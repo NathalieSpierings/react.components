@@ -32,8 +32,8 @@ export function TableHeader<TData>({
 
     const cls = [
         cssClass,
-        item.textMute ? 'text-mute' : '',
-        item.textAlign ? `text-${item.textAlign}` : 'text-left',
+        item.textMuted ? 'text-mute' : '',
+        item.textAlign ? `table-text-${item.textAlign}` : 'table-text-left',
         sortOrder === 'asc' && 'ascending',
         sortOrder === 'desc' && 'descending',
     ].filter(Boolean).join(' ');

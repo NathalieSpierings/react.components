@@ -4,7 +4,6 @@ export * from './TableCell';
 export * from './TableColumnFilter';
 export * from './TableData';
 export * from './TableHead';
-export * from './TableInfo';
 export * from './TableRow';
 export * from './TableRowConfig';
 export * from './TableSort';

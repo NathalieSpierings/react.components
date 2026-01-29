@@ -22,7 +22,7 @@ const ProductOrdersTable = ({ productId }: { productId: string }) => {
     const [visibleCount, setVisibleCount] = useState(itemsPerPage);
 
     const [tableOptions, setTableOptions] = useState<TableGetDataArguments<OrderGetModel> | null>(null);
-    const [data, total, status] = useTableQueryClientFilter({ queryFn: getOrdersForProduct(productId), filters: tableOptions });
+    const [dataRaw, data, total, status] = useTableQueryClientFilter({ queryFn: getOrdersForProduct(productId), filters: tableOptions });
 
     const visibleOrders = data.slice(0, visibleCount);
     const hasMore = visibleCount < data.length;
@@ -31,6 +31,7 @@ const ProductOrdersTable = ({ productId }: { productId: string }) => {
         <div>
             <Datagrid
                 data={visibleOrders}
+                dataRaw={dataRaw}
                 total={visibleOrders.length}
                 loading={status === "pending"}
                 onFilterUpdate={setTableOptions}
@@ -78,30 +79,37 @@ const DatagridNestedTableDemo = (): ReactElement => {
     ]);
 
     const [tableOptions, setTableOptions] = useState<TableGetDataArguments<ProductGetModel> | null>(null);
-    const [data, total, status] = useTableQueryClientFilter({ queryFn: getProductsQuery(), filters: tableOptions });
-   
+    const [dataRaw, data, total, status] = useTableQueryClientFilter({ queryFn: getProductsQuery(), filters: tableOptions });
+
+    const wrapPrice = (item: ProductGetModel) => {
+        return <>€  {item.prijs.toFixed(2)}</>
+    }
+
+    const collapsibeRowData = (item: ProductGetModel) => {
+        return <ProductOrdersTable productId={item.id} />
+    }
+
     return (
         <div>
 
             <Datagrid
                 toolbarTitle={<Title size="md">Alle orders</Title>}
                 data={data || []}
+                dataRaw={dataRaw}
                 total={total || 0}
                 loading={status === "pending"}
                 onFilterUpdate={setTableOptions}
                 rowSingleClickAction={(row) => console.log('Clicked row:', row)}
                 rowDoubleClickAction={(row) => console.log('Double click:', row)}
-                collapsibleRowData={(item) => (
-                    <ProductOrdersTable productId={item.id} />
-                )}
+                collapsibleRowData={collapsibeRowData}
                 properties={
                     [
                         { prop: "product", title: "Product", sortable: true },
                         { prop: "categorie", title: "Categorie", sortable: true },
                         { prop: "status", title: "Status", sortable: true },
                         { prop: "merk", title: "Merk", sortable: true },
-                        { prop: "prijs", title: "Prijs (€)", sortable: false, wrapValue: item => { return <>€  {item.prijs.toFixed(2)}</> } },
-                        { prop: "beschikbaarVanaf", title: "Beschikbaar vanaf", sortable: true, transformValue: (value) => value ? moment(value).locale("nl").format("DD-MM-YYYY") : "" },
+                        { prop: "prijs", title: "Prijs (€)", sortable: false, wrapValue: wrapPrice },
+                        { prop: "beschikbaarVanaf", title: "Beschikbaar vanaf", sortable: true, filter: { type: 'text' }, transformValue: (value) => value ? moment(value).locale("nl").format("DD-MM-YYYY") : "" },
                     ]
                 }
                 rowActions={

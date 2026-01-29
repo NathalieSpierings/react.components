@@ -11,6 +11,7 @@ export interface DropdownToggle {
     renderAsInput?: boolean;
     arrow?: boolean;
     ghost?: boolean;
+    ghostColor?: ColorDefinitions;
 }
 
 export interface DropdownHeader {
@@ -144,13 +145,20 @@ export const Dropdown: FC<DropdownProps> = ({
     );
 
 
-    console.log('Rendering dropdown');
+    const toggleCss = [
+        "dropdown__toggle",
+        dropdownToggle.renderAsInput && "dropdown__toggle--input",
+        dropdownToggle.ghost && "btn btn-ghost",
+        dropdownToggle.ghost && dropdownToggle.ghostColor && `btn-${dropdownToggle.ghostColor}`,
+    ]
+        .filter(Boolean)
+        .join(" ");
 
     return (
         <div className="dropdown">
             <button
                 ref={dropdownToggleRef}
-                className={`dropdown__toggle ${dropdownToggle.renderAsInput ? "dropdown__toggle--input" : ""} ${dropdownToggle.ghost ? "btn btn-ghost" : ""}`}
+                className={toggleCss}
                 onClick={toggleDropdown}
             >
                 {renderToggleContent()}

@@ -42,3 +42,18 @@ export const parseToDate = (dateString: string): Date | null => {
 export const toDateString = (date: Date): string => {
     return date.toString();
 };
+
+export const normalizeDate = (value: any): Date | null => {
+    if (!value) return null;
+
+    if (value instanceof Date) {
+        return Number.isNaN(value.getTime()) ? null : value;
+    }
+
+    if (typeof value === 'string') {
+        const parsed = new Date(value);
+        return Number.isNaN(parsed.getTime()) ? null : parsed;
+    }
+
+    return null;
+};

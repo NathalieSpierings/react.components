@@ -18,8 +18,6 @@ export interface TableRowProps<TData> {
     handleDoubleClick?: (item: TData) => void;
     checked?: boolean;
     onRowCheckedChanged?: (checked: boolean) => void;
-
-
     // Collapsible 
     expanded?: boolean;
     onToggleCollapsibleRow?: () => void;
@@ -44,7 +42,7 @@ function TableRow<TData extends { id: string | number }>({
         if (col.useItemOnly) {
             return col.useItemOnly(item);
         }
-        const getVal = col.transformValue ? col.transformValue! : (x: any) => x;
+        const getVal = col.transformValue ?? ((x: any) => x);
         const strValue = getVal((item as any)[col.prop]);
         return col.wrapValue ? col.wrapValue(item, strValue) : strValue;
     };

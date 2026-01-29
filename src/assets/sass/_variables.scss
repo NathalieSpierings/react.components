@@ -35,9 +35,10 @@
     --gap: 1.5rem;
 
     --scrollbar-width: 10px;
-    --scrollbar-background: var(--color-theme-600);
-    --scrollbar-thumb: var(--color-theme-700);
-    --scrollbar-thumb-hover: var(--color-theme-600);
+    --scrollbar-background: var(--color-theme-500);
+    --scrollbar-thumb: var(--color-theme-600);
+    --scrollbar-thumb-hover: var(--color-theme-700);
+
 
     --header-height: 80px;
 
@@ -76,19 +77,24 @@
 
     // Colors
 
-    --color-shadow: --color-shadow-surface;
+    --color-shadow: var(--color-shadow-surface);
     --color-accent: var(--color-primary);
-    --color-shadow-accent: var(--color-shadow-primary);
+   
+    --color-hover: var(--shadow-light-inverse); //color-mix(in srgb, var(--color-dark) 6%, transparent); //var(--shadow-light, rgb(0 0 0 / 6%));
+    --color-selected: var(--shadow-base-inverse);
 
-    --color-hover: var(--shadow-light);
-    --color-selected: var(--shadow-base);
+    --control-radius: var(--radius);	
+	--control-border: var(--color-border-theme-100);	
+	--control-background: var(--color-theme-100);
 
-    --form-margin: var(--page-padding);
-    --formcontrol-height: 48px;
-    --formcontrol-border: var(--color-border-theme-500);
-    --formcontrol-background: var(--color-theme-500);
-    --formcontrol-foreground: var(--color-mute);
-    --formcontrol-padding: var(--page-padding-sm) var(--page-padding-sm) 0 var(--page-padding-sm);
+	--input-radius: var(--radius);
+	--input-height: 48px;
+	--input-line-height: 2.5;
+	--input-label-trans: translateY(-20%) scale(0.9);
+	--input-padding: var(--page-padding-sm) var(--page-padding-sm) 0 var(--page-padding-sm);
+	--input-foreground: var(--color-foreground);
+	--input-border: var(--color-border-surface-dark);	
+	--input-background: var(--color-surface-dark);
 
     // Zindexes
 
@@ -136,11 +142,4 @@
     --icones-10: var(--color-theme-700);
     --icones-20: var(--color-theme-500);
     --icones-30: var(--color-theme-900);
-}
-
-
-.bg-surface-dark,
-.bg-surface-light {
-    --formcontrol-border: var(--color-border-surface);
-    --formcontrol-background: var(--color-surface);
 }

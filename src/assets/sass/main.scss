@@ -1,14 +1,12 @@
 // abstracts
-@use "abstracts/colors";
-@use "abstracts/mixins";
-@use "abstracts/variables";
+@use "mixins";
+@use "colors";
+@use "variables";
+
 @use "fonts";
 
+
 @use "base";
-
-@use "layout/ticket";
-@use "layout/error_pages";
-
-// components
-@use 'components/index';
-
+@use "layout";
+@use "forms";
+@use 'components';

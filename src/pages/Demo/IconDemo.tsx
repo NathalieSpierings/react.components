@@ -3,6 +3,7 @@ import useBreadcrumb from "../../lib/hooks/useBreadcrumb";
 import usePageTitle from "../../lib/hooks/usePageTitle";
 import { Icon } from "../../components/UI/Icons/Icon";
 import { ColorDefinitions, IconDefinitions, SizeDefinitions } from "../../lib/utils/definitions";
+import { DuoColumn, DuoColumnLayout } from "../../components";
 
 const IconDemo: React.FC = () => {
 
@@ -17,19 +18,21 @@ const IconDemo: React.FC = () => {
   return (
     <div className="centered centered--wide">
 
+        <Icon icon={IconDefinitions.book} hover size={SizeDefinitions.Large} />
+
       <p>When choosing an icon variant and set an background, the border will automatically get the same color as the background. See Icon component.</p>
 
- <h1>Default</h1>
+      <h2>Default</h2>
       <div className="flex gap-1">
         <Icon icon={IconDefinitions.warning} />
         <Icon icon={IconDefinitions.warning} variant="square" />
         <Icon icon={IconDefinitions.warning} variant="circle" />
-        <Icon icon={IconDefinitions.warning} hover/>
+        <Icon icon={IconDefinitions.warning} hover />
 
       </div>
 
 
-      <h1>Icons with utility classes</h1>
+      <h2>Icons with utility classes</h2>
       <div className="flex gap-1">
         <Icon icon={IconDefinitions.warning} color={ColorDefinitions.Blue} />
         <Icon icon={IconDefinitions.warning} background={ColorDefinitions.Blue} variant="square" />
@@ -40,7 +43,7 @@ const IconDemo: React.FC = () => {
 
       </div>
 
-      <h1>Hover state with utility classes</h1>
+      <h2>Hover state with utility classes</h2>
       <div className="flex gap-1">
         <Icon icon={IconDefinitions.warning} hoverColor={ColorDefinitions.Blue} />
         <Icon icon={IconDefinitions.warning} hoverBackground={ColorDefinitions.Blue} variant="square" />
@@ -48,7 +51,7 @@ const IconDemo: React.FC = () => {
         <Icon icon={IconDefinitions.warning} hoverShadowColor={ColorDefinitions.Blue} hoverBorderColor={ColorDefinitions.Blue} variant="circle" />
       </div>
 
-      <h1>Dashed with utility classes</h1>
+      <h2>Dashed with utility classes</h2>
       <div className="flex gap-1">
         <Icon icon={IconDefinitions.warning} dashed={true} hoverColor={ColorDefinitions.Magenta} />
         <Icon icon={IconDefinitions.warning} dashed={true} hoverBackground={ColorDefinitions.Magenta} variant="square" />
@@ -58,7 +61,7 @@ const IconDemo: React.FC = () => {
 
 
 
-      <h1>Ring</h1>
+      <h2>Ring</h2>
       <p className="mb-3">
         Puts a border around the icon. On hover and offset will be shown.
         You can choose between offset sizes <code>0, 1, 2, and 3 px</code> When choosing offset size: 0. Only the offset color will be shown.
@@ -67,48 +70,48 @@ const IconDemo: React.FC = () => {
         The ring offset color default to <code>surface-0</code> can be set with the property <code>ringOffsetColor</code>.
         You can play around with the ring colors. Have fun :-).
       </p>
-	
 
 
-	<h3>Default ring</h3>
-	<div className="grid gap-3 mb-3">
-		<Icon icon={IconDefinitions.warning} ring={true} />
-	</div>
 
-	<h3>Ring size</h3>
-	<div className="grid gap-3 mb-3">
+      <h3>Default ring</h3>
+      <div className="grid gap-3 mb-3">
+        <Icon icon={IconDefinitions.warning} ring={true} />
+      </div>
+
+      <h3>Ring size</h3>
+      <div className="grid gap-3 mb-3">
         <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringSize="ring-0" />
-        <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringSize="ring-1"/>
+        <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringSize="ring-1" />
         <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringSize="ring-2" />
-        <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringSize="ring-3" />		
-	</div>
+        <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringSize="ring-3" />
+      </div>
 
-	<h3>Ring offsize 2</h3>
-	<div className="grid gap-3 mb-3">
+      <h3>Ring offsize 2</h3>
+      <div className="grid gap-3 mb-3">
         <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringSize="ring-0" ringOffset="ring-offset-2" />
         <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringSize="ring-1" ringOffset="ring-offset-2" />
         <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringSize="ring-2" ringOffset="ring-offset-2" />
         <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringSize="ring-3" ringOffset="ring-offset-2" />
-	</div>
+      </div>
 
-	<h3>Ring offsize 4</h3>
-	<div className="grid gap-3 mb-3">
-		<Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringSize="ring-0" ringOffset="ring-offset-4" />
+      <h3>Ring offsize 4</h3>
+      <div className="grid gap-3 mb-3">
+        <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringSize="ring-0" ringOffset="ring-offset-4" />
         <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringSize="ring-1" ringOffset="ring-offset-4" />
         <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringSize="ring-2" ringOffset="ring-offset-4" />
         <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringSize="ring-3" ringOffset="ring-offset-4" />
-	</div>
+      </div>
 
-	<h3>Colored ring</h3>
-	<div className="grid gap-3 mb-3">
-        <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringColor={ColorDefinitions.Primary}/>
-        <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringColor={ColorDefinitions.Primary} color={ColorDefinitions.Primary}/>
+      <h3>Colored ring</h3>
+      <div className="grid gap-3 mb-3">
+        <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringColor={ColorDefinitions.Primary} />
+        <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringColor={ColorDefinitions.Primary} color={ColorDefinitions.Primary} />
         <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringHoverColor={ColorDefinitions.Primary} />
-        <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringHoverColor={ColorDefinitions.Primary} hoverColor={ColorDefinitions.Primary}/>
-	</div>
+        <Icon icon={IconDefinitions.warning} rounded={SizeDefinitions.Full} ring={true} ringHoverColor={ColorDefinitions.Primary} hoverColor={ColorDefinitions.Primary} />
+      </div>
 
 
-      <h1>Opacity</h1>
+      <h2>Opacity</h2>
       <p className="mb-3">
         Shows the icon and border dimmed. On hover the opacity = 1;
         Use <code>icon--dimmed</code> class. To only dimm the icon you can use <code>icon--dimmed-icon</code> class.
@@ -129,14 +132,14 @@ const IconDemo: React.FC = () => {
         <Icon icon={IconDefinitions.warning} shadowColor={ColorDefinitions.Blue} variant="square" dimmedSvg={true} />
       </div>
 
-      <h1>Hover</h1>
+      <h2>Hover</h2>
       <div className="flex gap-1">
         <Icon icon={IconDefinitions.warning} variant="circle" hover={true} />
         <Icon icon={IconDefinitions.warning} variant="square" hover={true} />
         <Icon icon={IconDefinitions.warning} hover={true} />
       </div>
 
-      <h1>Sizes</h1>
+      <h2>Sizes</h2>
       <div className="flex gap-1">
         <Icon icon={IconDefinitions.warning} size={SizeDefinitions.ExtraSmall} />
         <Icon icon={IconDefinitions.warning} size={SizeDefinitions.Small} />
@@ -170,9 +173,45 @@ const IconDemo: React.FC = () => {
       </div>
 
 
-      <h1>Showwave anime</h1>
-      <Icon icon={IconDefinitions.warning} variant="circle" size={SizeDefinitions.Small} iconCss="shockwave shadow-from-red" background={ColorDefinitions.Red}/>
-    </div>
+      <h2>Showwave anime</h2>
+      <Icon icon={IconDefinitions.warning} variant="circle" size={SizeDefinitions.Small} iconCss="shockwave shadow-from-red" background={ColorDefinitions.Red} />
+
+
+      <h3>All icons</h3>
+
+      <DuoColumnLayout>
+        <DuoColumn>
+          <div className="grid">
+            {Object.values(IconDefinitions).map((item, idx) => (
+              <div key={item} className="demo__item">
+                <Icon icon={item} duotone={false} hover />
+                <h5>{item}</h5>
+              </div>
+            ))}
+          </div>
+        </DuoColumn>
+        <DuoColumn>
+          <div className="grid">
+            {Object.values(IconDefinitions).map((item, idx) => (
+              <div key={item} className="demo__item">
+                <Icon icon={item} duotone={true} hover />
+                <h5>{item}</h5>
+              </div>
+            ))}
+          </div>
+        </DuoColumn>
+      </DuoColumnLayout>
+
+   
+      <div className="grid gap-3 mb-3">
+        <Icon icon={IconDefinitions.warning} />
+        <Icon icon={IconDefinitions.warning} />
+        <Icon icon={IconDefinitions.warning} />
+        <Icon icon={IconDefinitions.warning} />
+      </div>
+
+
+    </div >
   )
 }
 

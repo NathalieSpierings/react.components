@@ -1,6 +1,7 @@
 import moment from 'moment';
 import { TableRowConfig } from '../../components/Data/Table/TableRowConfig';
 import { TableSortConfig } from '../../components/Data/Table/TableSort';
+import { normalizeDate } from '../helpers/helpers';
 
 const orderMap = {
     desc: -1,
@@ -110,28 +111,45 @@ export const debounce = (func: any, timeout = 300) => {
     };
 };
 
-export function defaultSearch<TData>(
-    items: TData[],
-    q: string,
+export const defaultSearch = <TData>(
+    data: TData[],
+    searchTerm: string,
     propertyConfigs?: TableRowConfig<TData>[]
-): TData[] {
+): TData[] => {
 
-    if (!q) return items;
+    const term = searchTerm.toLowerCase();
 
-    return items.filter((item) => {
-        if (!propertyConfigs) return false;
+    return data.filter(item =>
+        propertyConfigs?.some(col => {
+            const rawVal = (item as any)[col.prop];
+            if (rawVal == null) return false;
 
-        return propertyConfigs.some((config) => {
-            let val: any = (item as any)[config.prop];
+            const filterType = col.filter?.type ?? 'text';
 
-            // gebruik transformValue als aanwezig
-            if (config.transformValue) {
-                val = config.transformValue(val);
-            } else {
-                val = getStringValue(val);
+            // Date: search on normalised ISO string
+            if (filterType === 'date') {
+                const date = normalizeDate(rawVal);
+                if (!date) return false;
+
+                const yyyy = date.getFullYear();
+                const mm = String(date.getMonth() + 1).padStart(2, '0');
+                const dd = String(date.getDate()).padStart(2, '0');
+
+                const searchableValues = [
+                    `${yyyy}-${mm}-${dd}`, // 2026-01-16
+                    `${dd}-${mm}-${yyyy}`, // 16-01-2026
+                    `${dd}-${mm}`,         // 16-01
+                    `${yyyy}`              // 2026
+                ];
+
+                return searchableValues.some(v =>
+                    v.includes(term)
+                );
             }
 
-            return _defaultSearch(val, q);
-        });
-    });
-}
+            // TEXT (default)
+            return String(rawVal).toLowerCase().includes(term);
+        }) ?? false
+    );
+};
+

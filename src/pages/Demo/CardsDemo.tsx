@@ -130,7 +130,7 @@ const CardDemo: React.FC = () => {
                 size={SizeDefinitions.Small}
                 hoverBorderColor={ColorDefinitions.Primary}
               />,
-              <Dropdown   key="2"
+              <Dropdown key="2"
                 dropdownToggle={{
                   prefix: (<Icon
                     icon={IconDefinitions.ellipsis_h}
@@ -145,11 +145,11 @@ const CardDemo: React.FC = () => {
                     content: 'Item 1'
                   },
                   {
-                    
+
                     content: 'Item 2'
                   },
                   {
-                    
+
                     content: 'Item 3'
                   }
                 ]}
@@ -188,15 +188,15 @@ const CardDemo: React.FC = () => {
                 }}
                 menuItems={[
                   {
-                    
+
                     content: 'Item 1'
                   },
                   {
-                    
+
                     content: 'Item 2'
                   },
                   {
-                    
+
                     content: 'Item 3'
                   }
                 ]}
@@ -248,15 +248,15 @@ const CardDemo: React.FC = () => {
                 }}
                 menuItems={[
                   {
-                    
+
                     content: 'Item 1'
                   },
                   {
-                    
+
                     content: 'Item 2'
                   },
                   {
-                    
+
                     content: 'Item 3'
                   }
                 ]}
@@ -283,7 +283,7 @@ const CardDemo: React.FC = () => {
                 size={SizeDefinitions.Small}
                 hoverBorderColor={ColorDefinitions.Primary}
               />,
-              <Dropdown   key="2"
+              <Dropdown key="2"
                 dropdownToggle={{
                   prefix: (<Icon
                     icon={IconDefinitions.ellipsis_h}
@@ -508,15 +508,15 @@ const CardDemo: React.FC = () => {
                 }}
                 menuItems={[
                   {
-                    
+
                     content: 'Item 1'
                   },
                   {
-                    
+
                     content: 'Item 2'
                   },
                   {
-                    
+
                     content: 'Item 3'
                   }
                 ]}
@@ -537,7 +537,8 @@ const CardDemo: React.FC = () => {
 
         </div>
         <div className="col-3">
-          <Card title="Card title" background={ColorDefinitions.Olive}
+          <Card title="Card title"
+            background={ColorDefinitions.Olive}
             headerStyledDivProps={{
               borderColor: ColorDefinitions.Olive
             }}
@@ -549,7 +550,8 @@ const CardDemo: React.FC = () => {
                 borderColor={ColorDefinitions.Olive}
                 hoverBorderColor={ColorDefinitions.Olive}
               />,
-              <Dropdown key="2" background={ColorDefinitions.Olive20}
+              <Dropdown key="2"
+                background={ColorDefinitions.Olive20}
                 dropdownToggle={{
                   prefix: (<Icon
                     icon={IconDefinitions.ellipsis_h}
@@ -588,7 +590,8 @@ const CardDemo: React.FC = () => {
         </div>
         <div className="col-3">
 
-          <Card title="Card title" background={ColorDefinitions.Mulberry}
+          <Card title="Card title"
+            background={ColorDefinitions.Mulberry}
             headerStyledDivProps={{
               borderColor: ColorDefinitions.Mulberry
             }}
@@ -599,6 +602,7 @@ const CardDemo: React.FC = () => {
                 size={SizeDefinitions.Small}
               />,
               <Dropdown key="2"
+              background={ColorDefinitions.Mulberry20}
                 dropdownToggle={{
                   prefix: (<Icon
                     icon={IconDefinitions.ellipsis_h}

@@ -7,11 +7,11 @@ import { Tooltip } from "../../components/UI/Tooltip";
 import useBreadcrumb from "../../lib/hooks/useBreadcrumb";
 import usePageTitle from "../../lib/hooks/usePageTitle";
 import useTableQueryClientFilter from "../../lib/hooks/useTableQueryClientFilter";
-import { ColorDefinitions, IconDefinitions } from "../../lib/utils/definitions";
 import { getOrdersForProduct, getProductsQuery, OrderGetModel, ProductGetModel } from "../../lib/testdata/models";
 import moment from "moment";
 import { Button } from "../../components/UI/Button";
 import { Toggle } from "../../components/Forms/Toggle";
+import { ColorDefinitions, IconDefinitions } from "../../lib/utils/definitions";
 
 
 
@@ -23,7 +23,7 @@ const ProductOrdersTable = ({ productId }: { productId: string }) => {
     const [visibleCount, setVisibleCount] = useState(itemsPerPage);
 
     const [tableOptions, setTableOptions] = useState<TableGetDataArguments<OrderGetModel> | null>(null);
-    const [data, total, status] = useTableQueryClientFilter({ queryFn: getOrdersForProduct(productId), filters: tableOptions });
+    const [dataRaw, data, total, status] = useTableQueryClientFilter({ queryFn: getOrdersForProduct(productId), filters: tableOptions });
 
     const visibleOrders = data.slice(0, visibleCount);
     const hasMore = visibleCount < data.length;
@@ -31,6 +31,7 @@ const ProductOrdersTable = ({ productId }: { productId: string }) => {
     return (
         <div>
             <Datagrid
+                dataRaw={dataRaw}
                 data={visibleOrders}
                 total={visibleOrders.length}
                 loading={status === "pending"}
@@ -44,8 +45,7 @@ const ProductOrdersTable = ({ productId }: { productId: string }) => {
                         prop: "datumBesteld",
                         title: "Datum besteld",
                         sortable: true,
-                        transformValue: (value: Date) =>
-                            moment(value).format("DD-MM-YYYY"),
+                        transformValue: (value) => value ? moment(value).locale("nl").format("DD-MM-YYYY") : ""
                     },
                 ]}
                 footerContent={
@@ -80,16 +80,19 @@ const DatagridAllDemo = (): ReactElement => {
 
 
     const [tableOptions, setTableOptions] = useState<TableGetDataArguments<ProductGetModel> | null>(null);
-    const [data, total, status] = useTableQueryClientFilter({ queryFn: getProductsQuery(), filters: tableOptions });
+    const [dataRaw, data, total, status] = useTableQueryClientFilter({ queryFn: getProductsQuery(), filters: tableOptions });
 
-     const [toggleChecked, setToggleChecked] = useState(true);
+    const [toggleChecked, setToggleChecked] = useState(true);
+
+     const wrapPrice = (item: ProductGetModel) => {
+            return <>€  {item.prijs.toFixed(2)}</>
+        }
 
     return (
         <div>
 
             <Datagrid
                 toolbarTitle={<Title size="md">Alle orders</Title>}
-                toolbarBorderBottom={true}
                 toolbarPrefixItems={[
                     <Button key="create" onClick={() => alert('Create')}>
                         <Icon icon={IconDefinitions.plus} />
@@ -108,9 +111,8 @@ const DatagridAllDemo = (): ReactElement => {
                 enableCompactView={true}
                 enableCheckboxes={true}
                 onRowsChecked={(checkedItems) => console.log('Checked rows:', checkedItems)}
-
-
                 data={data || []}
+                dataRaw={dataRaw}
                 total={total || 0}
                 loading={status === "pending"}
                 onFilterUpdate={setTableOptions}
@@ -122,36 +124,37 @@ const DatagridAllDemo = (): ReactElement => {
                 )}
                 properties={
                     [
-                                            { prop: "product", title: "Product", sortable: true, filter: { type: 'text' } },
-                                            {
-                                                prop: "categorie", title: "Categorie", sortable: true,
-                                                filter: {
-                                                    type: 'select',
-                                                    options: [
-                                                        { label: "Meubels", value: "Meubels" },
-                                                        { label: "Huishouden", value: "Huishouden" },
-                                                        { label: "Elektronica", value: "Elektronica" },
-                                                        { label: "Kleding", value: "Kleding" },
-                                                        { label: "Sport", value: "Sport" },
-                                                        { label: "Boeken", value: "Boeken" },
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                prop: "status", title: "Status", sortable: true,
-                                                filter: {
-                                                    type: 'select',
-                                                    options: [
-                                                        { label: "Pre-order", value: "Pre-order" },
-                                                        { label: "Op voorraad", value: "Op voorraad" },
-                                                        { label: "Uitverkocht", value: "Uitverkocht" },
-                                                    ]
-                                                }
-                                            },
-                                             { prop: "merk", title: "Merk", sortable: true, filter: { type: 'text' } },
-                                            { prop: "prijs", title: "Prijs (€)", sortable: false, wrapValue: item => { return <>€  {item.prijs.toFixed(2)}</> } },
-                                            { prop: "beschikbaarVanaf", title: "Beschikbaar vanaf", sortable: true, filter: { type: 'text' }, transformValue: (value) => value ? moment(value).locale("nl").format("DD-MM-YYYY") : "" },
-                                        ]
+                        { prop: "product", title: "Product", sortable: true, filter: { type: 'text' } },
+                        {
+                            prop: "categorie", title: "Categorie", sortable: true,
+                            filter: {
+                                type: 'select',
+                                options: [
+                                    { label: "Meubels", value: "Meubels" },
+                                    { label: "Huishouden", value: "Huishouden" },
+                                    { label: "Elektronica", value: "Elektronica" },
+                                    { label: "Kleding", value: "Kleding" },
+                                    { label: "Sport", value: "Sport" },
+                                    { label: "Boeken", value: "Boeken" },
+                                ]
+                            }
+                        },
+                        {
+                            prop: "status", title: "Status", sortable: true,
+                            filter: {
+                                type: 'select',
+                                options: [
+                                    { label: "Pre-order", value: "Pre-order" },
+                                    { label: "Op voorraad", value: "Op voorraad" },
+                                    { label: "Uitverkocht", value: "Uitverkocht" },
+                                ]
+                            }
+                        },
+                        { prop: "merk", title: "Merk", sortable: true, filter: { type: 'text' } },
+                        { prop: "prijs", title: "Prijs (€)", sortable: false, wrapValue: wrapPrice },
+                        { prop: "beschikbaarVanaf", title: "Beschikbaar vanaf", sortable: true, filter: { type: 'date' }, transformValue: (value) => value ? moment(value).locale("nl").format("DD-MM-YYYY") : "" },
+
+                    ]
                 }
                 rowActions={
                     [

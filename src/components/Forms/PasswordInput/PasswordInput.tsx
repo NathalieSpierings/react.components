@@ -98,7 +98,7 @@ const PasswordInput = forwardRef((props: PasswordInputProps, ref: React.Ref<any>
     const renderHint = (condition: boolean, text: string) => (
         <div className={`password-check__hints--${text.toLowerCase().replaceAll(/\s/g, '-')}`}>
             <svg className={condition ? 'shown' : ''}>
-                <use xlinkHref="#svg_icon_checkmark_duo" />
+                <use xlinkHref="#svg_icon_checkmark" />
             </svg>
             <span>{text}</span>
         </div>

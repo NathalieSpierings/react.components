@@ -1,28 +1,43 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
-import { IconDefinitions, SizeDefinitions } from "../../../lib/utils/definitions";
+import { ColorDefinitions, IconDefinitions, SizeDefinitions } from "../../../lib/utils/definitions";
+import { Checkbox } from "../../Forms/Checkbox";
 import { Dropdown } from "../../Forms/Dropdown";
 import Icon from "../../UI/Icons/Icon/Icon";
+import { Tooltip } from "../../UI/Tooltip";
 import { TableRowConfig } from "../Table/TableRowConfig";
-import { Checkbox } from "../../Forms/Checkbox";
 
 export interface DatagridFilterToolbarProps<TData> {
-    data: TData[]; // gefilterd
-    rawData: TData[]; // ongefilterd
+    data?: TData[]; // gefilterd
+    dataRaw?: TData[]; // ongefilterd
     properties?: TableRowConfig<TData>[];
     searchTerm: string;
     onSearchChange: (value: string) => void;
     columnFilters: Record<string, any>;
     setColumnFilters: React.Dispatch<React.SetStateAction<Record<string, any>>>;
+    searchPlaceholder?: string;
+    tooltipFiltersVerwijderen?: string;
+    filterButtonColor?: ColorDefinitions;
+    filterButtonArrow?: boolean;
+    filterGhostButton?: boolean;
+    borderBottom?: boolean;
+    borderColor?: ColorDefinitions;
 }
 
 function DatagridFilterToolbar<TData>({
     data,
-    rawData,
+    dataRaw,
     properties,
     searchTerm,
     onSearchChange,
     columnFilters,
     setColumnFilters,
+    searchPlaceholder = 'Filteren...',
+    tooltipFiltersVerwijderen ='Filters wissen',
+    filterButtonColor = ColorDefinitions.Surface,
+    filterButtonArrow = true,
+    filterGhostButton = true,
+    borderBottom = false,
+    borderColor = ColorDefinitions.Surface
 }: Readonly<DatagridFilterToolbarProps<TData>>) {
 
     const scrollRef = useRef<HTMLDivElement>(null);
@@ -77,9 +92,8 @@ function DatagridFilterToolbar<TData>({
         setColumnFilters(prev => ({ ...prev, [prop]: value }));
     };
 
-
     return (
-        <div className="filterbar">
+        <div className={`filterbar ${borderBottom ? 'border-' + borderColor : null}`}>
             <div className="filterbar__container">
                 <div
                     className="filterbar__left"
@@ -87,35 +101,52 @@ function DatagridFilterToolbar<TData>({
                     onScroll={updateScrollButtons}
                 >
 
+                    {/* Search */}
                     <div className="filterbar__item filterbar__item--keyword">
-                        <Icon icon={IconDefinitions.filter} size={SizeDefinitions.Small} />
-                        <input
-                            type="text"
-                            className="filterbar__input"
-                            placeholder="Filteren..."
-                            value={searchTerm}
-                            onChange={e => {
-                                onSearchChange(e.target.value);
-                            }}
-                        />
+                        <div className="filterbar__keyword__filter">
+                            <Icon icon={IconDefinitions.filter} />
+                            <input
+                                type="text"
+                                className="filterbar__input"
+                                placeholder={searchPlaceholder}
+                                value={searchTerm}
+                                onChange={e => { onSearchChange(e.target.value); }}
+                            />
+                        </div>
+
                     </div>
 
                     {selectFilters.map(col => {
 
                         const isMultiSelect = col.filter?.multiSelect ?? false;
                         const rawSelectedValue = columnFilters[col.prop];
-                        const selectedValue: string[] = isMultiSelect
-                            ? (Array.isArray(rawSelectedValue) ? rawSelectedValue.map(String) : [])
-                            : rawSelectedValue != null ? [String(rawSelectedValue)] : [];
+                        let selectedValue: string[] = [];
+
+                        if (isMultiSelect) {
+                            selectedValue = Array.isArray(rawSelectedValue) ? rawSelectedValue.map(String) : [];
+                        } else if (rawSelectedValue != null) {
+                            selectedValue = [String(rawSelectedValue)];
+                        }
 
                         let options: { label: string; value: string }[] = [];
+
                         if (col.filter?.options) {
                             options = col.filter.options;
-                        } else if (col.filter?.optionsSource) {
-                            const values = col.filter.optionsSource(rawData);
-                            const mapOption = col.filter.mapOption ?? ((v: any) => ({ label: String(v), value: String(v) }));
+                        }
+                        else if (col.filter?.optionsSource && dataRaw) {
+                            const values = col.filter.optionsSource(dataRaw);
+                            const mapOption = col.filter.mapOption ??
+                                ((v: any) => ({ label: String(v), value: String(v) }));
+
                             options = values.map(mapOption);
                         }
+
+                        const handleCheckboxChange = (optValue: string, isChecked: boolean) => {
+                            const newValue = isChecked
+                                ? selectedValue.filter(v => v !== optValue)
+                                : [...selectedValue, optValue];
+                            setFilterValue(col.prop, newValue);
+                        };
 
                         const dropdownItems: any[] = [
                             {
@@ -130,15 +161,11 @@ function DatagridFilterToolbar<TData>({
                                     return {
                                         content: (
                                             <Checkbox
+                                                css="pointer"
                                                 key={opt.value}
                                                 checked={isChecked}
                                                 label={opt.label}
-                                                onChange={() => {
-                                                    const newValue = isChecked
-                                                        ? selectedValue.filter(v => v !== opt.value)
-                                                        : [...selectedValue, opt.value];
-                                                    setFilterValue(col.prop, newValue);
-                                                }}
+                                                onChange={() => handleCheckboxChange(opt.value, isChecked)}
                                             />
                                         ),
                                         keepOpen: true,
@@ -177,7 +204,9 @@ function DatagridFilterToolbar<TData>({
                                                 </strong>
                                             </>
                                         ),
-                                        arrow: true,
+                                        arrow: filterButtonArrow,
+                                        ghost: filterGhostButton,
+                                        ghostColor: filterButtonColor
                                     }}
                                     menuItems={dropdownItems}
                                 />
@@ -208,12 +237,12 @@ function DatagridFilterToolbar<TData>({
                     )}
 
                     {hasFilters && (
-                        <button className="filterbar__control filterbar__control--dismiss"
-                            onClick={clearAll}
-                            title="Filters wissen"
-                        >
-                            <Icon icon={IconDefinitions.cross} />
-                        </button>
+                        <Tooltip content={tooltipFiltersVerwijderen}>
+                            <button className="filterbar__control filterbar__control--dismiss" onClick={clearAll}>
+                                <Icon icon={IconDefinitions.cross}  />                             
+                            </button>
+                        </Tooltip>
+
                     )}
                 </div>
             </div>

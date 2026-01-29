@@ -54,6 +54,7 @@ const Box = React.forwardRef<HTMLDivElement | HTMLSpanElement, BoxProps>(
             ringOffset,
             css,
             style = {},
+            className,
             children,
             renderAs = 'div',
             ...rest
@@ -65,6 +66,7 @@ const Box = React.forwardRef<HTMLDivElement | HTMLSpanElement, BoxProps>(
         const addClass = (prefix: string, value?: string) => (value ? `${prefix}-${value}` : '');
 
         const cls = [
+            className, 
             addClass('text-mute', colorMute),
             addClass('text', color),
             addClass('bg', background),

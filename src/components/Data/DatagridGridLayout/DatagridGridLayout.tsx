@@ -4,9 +4,9 @@ import { GridLayout, GridLayoutProps } from "../../UI/GridLayout";
 
 export interface DatagridGridLayoutProps<TData> extends
     GridLayoutProps,
-    DatagridProps<TData>{
-    }
-    
+    DatagridProps<TData> {
+}
+
 function DatagridGridLayout<TData extends { id: string | number }>({
     open,
     openDrawer,
@@ -15,6 +15,7 @@ function DatagridGridLayout<TData extends { id: string | number }>({
     drawerHeaderBorderColor,
     dividerBorderColor,
     data,
+    dataRaw,
     total,
     loading,
     onFilterUpdate,
@@ -63,6 +64,7 @@ function DatagridGridLayout<TData extends { id: string | number }>({
         >
             <Datagrid
                 data={data}
+                dataRaw={dataRaw}
                 total={total}
                 loading={loading}
                 onFilterUpdate={onFilterUpdate}

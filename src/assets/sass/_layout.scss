@@ -1,7 +1,6 @@
-@use "../abstracts/mixins";
+@use "./mixins";
 
-@layer sidebar, logo, menu, sidebarAccount, header, burger, breadcrumb;
-
+@layer sidebar, logo, menu, sidebarAccount, header, burger, breadcrumb, themeSwitch;
 
 
 @layer header {
@@ -634,30 +633,87 @@
     }
 }
 
-@layer logo{
-    
-.logo {
-	padding-top: var(--page-padding-sm);
-	padding-bottom: 0.5rem;
-	border-bottom: 1px solid var(--sb-main-border);
-	margin-bottom: var(--page-padding-sm);
+@layer logo {
 
-	.brand {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
+    .logo {
+        padding-top: var(--page-padding-sm);
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--sb-main-border);
+        margin-bottom: var(--page-padding-sm);
 
-		span {
-			font-size: var(--fs-xs);
-			font-weight: 500;
-			color: var(--color-mute);
-		}
+        .brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
 
-		img {
-			width: 2.5em;
-		}
-	}
+            span {
+                font-size: var(--fs-xs);
+                font-weight: 500;
+                color: var(--color-mute);
+            }
+
+            img {
+                width: 2.5em;
+            }
+        }
+    }
 }
-}
 
+@layer themeSwitch {
+
+    .theme-switcher {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        text-decoration: none;
+        word-break: break-all;
+        width: 100%;
+        margin-bottom: var(--page-padding-sm);
+        padding: calc(var(--page-padding-sm) / 2) 0;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+
+        svg {
+            color: inherit;
+            width: 1.8em;
+            height: 1.8em;
+            display: none;
+
+            &:first-child {
+                display: block;
+            }
+        }
+    }
+
+    .theme-light .theme-switcher {
+        svg {
+            display: none;
+
+            &:first-child {
+                display: block;
+            }
+        }
+    }
+
+    .theme-dimmed .theme-switcher {
+        svg {
+            display: none;
+
+            &:nth-child(2) {
+                display: block;
+            }
+        }
+    }
+
+    .theme-dark .theme-switcher {
+        svg {
+            display: none;
+
+            &:last-child {
+                display: block;
+            }
+        }
+    }
+}

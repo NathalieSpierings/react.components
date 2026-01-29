@@ -13,6 +13,7 @@ export const SidebarDemo = () => {
         { title: 'Datagrid Toolbar', url: '/demo/datagridtoolbar' },
         { title: 'Datagrid Filter', url: '/demo/datagridfilter' },
         { title: 'Datagrid Filter data bind', url: '/demo/datagridfilterdatabind' },
+        { title: 'Datagrid table info', url: '/demo/datagridtableinfo' },
     ];
 
     const formItems: SidebarMenuItem[] = [
@@ -21,6 +22,8 @@ export const SidebarDemo = () => {
         { title: 'DatePicker', url: '/demo/datepicker' },
         { title: 'Dropdown', url: '/demo/dropdown' },
         { title: 'Input', url: '/demo/input' },
+        { title: 'Password Input', url: '/demo/inputpassword' },
+        { title: 'Search Input', url: '/demo/inputsearch' },
         { title: 'Multiselect', url: '/demo/multiselect' },
         { title: 'FileSelect', url: '/demo/fileselect' },
         { title: 'Radiobutton', url: '/demo/radiobutton' },

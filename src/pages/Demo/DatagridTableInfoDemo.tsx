@@ -1,17 +1,20 @@
-import "moment/locale/nl";
+import moment from "moment";
 import React, { ReactElement, useState } from "react";
-import { Button, Title, Toggle, Tooltip } from "../../components";
 import Datagrid from "../../components/Data/Datagrid/Datagrid";
 import { TableGetDataArguments } from "../../components/Data/Table/TableData";
+import { Toggle } from "../../components/Forms/Toggle";
+import { Title } from "../../components/Typography/Title";
+import { Button } from "../../components/UI/Button";
 import { Icon } from "../../components/UI/Icons/Icon";
+import { Tooltip } from "../../components/UI/Tooltip";
 import useBreadcrumb from "../../lib/hooks/useBreadcrumb";
 import usePageTitle from "../../lib/hooks/usePageTitle";
 import useTableQueryClientFilter from "../../lib/hooks/useTableQueryClientFilter";
 import { getProductsQuery, ProductGetModel } from "../../lib/testdata/models";
 import { ColorDefinitions, IconDefinitions } from "../../lib/utils/definitions";
+import { ContentItem } from "../../components/UI/ContentItem";
 
-
-const DatagridFilterDatabindDemo = (): ReactElement => {
+const DatagridTableInfoDemo = (): ReactElement => {
 
     usePageTitle("Datagrid", []);
 
@@ -21,9 +24,20 @@ const DatagridFilterDatabindDemo = (): ReactElement => {
         { label: "Datagrid", href: "/demo/datagrid" },
     ]);
 
-    const [tableOptions, setTableOptions] = useState<TableGetDataArguments<ProductGetModel> | null>(null);
-    const [dataRaw, data, total, status] = useTableQueryClientFilter({ queryFn: getProductsQuery(), filters: tableOptions });
+
     const [toggleChecked, setToggleChecked] = useState(true);
+    const [tableInfoVisible, setTableInfoVisible] = useState(false);
+
+    const [tableOptions, setTableOptions] = useState<TableGetDataArguments<ProductGetModel> | null>(null);
+    const [dataRaw, data, total, status] = useTableQueryClientFilter({
+        queryFn: getProductsQuery(),
+        filters: tableOptions
+    });
+
+
+    const handleInfo = () => {
+        setTableInfoVisible(false);
+    }
 
     const wrapPrice = (item: ProductGetModel) => {
         return <>€  {item.prijs.toFixed(2)}</>
@@ -35,9 +49,9 @@ const DatagridFilterDatabindDemo = (): ReactElement => {
                 toolbarTitle={<Title size="md">Alle orders</Title>}
                 toolbarBorderBottom={true}
                 toolbarPrefixItems={[
-                    <Button key="create" onClick={() => alert('Create')}>
+                    <Button key="create" onClick={() => setTableInfoVisible(true)}>
                         <Icon icon={IconDefinitions.plus} />
-                        Toevoegen
+                        Show Info
                     </Button>
                 ]}
                 toolbarPostfixItems={[
@@ -49,6 +63,16 @@ const DatagridFilterDatabindDemo = (): ReactElement => {
                         labelPosition="left"
                     />
                 ]}
+                tableInfoVisible={tableInfoVisible}
+                tableInfoContent={
+                    <ContentItem item={{
+                        id: '1',
+                        content: <div>U heeft een of meerdere <b>filters</b> ingesteld.</div>,
+                        postfix: (<Button variant="ghost" color={ColorDefinitions.SurfaceLight} onClick={handleInfo}><Icon icon={IconDefinitions.funnel_cross} position="left" />Filter wissen</Button>)
+                    }} />
+                }
+                enableCheckboxes={true}
+                onRowsChecked={(checkedItems) => console.log('Checked rows:', checkedItems)}
                 enableCompactView={true}
                 data={data || []}
                 dataRaw={dataRaw}
@@ -59,49 +83,12 @@ const DatagridFilterDatabindDemo = (): ReactElement => {
                 rowDoubleClickAction={(row) => console.log('Double click:', row)}
                 properties={
                     [
-                        { prop: "product", title: "Product", sortable: true, filter: { type: 'text' } },
-                        {
-                            prop: "categorie", title: "Categorie", sortable: true,
-                            filter: {
-                                type: 'select',
-                                multiSelect: true,
-                                optionsSource: (data = []) =>
-                                    Array.from(new Set((data || []).map(x => String(x.categorie))))
-                            }
-                        },
-                        {
-                            prop: "status", title: "Status", sortable: true,
-                            filter: {
-                                type: 'select',
-                                options: [
-                                    { label: "Pre-order", value: "Pre-order" },
-                                    { label: "Op voorraad", value: "Op voorraad" },
-                                    { label: "Uitverkocht", value: "Uitverkocht" },
-                                ]
-                            }
-                        },
-                        { prop: "merk", title: "Merk", sortable: true, filter: { type: 'text' } },
-                        {
-                            prop: "prijs",
-                            title: "Prijs (€)",
-                            sortable: false,
-                            wrapValue: wrapPrice
-                        },
-                        {
-                            prop: "beschikbaarVanaf", title: "Beschikbaar vanaf", sortable: true, filter: { type: 'text' },
-                            transformValue: (value) => {
-                                if (!value) {
-                                    return '';
-                                }
-
-                                const date =
-                                    value instanceof Date
-                                        ? value
-                                        : new Date(value);
-
-                                return new Intl.DateTimeFormat('nl-NL').format(date);
-                            }
-                        }
+                        { prop: "product", title: "Product", sortable: true },
+                        { prop: "categorie", title: "Categorie", sortable: true },
+                        { prop: "status", title: "Status", sortable: true },
+                        { prop: "merk", title: "Merk", sortable: true },
+                        { prop: "prijs", title: "Prijs (€)", sortable: false, wrapValue: wrapPrice },
+                        { prop: "beschikbaarVanaf", title: "Beschikbaar vanaf", sortable: true, filter: { type: 'text' }, transformValue: (value) => value ? moment(value).locale("nl").format("DD-MM-YYYY") : "" },
                     ]
                 }
                 rowActions={
@@ -121,4 +108,4 @@ const DatagridFilterDatabindDemo = (): ReactElement => {
     )
 }
 
-export default DatagridFilterDatabindDemo;
+export default DatagridTableInfoDemo;

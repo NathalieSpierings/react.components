@@ -14,35 +14,30 @@ const FileSelectDemo: React.FC = () => {
     { label: "FileSelect", href: "/demo/fileselect" },
   ]);
 
-    const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-  
+  const [selectedFilesDefault, setSelectedFilesDefault] = useState<File[]>([]);
+  const [selectedFilesAllowMultiple, setSelectedFilesAllowMultiple] = useState<File[]>([]);
+  const [selectedFilesvalidateKlantNummer, setSelectedFilesvalidateKlantNummer] = useState<File[]>([]);
+  const [selectedFilesvalidateZip, setSelectedFilesvalidateZip] = useState<File[]>([]);
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+
 
   return (
     <section className="centered centered--wide">
-      
-      <h2>Default</h2>
-       <FileSelect
-        multiple={false}
-        selectedFiles={selectedFiles}
-        setSelectedFiles={setSelectedFiles}
-        accept={["asc", "txt", "doc", "pdf", "xls", "csv", "ppt", "eml", "xml", "zip", "img"]}                 
-      />
 
-        <h2>AllowMultiple</h2>
-        <FileSelect
-        multiple={true}
-        selectedFiles={selectedFiles}
-        setSelectedFiles={setSelectedFiles}
-        accept={["asc", "txt", "doc", "pdf", "xls", "csv", "ppt", "eml", "xml", "zip", "img"]}                    
-      />
+      <h2>Single file</h2>
+      <FileSelect multiple={false} selectedFiles={selectedFilesDefault} setSelectedFiles={setSelectedFilesDefault} />
 
-        <h2>Background</h2>
-        <FileSelect backgroundColor={ColorDefinitions.SurfaceDark} buttonColor={ColorDefinitions.Olive}
-        multiple={true}
-        selectedFiles={selectedFiles}
-        setSelectedFiles={setSelectedFiles}
-        accept={["asc", "txt", "doc", "pdf", "xls", "csv", "ppt", "eml", "xml", "zip", "img"]}                    
-      />
+      <h2 className="mt-5">Multiple files</h2>
+      <FileSelect multiple={true} selectedFiles={selectedFilesAllowMultiple} setSelectedFiles={setSelectedFilesAllowMultiple} />
+
+      <h2 className="mt-5">Validate KlantNummer</h2>
+      <FileSelect multiple={true} validateKlantNummer={true} selectedFiles={selectedFilesvalidateKlantNummer} setSelectedFiles={setSelectedFilesvalidateKlantNummer} />
+
+      <h2 className="mt-5">Validate Zip</h2>
+      <FileSelect multiple={true} validateZip={true} selectedFiles={selectedFilesvalidateZip} setSelectedFiles={setSelectedFilesvalidateZip} />
+
+      <h2 className="mt-5">Background</h2>
+      <FileSelect backgroundColor={ColorDefinitions.SurfaceDark} buttonColor={ColorDefinitions.Olive} multiple={true} selectedFiles={selectedFiles} setSelectedFiles={setSelectedFiles} />
     </section>
   );
 };

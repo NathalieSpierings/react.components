@@ -46,7 +46,7 @@ const TagsInput: React.FC<TagsInputProps> = ({
             <div className="tags-input">
                 <ul id="tags" className="tags shown">
                     {tagItems.map(tag => (
-                        <li key={tag.id} className={`tags__item bg-${color}`}>
+                        <li key={tag.id} className={`tags__item bg-${color} ${color ? 'bg-' + color : ''}`}>
                             <span className="tags__item__title">{tag.title}</span>
                             <DismissButton
                                 size={SizeDefinitions.ExtraSmall}

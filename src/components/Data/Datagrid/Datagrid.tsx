@@ -7,7 +7,7 @@ import Pagination, { PaginationData } from '../Pagination/Pagination';
 import Table from '../Table/Table';
 import { TableAction } from '../Table/TableAction';
 import { FilterUpdateFunc } from '../Table/TableData';
-import TableInfo from '../Table/TableInfo';
+import TableInfo from '../DatagridTableInfo/DatagridTableInfo';
 import { TableRowConfig } from '../Table/TableRowConfig';
 import { TableSortConfig } from '../Table/TableSort';
 import DatagridSearch from '../DatagridSearch/DatagridSearch';
@@ -17,8 +17,28 @@ import { DatagridFilterToolbar } from '../DatagridFilterToolbar';
 export type TableColumnFilters = Record<string, any>;
 
 export interface DatagridProps<TData> {
+    toolbarTitle?: string | ReactElement;
+    toolbarNavItems?: ReactNode;
+    toolbarPrefixItems?: ReactNode[];
+    toolbarPostfixItems?: ReactNode[];
+    toolbarSeparator?: boolean;
+    toolbarBorderBottom?: boolean;
+
+    filterbarSearchPlaceholder?: string;
+    filterbarTooltipFiltersVerwijderen?: string;
+    filterbarFilterButtonColor?: ColorDefinitions;
+    filterbarFilterButtonArrow?: boolean;
+    filterbarFilterGhostButton?: boolean;
+    filterbarBorderBottom?: boolean;
+    filterbarBorderColor?: ColorDefinitions;
+
+    tableInfoBorderBottom?: boolean;
+    tableInfoBorderColor?: ColorDefinitions;
+    tableInfoVisible?: boolean;
+    tableInfoContent?: ReactElement;
+
     data: TData[]; // filtered
-    rawData: TData[]; // raw
+    dataRaw?: TData[]; // raw
     total: number;
     loading: boolean;
     onFilterUpdate: FilterUpdateFunc<TData>;
@@ -30,17 +50,11 @@ export interface DatagridProps<TData> {
     rowActions?: TableAction<TData>[];
     rowSingleClickAction?: (item: TData) => void;
     rowDoubleClickAction?: (item: TData) => void;
-    tableInfoContent?: ReactElement;
+
     tooltipColor?: ColorDefinitions;
     enableCheckboxes?: boolean;
     onRowsChecked?: (checkedItems: TData[]) => void;
     collapsibleRowData?: (item: TData) => ReactElement;
-    toolbarTitle?: string | ReactElement;
-    toolbarNavItems?: ReactNode;
-    toolbarPrefixItems?: ReactNode[];
-    toolbarPostfixItems?: ReactNode[];
-    toolbarSeparator?: boolean;
-    toolbarBorderBottom?: boolean;
     tableCss?: string;
     footerContent?: ReactNode;
     loaderDuration?: number;
@@ -57,8 +71,23 @@ export interface DatagridProps<TData> {
 }
 
 function Datagrid<TData extends { id: string | number }>({
+    toolbarTitle,
+    toolbarNavItems,
+    toolbarPrefixItems = [],
+    toolbarPostfixItems = [],
+    toolbarSeparator,
+    toolbarBorderBottom = false ,
+
+    filterbarSearchPlaceholder,
+    filterbarTooltipFiltersVerwijderen,
+    filterbarFilterButtonColor,
+    filterbarFilterButtonArrow,
+    filterbarFilterGhostButton,
+    filterbarBorderBottom = false,
+    filterbarBorderColor = ColorDefinitions.Surface,
+
     data,
-    rawData,
+    dataRaw,
     total,
     loading,
     onFilterUpdate,
@@ -72,14 +101,12 @@ function Datagrid<TData extends { id: string | number }>({
     enableCheckboxes = false,
     rowSingleClickAction,
     rowDoubleClickAction,
+    tableInfoBorderBottom,
+    tableInfoBorderColor,
+    tableInfoVisible = false,
     tableInfoContent,
     collapsibleRowData,
-    toolbarTitle,
-    toolbarNavItems,
-    toolbarPrefixItems = [],
-    toolbarPostfixItems = [],
-    toolbarSeparator,
-    toolbarBorderBottom,
+    
     tableCss = '',
     footerContent,
     loaderDuration,
@@ -92,6 +119,7 @@ function Datagrid<TData extends { id: string | number }>({
     loaderCentered = true,
     loaderShowAnimation,
     loaderAnimationColor,
+   
 }: Readonly<DatagridProps<TData>>): ReactElement {
 
     const [showCompact, setShowCompact] = useState(false);
@@ -159,6 +187,7 @@ function Datagrid<TData extends { id: string | number }>({
     }
 
     const hasFilterableColumns = properties?.some(p => p.filter) ?? false;
+    const isTableInfoVisible = checkedItems.length > 0 || (tableInfoVisible && !!tableInfoContent);
 
     return (
         <div className="datagrid">
@@ -177,25 +206,44 @@ function Datagrid<TData extends { id: string | number }>({
             {hasFilterableColumns && (
                 <DatagridFilterToolbar
                     data={data}
-                    rawData={rawData} 
+                    dataRaw={dataRaw}
                     properties={properties}
                     searchTerm={searchTerm}
                     onSearchChange={updateQ}
                     columnFilters={columnFilters}
                     setColumnFilters={setColumnFilters}
+                    searchPlaceholder={filterbarSearchPlaceholder}
+                    tooltipFiltersVerwijderen={filterbarTooltipFiltersVerwijderen}
+                    filterButtonColor={filterbarFilterButtonColor}
+                    filterButtonArrow={filterbarFilterButtonArrow}
+                    filterGhostButton={filterbarFilterGhostButton}
+                    borderBottom={filterbarBorderBottom || isTableInfoVisible}
+                    borderColor={filterbarBorderColor}
                 />
             )}
 
+            {isTableInfoVisible && (
+                <TableInfo
+                    borderBottom={tableInfoBorderBottom}
+                    borderColor={tableInfoBorderColor}
+                >
+                    {checkedItems.length > 0 && (
+                        <div>
+                            U heeft{' '}
+                            <strong className="text-primary-30">
+                                {checkedItems.length}
+                            </strong>{' '}
+                            {checkedItems.length === 1 ? 'rij' : 'rijen'} geselecteerd
+                        </div>
+                    )}
 
-            {(tableInfoContent || checkedItems.length > 0) && (
-                <TableInfo>
-                    {checkedItems.length > 0 ? (
-                        <div>U heeft <strong className="text-primary-30">{checkedItems.length}</strong> {checkedItems.length === 1 ? 'rij' : 'rijen'} geselecteerd</div>
-                    ) : (
-                        tableInfoContent
+                    {tableInfoVisible && tableInfoContent && (
+                        <div>{tableInfoContent}</div>
                     )}
                 </TableInfo>
             )}
+
+
 
             {showSearch && <DatagridSearch
                 enableSearch={showSearch}

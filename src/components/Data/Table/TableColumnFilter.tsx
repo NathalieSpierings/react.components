@@ -1,4 +1,4 @@
-export type TableColumnFilterType = 'text' | 'select';
+export type TableColumnFilterType = 'text' | 'select' | 'date';
 
 export interface TableColumnFilterConfig<TData = any> {
     type: TableColumnFilterType;
