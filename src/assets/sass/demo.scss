@@ -1,12 +1,4 @@
-import { Meta  } from '@storybook/addon-docs/blocks';
-import { ColorSwatches } from './ColorSwatches';
-
-<Meta title="Foundation/Colors" />
-
-
-<style>
-  {`
-  	.box {
+	.box {
   border: 1px solid transparent;
 }
 
@@ -156,47 +148,3 @@ import { ColorSwatches } from './ColorSwatches';
   width: 1.5em;
   height: 1.5em;
 }
-  `}
-</style>
-
-# Colors
-
-<section>
-
-
-<h3>Borders</h3>
-<div className="grid mb-3">
-	<div className="bg-surface-light p-2">
-		<div className="box border-surface-light p-2">I have a border</div>
-	</div>
-	<div className="bg-surface p-2">			
-		<div className="box border-surface p-2">I have a border</div>
-	</div>
-	<div className="bg-surface-dark p-2">
-		<div className="box border-surface p-2">I have a border</div>
-	</div>
-</div>
-
-
-	
-# Theme Colors
-
-<ColorSwatches theme={true} />
-
-# Primary Colors
-<ColorSwatches primary={true} />
-
-
-# Alert Colors
-<ColorSwatches alert={true} />
-
-
-# Basic Colors
-
-<ColorSwatches basic={true} />
-
-
-# Colors
-<ColorSwatches />
-
-</section>

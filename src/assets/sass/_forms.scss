@@ -232,6 +232,8 @@
 			justify-content: flex-start;
 			align-items: center;
 			margin-inline-end: var(--page-padding);
+			vertical-align: top;
+			column-gap: 1.5rem;
 
 			&:last-child {
 				margin-inline-end: 0;
@@ -373,7 +375,7 @@
 			position: absolute;
 			left: 1.5rem;
 			top: 15px;
-			color: var(--input-foreground);
+			color: var(--input-label-foreground);
 			font-size: var(--fs-base);
 			transition: all 0.1s ease-in-out;
 			pointer-events: none;
@@ -436,6 +438,11 @@
 				border-radius: 0;
 				background: transparent;
 
+
+				&:focus {
+					border-color: var(--color-primary);
+				}
+
 				&:focus-visible {
 					outline: none;
 					border-radius: 0;
@@ -453,6 +460,13 @@
 				border: 0;
 				word-break: break-all;
 				background: none;
+
+				&__textarea {
+					max-height: 7.5em;
+					line-height: var(--input-line-height);
+					overflow-y: auto;
+					white-space: pre-line;
+				}
 			}
 
 			label {
@@ -1423,6 +1437,9 @@
 
 @layer dropdown {
 	.dropdown {
+		--color-hover: var(--shadow-light);
+		--color-selected: var(--shadow-base);
+
 		position: relative;
 		display: inline-flex;
 
@@ -1521,15 +1538,18 @@
 				cursor: pointer;
 				white-space: nowrap;
 				color: inherit;
+				color: var(--color-foreground) !important;
 				transition: background 0.15s ease;
 
 				&:hover {
-					background: rgb(0 0 0 / 6%) !important;
+					background: var(--color-hover) !important;
 					border-radius: var(--radius);
+					color: var(--color-foreground) !important;
 				}
 
 				&.selected {
-					background: rgb(0 0 0 / 8%);
+					color: var(--color-foreground) !important;
+					background: var(--color-selected) !important;
 				}
 
 				svg {

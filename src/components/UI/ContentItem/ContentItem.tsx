@@ -12,6 +12,8 @@ export interface ContentItemType {
     prefixPosition?: 'start' | 'end';
     postfixPosition?: 'start' | 'end';
     metaActions?: ReactElement;
+    separatorAfterPrefix?: boolean;
+    separatorAfterMeta?: boolean;
 }
 
 export interface ContentItemProps {
@@ -31,9 +33,9 @@ const ContentItem: React.FC<ContentItemProps> = ({ item, gap }) => {
             );
         }
 
-         if (item.metaActions) {
+        if (item.metaActions) {
             return (
-                <div className={`meta${item.contentPositon ? ' meta--' + item.contentPositon : ''}`}>                  
+                <div className={`meta${item.contentPositon ? ' meta--' + item.contentPositon : ''}`}>
                     {item.metaActions && <div className="meta__actions">{item.metaActions}</div>}
                 </div>
             );
@@ -59,8 +61,16 @@ const ContentItem: React.FC<ContentItemProps> = ({ item, gap }) => {
                 </div>
             ) : null}
 
+            {item.separatorAfterPrefix && (
+                <div className="separator"></div>
+            )}
+
             {metaContent}
 
+             {item.separatorAfterMeta && (
+                <div className="separator"></div>
+            )}
+         
             {item.postfix ? (
                 <div className={`actions ${item.postfixPosition ? 'actions--' + item.postfixPosition : ''}`}>
                     {item.postfix}

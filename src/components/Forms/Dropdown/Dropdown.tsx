@@ -40,6 +40,7 @@ interface DropdownProps extends BoxProps {
     minWidth?: string;
     dropdownHeader?: DropdownHeader;
     menuItems?: DropdownItem[];
+    accentColor?: ColorDefinitions;
     children?: ReactNode;
 }
 
@@ -50,6 +51,7 @@ export const Dropdown: FC<DropdownProps> = ({
     dropdownHeader,
     menuItems,
     background,
+    accentColor,
     children,
     ...boxProps
 }) => {
@@ -155,7 +157,7 @@ export const Dropdown: FC<DropdownProps> = ({
         .join(" ");
 
     return (
-        <div className="dropdown">
+        <div className={`dropdown ${accentColor ? 'dropdown-' + accentColor : ''}`}>
             <button
                 ref={dropdownToggleRef}
                 className={toggleCss}

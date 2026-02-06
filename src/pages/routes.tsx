@@ -2,19 +2,22 @@ import React from "react";
 import { matchPath } from "react-router";
 import { proxyPrefix } from "../config";
 
-import DatagridCheckboxDemo from "./Demo/DatagridCheckboxDemo";
-import DatagridCollapsibleDemo from "./Demo/DatagridCollapsibleDemo";
-import DatagridDemo from "./Demo/DatagridDemo";
-import DatagridGridLayoutDemo from "./Demo/DatagridGridLayoutDemo";
+import DatagridCheckboxDemo from "./Demo/Data/DatagridCheckboxDemo";
+import DatagridCollapsibleDemo from "./Demo/Data/DatagridCollapsibleDemo";
+import DatagridDemo from "./Demo/Data/DatagridDemo";
+import DatagridGridLayoutDemo from "./Demo/Data/DatagridGridLayoutDemo";
+import DatagridToolbarDemo from "./Demo/Data/DatagridToolbarDemo";
+import DatagridFilterDemo from "./Demo/Data/DatagridFilterDemo";
+import DatagridAllDemo from "./Demo/Data/DatagridAllDemo";
+import DatagridNestedTableDemo from "./Demo/Data/DatagridNestedTableDemo";
+import DatagridFilterDatabindDemo from "./Demo/Data/DatagridFilterDatabindDemo";
+import DatagridTableInfoDemo from "./Demo/Data/DatagridTableInfoDemo";
+
 import DemoPage from "./DemoPage";
 import HomePage from "./HomePage";
-import DatagridToolbarDemo from "./Demo/DatagridToolbarDemo";
-import DatagridFilterDemo from "./Demo/DatagridFilterDemo";
 import DropdownDemo from "./Demo/Forms/DropdownDemo";
-import DatagridNestedTableDemo from "./Demo/DatagridNestedTableDemo";
 import ButtonDemo from "./Demo/ButtonDemo";
 import IconDemo from "./Demo/IconDemo";
-import DatagridAllDemo from "./Demo/DatagridAllDemo";
 import AccordionDemo from "./Demo/AccordionDemo";
 import AlertDemo from "./Demo/AlertDemo";
 import CheckboxAnimatedDemo from "./Demo/CheckboxAnimatedDemo";
@@ -55,8 +58,14 @@ import ToastrDemo from "./Demo/ToasterDemo";
 import TooltipDemo from "./Demo/TooltipDemo";
 import WidgetDemo from "./Demo/WidgetDemo";
 import WizardDemo from "./Demo/WizardDemo/WizrdDemo";
-import DatagridFilterDatabindDemo from "./Demo/DatagridFilterDatabindDemo";
-import DatagridTableInfoDemo from "./Demo/DatagridTableInfoDemo";
+import ColumnLayoutDemo from "./Demo/ColumnLayout/ColumnLayoutDemo";
+import ColumnLayoutRightDemo from "./Demo/ColumnLayout/ColumnLayoutRightDemo";
+import ColumnLayoutHeaderDemo from "./Demo/ColumnLayout/ColumnLayoutHeaderDemo";
+import ColumnLayoutToggableDemo from "./Demo/ColumnLayout/ColumnLayoutToggableDemo";
+import ColumnLayoutLeftDemo from "./Demo/ColumnLayout/ColumnLayoutLeftDemo";
+import ColumnLayoutPrimaryViewMainDemo from "./Demo/ColumnLayout/ColumnLayoutPrimaryViewMainDemo";
+import ColumnLayoutPrimaryViewAsideDemo from "./Demo/ColumnLayout/ColumnLayoutPrimaryViewAsideDemo";
+import ColumnLayoutTabsDemo from "./Demo/ColumnLayout/ColumnLayoutTabsDemo";
 
 export const getInitialMenuItem = (pathname: string) => {
 	if (matchPath(proxyPrefix + "/", pathname)) {
@@ -297,7 +306,36 @@ export const routes = [
 	{
 		path: "/demo/wizard",
 		element: <WizardDemo />
+	},
+	{
+		path: "/demo/columnlayout",
+		element: <ColumnLayoutDemo />
+	},
+	{
+		path: "/demo/columnlayout-header",
+		element: <ColumnLayoutHeaderDemo />
+	},
+	{
+		path: "/demo/columnlayout-primary-aside",
+		element: <ColumnLayoutPrimaryViewAsideDemo />
+	},
+	{
+		path: "/demo/columnlayout-primary-main",
+		element: <ColumnLayoutPrimaryViewMainDemo />
+	},
+	{
+		path: "/demo/columnlayout-aside-left",
+		element: <ColumnLayoutLeftDemo />
+	},
+	{
+		path: "/demo/columnlayout-aside-right",
+		element: <ColumnLayoutRightDemo />
+	},
+	{
+		path: "/demo/columnlayout-tabs",
+		element: <ColumnLayoutTabsDemo />
 	}
+	
 ];
 
 // export const errorRoutes = [

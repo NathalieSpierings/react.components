@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ColumnLayout, ColumnLayoutAside, ColumnLayoutHeader, ColumnLayoutMain, useLayoutContext } from "../../../components";
+import { ColumnLayout, useLayoutContext } from "../../../components";
 
 const ColumnLayoutDemo = () => {
 
@@ -18,16 +18,11 @@ const ColumnLayoutDemo = () => {
 
 
   return (
-   <ColumnLayout>
-      <ColumnLayoutAside>
-        <ColumnLayoutHeader>Aside Header</ColumnLayoutHeader>
-        
-        <p>Aside content goes here...</p>
-      </ColumnLayoutAside>
-      <ColumnLayoutMain>
-        <ColumnLayoutHeader>Main Header</ColumnLayoutHeader>
-        <div>Main content goes here...</div>
-      </ColumnLayoutMain>
+    <ColumnLayout>      
+      <ColumnLayout.Main>
+        <ColumnLayout.Header>Main Header content</ColumnLayout.Header>
+        <div>Main content</div>
+      </ColumnLayout.Main>
     </ColumnLayout>
   )
 };

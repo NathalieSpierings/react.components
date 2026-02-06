@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { Input, StaticInput } from "../../../components/Forms/Input/Input";
 import PasswordInput from "../../../components/Forms/PasswordInput/PasswordInput";
 import useBreadcrumb from "../../../lib/hooks/useBreadcrumb";
 import usePageTitle from "../../../lib/hooks/usePageTitle";
-import { ColorDefinitions, IconDefinitions } from "../../../lib/utils/definitions";
 
 const InputPasswordDemo: React.FC = () => {
 
@@ -30,7 +28,11 @@ const InputPasswordDemo: React.FC = () => {
 
       <h3>Default</h3>
       <div className="grid mb-3">
-        <PasswordInput name="password" label="Password" onInput={onChangePassword} value={password} />
+        <PasswordInput 
+        name="password" 
+        label="Password" 
+        onChange={onChangePassword}
+        value={password} />
       </div>
 
       <h3>Password with check</h3>

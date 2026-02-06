@@ -8,6 +8,7 @@ export interface GridLayoutProps extends PropsWithChildren {
     drawerContent?: any;
     drawerTitle?: string;
     drawerHeaderBorderColor?: ColorDefinitions;
+    drawerPosition?: 'left' | 'right';
     dividerBorderColor?: ColorDefinitions;
 }
 
@@ -17,26 +18,42 @@ const GridLayout: FC<GridLayoutProps> = ({
     drawerContent,
     drawerTitle,
     drawerHeaderBorderColor,
+    drawerPosition = 'left',
     dividerBorderColor,
     children,
 }) => {
-    return (
-        <div className={`gridlayout ${drawerTitle || drawerContent ? 'has-drawer ' : ''} ${open ? 'shown' : ''}`}>
-            {openDrawer ? (
-                <GridLayoutDrawer
-                    title={drawerTitle}
-                    headerBorderColor={drawerHeaderBorderColor}
-                    dividerBorderColor={dividerBorderColor}
-                    open={open}
-                    openDrawer={openDrawer}
-                >
-                    {drawerContent}
-                </GridLayoutDrawer>
-            ) : null}
 
-            <div className={`gridlayout__content`}>
-                <div className={`gridlayout__content__container`}>{children}</div>
+    const hasDrawer = Boolean(drawerTitle || drawerContent);
+    const shouldRenderDrawer = Boolean(openDrawer && hasDrawer);
+
+    const renderDrawer = () => {
+        if (!shouldRenderDrawer) return null;
+
+        return (
+            <GridLayoutDrawer
+                title={drawerTitle}
+                headerBorderColor={drawerHeaderBorderColor}
+                dividerBorderColor={dividerBorderColor}
+                open={open}
+                openDrawer={openDrawer || (() => {})}
+            >
+                {drawerContent}
+            </GridLayoutDrawer>
+        );
+    };
+
+
+    return (
+
+        <div className={`gridlayout ${hasDrawer ? 'has-drawer' : ''} ${open ? 'shown' : ''}`}
+        >
+            {drawerPosition === 'left' && renderDrawer()}
+
+            <div className="gridlayout__content">
+                <div className="gridlayout__content__container">{children}</div>
             </div>
+
+            {drawerPosition === 'right' && renderDrawer()}
         </div>
     );
 };

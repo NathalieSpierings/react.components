@@ -60,6 +60,12 @@
         cursor: pointer;
         margin-right: var(--page-padding);
 
+        &--sm {
+            .burger__line {
+                width: 22px;
+            }
+        }
+
         &__line {
             width: 33px;
             height: 2px;

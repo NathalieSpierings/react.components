@@ -15,7 +15,7 @@ function Fieldset({
     fieldsetCss = '',
     legendCss = '',
     children,
-    ...styledDivProps
+    ...boxProps
 }: Readonly<FieldsetProps>): ReactElement {
 
     const cls = [
@@ -26,7 +26,7 @@ function Fieldset({
         .join(' ');
 
     return (
-        <Box css={cls} {...styledDivProps} renderAs="fieldset">
+        <Box css={cls} {...boxProps} renderAs="fieldset">
             {legend ? (
                 <legend className={`legend ${legendCss} ${legendBorderColor ? "border-" + legendBorderColor : ''}`}>
                     {legend}

@@ -1,16 +1,16 @@
 import React, { Fragment, useState } from "react";
 import Dropdown from "../../components/Forms/Dropdown/Dropdown";
-import { Input } from "../../components/Forms/Input/Input";
 import { ColorDefinitions, IconDefinitions, SizeDefinitions } from "../../lib/utils/definitions";
 
-import useBreadcrumb from "../../lib/hooks/useBreadcrumb";
-import usePageTitle from "../../lib/hooks/usePageTitle";
 import { useScrollContext } from "../../components/Providers/ScrollContext";
-import { Card } from "../../components/UI/Card";
-import { Icon } from "../../components/UI/Icons/Icon";
 import { Badge } from "../../components/UI/Badge";
 import { Button } from "../../components/UI/Button";
+import { Card } from "../../components/UI/Card";
+import { Icon } from "../../components/UI/Icons/Icon";
 import { Tabs } from "../../components/UI/Tabs";
+import useBreadcrumb from "../../lib/hooks/useBreadcrumb";
+import usePageTitle from "../../lib/hooks/usePageTitle";
+import { Title } from "../../components/Typography/Title";
 
 // Create the content components
 const ContentOne = () =>
@@ -85,147 +85,14 @@ const CardDemo: React.FC = () => {
 
   return (
     <section className="centered centered--wide">
-      <h1>Default</h1>
-      <div className="row">
-        <div className="col-6">
-          <Card cardCss="mb-3 test" title="SurfaceDark background (default)">
-            A gentle breeze carried the scent of pine and wildflowers, mingling with the earthy aroma of damp soil.
-            <div className="row">
-              <div className="col-1"><Icon icon={IconDefinitions.search} rounded={SizeDefinitions.Full} background={ColorDefinitions.Theme700} color={ColorDefinitions.Foreground} /></div>
-              <div className="col-1"><Icon icon={IconDefinitions.bulb} rounded={SizeDefinitions.Full} background={ColorDefinitions.Surface} color={ColorDefinitions.Foreground} /></div>
-              <div className="col-1"><Badge background={ColorDefinitions.Theme900} color={ColorDefinitions.Offwhite}>Badge</Badge></div>
-              <div className="col-6"><Input label="Firstname" /></div>
-            </div>
-          </Card>
-        </div>
-        <div className="col-6">
-          <Card title="SurfaceLight background" background={ColorDefinitions.SurfaceLight}>
-            A gentle breeze carried the scent of pine and wildflowers, mingling with the earthy aroma of damp soil.
-            <div className="row">
-              <div className="col-1"><Icon icon={IconDefinitions.search} rounded={SizeDefinitions.Full} background={ColorDefinitions.Theme300} color={ColorDefinitions.Foreground} /></div>
-              <div className="col-1"><Icon icon={IconDefinitions.bulb} rounded={SizeDefinitions.Full} background={ColorDefinitions.Surface} color={ColorDefinitions.Foreground} /></div>
-              <div className="col-1"><Badge background={ColorDefinitions.Theme900} color={ColorDefinitions.Offwhite}>Badge</Badge></div>
-              <div className="col-6"><Input label="Firstname" /></div>
-            </div>
-          </Card>
-        </div>
-      </div>
 
-      <h1>Rounded</h1>
-      <div className="row">
-
-        <div className="col-6">
-
-          <Card title="Card title"
-            rounded={SizeDefinitions.ExtraLarge}
-            background={ColorDefinitions.SurfaceDark}
-            headerStyledDivProps={{
-              borderColor: ColorDefinitions.Surface
-            }}
-            headerActions={[
-              <Icon key="1" icon={IconDefinitions.search}
-                variant="circle"
-                dimmed={true}
-                borderColor={ColorDefinitions.SurfaceDark}
-                size={SizeDefinitions.Small}
-                hoverBorderColor={ColorDefinitions.Primary}
-              />,
-              <Dropdown key="2"
-                dropdownToggle={{
-                  prefix: (<Icon
-                    icon={IconDefinitions.ellipsis_h}
-                    variant="circle"
-                    dimmed={true}
-                    borderColor={ColorDefinitions.SurfaceDark}
-                    size={SizeDefinitions.Small}
-                    hoverBorderColor={ColorDefinitions.Primary} />)
-                }}
-                menuItems={[
-                  {
-                    content: 'Item 1'
-                  },
-                  {
-
-                    content: 'Item 2'
-                  },
-                  {
-
-                    content: 'Item 3'
-                  }
-                ]}
-              />
-            ]}
-          >
-            A gentle breeze carried the scent of pine and wildflowers, mingling with the earthy aroma of damp soil.
-          </Card>
-
-        </div>
-        <div className="col-6">
-
-          <Card title="Card title"
-            rounded={SizeDefinitions.ExtraLarge3}
-            background={ColorDefinitions.SurfaceDark}
-            headerStyledDivProps={{
-              borderColor: ColorDefinitions.Surface
-            }}
-            headerActions={[
-              <Icon key="1" icon={IconDefinitions.search}
-                variant="circle"
-                dimmed={true}
-                borderColor={ColorDefinitions.SurfaceDark}
-                size={SizeDefinitions.Small}
-                hoverBorderColor={ColorDefinitions.Primary}
-              />,
-              <Dropdown key="2"
-                dropdownToggle={{
-                  prefix: (<Icon
-                    icon={IconDefinitions.ellipsis_h}
-                    variant="circle"
-                    dimmed={true}
-                    borderColor={ColorDefinitions.SurfaceDark}
-                    size={SizeDefinitions.Small}
-                    hoverBorderColor={ColorDefinitions.Primary} />)
-                }}
-                menuItems={[
-                  {
-
-                    content: 'Item 1'
-                  },
-                  {
-
-                    content: 'Item 2'
-                  },
-                  {
-
-                    content: 'Item 3'
-                  }
-                ]}
-              />
-
-            ]}
-            footerStyledDivProps={{
-              borderColor: ColorDefinitions.Surface
-            }}
-            footerLeftContent={
-              <span>Action</span>
-            }
-            footerRightContent={
-              <span>Action</span>
-            }>
-            A gentle breeze carried the scent of pine and wildflowers, mingling with the earthy aroma of damp soil.
-          </Card>
-
-        </div>
-      </div>
-
-      <h1>Bordered</h1>
-      <div className="row">
-
-        <div className="col-6">
-
-          <Card title="Card title"
+      <div className="grid">
+        <div>
+          <h3>Card border</h3>
+          <Card
+            title={<Title size="md">Card title</Title>}
             borderColor={ColorDefinitions.Surface}
-            headerStyledDivProps={{
+            headerBoxProps={{
               borderColor: ColorDefinitions.Surface
             }}
             headerActions={[
@@ -266,13 +133,13 @@ const CardDemo: React.FC = () => {
           >
             A gentle breeze carried the scent of pine and wildflowers, mingling with the earthy aroma of damp soil.
           </Card>
-
         </div>
-        <div className="col-6">
-
-          <Card title="Card title"
+        <div>
+          <h3>Card border and rounded</h3>
+          <Card rounded={SizeDefinitions.ExtraLarge}
+            title={<Title size="md">Card title</Title>}
             borderColor={ColorDefinitions.Surface}
-            headerStyledDivProps={{
+            headerBoxProps={{
               borderColor: ColorDefinitions.Surface
             }}
             headerActions={[
@@ -307,7 +174,7 @@ const CardDemo: React.FC = () => {
               />
 
             ]}
-            footerStyledDivProps={{
+            footerBoxProps={{
               borderColor: ColorDefinitions.Surface
             }}
             footerLeftContent={
@@ -318,20 +185,17 @@ const CardDemo: React.FC = () => {
             }>
             A gentle breeze carried the scent of pine and wildflowers, mingling with the earthy aroma of damp soil.
           </Card>
-
         </div>
       </div>
 
-      <h1>Shadow</h1>
-      <div className="row">
-
-        <div className="col-6">
-
-          <Card title="Card title"
+      <div className="grid">
+        <div>
+          <h3>Card shadow</h3>
+          <Card
             shadowColor={ColorDefinitions.SurfaceDark}
-            rounded={SizeDefinitions.ExtraLarge}
             background={ColorDefinitions.SurfaceDark}
-            headerStyledDivProps={{
+            title={<Title size="md">Card title</Title>}
+            headerBoxProps={{
               borderColor: ColorDefinitions.Surface
             }}
             headerActions={[
@@ -354,12 +218,15 @@ const CardDemo: React.FC = () => {
                 }}
                 menuItems={[
                   {
+
                     content: 'Item 1'
                   },
                   {
+
                     content: 'Item 2'
                   },
                   {
+
                     content: 'Item 3'
                   }
                 ]}
@@ -369,15 +236,14 @@ const CardDemo: React.FC = () => {
           >
             A gentle breeze carried the scent of pine and wildflowers, mingling with the earthy aroma of damp soil.
           </Card>
-
         </div>
-        <div className="col-6">
-
-          <Card title="Card title"
+        <div>
+          <h3>Card shadow on hover</h3>
+          <Card
             hoverShadowColor={ColorDefinitions.SurfaceDark}
-            rounded={SizeDefinitions.ExtraLarge3}
             background={ColorDefinitions.SurfaceDark}
-            headerStyledDivProps={{
+            title={<Title size="md">Card title</Title>}
+            headerBoxProps={{
               borderColor: ColorDefinitions.Surface
             }}
             headerActions={[
@@ -412,7 +278,7 @@ const CardDemo: React.FC = () => {
               />
 
             ]}
-            footerStyledDivProps={{
+            footerBoxProps={{
               borderColor: ColorDefinitions.Surface
             }}
             footerLeftContent={
@@ -423,15 +289,18 @@ const CardDemo: React.FC = () => {
             }>
             A gentle breeze carried the scent of pine and wildflowers, mingling with the earthy aroma of damp soil.
           </Card>
-
         </div>
       </div>
 
-      <h1>Tabs</h1>
-      <div className="row">
-        <div className="col-6">
 
-          <Card title="Card title"
+      <Title size="md">Files</Title>
+      <h3>Tabs</h3>
+      <div className="grid">
+        <div>
+
+          <Card
+            background={ColorDefinitions.SurfaceDark}
+           title={<Title size="md">Card title</Title>}
             headerActions={[
               <Icon key="1" icon={IconDefinitions.search}
                 variant="circle"
@@ -468,24 +337,53 @@ const CardDemo: React.FC = () => {
           </Card>
 
         </div>
-
-        <div className="col-6">
-          <h1>Image</h1>
-          <Card title="Card title"
-            imageUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Adriana_Lima_au_festival_de_Cannes%2C_2015.jpg/440px-Adriana_Lima_au_festival_de_Cannes%2C_2015.jpg"
+        <div>
+          <h3>Title content</h3>
+          <Card
             background={ColorDefinitions.SurfaceDark}
+            title={
+           
+              <div className="flex flex-center">
+                <Title size="md">Card title</Title>
+              <Badge badgeCss="ml-1"
+                size={SizeDefinitions.Tiny}
+                background={ColorDefinitions.Red}>
+                HOT
+              </Badge>
+              </div>
+          
+            }
+            headerActions={[
+              <Icon key="1" icon={IconDefinitions.search} variant="circle" size={SizeDefinitions.Small} />,
+              <Icon key="2" icon={IconDefinitions.refresh} variant="circle" size={SizeDefinitions.Small} />,
+              <Icon key="3" icon={IconDefinitions.ellipsis_h} variant="circle" size={SizeDefinitions.Small} />
+            ]}
+            headerBoxProps={{
+              borderColor: ColorDefinitions.Theme100
+            }}
+            footerLeftContent={
+              <p>Action</p>
+            }
+            footerRightContent={
+              <p>Action</p>
+            }
+            footerBoxProps={{
+              borderColor: ColorDefinitions.Theme100
+            }}
           >
-            A gentle breeze carried the scent of pine and wildflowers, mingling with the earthy aroma of damp soil.
+            <p>The forest was alive with the soft murmur of nature.</p>
+            <p className="text-mute">Muted text.</p>
           </Card>
-
         </div>
       </div>
 
-      <h1>Colored</h1>
-      <div className="row">
-        <div className="col-3">
-          <Card title="Card title" background={ColorDefinitions.Purple}
-            headerStyledDivProps={{
+      <h3>Colored</h3>
+      <div className="grid">
+        <div>
+          <Card 
+          title={<Title size="md">Card title</Title>}
+          background={ColorDefinitions.Purple}
+            headerBoxProps={{
               borderColor: ColorDefinitions.Purple
             }}
             headerActions={[
@@ -523,7 +421,7 @@ const CardDemo: React.FC = () => {
               />
 
             ]}
-            footerStyledDivProps={{
+            footerBoxProps={{
               borderColor: ColorDefinitions.Purple
             }}
             footerLeftContent={
@@ -536,10 +434,11 @@ const CardDemo: React.FC = () => {
           </Card>
 
         </div>
-        <div className="col-3">
-          <Card title="Card title"
+        <div>
+          <Card 
+          title={<Title size="md">Card title</Title>}
             background={ColorDefinitions.Olive}
-            headerStyledDivProps={{
+            headerBoxProps={{
               borderColor: ColorDefinitions.Olive
             }}
             headerActions={[
@@ -575,7 +474,7 @@ const CardDemo: React.FC = () => {
               />
 
             ]}
-            footerStyledDivProps={{
+            footerBoxProps={{
               borderColor: ColorDefinitions.Olive
             }}
             footerLeftContent={
@@ -588,11 +487,12 @@ const CardDemo: React.FC = () => {
           </Card>
 
         </div>
-        <div className="col-3">
+        <div>
 
-          <Card title="Card title"
+          <Card 
+          title={<Title size="md">Card title</Title>}
             background={ColorDefinitions.Mulberry}
-            headerStyledDivProps={{
+            headerBoxProps={{
               borderColor: ColorDefinitions.Mulberry
             }}
             headerActions={[
@@ -602,7 +502,7 @@ const CardDemo: React.FC = () => {
                 size={SizeDefinitions.Small}
               />,
               <Dropdown key="2"
-              background={ColorDefinitions.Mulberry20}
+                background={ColorDefinitions.Mulberry20}
                 dropdownToggle={{
                   prefix: (<Icon
                     icon={IconDefinitions.ellipsis_h}
@@ -625,7 +525,7 @@ const CardDemo: React.FC = () => {
               />
 
             ]}
-            footerStyledDivProps={{
+            footerBoxProps={{
               borderColor: ColorDefinitions.Mulberry
             }}
             footerLeftContent={
@@ -638,11 +538,12 @@ const CardDemo: React.FC = () => {
           </Card>
 
         </div>
-        <div className="col-3">
+        <div>
 
-          <Card title="Card title"
+          <Card 
+          title={<Title size="md">Card title</Title>}
             background={ColorDefinitions.Blue}
-            headerStyledDivProps={{
+            headerBoxProps={{
               borderColor: ColorDefinitions.Blue
             }}
             headerActions={[
@@ -672,7 +573,7 @@ const CardDemo: React.FC = () => {
               />
 
             ]}
-            footerStyledDivProps={{
+            footerBoxProps={{
               borderColor: ColorDefinitions.Blue
             }}
             footerLeftContent={
@@ -687,55 +588,34 @@ const CardDemo: React.FC = () => {
         </div>
       </div>
 
-      <h1>Title content</h1>
-      <div className="row">
-        <div className="col-6">
+
+      <div className="grid">
+        <div>
+          <h3>Image</h3>
           <Card
-            title={<div>
-              Card title
-              <Badge badgeCss="ml-1"
-                size={SizeDefinitions.Tiny}
-                background={ColorDefinitions.Red}>
-                HOT
-              </Badge>
-            </div>}
-            headerActions={[
-              <Icon key="1" icon={IconDefinitions.search} variant="circle" size={SizeDefinitions.Small} />,
-              <Icon key="2" icon={IconDefinitions.refresh} variant="circle" size={SizeDefinitions.Small} />,
-              <Icon key="3" icon={IconDefinitions.ellipsis_h} variant="circle" size={SizeDefinitions.Small} />
-            ]}
-            headerStyledDivProps={{
-              borderColor: ColorDefinitions.Theme100
-            }}
-            footerLeftContent={
-              <p>Action</p>
-            }
-            footerRightContent={
-              <p>Action</p>
-            }
-            footerStyledDivProps={{
-              borderColor: ColorDefinitions.Theme100
-            }}
+            background={ColorDefinitions.Surface}
+            title={<Title size="md">Card title</Title>}
+            imageUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Adriana_Lima_au_festival_de_Cannes%2C_2015.jpg/440px-Adriana_Lima_au_festival_de_Cannes%2C_2015.jpg"
+
           >
-            <p>The forest was alive with the soft murmur of nature.</p>
-            <p className="text-mute">Muted text.</p>
+            A gentle breeze carried the scent of pine and wildflowers, mingling with the earthy aroma of damp soil.
           </Card>
+
         </div>
-      </div>
 
 
-      <h1>Sticky header</h1>
-      <div className="row">
-        <div className="col-6">
+        <div>
+          <h3>Sticky header</h3>
           <Card
+            background={ColorDefinitions.Surface}
             scrollPosition={scrollPosition}
-            title={"Card title"}
+            ttitle={<Title size="md">Card title</Title>}
             headerSticky={true}
             headerActions={[
               <Button key="1"><Icon icon={IconDefinitions.arrow_left} position="left" /> Annuleren</Button>,
               <Button key="2" color={ColorDefinitions.Primary} >Opslaan</Button>
             ]}
-            headerStyledDivProps={{
+            headerBoxProps={{
               borderColor: ColorDefinitions.Theme100
             }}
             footerLeftContent={
@@ -744,7 +624,7 @@ const CardDemo: React.FC = () => {
             footerRightContent={
               <p>Action</p>
             }
-            footerStyledDivProps={{
+            footerBoxProps={{
               borderColor: ColorDefinitions.Theme100
             }}
           >

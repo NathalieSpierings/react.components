@@ -65,8 +65,22 @@ export const SidebarDemo = () => {
         { title: 'Wizard', url: '/demo/wizard' },
     ];
 
+    const layoutItems: SidebarMenuItem[] = [
+        { title: 'Column layout', url: '/demo/columnlayout' },
+        { title: 'Column layout header border', url: '/demo/columnlayout-header' },
+        { title: 'Column layout mobile primary view aside', url: '/demo/columnlayout-primary-aside' },
+        { title: 'Column layout mobile primary view main', url: '/demo/columnlayout-primary-main' },
+        { title: 'Column layout aside left', url: '/demo/columnlayout-aside-left' },
+        { title: 'Column layout aside right', url: '/demo/columnlayout-aside-right' },
+        { title: 'Column layout tabs', url: '/demo/columnlayout-tabs' },
+    ]
     return (
         <>
+            <SidebarContentPanel>
+                <h4>Layout</h4>
+            </SidebarContentPanel>
+            <SidebarMenu menuItems={layoutItems} />
+
             <SidebarContentPanel>
                 <h4>Datagrid</h4>
             </SidebarContentPanel>

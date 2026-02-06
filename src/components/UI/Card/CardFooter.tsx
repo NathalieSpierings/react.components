@@ -8,9 +8,9 @@ export interface CardFooterProps extends Omit<BoxProps, 'title'> {
 }
 
 const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
-    ({ title, leftContent, rightContent, children, ...styledDivProps }, ref) => {
+    ({ title, leftContent, rightContent, children, ...boxProps }, ref) => {
         return (
-            <Box {...styledDivProps} css="card__footer" ref={ref}>
+            <Box {...boxProps} css="card__footer" ref={ref}>
                 <div className="content-item">
                     {leftContent ? <div className="actions">{leftContent}</div> : null}
 

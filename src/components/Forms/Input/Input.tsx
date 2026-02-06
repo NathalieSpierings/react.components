@@ -145,7 +145,7 @@ export const StaticInput: FC<StaticInputProps> = ({ label, value, inline, sameLi
         <div
             className={`form-group form-group__static  ${inline ? 'form-group__inline' : ''} ${sameLine ? 'form-group__static--inline' : ''}  ${colon ? 'form-group__static--colon' : ''}`}
         >
-            <p className="form-control">{value}</p>
+            <div className="form-control">{value}</div>
             <label>{label}</label>
         </div>
     );

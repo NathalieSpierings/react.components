@@ -33,7 +33,7 @@ const Widget: React.FC<WidgetProps> = ({
     widgetPostfix,
     postfixPosition,
     children,
-    ...styledDivProps
+    ...boxProps
 }) => {
 
     const imgCss = [
@@ -46,7 +46,7 @@ const Widget: React.FC<WidgetProps> = ({
         .join(' ');
 
     return (
-        <Box {...styledDivProps} css={`widget ${horizontal ? 'widget--horizontal' : ''}`} onClick={onClick}>
+        <Box {...boxProps} css={`widget ${horizontal ? 'widget--horizontal' : ''}`} onClick={onClick}>
             <div className="widget__container">
                 {image ? (
                     <div className={imgCss}>

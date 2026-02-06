@@ -1,19 +1,19 @@
-import moment from "moment";
 import React, { ReactElement, useState } from "react";
-import Datagrid from "../../components/Data/Datagrid/Datagrid";
-import { TableGetDataArguments } from "../../components/Data/Table/TableData";
-import { Toggle } from "../../components/Forms/Toggle";
-import { Title } from "../../components/Typography/Title";
-import { Button } from "../../components/UI/Button";
-import { Icon } from "../../components/UI/Icons/Icon";
-import { Tooltip } from "../../components/UI/Tooltip";
-import useBreadcrumb from "../../lib/hooks/useBreadcrumb";
-import usePageTitle from "../../lib/hooks/usePageTitle";
-import useTableQueryClientFilter from "../../lib/hooks/useTableQueryClientFilter";
-import { getProductsQuery, ProductGetModel } from "../../lib/testdata/models";
-import { ColorDefinitions, IconDefinitions } from "../../lib/utils/definitions";
+import Datagrid from "../../../components/Data/Datagrid/Datagrid";
+import { TableGetDataArguments } from "../../../components/Data/Table/TableData";
+import { Title } from "../../../components/Typography/Title";
+import { Icon } from "../../../components/UI/Icons/Icon";
+import { Tooltip } from "../../../components/UI/Tooltip";
+import useBreadcrumb from "../../../lib/hooks/useBreadcrumb";
+import usePageTitle from "../../../lib/hooks/usePageTitle";
+import useTableQueryClientFilter from "../../../lib/hooks/useTableQueryClientFilter";
+import { IconDefinitions } from "../../../lib/utils/definitions";
+import { getProductsQuery, ProductGetModel } from "../../../lib/testdata/models";
+import moment from "moment";
 
-const DatagridToolbarDemo = (): ReactElement => {
+
+
+const DatagridDemo = (): ReactElement => {
 
     usePageTitle("Datagrid", []);
 
@@ -29,34 +29,15 @@ const DatagridToolbarDemo = (): ReactElement => {
         filters: tableOptions
     });
 
-
-    const [toggleChecked, setToggleChecked] = useState(true);
-
     const wrapPrice = (item: ProductGetModel) => {
         return <>€  {item.prijs.toFixed(2)}</>
     }
 
     return (
         <div>
+
             <Datagrid
                 toolbarTitle={<Title size="md">Alle orders</Title>}
-                toolbarBorderBottom={true}
-                toolbarPrefixItems={[
-                    <Button key="create" onClick={() => alert('Create')}>
-                        <Icon icon={IconDefinitions.plus} />
-                        Toevoegen
-                    </Button>
-                ]}
-                toolbarPostfixItems={[
-                    <Toggle key="toggle"
-                        color={ColorDefinitions.Primary}
-                        label="Gearchiveerd verbergen"
-                        checked={toggleChecked}
-                        onChange={setToggleChecked}
-                        labelPosition="left"
-                    />
-                ]}
-                enableCompactView={true}
                 data={data || []}
                 dataRaw={dataRaw}
                 total={total || 0}
@@ -91,4 +72,4 @@ const DatagridToolbarDemo = (): ReactElement => {
     )
 }
 
-export default DatagridToolbarDemo;
+export default DatagridDemo;

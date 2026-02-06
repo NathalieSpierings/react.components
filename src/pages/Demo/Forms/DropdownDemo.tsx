@@ -1,10 +1,10 @@
 import React, { ReactElement } from "react";
-import usePageTitle from "../../../lib/hooks/usePageTitle";
-import useBreadcrumb from "../../../lib/hooks/useBreadcrumb";
+import { Avatar, Multiselect, Title } from "../../../components";
 import { Dropdown } from "../../../components/Forms/Dropdown";
-import { ColorDefinitions, IconDefinitions, SizeDefinitions } from "../../../lib/utils/definitions";
 import { Icon } from "../../../components/UI/Icons/Icon";
-import { Avatar, AvatarDefinitions, Multiselect, Title } from "../../../components";
+import useBreadcrumb from "../../../lib/hooks/useBreadcrumb";
+import usePageTitle from "../../../lib/hooks/usePageTitle";
+import { ColorDefinitions, IconDefinitions, SizeDefinitions } from "../../../lib/utils/definitions";
 
 const DropdownDemo = (): ReactElement => {
 
@@ -37,7 +37,8 @@ const DropdownDemo = (): ReactElement => {
     {
         id: "3",
         content: "Option 3",
-        postfix: (<small>54949883</small>)
+        postfix: (<small>54949883</small>),
+        selected: true
     },
     {
         id: "4",
@@ -55,48 +56,43 @@ const DropdownDemo = (): ReactElement => {
     return (
         <section className="centered centered--wide">
 
-            <div className="grid">
-                <div>
-                    <h5>Default</h5>
-                    <Dropdown menuItems={menuItems} dropdownToggle={{ label: 'Click me!' }} />
-                </div>
-                <div>
-                    <h5>Ghost</h5>
-                    <Dropdown menuItems={menuItems} dropdownToggle={{ label: 'Click me!',  arrow:true, ghost: true }}/>
-                </div>
-                <div>
-                    <h5>Direction up</h5>
-                    <Dropdown
-                        direction="up"
-                        menuItems={menuItems}
-                        dropdownToggle={{ label: 'Click me!' }}
-                    />
-                </div>
-                <div>
-                    <h5>Background</h5>
-                    <Dropdown
-                        background={ColorDefinitions.Olive}
-                        menuItems={menuItems}
-                        dropdownToggle={{ label: 'Click me!' }}
-                    />
-                </div>
-                <div>
-                    <h5>Custom content</h5>
-                    <Dropdown dropdownToggle={{ label: 'Click me!' }} >
-                        <Multiselect
-                            background={ColorDefinitions.SurfaceDark}
-                            title="My label goes here..."
-                            items={items}
-                            selected={selected}
-                            setSelected={setSelected}
-                            collectionBorderColor={ColorDefinitions.SurfaceDark}
-                            collectionItemBorder="underlined"
-                        />
-                    </Dropdown>
-                </div>
-            </div>
 
-            <Title>Variants</Title>
+            <h2>Default</h2>
+            <Dropdown menuItems={menuItems} dropdownToggle={{ label: 'Click me!' }} />
+
+            <h2 className="mt-5">Accent color</h2>
+            <Dropdown menuItems={items} dropdownToggle={{ label: 'Click me!' }} accentColor={ColorDefinitions.Primary} />
+
+            <h2 className="mt-5">Background color</h2>
+            <Dropdown menuItems={menuItems} dropdownToggle={{ label: 'Click me!' }} background={ColorDefinitions.Olive} />
+
+
+
+
+            <h2 className="mt-5">Ghost toggle</h2>
+            <Dropdown menuItems={menuItems} dropdownToggle={{ label: 'Click me!', arrow: true, ghost: true }} />
+
+
+            <h2 className="mt-5">Direction up</h2>
+            <Dropdown menuItems={menuItems} dropdownToggle={{ label: 'Click me!' }} direction="up" />
+
+            <h2 className="mt-5">Custom content</h2>
+            <Dropdown dropdownToggle={{ label: 'Click me!' }} >
+                <Multiselect
+                    background={ColorDefinitions.SurfaceDark}
+                    title="My label goes here..."
+                    items={items}
+                    selected={selected}
+                    setSelected={setSelected}
+                    collectionBorderColor={ColorDefinitions.SurfaceDark}
+                    collectionItemBorder="underlined"
+                />
+            </Dropdown>
+
+
+
+
+            <Title className="mt-5">Variants</Title>
             <div className="grid mt-3">
                 <div>
                     <h5>Wth heading</h5>

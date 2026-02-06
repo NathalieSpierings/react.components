@@ -12,7 +12,7 @@ export interface CardProps extends Omit<BoxProps, 'title'> {
     tabs?: boolean;
     headerSticky?: boolean;
     headerActions?: ReactElement[];
-    headerStyledDivProps?: BoxProps;
+    headerBoxProps?: BoxProps;
     imageUrl?: string;
     cardCss?: string;
     scrollPosition?: number;
@@ -22,7 +22,7 @@ export interface CardProps extends Omit<BoxProps, 'title'> {
     fluidContent?: boolean;
     footerLeftContent?: ReactElement;
     footerRightContent?: ReactElement;
-    footerStyledDivProps?: BoxProps;
+    footerBoxProps?: BoxProps;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -30,7 +30,7 @@ const Card: React.FC<CardProps> = ({
     tabs = false,
     headerSticky = false,
     headerActions = [],
-    headerStyledDivProps = {},
+    headerBoxProps = {},
     imageUrl,
     cardCss = '',
     scrollPosition,
@@ -40,9 +40,9 @@ const Card: React.FC<CardProps> = ({
     fluidContent = false,
     footerLeftContent,
     footerRightContent,
-    footerStyledDivProps = {},
+    footerBoxProps = {},
     children,
-    ...styledDivProps
+    ...boxProps
 }) => {
     const headerRef = useRef<HTMLDivElement>(null);
     const footerRef = useRef<HTMLDivElement>(null);
@@ -93,7 +93,7 @@ const Card: React.FC<CardProps> = ({
     const cls = ['card', cardCss, tabs ? 'tabs' : '', collapsible ? 'card--collapsed' : ''].filter(Boolean).join(' ');
 
     return (
-        <Box {...styledDivProps} css={cls} style={{ marginTop: sticky ? `${headerHeight}px` : '0' }}>
+        <Box {...boxProps} css={cls} style={{ marginTop: sticky ? `${headerHeight}px` : '0' }}>
             {imageUrl ? (
                 <div className="card__image">
                     <figure>
@@ -103,7 +103,7 @@ const Card: React.FC<CardProps> = ({
             ) : (
                 <CardHeader
                     ref={headerRef}
-                    {...headerStyledDivProps}
+                    {...headerBoxProps}
                     title={title}
                     sticky={sticky}
                     actions={actionIcons}
@@ -128,7 +128,7 @@ const Card: React.FC<CardProps> = ({
                         {(footerLeftContent || footerRightContent) && (
                             <CardFooter
                                 ref={footerRef}
-                                {...footerStyledDivProps}
+                                {...footerBoxProps}
                                 leftContent={footerLeftContent}
                                 rightContent={footerRightContent}
                             />

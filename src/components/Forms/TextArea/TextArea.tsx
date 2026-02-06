@@ -16,6 +16,7 @@ export interface TextAreaProps extends Omit<HTMLProps<HTMLTextAreaElement>, 'siz
     addonIconSize?: SizeDefinitions;
     inline?: boolean;
     color?: ColorDefinitions;
+     small?: boolean;
     variant?: InputVariant;
     validationErrorMessage?: string;
     onTextInput?: (val: string) => void;
@@ -39,6 +40,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref): Re
         addonIconSize,
         type = 'text',
         color,
+        small,
         variant = 'default',
         validationErrorMessage,
         autocomplete = 'on',
@@ -51,6 +53,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref): Re
 
     const formGroupCls = [
         'form-group',
+        small ? 'form-group--sm' : '',
         variant === 'default' ? '' : 'form-group__simple',
         inline ? 'form-group__inline' : '',
         addonVariant ? `prefix__${addonVariant}` : '',
@@ -100,8 +103,6 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref): Re
 });
 
 
-
-
 // FormTextArea Component
 export interface FormTextAreaProps
     extends Omit<TextAreaProps, "onChange" | "value" | "onBlur" | "name" | "onInput"> {
@@ -136,6 +137,27 @@ export const FormTextArea: FC<FormTextAreaProps> = (props) => {
             }
             {...rest}
         />
+    );
+};
+
+export interface StaticTextAreaProps {
+    label: string;
+    value?: string;
+    sameLine?: boolean;
+    inline?: boolean;
+    colon?: boolean;
+}
+
+export const StaticTextArea: FC<StaticTextAreaProps> = ({ label, value, inline, sameLine, colon }) => {
+    return (
+        <div
+            className={`form-group form-group__static  ${inline ? 'form-group__inline' : ''} ${sameLine ? 'form-group__static--inline' : ''}  ${colon ? 'form-group__static--colon' : ''}`}
+        >
+            <div className="form-control">
+                <div className="form-control__textarea">{value}</div>
+            </div>
+            <label>{label}</label>
+        </div>
     );
 };
 

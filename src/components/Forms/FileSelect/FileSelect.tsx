@@ -76,6 +76,8 @@ export interface FileSelectProps {
     validateZip?: boolean;
     onError?: ErrFunc;
     rounded?: SizeDefinitions;
+    icon?: IconDefinitions;
+    iconFloating?: boolean;
     backgroundColor?: ColorDefinitions;
     borderColor?: ColorDefinitions;
     colorMute?: ColorDefinitions;
@@ -108,6 +110,8 @@ const FileSelect = ({
     validateZip = false,
     onError,
     rounded,
+    icon = IconDefinitions.cloud_download,
+    iconFloating = false,
     backgroundColor,
     borderColor,
     colorMute,
@@ -171,7 +175,7 @@ const FileSelect = ({
             // Klantnummer validatie
             if (validateKlantNummer && !matchKlantNummer(true, file)) {
                 reasons.push(
-                    <>Bestandsnaam bevat geen geldig klantnummer: <code>{file.name}</code></>
+                    <>Bestandsnaam bevat geen geldig klantnummer</>
                 );
             }
 
@@ -307,7 +311,7 @@ const FileSelect = ({
                         accept={accept ? accept.join(',') : undefined}
                     />
 
-                    <Icon icon={IconDefinitions.cloud_upload} duotone={true} size={SizeDefinitions.ExtraLarge2} />
+                    <Icon icon={icon} duotone={true} size={SizeDefinitions.ExtraLarge3} iconCss={`${iconFloating ? 'ani-floating' : ''}`}/>
 
                     <p>
                         <strong>Drop of sleep</strong> bestanden om te uploaden

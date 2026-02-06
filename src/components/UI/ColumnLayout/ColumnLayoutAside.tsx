@@ -1,55 +1,41 @@
-import React, { cloneElement, isValidElement, ReactElement, ReactNode } from "react";
-import { useColumnLayout } from "./ColumnLayoutContext";
-import ColumnLayoutHeader from "./ColumnLayoutHeader";
+import React, { PropsWithChildren, ReactNode, isValidElement } from "react";
+import { ColumnLayoutRegionContext } from "./ColumnLayoutRegionContext";
 
-interface ColumnLayoutAsideProps {
-  children: ReactNode;
+export interface ColumnLayoutAsideProps extends PropsWithChildren {
+  css?: string;
 }
 
-const ColumnLayoutAside: React.FC<ColumnLayoutAsideProps> = ({ children }) => {
-
-  const { isMainVisible, toggleableView } = useColumnLayout();
+const ColumnLayoutAside: React.FC<ColumnLayoutAsideProps> = ({
+  css,
+  children,
+}) => {
 
   let header: ReactNode = null;
-  const restChildren: ReactNode[] = [];
+  const content: ReactNode[] = [];
 
-
-   React.Children.forEach(children, (child) => {
-    if (isValidElement(child) && child.type === ColumnLayoutHeader) {
-      const element = child as ReactElement<React.PropsWithChildren<{}>>;
-      header = cloneElement(element, {
-        children: (
-          <>
-            {element.props.children}           
-          </>
-        ),
-      });
+  React.Children.forEach(children, (child) => {
+    if (
+      isValidElement(child) &&
+      (child.type as any).displayName === "ColumnLayoutHeader"
+    ) {
+      header = child;
     } else {
-      restChildren.push(child);
+      content.push(child);
     }
   });
 
-
-  let visisbleCss = "";
-  if (isMainVisible) {
-    visisbleCss = "not-shown";
-  } else {
-    visisbleCss = "shown";
-  }
-  const className = ["column-layout__aside", toggleableView ? visisbleCss : ""]
-    .filter(Boolean)
-    .join(" ");
-
   return (
-    <aside className={className}>
-      {header}
-      <div className="column-layout__aside__content">{restChildren}</div>
-    </aside>
-  )
-
+    <ColumnLayoutRegionContext.Provider value="aside">
+      <aside className={`column-layout__aside ${css ?? ""}`}>
+        {header}
+        <div className="column-layout__content">
+          {content}
+        </div>
+      </aside>
+    </ColumnLayoutRegionContext.Provider>
+  );
 };
 
-(ColumnLayoutAside as any)._isColumnLayoutAside = true;
-
+ColumnLayoutAside.displayName = "ColumnLayoutAside";
 
 export default ColumnLayoutAside;

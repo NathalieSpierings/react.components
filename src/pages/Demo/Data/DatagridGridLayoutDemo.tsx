@@ -1,16 +1,16 @@
 import moment from "moment";
 import React, { ReactElement, useState } from "react";
-import DatagridGridLayout from "../../components/Data/DatagridGridLayout/DatagridGridLayout";
-import { TableGetDataArguments } from "../../components/Data/Table/TableData";
-import { Title } from "../../components/Typography/Title";
-import { Button } from "../../components/UI/Button";
-import { Icon } from "../../components/UI/Icons/Icon";
-import { Tooltip } from "../../components/UI/Tooltip";
-import useBreadcrumb from "../../lib/hooks/useBreadcrumb";
-import usePageTitle from "../../lib/hooks/usePageTitle";
-import useTableQueryClientFilter from "../../lib/hooks/useTableQueryClientFilter";
-import { getProductsQuery, ProductGetModel } from "../../lib/testdata/models";
-import { IconDefinitions } from "../../lib/utils/definitions";
+import DatagridGridLayout from "../../../components/Data/DatagridGridLayout/DatagridGridLayout";
+import { TableGetDataArguments } from "../../../components/Data/Table/TableData";
+import { Title } from "../../../components/Typography/Title";
+import { Button } from "../../../components/UI/Button";
+import { Icon } from "../../../components/UI/Icons/Icon";
+import { Tooltip } from "../../../components/UI/Tooltip";
+import useBreadcrumb from "../../../lib/hooks/useBreadcrumb";
+import usePageTitle from "../../../lib/hooks/usePageTitle";
+import useTableQueryClientFilter from "../../../lib/hooks/useTableQueryClientFilter";
+import { getProductsQuery, ProductGetModel } from "../../../lib/testdata/models";
+import { IconDefinitions } from "../../../lib/utils/definitions";
 
 
 
@@ -38,9 +38,11 @@ const DatagridGridLayoutDemo = (): ReactElement => {
 
 
     return (
+  
         <DatagridGridLayout
             open={open}
             openDrawer={setOpen}
+            drawerPosition="right"
             drawerTitle="Filter"
             drawerContent={<div>Content for drawer goes here...</div>}
             toolbarTitle={<Title size="md">Alle orders</Title>}
@@ -80,6 +82,7 @@ const DatagridGridLayoutDemo = (): ReactElement => {
                 ]
             }
         />
+
     )
 }
 

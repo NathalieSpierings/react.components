@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import "moment/locale/nl";
 import React, { ReactElement, useState } from "react";
-import { TableRowConfig, Title } from "../../components";
-import Datagrid from "../../components/Data/Datagrid/Datagrid";
-import { TableGetDataArguments } from "../../components/Data/Table/TableData";
-import { ProductGetModel, products } from "../../lib/testdata/models";
+import { TableRowConfig, Title } from "../../../components";
+import Datagrid from "../../../components/Data/Datagrid/Datagrid";
+import { TableGetDataArguments } from "../../../components/Data/Table/TableData";
+import { ProductGetModel, products } from "../../../lib/testdata/models";
 
 
 const DatagridFilterDemo = (): ReactElement => {
@@ -96,9 +96,9 @@ const DatagridFilterDemo = (): ReactElement => {
     const total = resp?.[0] ?? 0;
     const data = resp?.[1] ?? [];
 
-        const wrapPrice = (item: ProductGetModel) => {
-            return <>€  {item.prijs.toFixed(2)}</>
-        }
+    const wrapPrice = (item: ProductGetModel) => {
+        return <>€  {item.prijs.toFixed(2)}</>
+    }
 
     const columns: TableRowConfig<ProductGetModel>[] = [
         {

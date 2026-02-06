@@ -1,44 +1,41 @@
-import React, { cloneElement, isValidElement, PropsWithChildren, ReactElement, ReactNode } from "react";
-import { useColumnLayout } from "./ColumnLayoutContext";
-import ColumnLayoutHeader from "./ColumnLayoutHeader";
-import { DismissButton } from "../../UI/DismissButton";
+import React, { PropsWithChildren, ReactNode, isValidElement } from "react";
+import { ColumnLayoutRegionContext } from "./ColumnLayoutRegionContext";
 
-const ColumnLayoutMain: React.FC<PropsWithChildren> = ({ children }) => {
-  const { showAside, toggleableView } = useColumnLayout();
+export interface ColumnLayoutMainProps extends PropsWithChildren {
+  css?: string;
+}
+
+const ColumnLayoutMain: React.FC<ColumnLayoutMainProps> = ({
+  css,
+  children,
+}) => {
 
   let header: ReactNode = null;
-  const restChildren: ReactNode[] = [];
+  const content: ReactNode[] = [];
 
   React.Children.forEach(children, (child) => {
-    if (isValidElement(child) && child.type === ColumnLayoutHeader) {
-      const element = child as ReactElement<React.PropsWithChildren<{}>>;
-      header = cloneElement(element, {
-        children: (
-          <>
-            {element.props.children}
-            {toggleableView && (
-              <DismissButton
-                right
-                label="Sluiten"
-                labelPosition="left"
-                onClick={showAside}
-              />
-            )}
-
-          </>
-        ),
-      });
+    if (
+      isValidElement(child) &&
+      (child.type as any).displayName === "ColumnLayoutHeader"
+    ) {
+      header = child;
     } else {
-      restChildren.push(child);
+      content.push(child);
     }
   });
 
   return (
-    <div className="column-layout__main">
-      {header}
-      <div className="column-layout__main__content">{restChildren}</div>
-    </div>
+    <ColumnLayoutRegionContext.Provider value="main">
+      <div className={`column-layout__main ${css ?? ""}`}>
+        {header}
+        <div className="column-layout__content">
+          {content}
+        </div>
+      </div>
+    </ColumnLayoutRegionContext.Provider>
   );
 };
+
+ColumnLayoutMain.displayName = "ColumnLayoutMain";
 
 export default ColumnLayoutMain;

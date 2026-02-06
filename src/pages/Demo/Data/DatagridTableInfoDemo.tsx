@@ -1,18 +1,18 @@
 import moment from "moment";
 import React, { ReactElement, useState } from "react";
-import Datagrid from "../../components/Data/Datagrid/Datagrid";
-import { TableGetDataArguments } from "../../components/Data/Table/TableData";
-import { Toggle } from "../../components/Forms/Toggle";
-import { Title } from "../../components/Typography/Title";
-import { Button } from "../../components/UI/Button";
-import { Icon } from "../../components/UI/Icons/Icon";
-import { Tooltip } from "../../components/UI/Tooltip";
-import useBreadcrumb from "../../lib/hooks/useBreadcrumb";
-import usePageTitle from "../../lib/hooks/usePageTitle";
-import useTableQueryClientFilter from "../../lib/hooks/useTableQueryClientFilter";
-import { getProductsQuery, ProductGetModel } from "../../lib/testdata/models";
-import { ColorDefinitions, IconDefinitions } from "../../lib/utils/definitions";
-import { ContentItem } from "../../components/UI/ContentItem";
+import Datagrid from "../../../components/Data/Datagrid/Datagrid";
+import { TableGetDataArguments } from "../../../components/Data/Table/TableData";
+import { Toggle } from "../../../components/Forms/Toggle";
+import { Title } from "../../../components/Typography/Title";
+import { Button } from "../../../components/UI/Button";
+import { Icon } from "../../../components/UI/Icons/Icon";
+import { Tooltip } from "../../../components/UI/Tooltip";
+import useBreadcrumb from "../../../lib/hooks/useBreadcrumb";
+import usePageTitle from "../../../lib/hooks/usePageTitle";
+import useTableQueryClientFilter from "../../../lib/hooks/useTableQueryClientFilter";
+import { getProductsQuery, ProductGetModel } from "../../../lib/testdata/models";
+import { ColorDefinitions, IconDefinitions } from "../../../lib/utils/definitions";
+import { ContentItem } from "../../../components/UI/ContentItem";
 
 const DatagridTableInfoDemo = (): ReactElement => {
 

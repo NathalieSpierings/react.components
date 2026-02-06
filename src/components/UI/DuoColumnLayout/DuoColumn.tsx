@@ -3,13 +3,14 @@ import { ColorDefinitions } from '../../../lib/utils/definitions';
 
 export interface DuoColumnProps {
     background?: ColorDefinitions;
+   padding?: boolean;
     duoColumnCss?: string;
     children: ReactNode;
 }
 
-const DuoColumn: React.FC<DuoColumnProps> = ({ background = ColorDefinitions.Transparent, duoColumnCss, children }) => {
+const DuoColumn: React.FC<DuoColumnProps> = ({ background = ColorDefinitions.Transparent, padding = false, duoColumnCss, children }) => {
     return (
-        <div className={`duo-column__item ${background ? "bg-" + background : ''} ${duoColumnCss} `}>{children}</div>
+        <div className={`duo-column__item ${padding ? 'duo-column__item__padding': ''} ${background ? "bg-" + background : ''} ${duoColumnCss} `}>{children}</div>
     );
 };
 

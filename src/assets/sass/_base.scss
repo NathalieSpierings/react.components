@@ -416,7 +416,7 @@
 	}
 
 	.title {
-		font-size: var(--fs-2xl);
+		font-size: var(--fs-xl);
 		line-height: var(--lh-2xl);
 		letter-spacing: -.02em;
 		font-weight: bold;
@@ -599,52 +599,52 @@
 	}
 
 
-    fieldset {
-        min-width: 0;
-        border: 0;
-        border-radius: 0;
-        padding: 0;
-        margin: 0;
-        margin-bottom: 0;
-    }
+	fieldset {
+		min-width: 0;
+		border: 0;
+		border-radius: 0;
+		padding: 0;
+		margin: 0;
+		margin-bottom: 0;
+	}
 
-    legend {
-        font-style: normal;
-        font-weight: 600;
-        font-size: var(--fs-md);
-        color: var(--color-foreground);
-        word-break: break-word;
-        padding: 0;
-    }
+	legend {
+		font-style: normal;
+		font-weight: 600;
+		font-size: var(--fs-md);
+		color: var(--color-foreground);
+		word-break: break-word;
+		padding: 0;
+	}
 
-    .fieldset {
-        min-width: 0;
-        margin: 0;
-        border-radius: var(--radius);
+	.fieldset {
+		min-width: 0;
+		margin: 0;
+		border-radius: var(--radius);
 
-        &[class*="border-"] {
-            padding: var(--page-padding);
-            border: 1px solid var(--color-border);
+		&[class*="border-"] {
+			padding: var(--page-padding);
+			border: 1px solid var(--color-border);
 
-            legend {
-                padding: 0 calc(var(--page-padding) / 2);
-            }
-        }
+			legend {
+				padding: 0 calc(var(--page-padding) / 2);
+			}
+		}
 
-        &[class*="bg-"] {
-            padding: var(--page-padding);
-        }
+		&[class*="bg-"] {
+			padding: var(--page-padding);
+		}
 
-        legend {
-            padding: calc(var(--page-padding) / 2) 0.5rem;
+		legend {
+			padding: calc(var(--page-padding) / 2) 0.5rem;
 
-            &[class*="border-"] {
-                width: 100%;
-                margin-bottom: var(--page-padding);
-                border-bottom: 1px solid var(--color-border);
-            }
-        }
-    }
+			&[class*="border-"] {
+				width: 100%;
+				margin-bottom: var(--page-padding);
+				border-bottom: 1px solid var(--color-border);
+			}
+		}
+	}
 
 }
 
@@ -902,6 +902,20 @@
 }
 
 @layer utiltities {
+
+
+
+
+
+	.selected {
+		.selected {
+			--color-selected: var(--shadow-base);
+		}
+	}
+
+	.hover {
+		--color-hover: var(--shadow-light);
+	}
 
 	.opac {
 		opacity: var(--alpha-link);
@@ -1827,6 +1841,20 @@
 		animation-name: inputFadeInDown
 	}
 
+	.ani-floating{
+		animation: floating 3s ease-in-out infinite;
+	}
+
+	@keyframes floating {
+		0%,
+		100% {
+			transform: translateY(0px) rotate(0deg);
+		}
+
+		50% {
+			transform: translateY(-12px) rotate(2deg);
+		}
+	}
 
 
 	.shockwave {
@@ -2015,7 +2043,7 @@
 		height: var(--icon-size, 20px);
 		padding: var(--icon-padding);
 		box-sizing: content-box;
-        color: inherit;
+		color: inherit;
 		border-radius: var(--radius);
 		border: 1px solid transparent;
 		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

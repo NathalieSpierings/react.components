@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { ColumnLayout, ColumnLayoutAside, ColumnLayoutHeader, ColumnLayoutMain, useLayoutContext } from "../../../components";
+import { ColorDefinitions } from "../../../lib/utils/definitions";
 
-const ColumnLayoutRightDemo = () => {
+
+const ColumnLayoutHeaderDemo = () => {
 
   const { setFullscreen } = useLayoutContext();
   const { setShowHeader } = useLayoutContext();
@@ -15,20 +17,24 @@ const ColumnLayoutRightDemo = () => {
     };
   }, [setFullscreen, setShowHeader]);
 
-
-
   return (
-    <ColumnLayout asidePosition="right" >
+   <ColumnLayout asidePosition="left">
       <ColumnLayout.Aside>
-        <ColumnLayout.Header>Aside Header</ColumnLayout.Header>
+        <ColumnLayout.Header borderColor={ColorDefinitions.Blue}>
+        Aside Header
+        </ColumnLayout.Header>
         
         <p>Aside content goes here...</p>
       </ColumnLayout.Aside>
       <ColumnLayout.Main>
-        <ColumnLayout.Header>Main Header</ColumnLayout.Header>
+        <ColumnLayout.Header borderColor={ColorDefinitions.Red}>
+        Main Header
+        </ColumnLayout.Header>
         <div>Main content goes here...</div>
       </ColumnLayout.Main>
     </ColumnLayout>
+
+
   )
 };
-export default ColumnLayoutRightDemo;
+export default ColumnLayoutHeaderDemo;

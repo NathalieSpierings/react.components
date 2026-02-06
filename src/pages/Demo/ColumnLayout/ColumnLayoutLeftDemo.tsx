@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { ColumnLayout, ColumnLayoutAside, ColumnLayoutHeader, ColumnLayoutMain, useLayoutContext } from "../../../components";
-import { ColorDefinitions } from "../../../lib/utils/definitions";
 
-
-const ColumnLayoutHeaderDemo = () => {
+const ColumnLayoutLeftDemo = () => {
 
   const { setFullscreen } = useLayoutContext();
   const { setShowHeader } = useLayoutContext();
@@ -17,22 +15,20 @@ const ColumnLayoutHeaderDemo = () => {
     };
   }, [setFullscreen, setShowHeader]);
 
+
+
   return (
-   <ColumnLayout asidePosition="left">
-      <ColumnLayoutAside>
-        <ColumnLayoutHeader  border={true}
-             borderColor={ColorDefinitions.Blue}>Aside Header</ColumnLayoutHeader>
+    <ColumnLayout asidePosition="left" >
+      <ColumnLayout.Aside>
+        <ColumnLayout.Header>Aside Header</ColumnLayout.Header>
         
         <p>Aside content goes here...</p>
-      </ColumnLayoutAside>
-      <ColumnLayoutMain>
-        <ColumnLayoutHeader  border={true}
-             borderColor={ColorDefinitions.Red}>Main Header</ColumnLayoutHeader>
+      </ColumnLayout.Aside>
+      <ColumnLayout.Main>
+        <ColumnLayout.Header>Main Header</ColumnLayout.Header>
         <div>Main content goes here...</div>
-      </ColumnLayoutMain>
+      </ColumnLayout.Main>
     </ColumnLayout>
-
-
   )
 };
-export default ColumnLayoutHeaderDemo;
+export default ColumnLayoutLeftDemo;

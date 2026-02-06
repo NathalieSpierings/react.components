@@ -25,7 +25,7 @@ const DismissButton: FC<DismissButtonProps> = ({
     right = false,
     onClick,
     children,
-    ...styledDivProps
+    ...boxProps
 }) => {
     const cls = [
         'dismiss',
@@ -40,7 +40,7 @@ const DismissButton: FC<DismissButtonProps> = ({
 
     const icon = (
         <Box
-            {...styledDivProps}
+            {...boxProps}
             css={`dismiss__icon ${background ? 'bg-' + background : ''}`}
         >
             &nbsp;

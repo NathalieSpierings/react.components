@@ -1,14 +1,14 @@
 import "moment/locale/nl";
 import React, { ReactElement, useState } from "react";
-import { Button, Title, Toggle, Tooltip } from "../../components";
-import Datagrid from "../../components/Data/Datagrid/Datagrid";
-import { TableGetDataArguments } from "../../components/Data/Table/TableData";
-import { Icon } from "../../components/UI/Icons/Icon";
-import useBreadcrumb from "../../lib/hooks/useBreadcrumb";
-import usePageTitle from "../../lib/hooks/usePageTitle";
-import useTableQueryClientFilter from "../../lib/hooks/useTableQueryClientFilter";
-import { getProductsQuery, ProductGetModel } from "../../lib/testdata/models";
-import { ColorDefinitions, IconDefinitions } from "../../lib/utils/definitions";
+import { Button, Title, Toggle, Tooltip } from "../../../components";
+import Datagrid from "../../../components/Data/Datagrid/Datagrid";
+import { TableGetDataArguments } from "../../../components/Data/Table/TableData";
+import { Icon } from "../../../components/UI/Icons/Icon";
+import useBreadcrumb from "../../../lib/hooks/useBreadcrumb";
+import usePageTitle from "../../../lib/hooks/usePageTitle";
+import useTableQueryClientFilter from "../../../lib/hooks/useTableQueryClientFilter";
+import { getProductsQuery, ProductGetModel } from "../../../lib/testdata/models";
+import { ColorDefinitions, IconDefinitions } from "../../../lib/utils/definitions";
 
 
 const DatagridFilterDatabindDemo = (): ReactElement => {

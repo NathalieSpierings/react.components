@@ -2,7 +2,7 @@ import React, { MouseEventHandler, ReactElement } from 'react';
 import { IconDefinitions, SizeDefinitions } from '../../../../lib/utils/definitions';
 import Box, { BoxProps } from '../../../Base/Box/Box';
 
-export type IconVariant = 'circle' | 'square' ;
+export type IconVariant = 'circle' | 'square';
 
 export interface IconProps extends BoxProps {
     icon?: IconDefinitions;
@@ -77,7 +77,7 @@ function getClassNames({
 
 function getContent(icon: IconDefinitions | undefined, svg: string | ReactElement | undefined, svgCss: string, duotone: boolean | undefined) {
 
-  
+
 
     if (icon) {
         return (
@@ -105,11 +105,11 @@ const Icon = ({
     position,
     onClick,
     children,
-    ...styledDivProps
+    ...boxProps
 }: IconProps): ReactElement => {
 
-    const borderClass = getBorderClass(variant, styledDivProps.background, styledDivProps.borderColor);
-    const hoverBorderClass = getHoverBorderClass(variant, styledDivProps.hoverBackground, styledDivProps.hoverBorderColor);
+    const borderClass = getBorderClass(variant, boxProps.background, boxProps.borderColor);
+    const hoverBorderClass = getHoverBorderClass(variant, boxProps.hoverBackground, boxProps.hoverBorderColor);
 
     const cls = getClassNames({
         variant,
@@ -130,7 +130,7 @@ const Icon = ({
 
     return (
         <Box
-            {...styledDivProps}
+            {...boxProps}
             css={cls}
             onClick={onClick}
             style={onClick ? { cursor: 'pointer' } : {}}

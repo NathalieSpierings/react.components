@@ -25,7 +25,7 @@ const FileSelectDemo: React.FC = () => {
     <section className="centered centered--wide">
 
       <h2>Single file</h2>
-      <FileSelect multiple={false} selectedFiles={selectedFilesDefault} setSelectedFiles={setSelectedFilesDefault} />
+      <FileSelect multiple={false} selectedFiles={selectedFilesDefault} setSelectedFiles={setSelectedFilesDefault}  iconFloating/>
 
       <h2 className="mt-5">Multiple files</h2>
       <FileSelect multiple={true} selectedFiles={selectedFilesAllowMultiple} setSelectedFiles={setSelectedFilesAllowMultiple} />

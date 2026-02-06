@@ -12,10 +12,10 @@ export interface BadgeProps extends BoxProps {
     type?: BadgeType;
 }
 
-const Badge: React.FC<BadgeProps> = ({ size, badgeCss = '', variant, type, children, ...styledDivProps }) => {
+const Badge: React.FC<BadgeProps> = ({ size, badgeCss = '', variant, type, children, ...boxProps }) => {
     return (
         <Box
-            {...styledDivProps}
+            {...boxProps}
             css={[
                 'badge',
                 variant ? 'badge-' + variant : '',

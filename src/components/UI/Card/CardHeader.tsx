@@ -9,9 +9,9 @@ export interface CardHeaderProps extends Omit<BoxProps, 'title'> {
 }
 
 const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
-    ({ title, sticky = false, actions = [], children, ...styledDivProps }, ref) => {
+    ({ title, sticky = false, actions = [], children, ...boxProps }, ref) => {
         return (
-            <Box {...styledDivProps} css={`card__header ${sticky ? 'sticky' : ''}`} ref={ref}>
+            <Box {...boxProps} css={`card__header ${sticky ? 'sticky' : ''}`} ref={ref}>
                 <div className="content-item">
                     <div className="meta">{title}</div>
 
