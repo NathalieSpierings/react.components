@@ -54,72 +54,22 @@ const InputDemo: React.FC = () => {
       <div className="grid mb-3">
         <div>
           <h3>Default</h3>
-          <Input
-            name="firstname"
-            label="Firstname"
-            onChange={onChangeFirstname}
-            value={firstName}
-          />
-
-          <TextArea
-            name="message"
-            label="Message"
-            onChange={onChangeMessage}
-            value={message}
-          />
+          <Input name="firstname" label="Firstname" onChange={onChangeFirstname} value={firstName} />
+          <TextArea name="message" label="Message" onChange={onChangeMessage} value={message} />
 
           <h3>Inline</h3>
-          <Input
-            inline={true}
-            name="firstname"
-            label="Firstname"
-            onChange={onChangeFirstname}
-            value={firstName}
-          />
-
-          <TextArea
-            inline={true}
-            name="message"
-            label="Message"
-            onChange={onChangeMessage}
-            value={message}
-          />
+          <Input inline={true} name="firstname" label="Firstname" onChange={onChangeFirstname} value={firstName} />
+          <TextArea inline={true} name="message" label="Message" onChange={onChangeMessage} value={message} />
 
         </div>
         <div>
           <h3>Simple</h3>
-          <Input name="lastName"
-            label="Lastname"
-            onChange={onChangeLastname}
-            value={lastName}
-            variant="simple"
-          />
-
-          <TextArea
-            variant="simple"
-            name="message"
-            label="Message"
-            onChange={onChangeMessage}
-            value={message}
-          />
+          <Input name="lastName" label="Lastname" onChange={onChangeLastname} value={lastName} variant="simple" />
+          <TextArea variant="simple" name="message" label="Message" onChange={onChangeMessage} value={message} />
 
           <h3>Inline</h3>
-          <Input name="lastName"
-            label="Lastname"
-            onChange={onChangeLastname}
-            value={lastName}
-            variant="simple"
-            inline={true}
-          />
-
-          <TextArea
-            variant="simple"
-            name="message"
-            label="Message"
-            onChange={onChangeMessage}
-            value={message}
-            inline={true}
-          />
+          <Input name="lastName" label="Lastname" onChange={onChangeLastname} value={lastName} variant="simple" inline={true} />
+          <TextArea variant="simple" name="message" label="Message" onChange={onChangeMessage} value={message} inline={true} />
         </div>
       </div>
 
@@ -138,9 +88,6 @@ const InputDemo: React.FC = () => {
         onChange={onChangeMessage}
         value={message}
       />
-
-
-
 
       <h3>Static</h3>
       <StaticInput label={'Firstname'} value="John" />
@@ -265,7 +212,7 @@ const InputDemo: React.FC = () => {
 
       <h3>Password</h3>
       <div className="grid mb-3">
-        <PasswordInput name="password" label="Password" onInput={onChangePassword} value={password} />
+        <PasswordInput name="password" label="Password" onChange={onChangePassword} value={password} />
       </div>
 
       <h3>Password with check</h3>

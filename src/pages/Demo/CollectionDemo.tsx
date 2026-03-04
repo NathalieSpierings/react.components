@@ -5,6 +5,8 @@ import { ContentItemType } from "../../components/UI/ContentItem";
 import { Icon } from "../../components/UI/Icons/Icon";
 import { ColorDefinitions, IconDefinitions, SizeDefinitions } from "../../lib/utils/definitions";
 import { Collection, CollectionViewSelector, CollectionViewSelectorOption } from "../../components/UI/Collection";
+import { Title } from "../../components/Typography/Title";
+import { Subtitle } from "../../components/Typography/Subtitle";
 
 const CollectionDemo: React.FC = () => {
 
@@ -21,27 +23,27 @@ const CollectionDemo: React.FC = () => {
     {
       id: '1',
       prefix: (<Icon icon={IconDefinitions.file_text} />),
-      title: "List item title 1",
+      content: "List item title 1",
       postfix: (<Icon icon={IconDefinitions.bin} size={SizeDefinitions.Small} />),
     },
     {
       id: '2',
 
       prefix: (<Icon icon={IconDefinitions.file_text} />),
-      title: "List item title 2",
+      content: "List item title 2",
       postfix: (<Icon icon={IconDefinitions.bin} size={SizeDefinitions.Small} />),
     },
     {
       id: '3',
       prefix: (<Icon icon={IconDefinitions.bin} size={SizeDefinitions.Small} />),
-      title: "List item title 3",
+      content: "List item title 3",
       postfix: (<span className="text-secondary">22-04-2022</span>),
-      postfixPosition: "start"
+      postfixItemPosition: "item-start"
     },
     {
       id: '4',
       prefix: (<Icon icon={IconDefinitions.bin} size={SizeDefinitions.Small} />),
-      title: "List item title 4",
+      content: "List item title 4",
       postfix: (<span className="text-secondary">9987954</span>),
     },
   ];
@@ -51,30 +53,46 @@ const CollectionDemo: React.FC = () => {
     {
       id: '1',
       prefix: (<Icon icon={IconDefinitions.file_text} />),
-      title: "List item title 1",
-      subtitle: "Subtitle 1",
+      content: (
+        <>
+          <Title size="md">List item title 1</Title>
+          <Subtitle>Subtitle 1</Subtitle>
+        </>
+        ),
       postfix: (<Icon icon={IconDefinitions.bin} size={SizeDefinitions.Small} />),
     },
     {
       id: '2',
       prefix: (<Icon icon={IconDefinitions.file_text} />),
-      title: "List item title 2",
-      subtitle: "Subtitle 2",
+      content: (
+        <>
+          <Title size="md">List item title 2</Title>
+          <Subtitle>Subtitle 2</Subtitle>
+        </>
+        ),
       postfix: (<Icon icon={IconDefinitions.bin} size={SizeDefinitions.Small} />),
     },
     {
       id: '3',
       prefix: (<Icon icon={IconDefinitions.bin} size={SizeDefinitions.Small} />),
-      title: "List item title 3",
-      subtitle: "Subtitle 3",
+      content: (
+        <>
+          <Title size="md">List item title 3</Title>
+          <Subtitle>Subtitle 3</Subtitle>
+        </>
+        ),
       postfix: (<span className="text-secondary">22-04-2022</span>),
-      postfixPosition: "start"
+      postfixItemPosition: "item-start"
     },
     {
       id: '4',
       prefix: (<Icon icon={IconDefinitions.bin} size={SizeDefinitions.Small} />),
-      title: "List item title 4",
-      subtitle: "Subtitle 4",
+      content: (
+        <>
+          <Title size="md">List item title 4</Title>
+          <Subtitle>Subtitle 4</Subtitle>
+        </>
+        ),
       postfix: (<span className="text-secondary">9987954</span>),
     },
   ];

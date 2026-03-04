@@ -35,7 +35,7 @@ export const Default: StoryFn = (args) => {
 
             <Slider>
                 <Widget
-                    contentPositon="center"
+                    contentItemPosition="item-center"
                     background={ColorDefinitions.SurfaceDark}
                     image={<ArtAanlevering />}
                     widgetContent={
@@ -49,7 +49,7 @@ export const Default: StoryFn = (args) => {
                     }
                 />
                 <Widget
-                    contentPositon="center"
+                    contentItemPosition="item-center"
                     background={ColorDefinitions.SurfaceDark}
                     image={<ArtDossier />}
                     widgetContent={
@@ -64,7 +64,7 @@ export const Default: StoryFn = (args) => {
                 />
 
                 <Widget
-                    contentPositon="center"
+                    contentItemPosition="item-center"
                     background={ColorDefinitions.SurfaceDark}
                     image={<ArtKetenzorg />}
                     widgetContent={
@@ -79,7 +79,7 @@ export const Default: StoryFn = (args) => {
                 />
 
                 <Widget
-                    contentPositon="center"
+                    contentItemPosition="item-center"
                     background={ColorDefinitions.SurfaceDark}
                     image={<ArtIgo />}
                     widgetContent={
@@ -93,7 +93,7 @@ export const Default: StoryFn = (args) => {
                     }
                 />
                 <Widget
-                    contentPositon="center"
+                    contentItemPosition="item-center"
                     background={ColorDefinitions.SurfaceDark}
                     image={<ArtVerbruiksmiddel />}
                     widgetContent={
@@ -107,7 +107,7 @@ export const Default: StoryFn = (args) => {
                     }
                 />
                 <Widget
-                    contentPositon="center"
+                    contentItemPosition="item-center"
                     background={ColorDefinitions.SurfaceDark}
                     image={<ArtMeekijkconsult />}
                     widgetContent={
@@ -121,7 +121,7 @@ export const Default: StoryFn = (args) => {
                     }
                 />
                 <Widget
-                    contentPositon="center"
+                    contentItemPosition="item-center"
                     background={ColorDefinitions.SurfaceDark}
                     image={<ArtContract />}
                     widgetContent={
@@ -135,7 +135,7 @@ export const Default: StoryFn = (args) => {
                     }
                 />
                 <Widget
-                    contentPositon="center"
+                    contentItemPosition="item-center"
                     background={ColorDefinitions.SurfaceDark}
                     image={<ArtTicket />}
                     widgetContent={

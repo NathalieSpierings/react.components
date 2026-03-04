@@ -24,7 +24,7 @@ export const Default: StoryFn = () => {
     return (
         <>
             <SvgSprite />
-            <PasswordInput name="password" label="Password" onInput={onInput} value={password} />
+            <PasswordInput name="password" label="Password" onChange={onInput} value={password} />
         </>
     );
 };

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ColumnLayout, Tabs, useLayoutContext } from "../../../components";
+import { ColumnLayout, ColumnLayoutHeader, ColumnLayoutMain, ContentItem, Tabs, useLayoutContext } from "../../../components";
 import { ColorDefinitions, IconDefinitions } from "../../../lib/utils/definitions";
 import TabPanes from "../../../components/UI/Tabs/TabPanes";
 import TabPane from "../../../components/UI/Tabs/TabPane";
@@ -40,79 +40,136 @@ const ColumnLayoutTabsDemo = () => {
   }, [setFullscreen, setShowHeader]);
 
 
-  const tabs = [
-    {
-      label: "Tab One",
-      index: 1,
-      Component: ContentOne
-    },
-    {
-      label: "Tab Two",
-      index: 2,
-      Component: ContentTwo
-    }
-  ];
 
-  const [selectedTab, setSelectedTab] = useState<number>(tabs[0].index);
+  const [selectedTab, setSelectedTab] = useState(0);
+
+  const hasAside = true;
 
 
   return (
-    <ColumnLayout asidePosition="right" >
-      <ColumnLayout.Aside>
-        <ColumnLayout.Header>
-          Aside Header content
-        </ColumnLayout.Header>
-        <p>Aside content</p>
-      </ColumnLayout.Aside>
 
-      <ColumnLayout.Main>
-        <ColumnLayout.Header>
+    <ColumnLayout>
+      <ColumnLayoutMain>
 
+        <ColumnLayoutHeader>
+          <ContentItem item={
+            {
+              id: '1',
+              prefix: (
 
-          <div className="content-item ">
-            <div className="prefix">
-              <div className="title  ">Bulkupload</div>
-              <nav aria-label="breadcrumb">
-                <ul className="breadcrumb">
-                  <li className="breadcrumb__item"><a aria-label="Home" href="/suite-dossier" data-discover="true">Home</a></li>
-                  <li aria-label="Bulkupload" className="breadcrumb__item active">Bulkupload</li>
-                </ul>
-              </nav>
-            </div>
-            <div className="meta">
-              <Tabs placement="bottom"
-                borderBottomColor={ColorDefinitions.Transparent}
-                tabs={[
-                  { label: "Rapportages" },
-                  { label: "Retourinformatie" },
-                ]}
-                selectedTab={selectedTab}
-                onTabChange={setSelectedTab}
-              />
+                <div className="flex-column">
+                  <div className="title  ">Bulkupload</div>
+                  <nav aria-label="breadcrumb">
+                    <ul className="breadcrumb">
+                      <li className="breadcrumb__item"><a aria-label="Home" href="/suite-dossier" data-discover="true">Home</a></li>
+                      <li aria-label="Bulkupload" className="breadcrumb__item active">Bulkupload</li>
+                    </ul>
+                  </nav>
+                </div>
+              ),
+              separatorAfterPrefix: true,
+              content: (
 
-            </div>
-            <div className="actions ">
-              <button className="btn btn--shadow btn-primary">Opslaan<div className="sc-beySbL eFIXXy"></div>
-              </button>
-            </div>
-          </div>
+                <Tabs placement="bottom"
+                  borderBottomColor={ColorDefinitions.None}
+                  tabs={[
+                    { index: 0, label: "Rapportages" },
+                    { index: 1, label: "Retourinformatie" },
+                  ]}
+                  selectedTab={selectedTab}
+                  onClick={setSelectedTab}
+                />
 
 
+              ),
+              postfix: (
+                <button className="btn btn--shadow btn-primary">Opslaan<div className="sc-beySbL eFIXXy"></div>
+                </button>
+              )
+            }
+          } />
+        </ColumnLayoutHeader>
 
+        <TabPanes selectedTab={selectedTab}>
+          <TabPane>
+            Rapportages content goes here
+            </TabPane>
+          <TabPane>
+            Retourinformatie content goes here
+            </TabPane>
+        </TabPanes>
 
-        </ColumnLayout.Header>
-        <div>
-          Main content
-
-          <TabPanes selectedTab={selectedTab}>
-            <TabPane>Rapportages content goes here</TabPane>
-            <TabPane>Retourinformatie content goes here</TabPane>
-          </TabPanes>
-
-
-        </div>
-      </ColumnLayout.Main>
+      </ColumnLayoutMain>
     </ColumnLayout>
+
+
+    // <ColumnLayout asidePosition="right" >
+    //   {
+    //     hasAside && (
+    //       <ColumnLayout.Aside>
+    //         <ColumnLayout.Header>
+    //           Aside Header content
+    //         </ColumnLayout.Header>
+    //         <p>Aside content</p>
+    //       </ColumnLayout.Aside>
+    //     )
+    //   }
+
+
+    //   <ColumnLayout.Main>
+    //     <ColumnLayout.Header>
+
+    //       <ContentItem item={
+    //         {
+    //           id: '1',
+    //           prefix: (
+
+    //             <div className="flex-column">
+    //               <div className="title  ">Bulkupload</div>
+    //               <nav aria-label="breadcrumb">
+    //                 <ul className="breadcrumb">
+    //                   <li className="breadcrumb__item"><a aria-label="Home" href="/suite-dossier" data-discover="true">Home</a></li>
+    //                   <li aria-label="Bulkupload" className="breadcrumb__item active">Bulkupload</li>
+    //                 </ul>
+    //               </nav>
+    //             </div>
+    //           ),
+    //           separatorAfterPrefix: true,
+    //           content: (
+
+    //             <Tabs placement="bottom"
+    //               borderBottomColor={ColorDefinitions.None}
+    //               tabs={[
+    //                 { index: 0, label: "Rapportages" },
+    //                 { index: 1, label: "Retourinformatie" },
+    //               ]}
+    //               selectedTab={selectedTab}
+    //               onClick={setSelectedTab}
+    //             />
+
+
+    //           ),
+    //           postfix: (
+    //             <button className="btn btn--shadow btn-primary">Opslaan<div className="sc-beySbL eFIXXy"></div>
+    //             </button>
+    //           )
+    //         }
+    //       } />
+
+
+    //     </ColumnLayout.Header>
+    //     <div>
+    //       Main content
+
+    //       <TabPanes selectedTab={selectedTab}>
+    //         <TabPane>Rapportages content goes here</TabPane>
+    //         <TabPane>Retourinformatie content goes here</TabPane>
+    //       </TabPanes>
+
+
+    //     </div>
+    //   </ColumnLayout.Main>
+    // </ColumnLayout>
   )
 };
 export default ColumnLayoutTabsDemo;

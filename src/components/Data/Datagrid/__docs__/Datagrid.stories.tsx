@@ -35,6 +35,10 @@ const meta: Meta<typeof Datagrid> = {
 export default meta;
 type Story = StoryObj<typeof Datagrid>;
 
+const wrapPrice = (item: ProductGetModel) => {
+    return <>€  {item.prijs.toFixed(2)}</>
+}
+
 export const Default: StoryFn = () => {
 
     const [tableOptions, setTableOptions] = useState<TableGetDataArguments<ProductGetModel> | null>(null);

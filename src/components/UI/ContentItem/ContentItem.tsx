@@ -2,81 +2,52 @@ import React, { ReactElement } from 'react';
 
 export interface ContentItemType {
     id: string;
-    title?: string | ReactElement;
-    subtitle?: string | ReactElement;
-    isDivider?: boolean;
-    content?: string | ReactElement;
-    contentPositon?: 'center' | 'end';
+    gap?: string;
     prefix?: string | ReactElement;
+    prefixItemPosition?: 'item-start' | 'item-center' | 'item-end';
+    prefixGap?: string;
+    content?: string | ReactElement;
+    contentItemPosition?: 'item-start' | 'item-center' | 'item-end';
+    contentJustifyPosition?: 'justify-start' | 'justify-center' | 'justify-end';
     postfix?: string | ReactElement;
-    prefixPosition?: 'start' | 'end';
-    postfixPosition?: 'start' | 'end';
-    metaActions?: ReactElement;
+    postfixItemPosition?: 'item-start' | 'item-center' | 'item-end';
+    postfixGap?: string;
     separatorAfterPrefix?: boolean;
     separatorAfterMeta?: boolean;
+    isDivider?: boolean;
 }
 
 export interface ContentItemProps {
     item: ContentItemType;
-    gap?: '0' | '5' | '10' | '15';
 }
 
-const ContentItem: React.FC<ContentItemProps> = ({ item, gap }) => {
-    const metaContent = (() => {
-        if (item.title || item.subtitle && item.metaActions) {
-            return (
-                <div className={`meta${item.contentPositon ? ' meta--' + item.contentPositon : ''}`}>
-                    {item.title && <>{item.title}</>}
-                    {item.subtitle && <>{item.subtitle}</>}
-                    {item.metaActions && <div className="meta__actions">{item.metaActions}</div>}
-                </div>
-            );
-        }
-
-        if (item.metaActions) {
-            return (
-                <div className={`meta${item.contentPositon ? ' meta--' + item.contentPositon : ''}`}>
-                    {item.metaActions && <div className="meta__actions">{item.metaActions}</div>}
-                </div>
-            );
-        }
-
-        if (item.content) {
-            return (
-                <div className={`meta${item.contentPositon ? ' meta--' + item.contentPositon : ''}`}>
-                    {item.content}
-                    {item.metaActions && <div className="meta__actions">{item.metaActions}</div>}
-                </div>
-            );
-        }
-
-        return null;
-    })();
+const ContentItem: React.FC<ContentItemProps> = ({ item }) => {
 
     return (
-        <div className={`content-item ${gap ? 'gap-' + gap : ''}`} key={item.id}>
-            {item.prefix ? (
-                <div className={`actions ${item.prefixPosition ? 'actions--' + item.prefixPosition : ''}`}>
+        <div className="content-item">
+            {item.prefix && (
+                <div className={`content-item__prefix ${item.prefixItemPosition ? item.prefixItemPosition : ''}`} style={{ gap: item.prefixGap }}>
                     {item.prefix}
                 </div>
-            ) : null}
-
+            )}
             {item.separatorAfterPrefix && (
-                <div className="separator"></div>
+                <div className="content-item__separator"></div>
             )}
-
-            {metaContent}
-
-             {item.separatorAfterMeta && (
-                <div className="separator"></div>
+            {item.content && (
+                 <div className={`content-item__meta ${item.contentItemPosition ? item.contentItemPosition : ''} ${item.contentJustifyPosition ? item.contentJustifyPosition : ''}`} >
+                    {item.content}
+                </div>
             )}
-         
-            {item.postfix ? (
-                <div className={`actions ${item.postfixPosition ? 'actions--' + item.postfixPosition : ''}`}>
+            {item.separatorAfterMeta && (
+                <div className="content-item__separator"></div>
+            )}
+            {item.postfix && (
+                <div className={`content-item__postfix ${item.postfixItemPosition ? item.postfixItemPosition : ''}`} style={{ gap: item.postfixGap }}>
                     {item.postfix}
                 </div>
-            ) : null}
+            )}
         </div>
+
     );
 };
 

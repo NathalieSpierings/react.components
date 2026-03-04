@@ -1,8 +1,8 @@
 import type { Meta, StoryFn, StoryObj } from '@storybook/react-webpack5';
-import Avatar, { AvatarDefinitions } from '../Avatar';
+import Avatar from '../Avatar';
 
 import { SvgSprite } from '../../../../assets/SvgSprite';
-import { IconDefinitions, SizeDefinitions } from '../../../../lib/utils/definitions';
+import { ColorDefinitions, IconDefinitions, SizeDefinitions } from '../../../../lib/utils/definitions';
 import { StackedAvatar } from '../Stacked';
 import React from 'react';
 
@@ -29,164 +29,279 @@ type Story = StoryObj<typeof Avatar>;
 
 export const Default: StoryFn = (args) => {
     return (
-        <div className="row">
-            <div className="col-3">
-                <Avatar icon={IconDefinitions.user} />
-            </div>
-            <div className="col-3">
-                <Avatar
-                    imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500"
-                    alt="user avatar"
-                />
-            </div>
-            <div className="col-3">
-                <Avatar avatar={AvatarDefinitions.Female1} alt="user avatar" />
-            </div>
-            <div className="col-3">
-                <Avatar initials="NS" />
-            </div>
+        <div className="grid">
+            <Avatar icon={IconDefinitions.user} />
+            <Avatar imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+            <Avatar initials="NS" />
+        </div>
+    );
+};
+
+export const Square: StoryFn = (args) => {
+    return (
+        <div className="grid">
+            <Avatar icon={IconDefinitions.user} background={ColorDefinitions.SurfaceDark} square />
+            <Avatar background={ColorDefinitions.SurfaceDark} square imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+            <Avatar background={ColorDefinitions.SurfaceDark} square initials="NS" />
         </div>
     );
 };
 
 export const Float: StoryFn = (args) => {
     return (
-        <div className="row">
-            <div className="col-3">
-                <Avatar icon={IconDefinitions.user} float={true} />
+        <div className="grid">
+                <Avatar float icon={IconDefinitions.user} background={ColorDefinitions.SurfaceDark} />
+                <Avatar float background={ColorDefinitions.SurfaceDark} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                <Avatar float background={ColorDefinitions.SurfaceDark} initials="NS" />
             </div>
-            <div className="col-3">
-                <Avatar
-                    float={true}
-                    imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500"
-                    alt="user avatar"
-                />
-            </div>
-            <div className="col-3">
-                <Avatar avatar={AvatarDefinitions.Female1} alt="user avatar" float={true} />
-            </div>
-            <div className="col-3">
-                <Avatar initials="NS" float={true} />
-            </div>
-        </div>
+
     );
 };
 
-export const Icon: Story = {
-    args: {
-        icon: IconDefinitions.user,
-    },
-};
-
-export const Border: Story = {
-    args: {
-        icon: IconDefinitions.user,
-        border: true,
-    },
-};
-export const Initials: Story = {
-    args: {
-        initials: 'NS',
-    },
-};
-
-export const ImageUrl: Story = {
-    args: {
-        imageUrl:
-            'https://promeetec.nl/wp-content/uploads/2022/02/Promeetec-Gemakkelijk-declareren-VECOZO-scaled-1-1030x1030.jpeg',
-    },
-};
-
-export const Sizes: StoryFn = () => {
+export const Border: StoryFn = (args) => {
     return (
-        <div className="row">
-            <div className="col-3">
-                <Avatar avatar={AvatarDefinitions.Female1} size={SizeDefinitions.Tiny} />
-                <Avatar avatar={AvatarDefinitions.Female1} size={SizeDefinitions.ExtraSmall} />
-                <Avatar avatar={AvatarDefinitions.Female1} size={SizeDefinitions.Small} />
-                <Avatar avatar={AvatarDefinitions.Female1} size={SizeDefinitions.Medium} />
-                <Avatar avatar={AvatarDefinitions.Female1} size={SizeDefinitions.Large} />
-                <Avatar avatar={AvatarDefinitions.Female1} size={SizeDefinitions.ExtraLarge} />
-                <Avatar avatar={AvatarDefinitions.Female1} size={SizeDefinitions.ExtraLarge2} />
+       <div className="grid">
+                <Avatar border icon={IconDefinitions.user} background={ColorDefinitions.SurfaceDark} />
+                <Avatar border background={ColorDefinitions.SurfaceDark} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                <Avatar border background={ColorDefinitions.SurfaceDark} initials="NS" />
             </div>
-            <div className="col-3">
-                <Avatar
-                    imageUrl="https://promeetec.nl/wp-content/uploads/2022/02/Promeetec-Gemakkelijk-declareren-VECOZO-scaled-1-1030x1030.jpeg"
-                    size={SizeDefinitions.Tiny}
-                />
-                <Avatar
-                    imageUrl="https://promeetec.nl/wp-content/uploads/2022/02/Promeetec-Gemakkelijk-declareren-VECOZO-scaled-1-1030x1030.jpeg"
-                    size={SizeDefinitions.ExtraSmall}
-                />
-                <Avatar
-                    imageUrl="https://promeetec.nl/wp-content/uploads/2022/02/Promeetec-Gemakkelijk-declareren-VECOZO-scaled-1-1030x1030.jpeg"
-                    size={SizeDefinitions.Small}
-                />
-                <Avatar
-                    imageUrl="https://promeetec.nl/wp-content/uploads/2022/02/Promeetec-Gemakkelijk-declareren-VECOZO-scaled-1-1030x1030.jpeg"
-                    size={SizeDefinitions.Medium}
-                />
-                <Avatar
-                    imageUrl="https://promeetec.nl/wp-content/uploads/2022/02/Promeetec-Gemakkelijk-declareren-VECOZO-scaled-1-1030x1030.jpeg"
-                    size={SizeDefinitions.Large}
-                />
-                <Avatar
-                    imageUrl="https://promeetec.nl/wp-content/uploads/2022/02/Promeetec-Gemakkelijk-declareren-VECOZO-scaled-1-1030x1030.jpeg"
-                    size={SizeDefinitions.ExtraLarge}
-                />
-                <Avatar
-                    imageUrl="https://promeetec.nl/wp-content/uploads/2022/02/Promeetec-Gemakkelijk-declareren-VECOZO-scaled-1-1030x1030.jpeg"
-                    size={SizeDefinitions.ExtraLarge2}
-                />
-            </div>
-            <div className="col-3">
-                <Avatar square={true} avatar={AvatarDefinitions.Female1} size={SizeDefinitions.Tiny} />
-                <Avatar square={true} avatar={AvatarDefinitions.Female1} size={SizeDefinitions.ExtraSmall} />
-                <Avatar square={true} avatar={AvatarDefinitions.Female1} size={SizeDefinitions.Small} />
-                <Avatar square={true} avatar={AvatarDefinitions.Female1} size={SizeDefinitions.Medium} />
-                <Avatar square={true} avatar={AvatarDefinitions.Female1} size={SizeDefinitions.Large} />
-                <Avatar square={true} avatar={AvatarDefinitions.Female1} size={SizeDefinitions.ExtraLarge} />
-                <Avatar square={true} avatar={AvatarDefinitions.Female1} size={SizeDefinitions.ExtraLarge2} />
-            </div>
-            <div className="col-3">
-                <Avatar initials="NS" size={SizeDefinitions.Tiny} />
-                <Avatar initials="NS" size={SizeDefinitions.ExtraSmall} />
-                <Avatar initials="NS" size={SizeDefinitions.Small} />
-                <Avatar initials="NS" size={SizeDefinitions.Medium} />
-                <Avatar initials="NS" size={SizeDefinitions.Large} />
-                <Avatar initials="NS" size={SizeDefinitions.ExtraLarge} />
-                <Avatar initials="NS" size={SizeDefinitions.ExtraLarge2} />
-            </div>
-        </div>
     );
 };
 
-export const Square: Story = {
-    args: {
-        avatar: AvatarDefinitions.Female1,
-        square: true,
-    },
-};
 
-const avatars = [
-    <Avatar key="male1" avatar={AvatarDefinitions.Male1} />,
-    <Avatar key="female1" avatar={AvatarDefinitions.Female1} />,
-    <Avatar key="female4" avatar={AvatarDefinitions.Female4} />,
-];
-
-export const Stacked: StoryFn = () => {
-    return <StackedAvatar avatars={avatars} counter={6} />;
-};
-
-export const BesideText: StoryFn = () => {
+export const Shadow: StoryFn = (args) => {
     return (
-
-        <div className="avatar__text">
-            <Avatar avatar={AvatarDefinitions.Male1} />,
-            <div>
-                <div className="bold">Jese Leos</div>
-                <div className="text-mute">Joined in August 2014</div>
+      <div className="grid">
+                <Avatar shadow icon={IconDefinitions.user} background={ColorDefinitions.SurfaceDark} />
+                <Avatar shadow background={ColorDefinitions.SurfaceDark} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                <Avatar shadow background={ColorDefinitions.SurfaceDark} initials="NS" />
             </div>
-        </div>
+    );
+};
+
+export const Background: StoryFn = (args) => {
+    return (
+     <div className="grid">
+                <Avatar shadow icon={IconDefinitions.user} background={ColorDefinitions.Blue} />
+                <Avatar shadow background={ColorDefinitions.Purple} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                <Avatar shadow background={ColorDefinitions.Pink} initials="NS" />
+            </div>
+    );
+};
+
+export const Sizes: StoryFn = (args) => {
+    return (
+     <div className="grid">
+                <div>
+                     <Avatar icon={IconDefinitions.user} size={SizeDefinitions.ExtraSmall} />
+                     <Avatar icon={IconDefinitions.user} size={SizeDefinitions.Small} />
+                     <Avatar icon={IconDefinitions.user} />
+                     <Avatar icon={IconDefinitions.user} size={SizeDefinitions.Medium} />
+                     <Avatar icon={IconDefinitions.user} size={SizeDefinitions.Large} />
+                     <Avatar icon={IconDefinitions.user} size={SizeDefinitions.ExtraLarge} />
+                     <Avatar icon={IconDefinitions.user} size={SizeDefinitions.ExtraLarge2} />
+                </div>
+                <div>
+                    <Avatar size={SizeDefinitions.ExtraSmall}  imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                    <Avatar size={SizeDefinitions.Small}  imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                    <Avatar imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                    <Avatar size={SizeDefinitions.Medium}  imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                    <Avatar size={SizeDefinitions.Large}  imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                    <Avatar size={SizeDefinitions.ExtraLarge}  imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                    <Avatar size={SizeDefinitions.ExtraLarge2}  imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                </div>
+                <div>
+                    <Avatar border background={ColorDefinitions.SurfaceDark} initials="NS" size={SizeDefinitions.ExtraSmall}/>
+                    <Avatar border background={ColorDefinitions.SurfaceDark} initials="NS" size={SizeDefinitions.Small}/>
+                    <Avatar border background={ColorDefinitions.SurfaceDark} initials="NS" />
+                    <Avatar border background={ColorDefinitions.SurfaceDark} initials="NS" size={SizeDefinitions.Medium} />
+                    <Avatar border background={ColorDefinitions.SurfaceDark} initials="NS" size={SizeDefinitions.Large}/>
+                    <Avatar border background={ColorDefinitions.SurfaceDark} initials="NS" size={SizeDefinitions.ExtraLarge}/>
+                    <Avatar border background={ColorDefinitions.SurfaceDark} initials="NS" size={SizeDefinitions.ExtraLarge2}/>
+                </div>
+            </div>
+    );
+};
+
+
+export const WithText: StoryFn = (args) => {
+    return (
+    <div className="avatar__text">
+                <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                <div>
+                    <div>Jese Leos</div>
+                    <div>Joined in August 2014</div>
+                </div>
+            </div>
+    );
+};
+
+export const Stacked: StoryFn = (args) => {
+    return (
+    <div className="row">
+                <ul className="avatar-group">
+                    <li>
+                        <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                    </li>
+                    <li>
+                        <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                    </li>
+                    <li>
+                        <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                    </li>
+                    <li>
+                        <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                    </li>
+                    <li>
+                        <div className="avatar">
+                            +4
+                        </div>
+                    </li>
+                </ul>
+            </div>
+    );
+};
+
+
+export const StackedSizes: StoryFn = (args) => {
+    return (
+    <>
+    <div className="row">
+                <div className="col-12">
+                    <ul className="avatar-group avatar-group--tiny">
+                        <li>
+                            <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                        </li>
+                        <li>
+                            <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                        </li>
+                        <li>
+                            <span className="avatar">
+                                +4
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-12">
+                    <ul className="avatar-group avatar-group--xs">
+                        <li>
+                            <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                        </li>
+                        <li>
+                            <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                        </li>
+                        <li>
+                            <span className="avatar">
+                                +4
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-12">
+                    <ul className="avatar-group avatar-group--sm">
+                        <li>
+                            <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                        </li>
+                        <li>
+                            <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                        </li>
+                        <li>
+                            <span className="avatar">
+                                +4
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-12">
+                    <ul className="avatar-group avatar-group--md">
+                        <li>
+                            <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                        </li>
+                        <li>
+                            <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                        </li>
+                        <li>
+                            <span className="avatar ">
+                                +4
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-12">
+                    <ul className="avatar-group avatar-group--lg">
+                        <li>
+                            <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                        </li>
+                        <li>
+                            <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                        </li>
+                        <li>
+                            <span className="avatar ">
+                                +4
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-12">
+                    <ul className="avatar-group avatar-group--xl">
+                        <li>
+                            <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                        </li>
+                        <li>
+                            <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                        </li>
+                        <li>
+                            <span className="avatar ">
+                                +4
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-12">
+                    <ul className="avatar-group avatar-group--2xl">
+                        <li>
+                            <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                        </li>
+                        <li>
+                            <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                        </li>
+                        <li>
+                            <span className="avatar ">
+                                +4
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-12">
+                    <ul className="avatar-group avatar-group--3xl">
+                        <li>
+                            <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                        </li>
+                        <li>
+                            <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                        </li>
+                        <li>
+                            <span className="avatar ">
+                                +4
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    </>
     );
 };

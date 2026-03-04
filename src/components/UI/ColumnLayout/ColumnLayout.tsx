@@ -1,59 +1,54 @@
-import React, { Children, isValidElement, PropsWithChildren, useMemo, useState } from "react";
-import { ColumnLayoutContext } from "./ColumnLayoutContext";
-import ColumnLayoutAside from "./ColumnLayoutAside";
-import ColumnLayoutMain from "./ColumnLayoutMain";
-import ColumnLayoutHeader from "./ColumnLayoutHeader";
+import React, { PropsWithChildren, useMemo } from "react";
+import {
+  ColumnLayoutContext,
+  ColumnLayoutPrimary,
+} from "./ColumnLayoutContext";
 
 export interface ColumnLayoutProps extends PropsWithChildren {
   asidePosition?: "left" | "right";
+  primary?: ColumnLayoutPrimary;
+  isShown?: boolean;
+  onToggle?: (value: boolean) => void;
   css?: string;
+  hasAside?: boolean;
+  showBurger?: boolean;
 }
 
-const ColumnLayout: React.FC<ColumnLayoutProps> & {
-  Aside: typeof ColumnLayoutAside;
-  Main: typeof ColumnLayoutMain;
-  Header: typeof ColumnLayoutHeader;
-} = ({
-  asidePosition = "left",
-  css = "",
+const ColumnLayout = ({
   children,
-}) => {
-    const [shown, setShown] = useState(false);
+  asidePosition = "right",
+  primary = "main",
+  isShown = false,
+  onToggle,
+  css,
+  hasAside = false,
+  showBurger = true,
+}: ColumnLayoutProps) => {
 
-    const hasAside = Children.toArray(children).some(
-      (child) =>
-        isValidElement(child) &&
-        (child.type as any).displayName === "ColumnLayoutAside"
-    );
+  const shown = isShown;
 
-    const contextValue = useMemo(
-      () => ({
-        shown,
-        hasAside,
-        toggleAside: () => setShown((p) => !p),
-        closeAside: () => setShown(false),
-      }),
-      [shown, hasAside]
-    );
+  console.log('Before',primary)
 
-    const cssClass = [
-      "column-layout",
-      hasAside ? `column-layout--aside-${asidePosition}` : "",
-      shown ? "shown is-shown" : "",
-      css,
-    ]
-      .filter(Boolean)
-      .join(" ");
+  const contextValue = useMemo(() => ({ isShown, onToggle, primary, showBurger }), [isShown, onToggle, primary, showBurger]);
+  
+  console.log('contextValue',primary)
 
-    return (
-      <ColumnLayoutContext.Provider value={contextValue}>
-        <div className={cssClass}>{children}</div>
-      </ColumnLayoutContext.Provider>
-    );
-  };
+  const cssClass = [
+    "column-layout",    
+    hasAside ? `column-layout--aside-${asidePosition}` : "",
+    primary && `${primary}-primary`,
+    shown ? "shown is-shown" : "",
+    
+    css,
+  ]
+    .filter(Boolean)
+    .join(" ");
 
-ColumnLayout.Aside = ColumnLayoutAside;
-ColumnLayout.Main = ColumnLayoutMain;
-ColumnLayout.Header = ColumnLayoutHeader;
+  return (
+    <ColumnLayoutContext.Provider value={contextValue}>
+      <div className={cssClass}>{children}</div>
+    </ColumnLayoutContext.Provider>
+  );
+};
 
 export default ColumnLayout;

@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { ColumnLayout, useLayoutContext } from "../../../components";
+import React, { useEffect, useState } from "react";
+import { ColumnLayout, ColumnLayoutAside, ColumnLayoutContent, ColumnLayoutHeader, ColumnLayoutMain, useLayoutContext } from "../../../components";
 
 const ColumnLayoutDemo = () => {
 
@@ -15,15 +15,36 @@ const ColumnLayoutDemo = () => {
     };
   }, [setFullscreen, setShowHeader]);
 
+ const [isShown, setIsShown] = useState(false);
 
 
   return (
-    <ColumnLayout>      
-      <ColumnLayout.Main>
-        <ColumnLayout.Header>Main Header content</ColumnLayout.Header>
-        <div>Main content</div>
-      </ColumnLayout.Main>
-    </ColumnLayout>
+   <ColumnLayout
+         hasAside
+        isShown={isShown}
+        onToggle={setIsShown}
+        >
+            <ColumnLayoutAside>
+                <ColumnLayoutHeader>
+                    <h2>Aside header</h2>
+                </ColumnLayoutHeader>
+
+                <ColumnLayoutContent>
+                    <p>Aside content</p>
+                </ColumnLayoutContent>
+            </ColumnLayoutAside>
+
+            <ColumnLayoutMain>
+                <ColumnLayoutHeader>
+                    <h1>Main header</h1>
+                </ColumnLayoutHeader>
+
+                <ColumnLayoutContent>
+                    <p>Main content</p>
+                </ColumnLayoutContent>
+            </ColumnLayoutMain>
+        </ColumnLayout>
   )
 };
+
 export default ColumnLayoutDemo;

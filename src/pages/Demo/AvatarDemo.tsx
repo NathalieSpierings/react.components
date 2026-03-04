@@ -2,7 +2,7 @@ import React from "react";
 import { ColorDefinitions, IconDefinitions, SizeDefinitions } from "../../lib/utils/definitions";
 import useBreadcrumb from "../../lib/hooks/useBreadcrumb";
 import usePageTitle from "../../lib/hooks/usePageTitle";
-import { Avatar, AvatarDefinitions } from "../../components/UI/Avatar";
+import { Avatar } from "../../components/UI/Avatar";
 
 const AvatarDemo: React.FC = () => {
     usePageTitle("Avatar", []);
@@ -16,135 +16,82 @@ const AvatarDemo: React.FC = () => {
     return (
         <section>
             <h3>Default</h3>
-
-
-            <div className="grid mb-3">
-                <Avatar icon={IconDefinitions.user} size={SizeDefinitions.ExtraSmall} />
+            <div className="grid">
+                <Avatar icon={IconDefinitions.user} />
+                <Avatar imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                <Avatar initials="NS" />
             </div>
 
-            <div className="row">
-                <div className="col-3">
-                    <Avatar icon={IconDefinitions.user} />
+            <h3 className="mt-3">Square</h3>
+            <div className="grid">
+                <Avatar icon={IconDefinitions.user} background={ColorDefinitions.SurfaceDark} square />
+                <Avatar background={ColorDefinitions.SurfaceDark} square imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                <Avatar background={ColorDefinitions.SurfaceDark} square initials="NS" />
+            </div>
+
+            <h3 className="mt-3">Float</h3>
+            <div className="grid">
+                <Avatar float icon={IconDefinitions.user} background={ColorDefinitions.SurfaceDark} />
+                <Avatar float background={ColorDefinitions.SurfaceDark} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                <Avatar float background={ColorDefinitions.SurfaceDark} initials="NS" />
+            </div>
+
+            <h3 className="mt-3">Border</h3>
+            <div className="grid">
+                <Avatar border icon={IconDefinitions.user} background={ColorDefinitions.SurfaceDark} />
+                <Avatar border background={ColorDefinitions.SurfaceDark} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                <Avatar border background={ColorDefinitions.SurfaceDark} initials="NS" />
+            </div>
+
+            <h3 className="mt-3">Shadow</h3>
+            <div className="grid">
+                <Avatar shadow icon={IconDefinitions.user} background={ColorDefinitions.SurfaceDark} />
+                <Avatar shadow background={ColorDefinitions.SurfaceDark} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                <Avatar shadow background={ColorDefinitions.SurfaceDark} initials="NS" />
+            </div>
+
+             <h3 className="mt-3">Background</h3>
+            <div className="grid">
+                <Avatar shadow icon={IconDefinitions.user} background={ColorDefinitions.Blue} />
+                <Avatar shadow background={ColorDefinitions.Purple} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                <Avatar shadow background={ColorDefinitions.Pink} initials="NS" />
+            </div>
+
+            <h3 className="mt-3">Sizes</h3>
+            <div className="grid">
+                <div>
+                     <Avatar icon={IconDefinitions.user} size={SizeDefinitions.ExtraSmall} />
+                     <Avatar icon={IconDefinitions.user} size={SizeDefinitions.Small} />
+                     <Avatar icon={IconDefinitions.user} />
+                     <Avatar icon={IconDefinitions.user} size={SizeDefinitions.Medium} />
+                     <Avatar icon={IconDefinitions.user} size={SizeDefinitions.Large} />
+                     <Avatar icon={IconDefinitions.user} size={SizeDefinitions.ExtraLarge} />
+                     <Avatar icon={IconDefinitions.user} size={SizeDefinitions.ExtraLarge2} />
                 </div>
-                <div className="col-3">
+                <div>
+                    <Avatar size={SizeDefinitions.ExtraSmall}  imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                    <Avatar size={SizeDefinitions.Small}  imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
                     <Avatar imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                    <Avatar size={SizeDefinitions.Medium}  imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                    <Avatar size={SizeDefinitions.Large}  imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                    <Avatar size={SizeDefinitions.ExtraLarge}  imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
+                    <Avatar size={SizeDefinitions.ExtraLarge2}  imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
                 </div>
-                <div className="col-3">
-                    <Avatar square={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
-                </div>
-                <div className="col-3">
-                    <Avatar initials="NS" />
-                </div>
-            </div>
-
-            <h1>Float</h1>
-            <div className="row">
-                <div className="col-3">
-                    <Avatar float={true} icon={IconDefinitions.user} />
-                </div>
-                <div className="col-3">
-                    <Avatar float={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
-                </div>
-                <div className="col-3">
-                    <Avatar float={true} square={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
-                </div>
-                <div className="col-3">
-                    <Avatar float={true} initials="NS" />
-                </div>
-            </div>
-            <h1>Sizes</h1>
-            <div className="row">
-                <div className="col-3">
-                    <Avatar avatar={AvatarDefinitions.Female1} size={SizeDefinitions.Tiny} />
-                    <Avatar avatar={AvatarDefinitions.Female1} size={SizeDefinitions.ExtraSmall} />
-                    <Avatar avatar={AvatarDefinitions.Female1} size={SizeDefinitions.Small} />
-                    <Avatar avatar={AvatarDefinitions.Female1} size={SizeDefinitions.Medium} />
-                    <Avatar avatar={AvatarDefinitions.Female1} size={SizeDefinitions.Large} />
-                    <Avatar avatar={AvatarDefinitions.Female1} size={SizeDefinitions.ExtraLarge} />
-                    <Avatar avatar={AvatarDefinitions.Female1} size={SizeDefinitions.ExtraLarge2} />
-                    <Avatar avatar={AvatarDefinitions.Female1} size={SizeDefinitions.ExtraLarge3} />
-                </div>
-                <div className="col-3">
-                    <Avatar imageUrl="https://promeetec.nl/wp-content/uploads/2022/02/Promeetec-Gemakkelijk-declareren-VECOZO-scaled-1-1030x1030.jpeg" size={SizeDefinitions.Tiny} />
-                    <Avatar imageUrl="https://promeetec.nl/wp-content/uploads/2022/02/Promeetec-Gemakkelijk-declareren-VECOZO-scaled-1-1030x1030.jpeg" size={SizeDefinitions.ExtraSmall} />
-                    <Avatar imageUrl="https://promeetec.nl/wp-content/uploads/2022/02/Promeetec-Gemakkelijk-declareren-VECOZO-scaled-1-1030x1030.jpeg" size={SizeDefinitions.Small} />
-                    <Avatar imageUrl="https://promeetec.nl/wp-content/uploads/2022/02/Promeetec-Gemakkelijk-declareren-VECOZO-scaled-1-1030x1030.jpeg" size={SizeDefinitions.Medium} />
-                    <Avatar imageUrl="https://promeetec.nl/wp-content/uploads/2022/02/Promeetec-Gemakkelijk-declareren-VECOZO-scaled-1-1030x1030.jpeg" size={SizeDefinitions.Large} />
-                    <Avatar imageUrl="https://promeetec.nl/wp-content/uploads/2022/02/Promeetec-Gemakkelijk-declareren-VECOZO-scaled-1-1030x1030.jpeg" size={SizeDefinitions.ExtraLarge} />
-                    <Avatar imageUrl="https://promeetec.nl/wp-content/uploads/2022/02/Promeetec-Gemakkelijk-declareren-VECOZO-scaled-1-1030x1030.jpeg" size={SizeDefinitions.ExtraLarge2} />
-                    <Avatar imageUrl="https://promeetec.nl/wp-content/uploads/2022/02/Promeetec-Gemakkelijk-declareren-VECOZO-scaled-1-1030x1030.jpeg" size={SizeDefinitions.ExtraLarge3} />
-                </div>
-                <div className="col-3">
-                    <Avatar square={true} avatar={AvatarDefinitions.Female1} size={SizeDefinitions.Tiny} />
-                    <Avatar square={true} avatar={AvatarDefinitions.Female1} size={SizeDefinitions.ExtraSmall} />
-                    <Avatar square={true} avatar={AvatarDefinitions.Female1} size={SizeDefinitions.Small} />
-                    <Avatar square={true} avatar={AvatarDefinitions.Female1} size={SizeDefinitions.Medium} />
-                    <Avatar square={true} avatar={AvatarDefinitions.Female1} size={SizeDefinitions.Large} />
-                    <Avatar square={true} avatar={AvatarDefinitions.Female1} size={SizeDefinitions.ExtraLarge} />
-                    <Avatar square={true} avatar={AvatarDefinitions.Female1} size={SizeDefinitions.ExtraLarge2} />
-                    <Avatar square={true} avatar={AvatarDefinitions.Female1} size={SizeDefinitions.ExtraLarge3} />
-                </div>
-                <div className="col-3">
-                    <Avatar initials="NS" size={SizeDefinitions.Tiny} />
-                    <Avatar initials="NS" size={SizeDefinitions.ExtraSmall} />
-                    <Avatar initials="NS" size={SizeDefinitions.Small} />
-                    <Avatar initials="NS" size={SizeDefinitions.Medium} />
-                    <Avatar initials="NS" size={SizeDefinitions.Large} />
-                    <Avatar initials="NS" size={SizeDefinitions.ExtraLarge} />
-                    <Avatar initials="NS" size={SizeDefinitions.ExtraLarge2} />
-                    <Avatar initials="NS" size={SizeDefinitions.ExtraLarge3} />
+                <div>
+                    <Avatar border background={ColorDefinitions.SurfaceDark} initials="NS" size={SizeDefinitions.ExtraSmall}/>
+                    <Avatar border background={ColorDefinitions.SurfaceDark} initials="NS" size={SizeDefinitions.Small}/>
+                    <Avatar border background={ColorDefinitions.SurfaceDark} initials="NS" />
+                    <Avatar border background={ColorDefinitions.SurfaceDark} initials="NS" size={SizeDefinitions.Medium} />
+                    <Avatar border background={ColorDefinitions.SurfaceDark} initials="NS" size={SizeDefinitions.Large}/>
+                    <Avatar border background={ColorDefinitions.SurfaceDark} initials="NS" size={SizeDefinitions.ExtraLarge}/>
+                    <Avatar border background={ColorDefinitions.SurfaceDark} initials="NS" size={SizeDefinitions.ExtraLarge2}/>
                 </div>
             </div>
 
-            <h1>Border</h1>
-            <div className="row">
-                <div className="col-3">
-                    <Avatar icon={IconDefinitions.user} border={true} borderColor={ColorDefinitions.Theme100} />
-                </div>
-                <div className="col-3">
-                    <Avatar border={true} borderColor={ColorDefinitions.Theme100} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
-                </div>
-                <div className="col-3">
-                    <Avatar border={true} borderColor={ColorDefinitions.Theme100} square={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
-                </div>
-                <div className="col-3">
-                    <Avatar border={true} borderColor={ColorDefinitions.Theme100} initials="NS" />
-                </div>
-            </div>
+           
+           
 
-            <h1>Shadow</h1>
-            <div className="row">
-                <div className="col-3">
-                    <Avatar icon={IconDefinitions.user} shadow={true} />
-                </div>
-                <div className="col-3">
-                    <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
-                </div>
-                <div className="col-3">
-                    <Avatar shadow={true} square={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
-                </div>
-                <div className="col-3">
-                    <Avatar shadow={true} initials="NS" />
-                </div>
-            </div>
-
-            <h1>Background</h1>
-            <div className="row">
-                <div className="col-3">
-                    <Avatar icon={IconDefinitions.user} shadow={true} background={ColorDefinitions.SurfaceDark} />
-                </div>
-                <div className="col-3">
-                    <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
-                </div>
-                <div className="col-3">
-                    <Avatar shadow={true} square={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
-                </div>
-                <div className="col-3">
-                    <Avatar shadow={true} initials="NS" background={ColorDefinitions.Blue} />
-                </div>
-            </div>
-
-            <h3>With text</h3>
+            <h3 className="mt-3">With text</h3>
             <div className="avatar__text">
                 <Avatar shadow={true} imageUrl="https://images.pexels.com/photos/3756985/pexels-photo-3756985.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="user avatar" />
                 <div>
@@ -153,7 +100,7 @@ const AvatarDemo: React.FC = () => {
                 </div>
             </div>
 
-            <h3>Stacked</h3>
+            <h3 className="mt-3">Stacked</h3>
             <div className="row">
                 <ul className="avatar-group">
                     <li>
@@ -176,7 +123,7 @@ const AvatarDemo: React.FC = () => {
                 </ul>
             </div>
 
-            <h3>Stacked sizes</h3>
+            <h3 className="mt-3">Stacked sizes</h3>
             <div className="row">
                 <div className="col-12">
                     <ul className="avatar-group avatar-group--tiny">

@@ -1,14 +1,17 @@
 import { createContext, useContext } from "react";
 
+export type ColumnLayoutPrimary = "main" | "aside";
+
 export interface ColumnLayoutContextProps {
-  closeAside: () => void;
-  toggleAside: () => void;
-  shown: boolean;
-  hasAside: boolean;
+  isShown: boolean;
+  onToggle?: (value: boolean) => void;
+  primary: ColumnLayoutPrimary;
+  showBurger?: boolean;
 }
 
-export const ColumnLayoutContext =
-  createContext<ColumnLayoutContextProps | null>(null);
+export const ColumnLayoutContext = createContext<ColumnLayoutContextProps | null>(null);
+
+export const ColumnSectionContext = createContext<"main" | "aside" | null>(null);
 
 export const useColumnLayout = () => {
   const ctx = useContext(ColumnLayoutContext);
@@ -21,3 +24,4 @@ export const useColumnLayout = () => {
 
   return ctx;
 };
+

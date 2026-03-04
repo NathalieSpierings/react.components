@@ -28,7 +28,7 @@ const GridLayoutDemo: React.FC = () => {
             <ContentItem item={
                 {
                     id: '1',
-                    title:
+                    content:
                         <Button onClick={() => setOpen(!open)}>
                             <Icon icon={IconDefinitions.funnel} position="left" />
                             Filter

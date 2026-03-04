@@ -73,7 +73,6 @@ export * from './Typography/Text';
 export * from './Typography/Title';
 
 export * from './UI/Accordion';
-export * from './UI/Actionbar';
 export * from './UI/Alert';
 export * from './UI/Avatar';
 export * from './UI/Badge';

@@ -5,7 +5,8 @@ import ColumnLayoutAside from '../ColumnLayoutAside';
 import { useColumnLayout } from '../ColumnLayoutContext';
 import ColumnLayoutHeader from '../ColumnLayoutHeader';
 import ColumnLayoutMain from '../ColumnLayoutMain';
-import React from 'react';
+import React, { useState } from 'react';
+import ColumnLayoutContent from '../ColumnLayoutContent';
 
 const meta: Meta<typeof ColumnLayout> = {
     title: 'Layout/Column layout',
@@ -17,93 +18,233 @@ type Story = StoryObj<typeof ColumnLayout>;
 
 export const Default: StoryFn = () => {
 
-    return (
-        <ColumnLayout>
-            <ColumnLayoutAside>
-                <ColumnLayoutHeader>Aside Header</ColumnLayoutHeader>
+    const [isShown, setIsShown] = useState(false);
 
-                <p>Aside content goes here...</p>
+    return (
+        <ColumnLayout
+            hasAside
+            isShown={isShown}
+            onToggle={setIsShown}
+        >
+
+            <ColumnLayoutAside>
+
+                <ColumnLayoutHeader>
+                    <h2>Aside header</h2>
+                </ColumnLayoutHeader>
+
+                <ColumnLayoutContent>
+                    <p>Aside content</p>
+                </ColumnLayoutContent>
+
             </ColumnLayoutAside>
+
             <ColumnLayoutMain>
-                <ColumnLayoutHeader>Main Header</ColumnLayoutHeader>
-                <div>Main content goes here...</div>
+
+                <ColumnLayoutHeader>
+                    <h1>Main header</h1>
+                </ColumnLayoutHeader>
+
+                <ColumnLayoutContent>
+                    <p>Main content</p>
+                </ColumnLayoutContent>
+
             </ColumnLayoutMain>
+
         </ColumnLayout>
     );
 };
 
+
+export const AsideLeft: StoryFn = () => {
+    const [isShown, setIsShown] = useState(false);
+    return (
+        <ColumnLayout
+            hasAside
+            asidePosition='left'
+            isShown={isShown}
+            onToggle={setIsShown}
+        >
+
+            <ColumnLayoutAside>
+
+                <ColumnLayoutHeader>
+                    <h2>Aside header</h2>
+                </ColumnLayoutHeader>
+
+                <ColumnLayoutContent>
+                    <p>Aside content</p>
+                </ColumnLayoutContent>
+
+            </ColumnLayoutAside>
+
+            <ColumnLayoutMain>
+
+                <ColumnLayoutHeader>
+                    <h1>Main header</h1>
+                </ColumnLayoutHeader>
+
+                <ColumnLayoutContent>
+                    <p>Main content</p>
+                </ColumnLayoutContent>
+
+            </ColumnLayoutMain>
+
+        </ColumnLayout>
+    );
+};
 
 export const AsideRight: StoryFn = () => {
-
+    const [isShown, setIsShown] = useState(false);
     return (
-        <ColumnLayout asidePosition="right">
+        <ColumnLayout
+            hasAside
+            asidePosition='right'
+            isShown={isShown}
+            onToggle={setIsShown}
+        >
+
             <ColumnLayoutAside>
-                <ColumnLayoutHeader>Aside Header</ColumnLayoutHeader>
 
-                <p>Aside content goes here...</p>
+                <ColumnLayoutHeader>
+                    <h2>Aside header</h2>
+                </ColumnLayoutHeader>
+
+                <ColumnLayoutContent>
+                    <p>Aside content</p>
+                </ColumnLayoutContent>
+
             </ColumnLayoutAside>
+
             <ColumnLayoutMain>
-                <ColumnLayoutHeader>Main Header</ColumnLayoutHeader>
-                <div>Main content goes here...</div>
+
+                <ColumnLayoutHeader>
+                    <h1>Main header</h1>
+                </ColumnLayoutHeader>
+
+                <ColumnLayoutContent>
+                    <p>Main content</p>
+                </ColumnLayoutContent>
+
+            </ColumnLayoutMain>
+
+        </ColumnLayout>
+    );
+};
+
+export const MainOnly: StoryFn = () => {
+   
+    return (
+        <ColumnLayout>
+            <ColumnLayoutMain>
+                <ColumnLayoutHeader>
+                    <h1>Main header</h1>
+                </ColumnLayoutHeader>
+
+                <ColumnLayoutContent>
+                    <p>Main content</p>
+                </ColumnLayoutContent>
             </ColumnLayoutMain>
         </ColumnLayout>
     );
 };
 
-export const Header: StoryFn = () => {
 
+export const PrimaryMain: StoryFn = () => {
+    const [isShown, setIsShown] = useState(false);
     return (
-        <ColumnLayout asidePosition="left">
+        <ColumnLayout
+            hasAside
+            asidePosition='right'
+            primary='main'
+            isShown={isShown}
+            onToggle={setIsShown}
+        >
+
             <ColumnLayoutAside>
-                <ColumnLayoutHeader border={true}
-                    borderColor={ColorDefinitions.Blue}>Aside Header</ColumnLayoutHeader>
 
-                <p>Aside content goes here...</p>
+                <ColumnLayoutHeader>
+                    <h2>Aside header</h2>
+                </ColumnLayoutHeader>
+
+                <ColumnLayoutContent>
+                    <p>Aside content</p>
+                </ColumnLayoutContent>
+
             </ColumnLayoutAside>
+
             <ColumnLayoutMain>
-                <ColumnLayoutHeader border={true}
-                    borderColor={ColorDefinitions.Red}>Main Header</ColumnLayoutHeader>
-                <div>Main content goes here...</div>
+
+                <ColumnLayoutHeader>
+                    <h1>Main header</h1>
+                </ColumnLayoutHeader>
+
+                <ColumnLayoutContent>
+                    <p>Main content | Resize me to tablet or mobiel</p>
+                </ColumnLayoutContent>
+
             </ColumnLayoutMain>
+
         </ColumnLayout>
     );
 };
 
-
-
-const AsideButton: React.FC = () => {
-    const { showMain } = useColumnLayout();
-    return <button onClick={showMain}>Toon Main</button>;
-};
-
-
-export const Toggleable: StoryFn = () => {
-
+export const PrimaryAside: StoryFn = () => {
+    const [isShown, setIsShown] = useState(false);
     return (
-        <ColumnLayout toggleableView={true} asidePosition="left">
+        <ColumnLayout
+            hasAside
+            asidePosition='right'
+            primary='main'
+            isShown={isShown}
+            onToggle={setIsShown}
+        >
+
             <ColumnLayoutAside>
-                <ColumnLayoutHeader>Aside Header</ColumnLayoutHeader>
-                <AsideButton />
-                <p>Aside content goes here...</p>
+
+                <ColumnLayoutHeader>
+                    <h2>Aside header</h2>
+                </ColumnLayoutHeader>
+
+                <ColumnLayoutContent>
+                    <p>Aside content | Resize me to tablet or mobiel</p>
+                </ColumnLayoutContent>
+
             </ColumnLayoutAside>
+
             <ColumnLayoutMain>
-                <ColumnLayoutHeader>Main Header</ColumnLayoutHeader>
-                <div>Main content goes here...</div>
+
+                <ColumnLayoutHeader>
+                    <h1>Main header</h1>
+                </ColumnLayoutHeader>
+
+                <ColumnLayoutContent>
+                    <p>Main content</p>
+                </ColumnLayoutContent>
+
             </ColumnLayoutMain>
+
         </ColumnLayout>
     );
 };
 
+// export const Header: StoryFn = () => {
+
+//     return (
+//         <ColumnLayout asidePosition="left">
+//             <ColumnLayoutAside>
+//                 <ColumnLayoutHeader border={true}
+//                     borderColor={ColorDefinitions.Blue}>Aside Header</ColumnLayoutHeader>
+
+//                 <p>Aside content goes here...</p>
+//             </ColumnLayoutAside>
+//             <ColumnLayoutMain>
+//                 <ColumnLayoutHeader border={true}
+//                     borderColor={ColorDefinitions.Red}>Main Header</ColumnLayoutHeader>
+//                 <div>Main content goes here...</div>
+//             </ColumnLayoutMain>
+//         </ColumnLayout>
+//     );
+// };
 
 
-export const Single: StoryFn = () => {
-
-    return (
-        <ColumnLayout>           
-            <ColumnLayoutMain>
-                <ColumnLayoutHeader>Main Header</ColumnLayoutHeader>
-                <div>Main content goes here...</div>
-            </ColumnLayoutMain>
-        </ColumnLayout>
-    );
-};

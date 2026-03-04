@@ -4,6 +4,8 @@ import { Icon } from '../../Icons/Icon';
 import { IconDefinitions } from '../../../../lib/utils/definitions';
 import Button from '../../../UI/Button/Button';
 import React from 'react';
+import Title from '../../../Typography/Title/Title';
+import Subtitle from '../../../Typography/Subtitle/Subtitle';
 
 
 const meta: Meta<typeof ContentItem> = {
@@ -22,45 +24,22 @@ export const Default: StoryFn = () => {
         <ContentItem item={{
             id: '1',
             prefix: <Icon icon={IconDefinitions.bin} />,
-            title: <h4>Mijn titel</h4>,
+            content: <p>Content goes here</p>,
             postfix: <Icon icon={IconDefinitions.bin} />,
         }} />
     )
 };
 
 
-export const WithMetaActions: StoryFn = () => {
+export const Separator: StoryFn = () => {
     return (
         <ContentItem item={{
             id: '1',
             prefix: <Icon icon={IconDefinitions.bin} />,
-            title: <h4>Mijn titel</h4>,
-            metaActions: <>
-                <Button>Action</Button>
-                <Button>Action</Button>
-            </>,
+            separatorAfterPrefix: true,
+            separatorAfterMeta: true,
+            content: <Title>Content goes here</Title>,
             postfix: <Icon icon={IconDefinitions.bin} />,
-        }} />
-    )
-};
-
-
-export const TitleOnly: StoryFn = () => {
-    return (
-        <ContentItem item={{
-            id: '1',
-            title: <div className="title">Title</div>
-        }} />
-    )
-};
-
-
-export const TitleAndSubtitleOnly: StoryFn = () => {
-    return (
-        <ContentItem item={{
-            id: '1',
-            title: <div className="title">Title</div>,
-            subtitle: <div className="subtitle">Subtitle</div>,
         }} />
     )
 };
@@ -75,6 +54,14 @@ export const PrefixOnly: StoryFn = () => {
     )
 };
 
+export const MetaOnly: StoryFn = () => {
+    return (
+        <ContentItem item={{
+            id: '1',
+            content: <h4>Content goes here</h4>,
+        }} />
+    )
+};
 
 export const PostfixOnly: StoryFn = () => {
     return (
@@ -85,91 +72,183 @@ export const PostfixOnly: StoryFn = () => {
     )
 };
 
-export const MetaActionsOnly: StoryFn = () => {
+export const PrefixAndMeta: StoryFn = () => {
     return (
         <ContentItem item={{
             id: '1',
+            prefix: <Icon icon={IconDefinitions.bin} />,
+            content: <h4>Content goes here</h4>,
+        }} />
+    )
+};
 
-            metaActions: <>
-                <Button>Action</Button>
-                <Button>Action</Button>
-            </>
+export const PostfixAndMeta: StoryFn = () => {
+    return (
+        <ContentItem item={{
+            id: '1',
+            postfix: <Icon icon={IconDefinitions.bin} />,
+            content: <h4>Content goes here</h4>,
         }} />
     )
 };
 
 
-
-export const ContentPostionCenter: StoryFn = () => {
+export const PrefixItemPositionStart: StoryFn = () => {
     return (
         <ContentItem item={{
             id: '1',
             prefix: <Icon icon={IconDefinitions.bin} />,
-            title: <h4>Mijn titel</h4>,
-            contentPositon: "center",
+            prefixItemPosition: 'item-start',
+            content: <Title>Content goes here</Title>,
+            postfix: <Icon icon={IconDefinitions.bin} />,
+        }} />
+    )
+};
+export const PrefixItemPositionCenter: StoryFn = () => {
+    return (
+        <ContentItem item={{
+            id: '1',
+            prefix: <Icon icon={IconDefinitions.bin} />,
+            prefixItemPosition: 'item-center',
+            content: <Title>Content goes here</Title>,
             postfix: <Icon icon={IconDefinitions.bin} />,
         }} />
     )
 };
 
-export const ContentPostionEnd: StoryFn = () => {
+export const PrefixItemPositionEnd: StoryFn = () => {
     return (
         <ContentItem item={{
             id: '1',
             prefix: <Icon icon={IconDefinitions.bin} />,
-            title: <h4>Mijn titel</h4>,
-            contentPositon: "end",
-            postfix: <Icon icon={IconDefinitions.bin} />,
-        }} />
-    )
-};
-
-
-export const PrefixPostionStart: StoryFn = () => {
-    return (
-        <ContentItem item={{
-            id: '1',
-            prefix: <Icon icon={IconDefinitions.bin} />,
-            title: <h4>Mijn titel</h4>,
-            prefixPosition: "start",
-            postfix: <Icon icon={IconDefinitions.bin} />,
-        }} />
-    )
-};
-
-export const PrefixPostionEnd: StoryFn = () => {
-    return (
-        <ContentItem item={{
-            id: '1',
-            prefix: <Icon icon={IconDefinitions.bin} />,
-            title: <h4>Mijn titel</h4>,
-            prefixPosition: "end",
+            prefixItemPosition: 'item-end',
+            content: <Title>Content goes here</Title>,
             postfix: <Icon icon={IconDefinitions.bin} />,
         }} />
     )
 };
 
 
-export const PostfixPostionStart: StoryFn = () => {
+export const MetaItemPositionStart: StoryFn = () => {
     return (
         <ContentItem item={{
             id: '1',
             prefix: <Icon icon={IconDefinitions.bin} />,
-            title: <h4>Mijn titel</h4>,
-            postfixPosition: "start",
+            contentItemPosition: 'item-start',
+            content: (
+                <>
+                    <Title>Title</Title>
+                    <Subtitle>Subtitle</Subtitle>
+                </>
+            ),
+            postfix: <Icon icon={IconDefinitions.bin} />,
+        }} />
+    )
+};
+export const MetaItemPositionCenter: StoryFn = () => {
+    return (
+        <ContentItem item={{
+            id: '1',
+            prefix: <Icon icon={IconDefinitions.bin} />,
+            contentItemPosition: 'item-center',
+            content: (
+                <>
+                    <Title>Title</Title>
+                    <Subtitle>Subtitle</Subtitle>
+                </>
+            ),
             postfix: <Icon icon={IconDefinitions.bin} />,
         }} />
     )
 };
 
-export const PostfixPostionEnd: StoryFn = () => {
+export const MetaItemPositionEnd: StoryFn = () => {
     return (
         <ContentItem item={{
             id: '1',
             prefix: <Icon icon={IconDefinitions.bin} />,
-            title: <h4>Mijn titel</h4>,
-            postfixPosition: "end",
+            contentItemPosition: 'item-end',
+            content: (
+                <>
+                    <Title>Title</Title>
+                    <Subtitle>Subtitle</Subtitle>
+                </>
+            ),
             postfix: <Icon icon={IconDefinitions.bin} />,
         }} />
     )
 };
+
+
+export const MetaJustifyPositionStart: StoryFn = () => {
+    return (
+        <ContentItem item={{
+            id: '1',
+            prefix: <Title>Action</Title>,
+            contentJustifyPosition: 'justify-start',
+            content: <p>Content goes here</p>,
+            postfix: <Icon icon={IconDefinitions.bin} />,
+        }} />
+    )
+};
+export const MetaJustifyPositionCenter: StoryFn = () => {
+    return (
+        <ContentItem item={{
+            id: '1',
+            prefix: <Title>Action</Title>,
+            contentJustifyPosition: 'justify-center',
+           content: <p>Content goes here</p>,
+            postfix: <Icon icon={IconDefinitions.bin} />,
+        }} />
+    )
+};
+
+export const MetaJustifyPositionEnd: StoryFn = () => {
+    return (
+        <ContentItem item={{
+            id: '1',
+           prefix: <Title>Action</Title>,
+            contentJustifyPosition: 'justify-end',
+           content: <p>Content goes here</p>,
+            postfix: <Icon icon={IconDefinitions.bin} />,
+        }} />
+    )
+};
+
+
+
+export const PostfixItemPositionStart: StoryFn = () => {
+    return (
+        <ContentItem item={{
+            id: '1',
+            prefix: <Icon icon={IconDefinitions.bin} />,
+            postfixItemPosition: 'item-start',
+            content: <Title>Content goes here</Title>,
+            postfix: <Icon icon={IconDefinitions.bin} />,
+        }} />
+    )
+};
+export const PostfixItemPositionCenter: StoryFn = () => {
+    return (
+        <ContentItem item={{
+            id: '1',
+            prefix: <Icon icon={IconDefinitions.bin} />,
+            postfixItemPosition: 'item-center',
+            content: <Title>Content goes here</Title>,
+            postfix: <Icon icon={IconDefinitions.bin} />,
+        }} />
+    )
+};
+
+export const PostfixItemPositionEnd: StoryFn = () => {
+    return (
+        <ContentItem item={{
+            id: '1',
+            prefix: <Icon icon={IconDefinitions.bin} />,
+            postfixItemPosition: 'item-end',
+            content: <Title>Content goes here</Title>,
+            postfix: <Icon icon={IconDefinitions.bin} />,
+        }} />
+    )
+};
+

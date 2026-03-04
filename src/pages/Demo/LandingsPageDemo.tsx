@@ -34,7 +34,8 @@ const LandingsPageDemo: React.FC = () => {
     const widgetsData: WidgetProps[] = [{
         image: <ArtAanlevering />,
         background: ColorDefinitions.SurfaceDark,
-        contentPositon: "center" as const,
+        contentItemPosition:"item-center",
+        
         widgetContent: (
             <>
                 <Icon
@@ -61,7 +62,7 @@ const LandingsPageDemo: React.FC = () => {
     {
         image: <ArtDossier />,
         background: ColorDefinitions.SurfaceDark,
-        contentPositon: "center",
+         contentItemPosition:"item-center",
         widgetContent: (
             <>
                 <Icon
@@ -88,7 +89,7 @@ const LandingsPageDemo: React.FC = () => {
     {
         image: <ArtDocument />,
         background: ColorDefinitions.SurfaceDark,
-        contentPositon: "center",
+         contentItemPosition:"item-center",
         widgetContent: (
             <>
                 <h4>Documenten</h4>
@@ -102,7 +103,7 @@ const LandingsPageDemo: React.FC = () => {
     {
         image: <ArtKetenzorg />,
         background: ColorDefinitions.SurfaceDark,
-        contentPositon: "center",
+         contentItemPosition:"item-center",
         widgetContent: (
             <>
                 <h4>Ketenzorg</h4>
@@ -116,7 +117,7 @@ const LandingsPageDemo: React.FC = () => {
     {
         image: <ArtIgo />,
         background: ColorDefinitions.SurfaceDark,
-        contentPositon: "center",
+         contentItemPosition:"item-center",
         widgetContent: (
             <>
                 <h4>Integrale geboortezorg</h4>
@@ -130,7 +131,7 @@ const LandingsPageDemo: React.FC = () => {
     {
         image: <ArtVerbruiksmiddel />,
         background: ColorDefinitions.SurfaceDark,
-        contentPositon: "center",
+         contentItemPosition:"item-center",
         widgetContent: (
             <>
                 <h4>Verbruiksmiddelen</h4>
@@ -144,7 +145,7 @@ const LandingsPageDemo: React.FC = () => {
     {
         image: <ArtPopulatiebekostiging />,
         background: ColorDefinitions.SurfaceDark,
-        contentPositon: "center",
+         contentItemPosition:"item-center",
         widgetContent: (
             <>
                 <h4>Populatiebekostiging</h4>
@@ -158,7 +159,7 @@ const LandingsPageDemo: React.FC = () => {
     {
         image: <ArtMeekijkconsult />,
         background: ColorDefinitions.SurfaceDark,
-        contentPositon: "center",
+         contentItemPosition:"item-center",
         widgetContent: (
             <>
                 <h4>Meekijkconsulten</h4>
@@ -172,7 +173,7 @@ const LandingsPageDemo: React.FC = () => {
     {
         image: <ArtContract />,
         background: ColorDefinitions.SurfaceDark,
-        contentPositon: "center",
+         contentItemPosition:"item-center",
         widgetContent: (
             <>
                 <h4>Contracten</h4>
@@ -186,7 +187,7 @@ const LandingsPageDemo: React.FC = () => {
     {
         image: <ArtTicket />,
         background: ColorDefinitions.SurfaceDark,
-        contentPositon: "center",
+         contentItemPosition:"item-center",
         widgetContent: (
             <>
                 <h4>Tickets</h4>

@@ -18,12 +18,12 @@ export const Default: Story = {
         items: [
             {
                 id: '1',
-                title: "Item 1",
+                content: "Item 1",
                 postfix: <Icon icon={IconDefinitions.bin} />
             },
             {
                 id: '2',
-                title: "Item 1",
+                content: "Item 1",
                 postfix: <Icon icon={IconDefinitions.bin} />
             }
         ],

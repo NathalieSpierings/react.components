@@ -39,12 +39,12 @@ export const Default: StoryFn = () => {
                 <Icon key="iconRefresh" icon={IconDefinitions.refresh} variant="circle" size={SizeDefinitions.Small} />,
                 <Icon key="iconEllipsis" icon={IconDefinitions.ellipsis_h} variant="circle" size={SizeDefinitions.Small} />,
             ]}
-            headerStyledDivProps={{
+            headerBoxProps={{
                 borderColor: ColorDefinitions.Theme100,
             }}
             footerLeftContent={<p>Action</p>}
             footerRightContent={<p>Action</p>}
-            footerStyledDivProps={{
+            footerBoxProps={{
                 borderColor: ColorDefinitions.Theme100,
             }}
         >
@@ -65,12 +65,12 @@ export const Shadow: StoryFn = () => {
                 <Icon key="iconRefresh" icon={IconDefinitions.refresh} variant="circle" size={SizeDefinitions.Small} />,
                 <Icon key="iconEllipsis" icon={IconDefinitions.ellipsis_h} variant="circle" size={SizeDefinitions.Small} />,
             ]}
-            headerStyledDivProps={{
+            headerBoxProps={{
                 borderColor: ColorDefinitions.Theme100,
             }}
             footerLeftContent={<p>Action</p>}
             footerRightContent={<p>Action</p>}
-            footerStyledDivProps={{
+            footerBoxProps={{
                 borderColor: ColorDefinitions.Theme100,
             }}
         >
@@ -91,12 +91,12 @@ export const ShadowHover: StoryFn = () => {
                 <Icon key="iconRefresh" icon={IconDefinitions.refresh} variant="circle" size={SizeDefinitions.Small} />,
                 <Icon key="iconEllipsis" icon={IconDefinitions.ellipsis_h} variant="circle" size={SizeDefinitions.Small} />,
             ]}
-            headerStyledDivProps={{
+            headerBoxProps={{
                 borderColor: ColorDefinitions.Theme100,
             }}
             footerLeftContent={<p>Action</p>}
             footerRightContent={<p>Action</p>}
-            footerStyledDivProps={{
+            footerBoxProps={{
                 borderColor: ColorDefinitions.Theme100,
             }}
         >
@@ -116,13 +116,13 @@ export const Background: StoryFn = () => {
                 <Icon key="iconRefresh" icon={IconDefinitions.refresh} variant="circle" size={SizeDefinitions.Small} />,
                 <Icon key="iconEllipsis" icon={IconDefinitions.ellipsis_h} variant="circle" size={SizeDefinitions.Small} />,
             ]}
-            headerStyledDivProps={{
+            headerBoxProps={{
                 background: ColorDefinitions.Olive30,
                 borderColor: ColorDefinitions.Olive30,
             }}
             footerLeftContent={<p>Action</p>}
             footerRightContent={<p>Action</p>}
-            footerStyledDivProps={{
+            footerBoxProps={{
                 background: ColorDefinitions.Olive20,
                 borderColor: ColorDefinitions.Olive20,
             }}
@@ -142,12 +142,12 @@ export const Transparent: StoryFn = () => {
                 <Icon key="iconRefresh" icon={IconDefinitions.refresh} variant="circle" size={SizeDefinitions.Small} />,
                 <Icon key="iconEllipsis" icon={IconDefinitions.ellipsis_h} variant="circle" size={SizeDefinitions.Small} />,
             ]}
-            headerStyledDivProps={{
+            headerBoxProps={{
                 borderColor: ColorDefinitions.Theme100,
             }}
             footerLeftContent={<p>Action</p>}
             footerRightContent={<p>Action</p>}
-            footerStyledDivProps={{
+            footerBoxProps={{
                 borderColor: ColorDefinitions.Theme100,
             }}
         >
@@ -174,12 +174,12 @@ export const TitleContent: StoryFn = () => {
                 <Icon key="iconRefresh" icon={IconDefinitions.refresh} variant="circle" size={SizeDefinitions.Small} />,
                 <Icon key="iconEllipsis" icon={IconDefinitions.ellipsis_h} variant="circle" size={SizeDefinitions.Small} />,
             ]}
-            headerStyledDivProps={{
+            headerBoxProps={{
                 borderColor: ColorDefinitions.Theme100,
             }}
             footerLeftContent={<p>Action</p>}
             footerRightContent={<p>Action</p>}
-            footerStyledDivProps={{
+            footerBoxProps={{
                 borderColor: ColorDefinitions.Theme100,
             }}
         >
@@ -204,12 +204,12 @@ export const HeaderSticky: StoryFn = () => {
                 </Button>,
                 <Button key="btnSave" color={ColorDefinitions.Primary}>Opslaan</Button>,
             ]}
-            headerStyledDivProps={{
+            headerBoxProps={{
                 borderColor: ColorDefinitions.Theme100,
             }}
             footerLeftContent={<p>Action</p>}
             footerRightContent={<p>Action</p>}
-            footerStyledDivProps={{
+            footerBoxProps={{
                 borderColor: ColorDefinitions.Theme100,
             }}
         >
@@ -344,7 +344,7 @@ export const Image: StoryFn = () => {
             imageUrl="https://promeetec.nl/wp-content/uploads/2022/02/Promeetec-Gemakkelijk-declareren-VECOZO-scaled-1-1030x1030.jpeg"
             footerLeftContent={<p>Action</p>}
             footerRightContent={<p>Action</p>}
-            footerStyledDivProps={{
+            footerBoxProps={{
                 borderColor: ColorDefinitions.Theme100,
             }}
         >

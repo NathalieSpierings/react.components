@@ -4,7 +4,7 @@ import { Control, FieldValues, RegisterOptions, useController } from 'react-hook
 import { ColorDefinitions, SizeDefinitions } from '../../../lib/utils/definitions';
 import Box, { BoxProps } from '../../Base/Box/Box';
 import Input from '../Input/Input';
-import { ContentItemType } from '../../UI/ContentItem/ContentItem';
+import ContentItem, { ContentItemType } from '../../UI/ContentItem/ContentItem';
 import Checkbox from '../Checkbox/Checkbox';
 
 
@@ -165,27 +165,22 @@ const MultiselectItem = ({
             }}
         >
             <div className="collection__item__container">
-                <div className="content-item" key={item.id}>
-                    <div className={`actions ${item.prefixPosition ? 'actions--' + item.prefixPosition : ''}`}>
+                <ContentItem key={item.id} item={{
+                    id: 'multiselectContentItem',
+                    prefix: (
                         <Checkbox
                             checked={isSelected(item, selected)}
                             color={isSelected(item, selected) ? ColorDefinitions.Offwhite : checkboxColor}
                             onChange={toggleSelect}
                         />
-                    </div>
-
-                    <div className={`meta ${item.contentPositon ? 'meta--' + item.contentPositon : ''}`}>
+                    ),
+                    content: (
                         <button className="link link-hover" onClick={toggleSelect}>
                             {item.content}
                         </button>
-                    </div>
-
-                    {item.postfix && (
-                        <div className={`actions ${item.postfixPosition ? 'actions--' + item.postfixPosition : ''}`}>
-                            {item.postfix}
-                        </div>
-                    )}
-                </div>
+                    ),
+                    postfix: (item.postfix)
+                }}/>
             </div>
         </motion.div>
     );

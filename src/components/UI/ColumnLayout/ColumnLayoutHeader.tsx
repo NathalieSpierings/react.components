@@ -1,54 +1,62 @@
-import React, { PropsWithChildren } from "react";
-import { useColumnLayout } from "./ColumnLayoutContext";
-import { useColumnLayoutRegion } from "./ColumnLayoutRegionContext";
-import { DismissButton } from "../DismissButton";
+import React, { PropsWithChildren, useContext } from "react";
+import {
+  ColumnLayoutContext,
+  ColumnSectionContext,
+} from "./ColumnLayoutContext";
 import { ColorDefinitions } from "../../../lib/utils/definitions";
+import { DismissButton } from "../DismissButton";
 
 export interface ColumnLayoutHeaderProps extends PropsWithChildren {
-  borderColor?: ColorDefinitions;
+   borderColor?: ColorDefinitions;
   css?: string;
 }
 
-const ColumnLayoutHeader: React.FC<ColumnLayoutHeaderProps> = ({
+const ColumnLayoutHeader = ({
   borderColor = ColorDefinitions.Surface,
-  css,
   children,
-}) => {
-  const { toggleAside, closeAside, hasAside } = useColumnLayout();
-  const region = useColumnLayoutRegion();
+  css,
+}: ColumnLayoutHeaderProps) => {
+  const section = useContext(ColumnSectionContext);
+  const layout = useContext(ColumnLayoutContext);
 
-  const className = [
+  if (!section || !layout) return null;
+
+  const { onToggle, primary, showBurger } = layout;
+
+  const isMain = section === "main";
+  const isAside = section === "aside";
+
+  const shouldHaveBurger =
+    (showBurger && primary === "main" && isMain) ||
+    (showBurger && primary === "aside" && isAside);
+  const shouldHaveDismiss =
+    (primary === "aside" && isMain) || (primary === "main" && isAside);
+
+  const cssClass = [
     "column-layout__header",
     borderColor && `border-${borderColor}`,
-    css,
-  ]
+     css]
     .filter(Boolean)
     .join(" ");
 
   return (
-    <div className={className}>
-      {region === "main" && hasAside && (
-        <button className="burger burger--sm" onClick={toggleAside}>
-          <div className="burger__line"></div>
-          <div className="burger__line"></div>
-          <div className="burger__line"></div>
+    <header className={cssClass}>
+      {shouldHaveBurger && (
+        <button className="burger" onClick={() => onToggle?.(true)}>
+          <span className="burger__line" />
+          <span className="burger__line" />
+          <span className="burger__line" />
         </button>
       )}
 
       {children}
 
-      {region === "aside" && (
-        <DismissButton
-          right
-          label="Sluiten"
-          labelPosition="left"
-          onClick={closeAside}
-        />
+      {shouldHaveDismiss && (
+        <DismissButton right={true} onClick={() => onToggle?.(false)}/>
+       
       )}
-    </div>
+    </header>
   );
 };
-
-ColumnLayoutHeader.displayName = "ColumnLayoutHeader";
 
 export default ColumnLayoutHeader;

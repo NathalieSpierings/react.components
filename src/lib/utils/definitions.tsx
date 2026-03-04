@@ -2,6 +2,7 @@ export enum ColorDefinitions {
     Default = 'default',
     CurrentColor = 'currentColor',
     Transparent = 'transparent',
+    None = 'none',
     // Theme
     Theme100 = 'theme-100',
     Theme200 = 'theme-200',

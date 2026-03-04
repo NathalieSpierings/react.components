@@ -59,7 +59,7 @@ const LandingsPage: React.FC<LandingsPageProps> = ({
                             id: '1',
                             prefix: <Logo />,
                             content:<h3>{title}</h3>,
-                            contentPositon: 'center',
+                            contentItemPosition: "item-center",
                             postfix: <>
                                 <Dropdown
                                     dropdownToggle={{

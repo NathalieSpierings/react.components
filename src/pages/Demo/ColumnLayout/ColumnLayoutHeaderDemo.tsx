@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { ColumnLayout, ColumnLayoutAside, ColumnLayoutHeader, ColumnLayoutMain, useLayoutContext } from "../../../components";
+import React, { useEffect, useState } from "react";
+import { ColumnLayout, ColumnLayoutAside, ColumnLayoutContent, ColumnLayoutHeader, ColumnLayoutMain, useLayoutContext } from "../../../components";
 import { ColorDefinitions } from "../../../lib/utils/definitions";
 
 
@@ -17,24 +17,35 @@ const ColumnLayoutHeaderDemo = () => {
     };
   }, [setFullscreen, setShowHeader]);
 
+   const [isShown, setIsShown] = useState(false);
+  
+
   return (
-   <ColumnLayout asidePosition="left">
-      <ColumnLayout.Aside>
-        <ColumnLayout.Header borderColor={ColorDefinitions.Blue}>
-        Aside Header
-        </ColumnLayout.Header>
-        
-        <p>Aside content goes here...</p>
-      </ColumnLayout.Aside>
-      <ColumnLayout.Main>
-        <ColumnLayout.Header borderColor={ColorDefinitions.Red}>
-        Main Header
-        </ColumnLayout.Header>
-        <div>Main content goes here...</div>
-      </ColumnLayout.Main>
-    </ColumnLayout>
+     <ColumnLayout
+         hasAside
+        isShown={isShown}
+        onToggle={setIsShown}
+        >
+            <ColumnLayoutAside>
+                <ColumnLayoutHeader borderColor={ColorDefinitions.Blue}>
+                    <h2>Aside header</h2>
+                </ColumnLayoutHeader>
 
+                <ColumnLayoutContent>
+                    <p>Aside content</p>
+                </ColumnLayoutContent>
+            </ColumnLayoutAside>
 
+            <ColumnLayoutMain>
+                <ColumnLayoutHeader borderColor={ColorDefinitions.Red}>
+                    <h1>Main header</h1>
+                </ColumnLayoutHeader>
+
+                <ColumnLayoutContent>
+                    <p>Main content</p>
+                </ColumnLayoutContent>
+            </ColumnLayoutMain>
+        </ColumnLayout>
   )
 };
 export default ColumnLayoutHeaderDemo;

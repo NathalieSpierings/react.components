@@ -609,7 +609,7 @@ const CardDemo: React.FC = () => {
           <Card
             background={ColorDefinitions.Surface}
             scrollPosition={scrollPosition}
-            ttitle={<Title size="md">Card title</Title>}
+            title={<Title size="md">Card title</Title>}
             headerSticky={true}
             headerActions={[
               <Button key="1"><Icon icon={IconDefinitions.arrow_left} position="left" /> Annuleren</Button>,

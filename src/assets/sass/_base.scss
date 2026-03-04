@@ -692,12 +692,22 @@
 		border-right: 1px solid var(--color-border-surface-light);
 	}
 
-	.separator {
+	.separator-h {
 		display: block;
 		background-color: var(--color-border);
 		height: 1px;
 		margin: 1rem 0;
 	}
+
+	.separator-v {
+            flex: 0 1 auto;
+            align-self: center;
+            width: 1px;
+            min-width: 1px;
+            height: 24px;
+            background: var(--color-border);
+            margin: 0 8px 0 8px;
+        }
 
 	hr {
 		position: relative;
@@ -902,11 +912,9 @@
 }
 
 @layer utiltities {
-
-
-
-
-
+.border-none{
+	border: 0 none !important;
+}
 	.selected {
 		.selected {
 			--color-selected: var(--shadow-base);

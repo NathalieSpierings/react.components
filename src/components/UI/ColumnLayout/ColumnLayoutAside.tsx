@@ -1,41 +1,30 @@
-import React, { PropsWithChildren, ReactNode, isValidElement } from "react";
-import { ColumnLayoutRegionContext } from "./ColumnLayoutRegionContext";
+import React, { PropsWithChildren } from "react";
+import { ColumnSectionContext } from "./ColumnLayoutContext";
+import { ColorDefinitions } from "../../../lib/utils/definitions";
 
 export interface ColumnLayoutAsideProps extends PropsWithChildren {
+   borderColor?: ColorDefinitions;
   css?: string;
 }
 
-const ColumnLayoutAside: React.FC<ColumnLayoutAsideProps> = ({
-  css,
-  children,
-}) => {
-
-  let header: ReactNode = null;
-  const content: ReactNode[] = [];
-
-  React.Children.forEach(children, (child) => {
-    if (
-      isValidElement(child) &&
-      (child.type as any).displayName === "ColumnLayoutHeader"
-    ) {
-      header = child;
-    } else {
-      content.push(child);
-    }
-  });
+const ColumnLayoutAside = ({ 
+  borderColor = ColorDefinitions.Surface,
+  children, 
+  css 
+}: ColumnLayoutAsideProps) => {
+  const cssClass = [
+    "column-layout__aside",
+    borderColor && `border-${borderColor}`,
+     css
+    ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
-    <ColumnLayoutRegionContext.Provider value="aside">
-      <aside className={`column-layout__aside ${css ?? ""}`}>
-        {header}
-        <div className="column-layout__content">
-          {content}
-        </div>
-      </aside>
-    </ColumnLayoutRegionContext.Provider>
+    <ColumnSectionContext.Provider value="aside">
+      <aside className={cssClass}>{children}</aside>
+    </ColumnSectionContext.Provider>
   );
 };
-
-ColumnLayoutAside.displayName = "ColumnLayoutAside";
 
 export default ColumnLayoutAside;

@@ -52,7 +52,7 @@ const SliderDemo: React.FC = () => {
                             content: 
                                 <h3>Welkom bij het Promeetec portaal</h3>
                             ,
-                            contentPositon: 'center',
+                            contentItemPosition: 'item-center',
                             postfix: <>
                                 <div className="flex flex-center">
                                     <div className="icon icon--md">
@@ -81,8 +81,8 @@ const SliderDemo: React.FC = () => {
                         <div className="onboarding__container mt-5">
 
                             <Slider>
-                                <Widget
-                                    contentPositon="center"
+                                <Widget 
+                                    contentItemPosition="item-center"
                                     background={ColorDefinitions.SurfaceDark}
                                     image={<ArtAanlevering />}
                                     widgetContent={
@@ -103,7 +103,7 @@ const SliderDemo: React.FC = () => {
                                     }
                                 />
                                 <Widget
-                                    contentPositon="center"
+                                    contentItemPosition="item-center"
                                     background={ColorDefinitions.SurfaceDark}
                                     image={<ArtDossier />}
                                     widgetContent={
@@ -124,7 +124,7 @@ const SliderDemo: React.FC = () => {
                                     }
                                 />
                                 <Widget
-                                    contentPositon="center"
+                                    contentItemPosition="item-center"
                                     background={ColorDefinitions.SurfaceDark}
                                     image={<ArtDocument />}
                                     widgetContent={
@@ -137,7 +137,7 @@ const SliderDemo: React.FC = () => {
                                 />
 
                                 <Widget
-                                    contentPositon="center"
+                                    contentItemPosition="item-center"
                                     background={ColorDefinitions.SurfaceDark}
                                     image={<ArtKetenzorg />}
                                     widgetContent={
@@ -150,7 +150,7 @@ const SliderDemo: React.FC = () => {
                                 />
 
                                 <Widget
-                                    contentPositon="center"
+                                   contentItemPosition="item-center"
                                     background={ColorDefinitions.SurfaceDark}
                                     image={<ArtIgo />}
                                     widgetContent={
@@ -162,7 +162,7 @@ const SliderDemo: React.FC = () => {
                                     }
                                 />
                                 <Widget
-                                    contentPositon="center"
+                                    contentItemPosition="item-center"
                                     background={ColorDefinitions.SurfaceDark}
                                     image={<ArtVerbruiksmiddel />}
                                     widgetContent={
@@ -174,7 +174,7 @@ const SliderDemo: React.FC = () => {
                                     }
                                 />
                                 <Widget
-                                    contentPositon="center"
+                                    contentItemPosition="item-center"
                                     background={ColorDefinitions.SurfaceDark}
                                     image={<ArtMeekijkconsult />}
                                     widgetContent={
@@ -186,7 +186,7 @@ const SliderDemo: React.FC = () => {
                                     }
                                 />
                                 <Widget
-                                    contentPositon="center"
+                                    contentItemPosition="item-center"
                                     background={ColorDefinitions.SurfaceDark}
                                     image={<ArtContract />}
                                     widgetContent={
@@ -198,7 +198,7 @@ const SliderDemo: React.FC = () => {
                                     }
                                 />
                                 <Widget
-                                    contentPositon="center"
+                                    contentItemPosition="item-center"
                                     background={ColorDefinitions.SurfaceDark}
                                     image={<ArtTicket />}
                                     widgetContent={

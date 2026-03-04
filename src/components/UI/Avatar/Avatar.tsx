@@ -1,54 +1,9 @@
 import React, { ImgHTMLAttributes } from 'react';
 import { ColorDefinitions, IconDefinitions, SizeDefinitions } from '../../../lib/utils/definitions';
 
-import Female1 from '../../../assets/images/avatar_female_1.jpg';
-import Female2 from '../../../assets/images/avatar_female_2.jpg';
-import Female3 from '../../../assets/images/avatar_female_3.jpg';
-import Female4 from '../../../assets/images/avatar_female_4.jpg';
-import Female5 from '../../../assets/images/avatar_female_5.jpg';
-import Female6 from '../../../assets/images/avatar_female_6.jpg';
-import Male1 from '../../../assets/images/avatar_male_1.png';
-import Male2 from '../../../assets/images/avatar_male_2.jpg';
-import Male3 from '../../../assets/images/avatar_male_3.jpg';
-import Male4 from '../../../assets/images/avatar_male_4.jpg';
-import Male5 from '../../../assets/images/avatar_male_5.jpg';
-import Male6 from '../../../assets/images/avatar_male_6.jpg';
-
-export enum AvatarDefinitions {
-    Female1 = 'Female1',
-    Female2 = 'Female2',
-    Female3 = 'Female3',
-    Female4 = 'Female4',
-    Female5 = 'Female5',
-    Female6 = 'Female6',
-    Male1 = 'Male1',
-    Male2 = 'Male2',
-    Male3 = 'Male3',
-    Male4 = 'Male4',
-    Male5 = 'Male5',
-    Male6 = 'Male6',
-}
-
-export const avatarMap: Record<AvatarDefinitions, string> = {
-    [AvatarDefinitions.Female1]: Female1,
-    [AvatarDefinitions.Female2]: Female2,
-    [AvatarDefinitions.Female3]: Female3,
-    [AvatarDefinitions.Female4]: Female4,
-    [AvatarDefinitions.Female5]: Female5,
-    [AvatarDefinitions.Female6]: Female6,
-    [AvatarDefinitions.Male1]: Male1,
-    [AvatarDefinitions.Male2]: Male2,
-    [AvatarDefinitions.Male3]: Male3,
-    [AvatarDefinitions.Male4]: Male4,
-    [AvatarDefinitions.Male5]: Male5,
-    [AvatarDefinitions.Male6]: Male6,
-    // ...
-};
-
 export interface AvatarProps extends ImgHTMLAttributes<HTMLImageElement> {
     avatarCss?: string;
     initials?: string;
-    avatar?: AvatarDefinitions;
     icon?: IconDefinitions;
     iconDuotone?: boolean;
     imageUrl?: string;
@@ -64,7 +19,6 @@ export interface AvatarProps extends ImgHTMLAttributes<HTMLImageElement> {
 const Avatar: React.FC<AvatarProps> = ({
     avatarCss = '',
     initials,
-    avatar,
     imageUrl,
     icon,
     iconDuotone,
@@ -80,7 +34,7 @@ const Avatar: React.FC<AvatarProps> = ({
     const cls = [
         'avatar',
         avatarCss,
-        square ? 'avatar-square' : '',
+        square ? 'avatar--square' : '',
         border ? 'avatar--border' : '',
         shadow ? 'avatar--shadow' : '',
         borderColor ? `border-${borderColor}` : '',
@@ -97,15 +51,19 @@ const Avatar: React.FC<AvatarProps> = ({
         avatarContent = <span className="avatar__name">{initials}</span>;
     } else if (icon) {
         avatarContent = (
-            <svg xmlns="http://www.w3.org/2000/svg" className={iconDuotone ? 'icon-duotone' : ''} >
+           <span className="avatar__icon">
+             <svg xmlns="http://www.w3.org/2000/svg" className={iconDuotone ? 'icon-duotone' : ''} >
                 <use xlinkHref={`#svg_icon_${icon}`} />
             </svg>
+           </span>
         );
     } else if (imageUrl) {
-        avatarContent = <img src={imageUrl} alt="Avatar" />;
-    } else if (avatar && avatarMap[avatar]) {
-        avatarContent = <img src={avatarMap[avatar]} alt="Avatar" />;
-    }
+        avatarContent = (
+            <span className="avatar__image">
+                <img src={imageUrl} alt="Avatar" />
+            </span>
+        )
+    } 
 
     return (
         <div className={cls} {...rest}>

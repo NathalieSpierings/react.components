@@ -12,11 +12,12 @@ export interface WidgetProps extends BoxProps {
     imageBackground?: string;
     imageCss?: string;
     widgetPrefix?: string | ReactElement;
-    prefixPosition?: 'start' | 'end';
     widgetContent?: string | ReactElement;
-    contentPositon?: 'center' | 'end';
     widgetPostfix?: string | ReactElement;
-    postfixPosition?: 'start' | 'end';
+    prefixItemPosition?:  'item-start' | 'item-center' | 'item-end';
+    contentItemPosition?:  'item-start' | 'item-center' | 'item-end';
+    contentJustifyPosition?: 'justify-start' | 'justify-center' | 'justify-end';
+    postfixItemPosition?: 'item-start' | 'item-center' | 'item-end';
 }
 
 const Widget: React.FC<WidgetProps> = ({
@@ -27,11 +28,12 @@ const Widget: React.FC<WidgetProps> = ({
     imageBackground,
     imageCss = '',
     widgetPrefix,
-    prefixPosition,
+    prefixItemPosition,
     widgetContent,
-    contentPositon,
+    contentItemPosition,
+    contentJustifyPosition,
     widgetPostfix,
-    postfixPosition,
+    postfixItemPosition,
     children,
     ...boxProps
 }) => {
@@ -58,11 +60,12 @@ const Widget: React.FC<WidgetProps> = ({
                     <ContentItem item={{
                         id: 'widget-content',
                         prefix: widgetPrefix,
-                        prefixPosition: prefixPosition,
-                        postfix: widgetPostfix,
-                        postfixPosition: postfixPosition,
+                        prefixItemPosition: prefixItemPosition,                       
                         content: widgetContent,
-                        contentPositon: contentPositon,
+                        contentItemPosition: contentItemPosition,
+                        contentJustifyPosition: contentJustifyPosition,
+                        postfix: widgetPostfix,
+                        postfixItemPosition: postfixItemPosition,
                     }} />
                 ) : (
                     <div className="widget__content">{children}</div>

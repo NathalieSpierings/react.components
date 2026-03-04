@@ -44,6 +44,7 @@ export const SidebarDemo = () => {
         { title: 'ConfirmDialog', url: '/demo/confirm' },
         { title: 'Content Item', url: '/demo/contentitem' },
         { title: 'Dismiss button', url: '/demo/dismiss' },
+        { title: 'Dismissable box', url: '/demo/dismissable-box' },
         { title: 'Divider', url: '/demo/divider' },
         { title: 'Drawer', url: '/demo/drawer' },
         { title: 'DuoColum', url: '/demo/duocolumn' },
@@ -66,18 +67,24 @@ export const SidebarDemo = () => {
     ];
 
     const layoutItems: SidebarMenuItem[] = [
-        { title: 'Column layout', url: '/demo/columnlayout' },
-        { title: 'Column layout header border', url: '/demo/columnlayout-header' },
-        { title: 'Column layout mobile primary view aside', url: '/demo/columnlayout-primary-aside' },
-        { title: 'Column layout mobile primary view main', url: '/demo/columnlayout-primary-main' },
-        { title: 'Column layout aside left', url: '/demo/columnlayout-aside-left' },
-        { title: 'Column layout aside right', url: '/demo/columnlayout-aside-right' },
-        { title: 'Column layout tabs', url: '/demo/columnlayout-tabs' },
+        { title: 'Default', url: '/demo/columnlayout' },
+        { title: 'Aside left', url: '/demo/columnlayout-aside-left' },
+        { title: 'Aside right', url: '/demo/columnlayout-aside-right' },
+        { title: 'Main only', url: '/demo/columnlayout-main-only' },
+        { title: 'Mobile primary aside', url: '/demo/columnlayout-primary-aside' },
+        { title: 'Mobile primary main', url: '/demo/columnlayout-primary-main' },
+        { title: 'Tabs', url: '/demo/columnlayout-tabs' },
+        { title: 'Header border', url: '/demo/columnlayout-header' },
+        { title: 'Toggle mobile from aside', url: '/demo/columnlayout-toggle-from-aside' },
+        { title: 'Columns Main and aside', url: '/demo/columnlayout-columns' },
+        { title: 'Main column', url: '/demo/columnlayout-columns-main' },
+        { title: 'Aside column', url: '/demo/columnlayout-columns-aside' },
+       
     ]
     return (
         <>
             <SidebarContentPanel>
-                <h4>Layout</h4>
+                <h4>Column Layout</h4>
             </SidebarContentPanel>
             <SidebarMenu menuItems={layoutItems} />
 

@@ -59,13 +59,19 @@ import TooltipDemo from "./Demo/TooltipDemo";
 import WidgetDemo from "./Demo/WidgetDemo";
 import WizardDemo from "./Demo/WizardDemo/WizrdDemo";
 import ColumnLayoutDemo from "./Demo/ColumnLayout/ColumnLayoutDemo";
-import ColumnLayoutRightDemo from "./Demo/ColumnLayout/ColumnLayoutRightDemo";
+import ColumnLayoutMainOnlyDemo from "./Demo/ColumnLayout/ColumnLayoutMainOnlyDemo";
 import ColumnLayoutHeaderDemo from "./Demo/ColumnLayout/ColumnLayoutHeaderDemo";
-import ColumnLayoutToggableDemo from "./Demo/ColumnLayout/ColumnLayoutToggableDemo";
-import ColumnLayoutLeftDemo from "./Demo/ColumnLayout/ColumnLayoutLeftDemo";
-import ColumnLayoutPrimaryViewMainDemo from "./Demo/ColumnLayout/ColumnLayoutPrimaryViewMainDemo";
-import ColumnLayoutPrimaryViewAsideDemo from "./Demo/ColumnLayout/ColumnLayoutPrimaryViewAsideDemo";
+import ColumnLayoutAsideRightDemo from "./Demo/ColumnLayout/ColumnLayoutAsideRightDemo";
+import ColumnLayoutPrimaryMainDemo from "./Demo/ColumnLayout/ColumnLayoutPrimaryMainDemo";
+import ColumnLayoutAsideLeftDemo from "./Demo/ColumnLayout/ColumnLayoutAsideLeftDemo";
 import ColumnLayoutTabsDemo from "./Demo/ColumnLayout/ColumnLayoutTabsDemo";
+import BulkUpload from "./TabControllerTest/BulkUpload";
+import DissmissableBoxDemo from "./Demo/DismissableDemo";
+import ColumnLayoutPrimaryAsideDemo from "./Demo/ColumnLayout/ColumnLayoutPrimaryAsideDemo";
+import ColumnLayoutToggleFromAsideDemo from "./Demo/ColumnLayout/ColumnLayoutToggleFromAsideDemo";
+import ColumnLayoutColumnsDemo from "./Demo/ColumnLayout/ColumnLayoutColumnsDemo";
+import ColumnLayoutColumnsMainDemo from "./Demo/ColumnLayout/ColumnLayoutColumnsMainDemo";
+import ColumnLayoutColumnsAsideDemo from "./Demo/ColumnLayout/ColumnLayoutColumnsAsideDemo";
 
 export const getInitialMenuItem = (pathname: string) => {
 	if (matchPath(proxyPrefix + "/", pathname)) {
@@ -86,6 +92,10 @@ export const routes = [
 	{
 		path: "/",
 		element: <HomePage />
+	},
+	{
+		path: "/bulk",
+		element: <BulkUpload />
 	},
 	{
 		path: "/demo",
@@ -147,6 +157,10 @@ export const routes = [
 	{
 		path: "/demo/dismiss",
 		element: <DismissDemo />
+	},
+	{
+		path: "/demo/dismissable-box",
+		element: <DissmissableBoxDemo />
 	},
 	{
 		path: "/demo/divider",
@@ -307,35 +321,56 @@ export const routes = [
 		path: "/demo/wizard",
 		element: <WizardDemo />
 	},
+
 	{
 		path: "/demo/columnlayout",
 		element: <ColumnLayoutDemo />
 	},
 	{
-		path: "/demo/columnlayout-header",
-		element: <ColumnLayoutHeaderDemo />
-	},
-	{
-		path: "/demo/columnlayout-primary-aside",
-		element: <ColumnLayoutPrimaryViewAsideDemo />
-	},
-	{
-		path: "/demo/columnlayout-primary-main",
-		element: <ColumnLayoutPrimaryViewMainDemo />
-	},
-	{
 		path: "/demo/columnlayout-aside-left",
-		element: <ColumnLayoutLeftDemo />
+		element: <ColumnLayoutAsideLeftDemo />
 	},
 	{
 		path: "/demo/columnlayout-aside-right",
-		element: <ColumnLayoutRightDemo />
+		element: <ColumnLayoutAsideRightDemo />
+	},
+	{
+		path: "/demo/columnlayout-main-only",
+		element: <ColumnLayoutMainOnlyDemo />
+	},
+{
+		path: "/demo/columnlayout-primary-aside",
+		element: <ColumnLayoutPrimaryAsideDemo />
+	},
+	{
+		path: "/demo/columnlayout-primary-main",
+		element: <ColumnLayoutPrimaryMainDemo />
+	},
+	{
+		path: "/demo/columnlayout-header",
+		element: <ColumnLayoutHeaderDemo />
+	},	
+	{
+		path: "/demo/columnlayout-toggle-from-aside",
+		element: <ColumnLayoutToggleFromAsideDemo />
 	},
 	{
 		path: "/demo/columnlayout-tabs",
 		element: <ColumnLayoutTabsDemo />
-	}
-	
+	},
+	{
+		path: "/demo/columnlayout-columns",
+		element: <ColumnLayoutColumnsDemo />
+	},
+	{
+		path: "/demo/columnlayout-columns-main",
+		element: <ColumnLayoutColumnsMainDemo />
+	},
+	{
+		path: "/demo/columnlayout-columns-aside",
+		element: <ColumnLayoutColumnsAsideDemo />
+	},
+
 ];
 
 // export const errorRoutes = [

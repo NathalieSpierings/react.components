@@ -1,41 +1,18 @@
-import React, { PropsWithChildren, ReactNode, isValidElement } from "react";
-import { ColumnLayoutRegionContext } from "./ColumnLayoutRegionContext";
+import React, { PropsWithChildren } from "react";
+import { ColumnSectionContext } from "./ColumnLayoutContext";
 
 export interface ColumnLayoutMainProps extends PropsWithChildren {
   css?: string;
 }
 
-const ColumnLayoutMain: React.FC<ColumnLayoutMainProps> = ({
-  css,
-  children,
-}) => {
-
-  let header: ReactNode = null;
-  const content: ReactNode[] = [];
-
-  React.Children.forEach(children, (child) => {
-    if (
-      isValidElement(child) &&
-      (child.type as any).displayName === "ColumnLayoutHeader"
-    ) {
-      header = child;
-    } else {
-      content.push(child);
-    }
-  });
+const ColumnLayoutMain = ({ children, css }: ColumnLayoutMainProps) => {
+  const cssClass = ["column-layout__main", css].filter(Boolean).join(" ");
 
   return (
-    <ColumnLayoutRegionContext.Provider value="main">
-      <div className={`column-layout__main ${css ?? ""}`}>
-        {header}
-        <div className="column-layout__content">
-          {content}
-        </div>
-      </div>
-    </ColumnLayoutRegionContext.Provider>
+    <ColumnSectionContext.Provider value="main">
+      <main className={cssClass}>{children}</main>
+    </ColumnSectionContext.Provider>
   );
 };
-
-ColumnLayoutMain.displayName = "ColumnLayoutMain";
 
 export default ColumnLayoutMain;
