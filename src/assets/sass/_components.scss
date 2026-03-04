@@ -861,6 +861,7 @@ modal, navs, onboarding, pageOverlay, slider, tabs, toastr, toolbar, tooltip, wi
         flex-direction: row;
         align-items: stretch;
         gap: 1rem;
+        width: 100%;
 
         &__prefix,
         &__postfix,
@@ -1545,7 +1546,7 @@ modal, navs, onboarding, pageOverlay, slider, tabs, toastr, toolbar, tooltip, wi
             align-items: center;
             gap: 1rem;
             min-height: var(--header-height);
-            padding: var(--page-padding-sm);
+            padding: var(--page-padding-sm)  var(--page-padding);
             border-bottom: 1px solid transparent;
             position: relative;
 
@@ -1564,7 +1565,7 @@ modal, navs, onboarding, pageOverlay, slider, tabs, toastr, toolbar, tooltip, wi
 
         &__content {
             height: 100%;
-            padding: var(--page-padding) var(--page-padding-sm);
+            padding: var(--page-padding);
         }
 
         &--aside-left {
@@ -1692,7 +1693,7 @@ modal, navs, onboarding, pageOverlay, slider, tabs, toastr, toolbar, tooltip, wi
         }
 
         &__content {
-            padding: var(--page-padding) var(--page-padding-sm);
+            padding: var(--page-padding);
         }
 
         &--aside-left {
@@ -3861,7 +3862,6 @@ modal, navs, onboarding, pageOverlay, slider, tabs, toastr, toolbar, tooltip, wi
         }
 
         &__info {
-            padding: 0 var(--page-padding-sm);
             color: var(--color-foreground);
             border-bottom: 1px solid transparent;
 
@@ -4010,7 +4010,6 @@ modal, navs, onboarding, pageOverlay, slider, tabs, toastr, toolbar, tooltip, wi
 
     .filterbar {
         width: 100%;
-        padding: 0 var(--page-padding-sm);
         color: var(--color-foreground);
         border-bottom: 1px solid transparent;
 
