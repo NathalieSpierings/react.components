@@ -28,7 +28,6 @@ const IconDemo: React.FC = () => {
         <Icon icon={IconDefinitions.warning} variant="square" />
         <Icon icon={IconDefinitions.warning} variant="circle" />
         <Icon icon={IconDefinitions.warning} hover />
-
       </div>
 
 
@@ -47,6 +46,8 @@ const IconDemo: React.FC = () => {
       <div className="flex gap-1">
         <Icon icon={IconDefinitions.warning} hoverColor={ColorDefinitions.Blue} />
         <Icon icon={IconDefinitions.warning} hoverBackground={ColorDefinitions.Blue} variant="square" />
+        <Icon icon={IconDefinitions.warning} hoverBackground={ColorDefinitions.Red} variant="circle" />
+        <Icon icon={IconDefinitions.warning} borderColor={ColorDefinitions.Surface}  hoverBackground={ColorDefinitions.Purple} rounded={SizeDefinitions.Full}/>
         <Icon icon={IconDefinitions.warning} hoverBorderColor={ColorDefinitions.Blue} />
         <Icon icon={IconDefinitions.warning} hoverShadowColor={ColorDefinitions.Blue} hoverBorderColor={ColorDefinitions.Blue} variant="circle" />
       </div>

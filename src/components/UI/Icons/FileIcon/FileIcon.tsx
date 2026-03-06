@@ -3,19 +3,17 @@ import { SizeDefinitions } from '../../../../lib/utils/definitions';
 
 export const iconDefinitions = [
     'unknown',
-    'asc',
-    'txt',
+    'pdf',
     'doc',
     'docx',
-    'pdf',
     'xls',
     'xlsx',
+    'xls',
     'csv',
-    'ppt',
-    'eml',
+    'txt',
+    'ei',
     'xml',
     'zip',
-    'img',
 ] as const;
 
 export type FileIconDefinitions = (typeof iconDefinitions)[number];
@@ -28,27 +26,29 @@ export const FileToIconVariant = (x: File): FileIconDefinitions => {
 function isIconVariant(x: string): x is FileIconDefinitions {
     return [
         'unknown',
-        'ei',
-        'txt',
+        'pdf',
         'doc',
         'docx',
-        'pdf',
         'xls',
         'xlsx',
-        'csv',       
+        'xls',
+        'csv',
+        'txt',
+        'ei',
         'xml',
-        'zip',        
-        'xml',
+        'zip',
     ].includes(x);
 }
 
 export interface FileIconProps {
     variant?: FileIconDefinitions;
-    size?: SizeDefinitions;
     duotone?: boolean;
 }
 
-const FileIcon = ({ variant = 'unknown', duotone = true, size = SizeDefinitions.ExtraLarge2 }: FileIconProps): ReactElement => {
+const FileIcon = ({
+     variant = 'unknown',
+    duotone = true
+ }: FileIconProps): ReactElement => {
 
     const displayVariant = (variant: string) => {
         if (variant === 'xlsx') return 'xls';
@@ -64,15 +64,10 @@ const FileIcon = ({ variant = 'unknown', duotone = true, size = SizeDefinitions.
                 <use xlinkHref="#svg_icon_file_text" />
             </svg>
         );
-    } else if (variant == 'txt') {
+    } 
+    else {
         return (
-            <svg  className={css}>
-                <use xlinkHref="#svg_icon_file_txt" />
-            </svg>
-        );
-    } else {
-        return (
-         <svg  className={css}>
+            <svg className={css}>
                 <use xlinkHref={`#svg_icon_file_${displayVariant(variant)}`} />
             </svg>
         );

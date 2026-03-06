@@ -1,14 +1,11 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
-export interface MarkProps {
-    label: string;
+export interface MarkProps extends PropsWithChildren {
 }
 
-const Mark: React.FC<MarkProps> = ({ label }) => {
+const Mark: React.FC<MarkProps> = ({ children }) => {
     return (
-        <p>
-            <mark>{label}</mark>
-        </p>
+        <mark>{children}</mark>
     );
 };
 

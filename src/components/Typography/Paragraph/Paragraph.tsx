@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface ParagraphProps extends React.HTMLAttributes<HTMLParagraphElement> {
-    tabIndex: number;
+    tabIndex?: number;
 }
 
 const Paragraph: React.FC<ParagraphProps> = ({ tabIndex, children, ...props }) => {

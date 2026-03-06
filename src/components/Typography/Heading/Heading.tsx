@@ -1,15 +1,17 @@
 import React from 'react';
 
-export interface HeadlineProps extends React.HTMLAttributes<HTMLHeadingElement> {
-    variant: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-    headlineCss?: string;
+export type HeadingVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
+export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
+  variant?: HeadingVariant;
 }
 
-const HeadingElement = ({ variant, children, headlineCss, ...props }: HeadlineProps) => 
-    React.createElement(variant, { headlineCss, ...props }, children);
-
-const Heading = (props: HeadlineProps) => {
-    return <HeadingElement {...props} />;
+const Heading: React.FC<HeadingProps> = ({
+  variant: Tag = 'h2',
+  children,
+  ...props
+}) => {
+  return <Tag {...props}>{children}</Tag>;
 };
 
 export default Heading;

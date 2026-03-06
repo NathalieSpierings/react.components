@@ -1082,6 +1082,9 @@ modal, navs, onboarding, pageOverlay, slider, tabs, toastr, toolbar, tooltip, wi
     }
 
     .collection {
+        --color-hover: var(--shadow-light);
+		--color-selected: var(--shadow-base);
+
         position: relative;
         display: grid;
         grid-template-columns: 1fr;
@@ -1161,7 +1164,7 @@ modal, navs, onboarding, pageOverlay, slider, tabs, toastr, toolbar, tooltip, wi
         &__item {
             opacity: 1;
             color: var(--color-foreground);
-            border: 0 solid var(--color-border);
+            border: 1px solid transparent;
             border-radius: var(--radius);
             transition: width 0.3s ease-in-out;
 
@@ -1230,11 +1233,10 @@ modal, navs, onboarding, pageOverlay, slider, tabs, toastr, toolbar, tooltip, wi
         }
 
         &--hover {
-            .collection__item:hover {
-                .collection__item__container {
-                    background: var(--color-hover);
+            .collection__item:hover .collection__item__container {
+                    background: var(--color-hover) !important;
                 }
-            }
+            
         }
     }
 }
@@ -2419,7 +2421,7 @@ modal, navs, onboarding, pageOverlay, slider, tabs, toastr, toolbar, tooltip, wi
             flex-direction: column;
             justify-content: flex-end;
             padding: calc(var(--page-padding) / 2) var(--page-padding);
-            border-top: 0px solid var(--color-border);
+            border-top: 1px solid transparent;
 
         }
 
@@ -3051,7 +3053,7 @@ modal, navs, onboarding, pageOverlay, slider, tabs, toastr, toolbar, tooltip, wi
         margin-block-end: 1rem;
         border-radius: var(--radius-xl);
         background: var(--color-background);
-        border: 0px solid var(--color-border);
+        border: 1px solid transparent;
 
         &:first-child {
             margin-inline-start: 0;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import usePageTitle from "../../lib/hooks/usePageTitle";
 import useBreadcrumb from "../../lib/hooks/useBreadcrumb";
-import { ContentItemType } from "../../components/UI/ContentItem";
+import { ContentItem, ContentItemType } from "../../components/UI/ContentItem";
 import { Icon } from "../../components/UI/Icons/Icon";
 import { ColorDefinitions, IconDefinitions, SizeDefinitions } from "../../lib/utils/definitions";
 import { Collection, CollectionViewSelector, CollectionViewSelectorOption } from "../../components/UI/Collection";
@@ -101,41 +101,41 @@ const CollectionDemo: React.FC = () => {
   const [selected, setSelected] = React.useState<string[]>([]);
   const [selectedMultiple, setSelectedMultiple] = React.useState<string[]>([]);
 
-  const [viewOption, setViewOption] = useState<CollectionViewSelectorOption>('columns-4');
+  const [viewOption, setViewOption] = useState<CollectionViewSelectorOption>('list');
 
   return (
     <section className="centered centered--wide">
 
-      <div className="content-item">
-        <div className="actions">
-          <CollectionViewSelector setViewOption={setViewOption } defaultView={viewOption}/>
-        </div>
-        <div className="meta">Options</div>
-      </div>
+      <ContentItem item={{
+        id: 'viewSelector',
+        postfix: ( <CollectionViewSelector setViewOption={setViewOption } defaultView={viewOption}/>),
+        postfixGap: '0.25rem',
+        content: "Options",
+      }}/>
 
-
+    
       <h3>Default</h3>
-      <Collection items={multiLineItems} view={viewOption}/>
+      <Collection items={items} view={viewOption}/>
 
-      <h3>Bordered</h3>
-      <Collection items={multiLineItems} borderColor={ColorDefinitions.SurfaceDark} itemBorder="bordered" view={viewOption}/>
+      <h3 className="mt-3">Bordered</h3>
+      <Collection items={items} borderColor={ColorDefinitions.SurfaceDark} itemBorder="bordered" view={viewOption}/>
 
-      <h3>BorderedItems</h3>
-      <Collection items={multiLineItems} borderColor={ColorDefinitions.SurfaceDark} itemBorder="underlined" view={viewOption}/>
+      <h3 className="mt-3">Underlined</h3>
+      <Collection items={items} borderColor={ColorDefinitions.SurfaceDark} itemBorder="underlined" view={viewOption}/>
 
-      <h3>Compact</h3>
-      <Collection items={multiLineItems} borderColor={ColorDefinitions.SurfaceDark} compact={true} view={viewOption}/>
+      <h3 className="mt-3">Compact</h3>
+      <Collection items={items} borderColor={ColorDefinitions.SurfaceDark} compact={true} view={viewOption}/>
 
-      <h3>Medium</h3>
-      <Collection items={multiLineItems} borderColor={ColorDefinitions.SurfaceDark} medium={true} view={viewOption}/>
+      <h3 className="mt-3">Medium</h3>
+      <Collection items={items} borderColor={ColorDefinitions.SurfaceDark} medium={true} view={viewOption}/>
 
-      <h3>Rounded</h3>
+      <h3 className="mt-3">Rounded</h3>
       <Collection items={multiLineItems} borderColor={ColorDefinitions.SurfaceDark} rounded={SizeDefinitions.ExtraLarge3} view={viewOption}/>
 
-      <h3>Hoverable</h3>
+      <h3 className="mt-3">Hoverable</h3>
       <Collection items={multiLineItems} borderColor={ColorDefinitions.SurfaceDark} hoverable={true} selectable={true} view={viewOption}/>
 
-      <h3>Background</h3>
+      <h3 className="mt-3">Background</h3>
       <Collection items={multiLineItems}
         colorMute={ColorDefinitions.Olive}
         borderColor={ColorDefinitions.Olive}
@@ -144,7 +144,7 @@ const CollectionDemo: React.FC = () => {
         selectable={true} view={viewOption}/>
 
 
-      <h3>Selectable</h3>
+      <h3 className="mt-3">Selectable</h3>
       <Collection
         items={multiLineItems}
         borderColor={ColorDefinitions.Surface}
@@ -154,7 +154,7 @@ const CollectionDemo: React.FC = () => {
       />
 
 
-      <h3>Multiselect</h3>
+      <h3 className="mt-3">Multiselect</h3>
       <Collection
         items={multiLineItems}
         borderColor={ColorDefinitions.Surface}

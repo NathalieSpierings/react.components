@@ -311,7 +311,7 @@ const FileSelect = ({
                         accept={accept ? accept.join(',') : undefined}
                     />
 
-                    <Icon icon={icon} duotone={true} size={SizeDefinitions.ExtraLarge3} iconCss={`${iconFloating ? 'ani-floating' : ''}`}/>
+                    <Icon icon={icon} duotone={true} size={SizeDefinitions.ExtraLarge3} iconCss={`${iconFloating ? 'ani-floating' : ''}`} />
 
                     <p>
                         <strong>Drop of sleep</strong> bestanden om te uploaden
@@ -365,18 +365,22 @@ const FileSelect = ({
                         items={selectedFiles?.map((item, idx) => ({
                             id: idx.toString(),
                             prefix: (
-                                <Icon svg={<FileIcon variant={FileToIconVariant(item)} />} duotone={true} />
+                                <Icon icon={IconDefinitions.doc} duotone={true} size={SizeDefinitions.Medium} />
                             ),
-                            title: item.name,
-                            subtitle: (
-                                <small className="text-mute">{filesize(item.size)} </small>
+                            content: (
+                                <>
+                                    <span>{item.name}</span>
+                                    <small className="text-mute">{filesize(item.size)} </small>
+                                </>
                             ),
                             postfix: (
                                 <Tooltip content="Verwijderen">
+                                   
                                     <Icon
-                                        variant="circle"
-                                        hoverColor={ColorDefinitions.Mute}
-                                        hoverBorderColor={ColorDefinitions.Red}
+                                        borderColor={ColorDefinitions.Surface}  
+                                        hoverBackground={ColorDefinitions.Rose30}
+                                        hoverBorderColor={ColorDefinitions.Rose30}
+                                        rounded={SizeDefinitions.Full}
                                         icon={IconDefinitions.bin}
                                         size={SizeDefinitions.Small}
                                         onClick={() => {

@@ -3,6 +3,12 @@ import { SidebarMenu, SidebarMenuItem } from "../components/Page/Navigation/Side
 import { SidebarContentPanel } from "../components/Page/Sidebar/SidebarContentPanel";
 
 export const SidebarDemo = () => {
+
+    const basicItems: SidebarMenuItem[] = [
+        { title: 'Typography', url: '/demo/typography' },
+    ];
+
+
     const tableItems: SidebarMenuItem[] = [
         { title: 'Datagrid', url: '/demo/datagrid' },
         { title: 'Datagrid grid layout', url: '/demo/datagridgridlayout' },
@@ -79,10 +85,16 @@ export const SidebarDemo = () => {
         { title: 'Columns Main and aside', url: '/demo/columnlayout-columns' },
         { title: 'Main column', url: '/demo/columnlayout-columns-main' },
         { title: 'Aside column', url: '/demo/columnlayout-columns-aside' },
-       
+
     ]
     return (
         <>
+
+
+            <SidebarContentPanel>
+                <h4>Basics</h4>
+            </SidebarContentPanel>
+            <SidebarMenu menuItems={basicItems} />
             <SidebarContentPanel>
                 <h4>Column Layout</h4>
             </SidebarContentPanel>

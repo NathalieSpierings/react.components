@@ -20,7 +20,7 @@ const ColumnLayoutPrimaryAsideDemo = () => {
   return (
     <ColumnLayout
                 hasAside
-                asidePosition='right'
+                asidePosition='left'
                 primary='aside'
                 isShown={isShown}
                 onToggle={setIsShown}

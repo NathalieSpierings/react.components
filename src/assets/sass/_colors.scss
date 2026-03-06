@@ -5,16 +5,15 @@
 @use "sass:map";
 
 $colors: (
-  "black": #000000,
+	"black": #000000,
 	"white": #FFFFFF,
 	"offwhite": #FDFDFC,
 	"light": #F3F1EE,
 	"silver": #C0C0C0,
 	"beige": #D9D4D0,
-	"terracotta": #E56046,
+	"terracotta": #E56046,	
 	"bordeaux": #852D37,
-	"magenta": #ED344E,
-	"blush": #fae4e0,
+	"magenta": #ED344E,	
 	"pale": #FBB7A7,
 	"pepper": #9A928A,
 	"sand": #CAC6C3,
@@ -22,8 +21,8 @@ $colors: (
 );
 
 
-$shades: (
-  "havanna": ("base":  #F5BD6E, "5": #fdf0ce, "10": #fbe2b3, "20":#f8d397, "30": #e7b062),
+$shades: (		
+	"havanna": ("base":  #F5BD6E, "5": #fdf0ce, "10": #fbe2b3, "20":#f8d397, "30": #e7b062),
 	"spring": ("base":  #67D07E, "5": #ccf5df, "10": #afeac3, "20":#92e0a7, "30": #45a859),
 	"salmon": ("base":  #FF8B68, "5": #ffe5c6, "10": #ffcbab, "20":#ffb290, "30":#d26345),
 	"soft-pink": ("base":  #fba19d, "5": #feeae9, "10": #fdd5d3, "20":#fcc0be, "30": #b36160),
@@ -48,103 +47,74 @@ $shades: (
 );
 
 $themes: (
-  light: (
-    theme-100: #fffffe,
-    theme-200: #fefcfc,
-    theme-300: #f9f6f4,
-    theme-400: #f2eeeb,
-    theme-500: #eae6e3,
-    theme-600: #d8d5d2,
-    theme-700: #cfcbc9,
-    theme-800: #c5c2bf,
-    theme-900: #bbb8b6,
-    text-light: #a2a1a0,
-    text: #3c3c3c,
-    text-dark: #0c0c0c,
-    primary: #ff8b5d,
-    primary-5: #ffe8df,
-    primary-10: #ffd1be,
-    primary-20: #ff9970,
-    primary-30: #EA5520,
-    dark: #3F3F3F
-  ),
-  dimmed: (
-    theme-100: #989898,
-    theme-200: #808080,
-    theme-300: #727272,
-    theme-400: #676767,
-    theme-500: #616161,
-    theme-600: #5b5b5b,
-    theme-700: #565656,
-    theme-800: #505050,
-    theme-900: #4a4a4a,
-    text-light: #A8A8A8,
-    text: #D3D3D3,
-    text-dark: #F2F2F2,
-    primary: #ff8b5d,
-    primary-5: #ffd1be,
-    primary-10: #ffd1be,
-    primary-20: #ff9970,
-    primary-30: #eb7242,
-    dark: #3F3F3F
-  ),
-  dark: (
-    theme-100: #656565,
-    theme-200: #4b4b4b,
-    theme-300: #414141,
-    theme-400: #373737,
-    theme-500: #303030,
-    theme-600: #2b2b2b,
-    theme-700: #252525,
-    theme-800: #202020,
-    theme-900: #1a1a1a,
-    text-light: #878787,
-    text: #cdcdcd,
-    text-dark: #fdfdfd,
-    primary: #ff8b5d,
-    primary-5: #ffd1be,
-    primary-10: #ffd1be,
-    primary-20: #ff9970,
-    primary-30: #EA5520,
-    dark: #0D0D0D
-  )
+	light: (
+		theme-100: #fffffe,
+		theme-200: #fefcfc,
+		theme-300: #f9f7f5,
+		theme-400: #f2eeeb,
+		theme-500: #eae6e3,
+		theme-600: #d8d5d2,
+		theme-700: #cfcbc9,
+		theme-800: #c5c2bf,
+		theme-900: #bbb8b6,
+		text-light: #a2a1a0, 
+		text: #3c3c3c, 
+		text-dark: #000000, 
+		primary: #ff8b5d,
+		primary-5: #ffe8df,
+		primary-10: #ffd1be,
+		primary-20: #ff9970,
+		primary-30: #EA5520,		
+		dark: #3F3F3F
+	),
+	dimmed: (
+		theme-100: #989898,
+		theme-200: #808080,
+		theme-300: #727272,
+		theme-400: #676767,
+		theme-500: #616161,
+		theme-600: #5b5b5b,
+		theme-700: #565656,
+		theme-800: #505050,
+		theme-900: #4a4a4a,
+		text-light: #A8A8A8, 
+		text: #D3D3D3, 
+		text-dark: #fdfdfd, 
+		primary: #ff8b5d,
+		primary-5: #ffe8df,
+		primary-10: #ffd1be,
+		primary-20: #ff9970,
+		primary-30: #eb7242,
+		dark: #3F3F3F
+	),
+	dark: (  
+		theme-100: #656565,
+		theme-200: #4b4b4b,
+		theme-300: #414141,
+		theme-400: #373737,
+		theme-500: #303030,
+		theme-600: #2b2b2b,
+		theme-700: #252525,
+		theme-800: #202020,
+		theme-900: #1a1a1a,
+		text-light: #878787, 
+		text: #cdcdcd, 
+		text-dark: #fdfdfd, 
+		primary: #ff8b5d,
+		primary-5: #ffe8df,
+		primary-10: #ffd1be,
+		primary-20: #ff9970,
+		primary-30: #eb7242,
+		dark: #0D0D0D
+	)
 );
-
 
 $theme-props: map.keys(map.get($themes, light));
-$excluded-props: (
-  text,
-  text-light,
-  text-dark,
-  transparent
-);
+$excluded-props: (  text,  text-light,  text-dark,  transparent);
 
-$dark-foreground-needed: (
-  "light",
-  "white",
-  "offwhite",
-  "beige",
-  "silver",
-  "transparent"
-);
-$light-foreground-needed: (
-  "black",
-  dark,
-  primary,
-  primary-20,
-  primary-30,
-  secondary
-);
-$theme-aware-foreground-needed: (
-  theme-100,
-  theme-200,
-  theme-300,
-  theme-400,
-  theme-500
-);
-
-
-
+$dark-foreground-needed: (  "light",  "white",  "offwhite",  "beige",  "silver",  "transparent");
+$light-foreground-needed: (  "black",  dark,  primary,  primary-20,  primary-30,  secondary);
+$theme-aware-foreground-needed: (  theme-100,  theme-200,  theme-300,  theme-400,  theme-500);
 
 @function oklab-mix($value, $percent: 15, $color: white) {
   $from-percent: 100 - $percent;
@@ -212,12 +182,11 @@ $dash-index: string.index($prop, "-");
 @if list.index($dark-foreground-needed, $prop) {
   @return oklab-mix($value, 15, black);
 }
-
 @else {
   @return oklab-mix($value, 35, white);
 }
 
-@return oklab-mix($value, 50, white);
+  @return oklab-mix($value, 50, white);
 }
 
 @function muted-color($theme, $prop, $value) {
@@ -322,7 +291,7 @@ $dash-index: string.index($prop, "-");
   }
 }
 
-@mixin basic-theme-vars($theme, $themeMap) {
+@mixin basics_for_themes($theme, $themeMap) {
   @each $name, $value in $themeMap {
 
     $foregroundColor: foreground-color($name);
@@ -330,7 +299,7 @@ $dash-index: string.index($prop, "-");
     --color-#{$name}: #{$value};
 
     @if not list.index($excluded-props, $name) {
-      --color-#{$name}: #{$value};
+      //--color-#{$name}: #{$value};
       --color-foreground-#{$name}: #{$foregroundColor};
       --color-border-#{$name}: #{border-color($name, $value, $theme)}; //#{theme-border-color($theme, $name, $value)};
       --color-mute-#{$name}: #{muted-color($theme, $name, $value)};
@@ -526,6 +495,24 @@ $dash-index: string.index($prop, "-");
 }
 
 
+// CSS Variables =================================================
+
+// Generate CSS variables for themes
+@each $theme, $themeMap in $themes {
+  $selector: null;
+
+  @if($theme =="light") {
+    $selector: ":root, .theme-light";
+  }
+
+  @else {
+    $selector: ".theme-#{$theme}";
+  }
+
+  #{$selector} {
+    @include basics_for_themes($theme, $themeMap);
+  }
+}
 
 // Generate CSS variables for colors, shades
 :root {
@@ -558,23 +545,11 @@ $dash-index: string.index($prop, "-");
   }
 }
 
-// Generate CSS variables for theme props
+
+// Component styles =================================================
+
+// Generate component styles for themes
 @each $theme, $themeMap in $themes {
-
-  $selector: null;
-
-  @if($theme =="light") {
-    $selector: ":root, .theme-light";
-  }
-
-  @else {
-    $selector: ".theme-#{$theme}";
-  }
-
-  #{$selector} {
-    @include basic-theme-vars($theme, $themeMap);
-  }
-
   // Generate component styles for theme props
   @if($theme ==light) {
     @each $prop, $value in $themeMap {

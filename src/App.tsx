@@ -59,15 +59,7 @@ const TemplateLayout = () => {
       iconName: IconDefinitions.home,
       placement: SidebarMenuPlacement.Top,
       url: '/'
-    },
-    {
-      id: 'bulk',
-      title: 'Bulk',
-      tooltip: 'Bulk',
-      iconName: IconDefinitions.cloud_upload,
-      placement: SidebarMenuPlacement.Top,
-      url: '/bulk'
-    },
+    },   
     {
       id: 'demo',
       title: 'demo',

@@ -65,13 +65,13 @@ import ColumnLayoutAsideRightDemo from "./Demo/ColumnLayout/ColumnLayoutAsideRig
 import ColumnLayoutPrimaryMainDemo from "./Demo/ColumnLayout/ColumnLayoutPrimaryMainDemo";
 import ColumnLayoutAsideLeftDemo from "./Demo/ColumnLayout/ColumnLayoutAsideLeftDemo";
 import ColumnLayoutTabsDemo from "./Demo/ColumnLayout/ColumnLayoutTabsDemo";
-import BulkUpload from "./TabControllerTest/BulkUpload";
 import DissmissableBoxDemo from "./Demo/DismissableDemo";
 import ColumnLayoutPrimaryAsideDemo from "./Demo/ColumnLayout/ColumnLayoutPrimaryAsideDemo";
 import ColumnLayoutToggleFromAsideDemo from "./Demo/ColumnLayout/ColumnLayoutToggleFromAsideDemo";
 import ColumnLayoutColumnsDemo from "./Demo/ColumnLayout/ColumnLayoutColumnsDemo";
 import ColumnLayoutColumnsMainDemo from "./Demo/ColumnLayout/ColumnLayoutColumnsMainDemo";
 import ColumnLayoutColumnsAsideDemo from "./Demo/ColumnLayout/ColumnLayoutColumnsAsideDemo";
+import TypographyDemo from "./Demo/TypographyDemo";
 
 export const getInitialMenuItem = (pathname: string) => {
 	if (matchPath(proxyPrefix + "/", pathname)) {
@@ -92,10 +92,6 @@ export const routes = [
 	{
 		path: "/",
 		element: <HomePage />
-	},
-	{
-		path: "/bulk",
-		element: <BulkUpload />
 	},
 	{
 		path: "/demo",
@@ -313,6 +309,11 @@ export const routes = [
 		path: "/demo/tooltip",
 		element: <TooltipDemo />,
 	},
+{
+		path: "/demo/typography",
+		element: <TypographyDemo />,
+	},
+	
 	{
 		path: "/demo/widget",
 		element: <WidgetDemo />

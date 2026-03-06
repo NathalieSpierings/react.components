@@ -14,21 +14,37 @@ type Story = StoryObj<typeof DescriptionList>;
 
 const items = [
     {
-        label: 'United Nations Development Programme',
-        text: 'The United Nations Development Programme is the global development network of the United Nations. It promotes technical and investment cooperation among nations and advocates for change and connects countries to knowledge, experience and resources to help people build a better life for themselves.',
+        label: 'Name',
+        content: 'Jan Janssen',
     },
     {
-        label: 'United Nations Development Programme',
-        text: 'The United Nations Development Programme is the global development network of the United Nations. It promotes technical and investment cooperation among nations and advocates for change and connects countries to knowledge, experience and resources to help people build a better life for themselves.',
+        label: 'E-mail',
+        content: 'jan.janssen@example.com',
     },
     {
-        label: 'United Nations Development Programme',
-        text: 'The United Nations Development Programme is the global development network of the United Nations. It promotes technical and investment cooperation among nations and advocates for change and connects countries to knowledge, experience and resources to help people build a better life for themselves.',
+        label: 'Organization',
+        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     },
 ];
 
 export const Default: Story = {
     args: {
         data: items,
+    },
+};
+
+export const Colon: Story = {
+    args: {
+        data: items,
+        enableColon: true,
+    },
+};
+
+
+export const CustomSpacing: Story = {
+    args: {
+        data: items,
+        columnGap: "5rem",
+        rowGap: "3rem",
     },
 };

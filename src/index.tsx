@@ -5,6 +5,8 @@ import App from './App';
 import "./assets/sass/main.scss";
 import "./assets/sass/demo.scss";
 
+export * from './lib/helpers/helpers';
+export * from './lib/helpers/functions';
 export * from './lib/utils/definitions';
 
 const root = createRoot(document.getElementById('react-root') as HTMLElement);

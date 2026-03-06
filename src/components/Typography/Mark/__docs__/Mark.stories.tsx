@@ -14,6 +14,6 @@ type Story = StoryObj<typeof Mark>;
 
 export const Default: Story = {
     args: {
-        label: 'Eos nulla molestiae',
+        children: 'Eos nulla molestiae',
     },
 };

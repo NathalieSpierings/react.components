@@ -58,7 +58,6 @@ export * from './Providers/ToastrContext';
 
 export * from './Typography/Blockquote';
 export * from './Typography/Caption';
-export * from './Typography/Cite';
 export * from './Typography/Code';
 export * from './Typography/DescriptionList';
 export * from './Typography/Fieldset';

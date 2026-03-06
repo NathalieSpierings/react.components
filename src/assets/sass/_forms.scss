@@ -1673,7 +1673,7 @@
 			flex-direction: column;
 			flex: 0 0 auto;
 			padding: var(--page-padding-sm);
-			border-bottom: 0px solid var(--color-border);
+			border-bottom: 1px solid transparent;
 
 			&__title {
 				margin-bottom: 1.5rem;
