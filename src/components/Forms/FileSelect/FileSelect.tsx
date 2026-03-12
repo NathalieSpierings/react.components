@@ -66,9 +66,14 @@ const validateZipFile = async (file: File): Promise<ZipValidationResult> => {
 };
 
 
+
 export interface FileSelectProps {
     selectedFiles: File[];
     setSelectedFiles: (files: File[]) => void;
+    requiredFileCount?: number;
+    showValidation?: boolean;
+    validationMessage?: string;
+
     multiple?: boolean;
     maxTotalSize?: number;
     accept?: string[];
@@ -103,6 +108,9 @@ export interface FileSelectProps {
 const FileSelect = ({
     selectedFiles,
     setSelectedFiles,
+    requiredFileCount = 0,
+    showValidation = false,
+    validationMessage = "Upload minimaal het vereiste aantal bestanden",
     multiple = false,
     maxTotalSize = 1024 * 1024 * 50,
     accept = [".pdf", ".doc", ".docx", ".xls", ".xlsx", ".csv", ".txt", ".ei", ".xml", ".zip"],
@@ -137,6 +145,7 @@ const FileSelect = ({
     const inputRef = useRef<HTMLInputElement>(null);
     const [errorModalTitle, setErrorModalTitle] = useState<string>("Er is een fout opgetreden");
     const [errorModalContent, setErrorModalContent] = useState<ReactElement | null>(null);
+
 
     const handleError: ErrFunc = onError ?? ((_, details) => setErrorModalContent(<>{details}</>));
 
@@ -235,10 +244,10 @@ const FileSelect = ({
 
         if (validFiles.length === 0) return;
 
-        setSelectedFiles(multiple ? [...selectedFiles, ...validFiles] : validFiles);
+        const newFiles = multiple ? [...selectedFiles, ...validFiles] : validFiles;
+
+        setSelectedFiles(newFiles);
     };
-
-
 
     const handleDrag: DragEventHandler = function (e) {
         e.preventDefault();
@@ -262,6 +271,8 @@ const FileSelect = ({
         const files = (event.target as HTMLInputElement).files;
         handleFiles(files ? Array.from(files) : []);
     };
+
+    const hasValidationError = showValidation && requiredFileCount > 0 && selectedFiles.length < requiredFileCount;
 
     const cls = [
         'fileupload__container',
@@ -333,6 +344,16 @@ const FileSelect = ({
                     </Button>
                 </section>
 
+                {hasValidationError && (
+                    <span className="field-validation-error">
+                        <span>
+                            {validationMessage} ({requiredFileCount} vereist)
+                        </span>
+                    </span>
+
+                )}
+
+
                 <div className="fileupload__info">
                     <small>
                         Maximum bestandgrootte: <strong>{filesize(maxTotalSize)}</strong>
@@ -375,9 +396,9 @@ const FileSelect = ({
                             ),
                             postfix: (
                                 <Tooltip content="Verwijderen">
-                                   
+
                                     <Icon
-                                        borderColor={ColorDefinitions.Surface}  
+                                        borderColor={ColorDefinitions.Surface}
                                         hoverBackground={ColorDefinitions.Rose30}
                                         hoverBorderColor={ColorDefinitions.Rose30}
                                         rounded={SizeDefinitions.Full}
@@ -385,6 +406,7 @@ const FileSelect = ({
                                         size={SizeDefinitions.Small}
                                         onClick={() => {
                                             const files = selectedFiles.filter((file) => file != item);
+
                                             if (!filesize.length) {
                                                 inputRef.current!.value = '';
                                             }

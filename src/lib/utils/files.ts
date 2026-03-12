@@ -73,3 +73,4 @@ export const matchFileType = (acceptedFiles: string[], file: File): boolean => {
 
     return false;
 };
+

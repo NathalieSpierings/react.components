@@ -71,7 +71,9 @@ export const Input = forwardRef((props: InputProps, ref: React.Ref<any>): ReactE
 
     return (
         <div className={formGroupCls}>
-            {addonIcon && addonVariant != 'focus' ? <Icon icon={addonIcon} size={addonIconSize} duotone={addonIconDuotone} /> : null}
+            {addonIcon && addonVariant != 'focus' &&
+                <Icon icon={addonIcon} size={addonIconSize} duotone={addonIconDuotone} />
+            }
 
             <input
                 className={formControlCls}
@@ -126,7 +128,8 @@ export const FormInput: FC<FormInputProps> = (props) => {
             onBlur={field.onBlur} // notify when input is touched/blur
             value={field.value || ''} // input value
             name={field.name} // send down the input name
-            validationErrorMessage={isTouched && validationErr ? validationErr : undefined}
+           // validationErrorMessage={isTouched && validationErr ? validationErr : undefined}
+            validationErrorMessage={invalid ?  validationErr : undefined}
             {...rest}
         />
     );
