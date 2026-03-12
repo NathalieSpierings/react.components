@@ -1966,6 +1966,7 @@
 
 @layer fileupload {
 	.fileupload {
+		position: relative;
 
 		&__input {
 			display: none;
@@ -1997,7 +1998,6 @@
 			}
 		}
 
-
 		&__info {
 			display: flex;
 			flex-direction: column;
@@ -2019,6 +2019,20 @@
 					color: var(--color-accent);
 				}
 			}
+		}
+
+		.field-validation-error {
+			color: var(--color-red);
+			left: auto;
+			bottom: -2.8rem;
+			position: absolute;
+			font-weight: normal;
+			font-size: var(--fs-sm);
+			font-style: italic;
+			animation-name: inputFadeInDown;
+			animation-duration: 1s;
+			animation-fill-mode: both;
+			right: 0;
 		}
 	}
 }
